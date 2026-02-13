@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\drive\v1\model\version.py
-# hypothesis_version: 6.151.6
-
-['Version', 'VersionBuilder', 'create_time', 'creator_id', 'name', 'obj_type', 'owner_id', 'parent_token', 'parent_type', 'status', 'update_time', 'version']

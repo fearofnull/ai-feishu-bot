@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\corehr\v2\model\query_recent_change_job_response_body.py
-# hypothesis_version: 6.151.6
-
-['deleted_job_ids', 'has_more', 'job_ids', 'page_token']

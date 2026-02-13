@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\calendar\v4\model\event_location.py
-# hypothesis_version: 6.151.6
-
-['EventLocation', 'EventLocationBuilder', 'address', 'latitude', 'longitude', 'name']

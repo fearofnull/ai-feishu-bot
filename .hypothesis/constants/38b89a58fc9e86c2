@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\lingo\v1\model\i18n_entry_desc.py
-# hypothesis_version: 6.151.6
-
-['I18nEntryDesc', 'I18nEntryDescBuilder', 'description', 'language', 'rich_text']

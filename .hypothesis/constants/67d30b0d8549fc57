@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\security_and_compliance\v1\model\audit_android_context.py
-# hypothesis_version: 6.151.6
-
-['AuditAndroidContext', 'active_ip', 'active_ip_detail', 'app_ver', 'cell_base_station', 'did', 'env_ml', 'env_su', 'env_tz', 'hw_brand', 'hw_manuf', 'i_p', 'id_i', 'id_r', 'location', 'region', 'route_gip', 'route_iip', 'udid', 'ver', 'wifip']

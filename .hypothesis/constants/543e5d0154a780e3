@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\calendar\v4\model\meeting_settings.py
-# hypothesis_version: 6.151.6
-
-['MeetingSettings', 'assign_hosts', 'auto_record', 'open_lobby', 'owner_id', 'password']

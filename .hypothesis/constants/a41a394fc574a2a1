@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\directory\v1\model\job_title.py
-# hypothesis_version: 6.151.6
-
-['JobTitle', 'JobTitleBuilder', 'create_time', 'creator_id', 'description', 'external_id', 'is_deleted', 'is_enabled', 'job_family_id', 'job_family_ids', 'job_level_id', 'job_level_ids', 'job_title_id', 'job_title_name', 'tenant_id', 'title', 'update_time', 'updator_id']

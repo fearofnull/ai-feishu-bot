@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\corehr\v2\model\signature_template_info_with_thumbnail.py
-# hypothesis_version: 6.151.6
-
-['category', 'create_time', 'created_by', 'id', 'label', 'modify_time', 'signatory_labels', 'template_code', 'template_desc', 'template_region_info', 'thumbnail_url', 'updated_by', 'usage']

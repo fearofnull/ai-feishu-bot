@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\application\v6\model\miniprogram.py
-# hypothesis_version: 6.151.6
-
-['Miniprogram', 'MiniprogramBuilder', 'enable_pc_mode', 'mobile_version_id', 'pc_min_lark_version', 'pc_use_mobile_pkg', 'pc_version_id', 'schema_urls']

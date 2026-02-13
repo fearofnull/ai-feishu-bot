@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\directory\v1\model\image_link.py
-# hypothesis_version: 6.151.6
-
-['ImageLink', 'ImageLinkBuilder', 'avatar_240', 'avatar_640', 'avatar_72', 'avatar_origin']

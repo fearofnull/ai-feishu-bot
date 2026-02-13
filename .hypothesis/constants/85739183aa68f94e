@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\directory\v1\model\user_entity.py
-# hypothesis_version: 6.151.6
-
-['UserEntity', 'UserEntityBuilder', 'app', 'biz_id', 'create_time', 'credentials', 'employee', 'guest', 'home_user_id', 'id', 'is_active', 'is_frozen', 'is_pending', 'is_provisioned', 'last_login_time', 'profile_card', 'tenant_id', 'update_time', 'user_type']

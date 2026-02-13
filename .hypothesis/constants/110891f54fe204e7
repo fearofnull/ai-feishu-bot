@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\hire\v1\model\job_requirement_dto.py
-# hypothesis_version: 6.151.6
-
-['JobRequirementDto', 'address', 'approval_status', 'category', 'completion_time', 'count_data', 'create_time', 'creator_id', 'customized_data_list', 'deadline', 'department', 'description', 'direct_leader_list', 'display_progress', 'employee_type', 'employment_job_id', 'head_count', 'id', 'job_id_list', 'job_type', 'jr_hiring_managers', 'max_level', 'max_salary', 'min_level', 'min_salary', 'name', 'position_id', 'priority', 'process_type', 'recruiter_list', 'recruitment_type', 'required_degree', 'sequence', 'short_code', 'start_time', 'update_time']

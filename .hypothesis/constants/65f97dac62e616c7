@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\task\v2\model\get_comment_request.py
-# hypothesis_version: 6.151.6
-
-['comment_id', 'user_id_type']

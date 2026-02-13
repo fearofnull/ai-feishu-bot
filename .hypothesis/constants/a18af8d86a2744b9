@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\helpdesk\v1\model\migration_ticket.py
-# hypothesis_version: 6.151.6
-
-['MigrationTicket', 'agent_entry_time_ms', 'agent_group_name', 'agent_ids', 'channel', 'close_at_ms', 'close_by', 'close_way', 'collaborators', 'comments', 'create_at_ms', 'creator_id', 'description', 'first_response_ms', 'guest_city', 'guest_country', 'guest_id', 'id', 'language', 'last_response_ms', 'owner_agent_id', 'queued_at_ms', 'score', 'stage', 'status', 'transfer_comment', 'update_at_ms']

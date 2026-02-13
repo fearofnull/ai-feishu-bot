@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\hire\v1\model\interviewer.py
-# hypothesis_version: 6.151.6
-
-['Interviewer', 'InterviewerBuilder', 'user_id', 'verify_status']

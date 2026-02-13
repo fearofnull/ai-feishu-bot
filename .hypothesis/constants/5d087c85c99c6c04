@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\security_and_compliance\v1\model\email_filter.py
-# hypothesis_version: 6.151.6
-
-['EmailFilter', 'EmailFilterBuilder', 'email_id', 'email_title', 'owner_address_list', 'owner_userid_list', 'recipients', 'senders', 'time_range']

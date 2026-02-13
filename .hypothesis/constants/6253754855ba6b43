@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\corehr\v2\model\location_version_data.py
-# hypothesis_version: 6.151.6
-
-['LocationVersionData', 'active', 'code', 'descriptions', 'display_language_id', 'effective_date', 'expiration_date', 'locale', 'location_id', 'location_names', 'location_usages', 'location_version_id', 'parent_location_id', 'time_zone_id']

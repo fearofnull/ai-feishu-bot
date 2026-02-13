@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\apaas\v1\model\basic_info.py
-# hypothesis_version: 6.151.6
-
-['BasicInfo', 'BasicInfoBuilder', 'app_id', 'app_name', 'audit_scope', 'env_type', 'log_type', 'module', 'op_type']

@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\directory\v1\model\page_condition.py
-# hypothesis_version: 6.151.6
-
-['PageCondition', 'PageConditionBuilder', 'offset', 'page_size', 'page_token', 'page_type']

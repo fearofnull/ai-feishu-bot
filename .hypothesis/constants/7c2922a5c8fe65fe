@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\corehr\v2\model\department_timeline.py
-# hypothesis_version: 6.151.6
-
-['DepartmentTimeline', 'active', 'code', 'custom_fields', 'descriptions', 'effective_date', 'expiration_date', 'id', 'manager', 'names', 'parent_department_id', 'sub_type', 'version_id']

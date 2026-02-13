@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\contact\v3\model\user_order.py
-# hypothesis_version: 6.151.6
-
-['UserOrder', 'UserOrderBuilder', 'department_id', 'department_order', 'is_primary_dept', 'user_order']

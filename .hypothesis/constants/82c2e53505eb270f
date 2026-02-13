@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\corehr\v2\model\location_address_update.py
-# hypothesis_version: 6.151.6
-
-['address_line1', 'address_line2', 'address_line3', 'address_line4', 'address_line5', 'address_line6', 'address_line7', 'address_line8', 'address_line9', 'address_types', 'city_id', 'country_region_id', 'distinct_id', 'is_primary', 'is_public', 'local_address_line1', 'local_address_line2', 'local_address_line3', 'local_address_line4', 'local_address_line5', 'local_address_line6', 'local_address_line7', 'local_address_line8', 'local_address_line9', 'postal_code', 'region_id']

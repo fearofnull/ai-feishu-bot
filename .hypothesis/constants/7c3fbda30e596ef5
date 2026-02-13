@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\task\v2\model\input_custom_field_value.py
-# hypothesis_version: 6.151.6
-
-['datetime_value', 'guid', 'member_value', 'multi_select_value', 'number_value', 'single_select_value', 'text_value']

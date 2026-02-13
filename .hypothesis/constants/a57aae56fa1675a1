@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\hire\v1\model\list_interviewer_request.py
-# hypothesis_version: 6.151.6
-
-['earliest_update_time', 'latest_update_time', 'page_size', 'page_token', 'user_id_type', 'user_ids', 'verify_status']

@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\corehr\v2\model\address_timeline.py
-# hypothesis_version: 6.151.6
-
-['AddressTimeline', 'address_items', 'effective_time', 'employment_id', 'expiration_time', 'id', 'version_id']

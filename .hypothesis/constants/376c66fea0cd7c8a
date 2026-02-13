@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\admin\v1\model\audit_event_extend.py
-# hypothesis_version: 6.151.6
-
-['AuditEventExtend', 'app_detail', 'comment_type', 'join_group', 'login_method', 'quit_group', 'two_step_validation']

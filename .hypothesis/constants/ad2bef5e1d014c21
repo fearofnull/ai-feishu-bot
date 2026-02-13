@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\corehr\v2\model\leave_balance.py
-# hypothesis_version: 6.151.6
-
-['LeaveBalance', 'LeaveBalanceBuilder', 'leave_balance', 'leave_duration_unit', 'leave_type_id', 'leave_type_name', 'offboarding_balance', 'offboarding_granted', 'taken', 'taken_current_date', 'taken_history_cycle', 'this_cycle_taken', 'this_cycle_total']

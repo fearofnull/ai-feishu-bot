@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\approval\v4\model\task_search_node.py
-# hypothesis_version: 6.151.6
-
-['TaskSearchNode', 'end_time', 'extra', 'link', 'start_time', 'status', 'task_external_id', 'task_id', 'title', 'update_time', 'user_id']

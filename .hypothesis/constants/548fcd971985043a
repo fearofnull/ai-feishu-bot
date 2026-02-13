@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\corehr\v2\model\job_grade_update.py
-# hypothesis_version: 6.151.6
-
-['JobGradeUpdate', 'active', 'code', 'descriptions', 'grade_order', 'names']

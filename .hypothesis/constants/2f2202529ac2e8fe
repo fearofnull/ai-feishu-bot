@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\im\v1\model\p2_im_chat_updated_v1.py
-# hypothesis_version: 6.151.6
-
-['after_change', 'before_change', 'chat_id', 'event', 'external', 'moderator_list', 'operator_id', 'operator_tenant_key']

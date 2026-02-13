@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\corehr\v2\model\education.py
-# hypothesis_version: 6.151.6
-
-['Education', 'EducationBuilder', 'country_region_id', 'custom_fields', 'degree', 'end_date', 'expected_end_date', 'field_of_study', 'field_of_study_name', 'level_of_education', 'school', 'school_name', 'start_date']

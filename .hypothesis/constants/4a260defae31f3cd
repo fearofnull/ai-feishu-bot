@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\hire\v1\model\website_delivery_basic_info.py
-# hypothesis_version: 6.151.6
-
-['age', 'birthday', 'current_city_code', 'current_home_address', 'customized_data', 'email', 'experience_years', 'gender', 'hometown_city_code', 'identification', 'marital_status', 'mobile', 'mobile_country_code', 'name', 'nationality_id', 'resume_source_id', 'start_work_time']

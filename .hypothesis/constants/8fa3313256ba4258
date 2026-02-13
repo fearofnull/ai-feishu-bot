@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\corehr\v2\model\probation_info_for_submit.py
-# hypothesis_version: 6.151.6
-
-['converted_via_bpm', 'custom_fields', 'employment_id', 'initiating_time', 'initiator_id', 'notes', 'probation_id', 'probation_start_date', 'probation_status', 'process_id', 'self_review', 'submission_type']

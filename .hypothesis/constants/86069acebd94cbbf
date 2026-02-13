@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\approval\v4\model\approval_config.py
-# hypothesis_version: 6.151.6
-
-['ApprovalConfig', 'can_update_form', 'can_update_process', 'can_update_revert', 'can_update_viewer', 'help_url']

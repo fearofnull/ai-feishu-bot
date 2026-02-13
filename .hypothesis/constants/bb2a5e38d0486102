@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\helpdesk\v1\model\ticket_message_content.py
-# hypothesis_version: 6.151.6
-
-['TicketMessageContent', 'content', 'image_key', 'image_keys', 'msg_type']

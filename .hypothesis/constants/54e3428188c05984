@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\approval\v4\model\approval_approver_ccer.py
-# hypothesis_version: 6.151.6
-
-['ApprovalApproverCcer', 'level', 'type', 'user_id']

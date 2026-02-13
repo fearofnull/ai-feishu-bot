@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\apaas\v1\model\role_member.py
-# hypothesis_version: 6.151.6
-
-['RoleMember', 'RoleMemberBuilder', 'departments', 'role_api_id', 'role_api_name', 'type', 'updated_at', 'updated_by', 'user_display_infos', 'user_filter', 'users']

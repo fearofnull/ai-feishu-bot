@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\hire\v1\model\list_application_request.py
-# hypothesis_version: 6.151.6
-
-['active_status', 'job_id', 'lock_status', 'page_size', 'page_token', 'process_id', 'stage_id', 'talent_id', 'update_end_time', 'update_start_time']

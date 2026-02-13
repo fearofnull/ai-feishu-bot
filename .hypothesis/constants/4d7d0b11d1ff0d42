@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\performance\v2\model\review_stage.py
-# hypothesis_version: 6.151.6
-
-['ReviewStage', 'ReviewStageBuilder', 'records', 'review_stage_role', 'review_stage_roles', 'stage_id', 'stage_type', 'template_id']

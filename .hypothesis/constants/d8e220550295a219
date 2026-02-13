@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\im\v1\model\event_message.py
-# hypothesis_version: 6.151.6
-
-['EventMessage', 'EventMessageBuilder', 'chat_id', 'chat_type', 'content', 'create_time', 'mentions', 'message_id', 'message_type', 'parent_id', 'root_id', 'thread_id', 'update_time', 'user_agent']

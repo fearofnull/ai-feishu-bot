@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\directory\v1\model\to_be_resigned_employee_request.py
-# hypothesis_version: 6.151.6
-
-['department_id_type', 'employee_id', 'employee_id_type']

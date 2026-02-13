@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\hire\v1\model\evaluation.py
-# hypothesis_version: 6.151.6
-
-['Evaluation', 'EvaluationBuilder', 'application_id', 'commit_status', 'conclusion', 'content', 'create_time', 'creator_id', 'evaluator_id', 'id', 'stage_id', 'update_time']

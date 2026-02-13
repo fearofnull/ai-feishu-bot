@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\payroll\v1\model\verif_datasource_item.py
-# hypothesis_version: 6.151.6
-
-['VerifDatasourceItem', 'decimal_places', 'field_api_name', 'field_id', 'field_type', 'name', 'object_api_name', 'object_type', 'source_type']

@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\attendance\v1\model\get_user_flow_request.py
-# hypothesis_version: 6.151.6
-
-['employee_type', 'user_flow_id']

@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\attendance\v1\model\user_normal_leave_type.py
-# hypothesis_version: 6.151.6
-
-['UserNormalLeaveType', 'leave_type_ids', 'user_id']

@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\search\v2\model\item_metadata.py
-# hypothesis_version: 6.151.6
-
-['ItemMetadata', 'ItemMetadataBuilder', 'create_time', 'source_url', 'source_url_mobile', 'title', 'update_time']

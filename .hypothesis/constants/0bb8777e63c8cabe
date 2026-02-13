@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\document_ai\v1\model\doc_chunk_result.py
-# hypothesis_version: 6.151.6
-
-['DocChunkResult', 'block_id', 'children', 'code_detail', 'file_detail', 'html_text', 'id', 'image_detail', 'label', 'level', 'llm_detail', 'md_text', 'parent', 'positions', 'slide_index', 'table_detail', 'text', 'type']

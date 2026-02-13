@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\payroll\v1\model\collection_activity_data_with_details.py
-# hypothesis_version: 6.151.6
-
-['activity_id', 'calendar_period', 'country_regions', 'template_id', 'template_version_id']

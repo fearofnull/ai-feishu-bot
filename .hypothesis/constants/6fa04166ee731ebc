@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\payroll\v1\model\verification_activity.py
-# hypothesis_version: 6.151.6
-
-['VerificationActivity', 'activity_id', 'activity_status', 'approve_time', 'name', 'pay_period_seq', 'plan_id', 'plan_snapshot', 'retro_period_seq', 'update_time', 'version_id']

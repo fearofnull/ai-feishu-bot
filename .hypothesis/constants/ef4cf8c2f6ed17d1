@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\task\v2\model\task_summary.py
-# hypothesis_version: 6.151.6
-
-['TaskSummary', 'TaskSummaryBuilder', 'completed_at', 'due', 'guid', 'members', 'start', 'subtask_count', 'summary']

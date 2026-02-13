@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\corehr\v2\model\employees_additional_job.py
-# hypothesis_version: 6.151.6
-
-['compensation_type', 'department_id', 'direct_manager_id', 'employee_subtype_id', 'employee_type_id', 'employment_id', 'end_date', 'id', 'job_family_id', 'job_id', 'job_level_id', 'position_id', 'service_company', 'start_date', 'weekly_working_hours', 'work_calendar_id', 'work_location_id', 'work_shift']

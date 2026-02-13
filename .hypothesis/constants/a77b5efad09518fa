@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\apaas\v1\model\object_for_query.py
-# hypothesis_version: 6.151.6
-
-['ObjectForQuery', 'api_name', 'created_at', 'fields', 'label', 'settings', 'type', 'updated_at']

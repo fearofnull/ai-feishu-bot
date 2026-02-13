@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\approval\v4\model\action_config.py
-# hypothesis_version: 6.151.6
-
-['ActionConfig', 'ActionConfigBuilder', 'action_name', 'action_type', 'is_need_attachment', 'is_need_reason', 'is_reason_required']

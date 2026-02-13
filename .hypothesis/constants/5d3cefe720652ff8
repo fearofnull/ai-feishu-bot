@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\hire\v1\model\talent_combined_education_info.py
-# hypothesis_version: 6.151.6
-
-['academic_ranking', 'customized_data', 'degree', 'education_type', 'end_time', 'field_of_study', 'id', 'school', 'start_time']

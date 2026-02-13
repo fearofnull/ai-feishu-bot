@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\drive\v1\model\refer_entity.py
-# hypothesis_version: 6.151.6
-
-['ReferEntity', 'ReferEntityBuilder', 'refer_token', 'refer_type']

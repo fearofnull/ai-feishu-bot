@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\approval\v4\model\definition.py
-# hypothesis_version: 6.151.6
-
-['Definition', 'DefinitionBuilder', 'approval_code', 'approval_name', 'create_link_mobile', 'create_link_pc', 'description', 'group_code', 'group_name', 'icon_url', 'is_external']

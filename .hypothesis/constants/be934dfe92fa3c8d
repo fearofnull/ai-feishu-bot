@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\performance\v2\model\metric_in_template.py
-# hypothesis_version: 6.151.6
-
-['MetricInTemplate', 'fields', 'group_id', 'is_from_library', 'metric_dimension_id', 'metric_id', 'name', 'review_rule_config', 'scoring_setting_type', 'type_id']

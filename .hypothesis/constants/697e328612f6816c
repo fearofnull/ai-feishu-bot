@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\verification\v1\model\verification_detail.py
-# hypothesis_version: 6.151.6
-
-['VerificationDetail', 'enterprise_license', 'legal_person_name', 'org_name', 'org_type', 'usci', 'verification_letter', 'verification_source', 'verification_type']

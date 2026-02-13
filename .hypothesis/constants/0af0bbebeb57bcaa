@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\attendance\v1\model\user_leave.py
-# hypothesis_version: 6.151.6
-
-['UserLeave', 'UserLeaveBuilder', 'approval_id', 'approve_apply_time', 'approve_pass_time', 'default_locale', 'end_time', 'i18n_names', 'idempotent_id', 'interval', 'reason', 'start_time', 'uniq_id', 'unit']

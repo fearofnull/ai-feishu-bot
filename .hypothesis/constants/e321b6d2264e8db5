@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\task\v2\model\activity_record.py
-# hypothesis_version: 6.151.6
-
-['ActivityRecord', 'content', 'created_at', 'key', 'key_name', 'op_user', 'target_task_guid', 'target_task_name']

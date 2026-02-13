@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\approval\v4\model\external_instance.py
-# hypothesis_version: 6.151.6
-
-['ExternalInstance', 'approval_code', 'cc_list', 'department_id', 'department_name', 'display_method', 'end_time', 'extra', 'form', 'i18n_resources', 'instance_id', 'links', 'open_id', 'resource_region', 'start_time', 'status', 'task_list', 'title', 'trusteeship_urls', 'update_mode', 'update_time', 'user_id', 'user_name']

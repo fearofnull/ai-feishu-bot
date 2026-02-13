@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\base\v2\model\ext_info.py
-# hypothesis_version: 6.151.6
-
-['ExtInfo', 'ExtInfoBuilder', 'bg_image', 'ga_chat_id', 'icon', 'is_copying', 'modified_time', 'sub_type', 'title_color', 'version']

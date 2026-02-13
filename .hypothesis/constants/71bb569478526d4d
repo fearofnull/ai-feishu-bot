@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\hire\v1\model\application_stage.py
-# hypothesis_version: 6.151.6
-
-['ApplicationStage', 'args', 'creator_id', 'en_name', 'id', 'name', 'publish_en_name', 'publish_name', 'seq', 'type']

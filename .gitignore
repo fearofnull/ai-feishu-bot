@@ -58,3 +58,4 @@ secrets.json
 .pytest_cache/
 .coverage
 htmlcov/
+.hypothesis/

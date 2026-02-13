@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\board\v1\model\whiteboard_node.py
-# hypothesis_version: 6.151.6
-
-['WhiteboardNode', 'angle', 'children', 'composite_shape', 'connector', 'height', 'id', 'image', 'lifeline', 'locked', 'mind_map', 'mind_map_node', 'mind_map_root', 'paint', 'parent_id', 'section', 'sticky_note', 'style', 'svg', 'table', 'text', 'type', 'width', 'x', 'y', 'z_index']

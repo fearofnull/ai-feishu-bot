@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\hire\v1\model\sentence.py
-# hypothesis_version: 6.151.6
-
-['Sentence', 'SentenceBuilder', 'content', 'speak_time', 'speaker_name', 'user_type']

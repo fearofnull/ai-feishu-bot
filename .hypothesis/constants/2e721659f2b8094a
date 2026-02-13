@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\task\v1\model\list_task_collaborator_request.py
-# hypothesis_version: 6.151.6
-
-['page_size', 'page_token', 'task_id', 'user_id_type']

@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\compensation\v1\model\lump_sum_payment_detail_for_create.py
-# hypothesis_version: 6.151.6
-
-['belong_time', 'issuance_amount', 'issuance_status', 'issuance_time', 'issuance_way']

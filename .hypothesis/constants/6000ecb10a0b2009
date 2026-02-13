@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\helpdesk\v1\model\faq_update_info.py
-# hypothesis_version: 6.151.6
-
-['FaqUpdateInfo', 'FaqUpdateInfoBuilder', 'answer', 'answer_richtext', 'category_id', 'question', 'tags']

@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\security_and_compliance\v2\model\mail.py
-# hypothesis_version: 6.151.6
-
-['Mail', 'MailBuilder', 'create_time', 'id', 'owner_address', 'owner_type', 'owner_user_id', 'title']

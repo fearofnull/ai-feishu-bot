@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\search\v2\model\doc_meta.py
-# hypothesis_version: 6.151.6
-
-['DocMeta', 'DocMetaBuilder', 'create_time', 'doc_types', 'edit_user_id', 'edit_user_name', 'is_cross_tenant', 'last_open_time', 'owner_id', 'owner_name', 'token', 'update_time', 'url']

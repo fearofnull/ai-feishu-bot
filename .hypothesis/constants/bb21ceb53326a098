@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\compensation\v1\model\plan_detail.py
-# hypothesis_version: 6.151.6
-
-['PlanDetail', 'PlanDetailBuilder', 'currency_id', 'description', 'effective_date', 'i18n_descriptions', 'i18n_names', 'id', 'name', 'plan_indicators', 'plan_items', 'plan_scope', 'tid']

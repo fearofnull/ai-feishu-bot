@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\security_and_compliance\v1\model\device_record.py
-# hypothesis_version: 6.151.6
-
-['DeviceRecord', 'DeviceRecordBuilder', 'aaid', 'android_id', 'device_credibility', 'device_name', 'device_ownership', 'device_record_id', 'device_source', 'device_system', 'device_terminal_type', 'disk_serial_number', 'google_aid', 'idfa', 'idfv', 'imei', 'mac_address', 'model', 'register_time', 'serial_number', 'uuid', 'version']

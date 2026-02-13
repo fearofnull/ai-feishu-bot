@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\document_ai\v1\model\resume_career.py
-# hypothesis_version: 6.151.6
-
-['ResumeCareer', 'ResumeCareerBuilder', 'company', 'end_date', 'end_time', 'job_description', 'start_date', 'start_time', 'title', 'type', 'type_str']

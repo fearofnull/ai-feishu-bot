@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\corehr\v2\model\employees_international_assignment.py
-# hypothesis_version: 6.151.6
-
-['compensation_type', 'custom_fields', 'department_id', 'description', 'direct_manager_id', 'effective_time', 'employee_type_id', 'employment_id', 'expiration_time', 'id', 'job_family_id', 'job_grade_id', 'job_id', 'job_level_id', 'position_id', 'service_company', 'work_calendar_id', 'work_location_id', 'work_shift']

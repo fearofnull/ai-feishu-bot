@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\attendance\v1\model\user_trip.py
-# hypothesis_version: 6.151.6
-
-['UserTrip', 'UserTripBuilder', 'approval_id', 'approve_apply_time', 'approve_pass_time', 'cancel_process_id', 'correct_process_id', 'departure', 'destinations', 'end_time', 'idempotent_id', 'process_id', 'reason', 'remarks', 'start_time', 'transportation', 'trip_type']

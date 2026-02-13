@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\hire\v1\model\p2_hire_ehr_import_task_imported_v1.py
-# hypothesis_version: 6.151.6
-
-['application_id', 'ehr_department', 'ehr_department_id', 'ehr_requirement_id', 'event', 'operator_id', 'operator_user_id', 'task_id']

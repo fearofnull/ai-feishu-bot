@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\corehr\v1\model\employment_create.py
-# hypothesis_version: 6.151.6
-
-['EmploymentCreate', 'ats_application_id', 'company_id', 'cost_center_list', 'custom_fields', 'department_id', 'effective_time', 'email_address', 'employee_number', 'employee_type_id', 'employment_status', 'employment_type', 'expiration_time', 'id', 'job_family_id', 'job_id', 'job_level_id', 'on_probation', 'person_id', 'prehire_id', 'primary_employment', 'probation_end_date', 'probation_period', 'rehire', 'rehire_employment_id', 'seniority_date', 'tenure', 'work_email_list', 'work_location_id']

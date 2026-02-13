@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\hire\v1\model\open_job_request_body.py
-# hypothesis_version: 6.151.6
-
-['OpenJobRequestBody', 'expiry_time', 'is_never_expired']

@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\apaas\v1\model\page_permission_v2.py
-# hypothesis_version: 6.151.6
-
-['PagePermissionV2', 'page_api_name', 'page_name', 'role_api_name', 'sub_tab_pages']

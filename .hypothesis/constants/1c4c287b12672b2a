@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\directory\v1\model\update_guest.py
-# hypothesis_version: 6.151.6
-
-['UpdateGuest', 'UpdateGuestBuilder', 'active_guest_status', 'avatar_key', 'email', 'id', 'mobile', 'name']

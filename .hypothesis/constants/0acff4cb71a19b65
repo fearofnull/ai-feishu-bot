@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\directory\v1\model\tenant.py
-# hypothesis_version: 6.151.6
-
-['Tenant', 'TenantBuilder', 'address', 'avatar_key', 'brand', 'contact_user_info', 'country_code', 'create_time', 'creator_id', 'description', 'dissolve_status', 'domain_modify_count', 'encrypted_id', 'external_id', 'full_domain', 'id', 'industry', 'industry_type', 'name', 'parent_id', 'post_code', 'purpose', 'scale', 'staff_size', 'sub_domain', 'tag', 'telephone', 'trace_info', 'type', 'update_time', 'updator_id']

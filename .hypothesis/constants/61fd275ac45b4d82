@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\admin\v1\model\admin_dept_stat.py
-# hypothesis_version: 6.151.6
-
-['AdminDeptStat', 'AdminDeptStatBuilder', 'active_user_num', 'active_user_rate', 'avg_create_cal_num', 'avg_create_docs_num', 'avg_create_task_num', 'avg_duration', 'avg_vc_duration', 'cal_dau', 'create_cal_num', 'create_cal_user_num', 'create_docs_num', 'create_docs_user_num', 'create_task_num', 'create_task_user_num', 'date', 'department_id', 'department_name', 'department_path', 'docs_dau', 'email_receive_count', 'email_send_count', 'email_send_ext_count', 'email_send_in_count', 'im_dau', 'new_active_num', 'new_user_num', 'product_version', 'quick_search_count', 'resign_user_num', 'search_active_dau', 'send_messenger_num', 'suite_active_rate', 'suite_dau', 'tab_search_count', 'task_dau', 'total_search_count', 'total_user_num', 'vc_dau', 'vc_duration']

@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\task\v2\model\task.py
-# hypothesis_version: 6.151.6
-
-['Task', 'TaskBuilder', 'assignee_related', 'attachments', 'completed_at', 'created_at', 'creator', 'custom_complete', 'custom_fields', 'dependencies', 'description', 'due', 'extra', 'guid', 'is_milestone', 'members', 'mode', 'origin', 'parent_task_guid', 'positive_reminders', 'reminders', 'repeat_rule', 'source', 'start', 'status', 'subtask_count', 'summary', 'task_id', 'tasklists', 'updated_at', 'url']

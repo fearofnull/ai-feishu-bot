@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\helpdesk\v1\model\faq.py
-# hypothesis_version: 6.151.6
-
-['Faq', 'FaqBuilder', 'answer', 'answer_richtext', 'categories', 'create_time', 'create_user', 'expire_time', 'faq_id', 'helpdesk_id', 'id', 'question', 'tags', 'update_time', 'update_user']

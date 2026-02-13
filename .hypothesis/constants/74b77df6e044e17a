@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\mail\v1\model\folder.py
-# hypothesis_version: 6.151.6
-
-['Folder', 'FolderBuilder', 'folder_type', 'id', 'name', 'parent_folder_id', 'unread_message_count', 'unread_thread_count']

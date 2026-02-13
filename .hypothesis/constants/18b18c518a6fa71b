@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\attendance\v1\model\query_user_stats_data_request_body.py
-# hypothesis_version: 6.151.6
-
-['current_group_only', 'end_date', 'locale', 'need_history', 'start_date', 'stats_type', 'user_id', 'user_ids']

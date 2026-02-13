@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\apaas\v1\model\connector_instance_definition.py
-# hypothesis_version: 6.151.6
-
-['action_api_name', 'connection_api_name', 'connector_api_name', 'input_data', 'output_data_schema']

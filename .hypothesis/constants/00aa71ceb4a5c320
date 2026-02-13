@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\report\v1\model\rule.py
-# hypothesis_version: 6.151.6
-
-['Rule', 'RuleBuilder', 'cc_chat_ids', 'cc_department_ids', 'cc_user_ids', 'created_at', 'creator_user_id', 'creator_user_name', 'form_schema', 'icon_name', 'is_deleted', 'manager_user_ids', 'name', 'need_report_chat_ids', 'need_report_user_ids', 'owner_user_id', 'owner_user_name', 'rule_id', 'to_chat_ids', 'to_department_owners', 'to_leaders', 'to_user_ids']

@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\hire\v1\model\attachment_v2.py
-# hypothesis_version: 6.151.6
-
-['AttachmentV2', 'AttachmentV2Builder', 'create_time', 'id', 'mime', 'name', 'url']

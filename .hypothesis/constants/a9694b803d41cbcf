@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\helpdesk\v1\model\agent_schedule.py
-# hypothesis_version: 6.151.6
-
-['AgentSchedule', 'AgentScheduleBuilder', 'agent', 'agent_skills', 'schedule', 'status']

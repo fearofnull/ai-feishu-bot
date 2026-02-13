@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\attendance\v1\model\create_bpm_remedy_records.py
-# hypothesis_version: 6.151.6
-
-['custom_form_data', 'remedy_reason', 'remedy_records', 'user_id']

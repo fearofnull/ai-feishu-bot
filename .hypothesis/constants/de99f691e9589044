@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\hire\v1\model\offer_list_info.py
-# hypothesis_version: 6.151.6
-
-['OfferListInfo', 'OfferListInfoBuilder', 'application_id', 'create_time', 'employee_type', 'id', 'job_info', 'offer_status', 'offer_type']

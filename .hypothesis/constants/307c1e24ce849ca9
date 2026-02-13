@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\drive\v1\model\file_block_change_info.py
-# hypothesis_version: 6.151.6
-
-['FileBlockChangeInfo', 'block_token', 'block_token_type', 'rev_ranges']

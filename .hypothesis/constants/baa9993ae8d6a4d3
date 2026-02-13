@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\hire\v2\model\composite_talent_basic_info.py
-# hypothesis_version: 6.151.6
-
-['age', 'birthday', 'confidential', 'create_time', 'customized_data_list', 'email', 'experience_years', 'gender', 'home_address', 'hukou_location_code', 'identification_type', 'marital_status', 'mobile_code', 'mobile_number', 'name', 'nationality_code', 'update_time']

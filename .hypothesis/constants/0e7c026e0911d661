@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\approval\v4\model\cc_search.py
-# hypothesis_version: 6.151.6
-
-['CcSearch', 'CcSearchBuilder', 'approval_code', 'cc_create_time_from', 'cc_create_time_to', 'cc_title', 'group_external_id', 'instance_code', 'instance_external_id', 'locale', 'read_status', 'user_id']

@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\authen\v1\model\user_info.py
-# hypothesis_version: 6.151.6
-
-['UserInfo', 'UserInfoBuilder', 'avatar_big', 'avatar_middle', 'avatar_thumb', 'avatar_url', 'email', 'employee_no', 'en_name', 'enterprise_email', 'mobile', 'name', 'open_id', 'tenant_key', 'union_id', 'user_id']

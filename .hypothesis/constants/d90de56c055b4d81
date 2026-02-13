@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\corehr\v1\model\text_field_setting.py
-# hypothesis_version: 6.151.6
-
-['TextFieldSetting', 'is_multiline', 'is_multilingual', 'is_url_type', 'max_length']

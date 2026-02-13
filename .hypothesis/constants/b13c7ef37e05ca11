@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\drive\v1\model\p2_drive_file_bitable_record_changed_v1.py
-# hypothesis_version: 6.151.6
-
-['action_list', 'event', 'file_token', 'file_type', 'operator_id', 'revision', 'subscriber_id_list', 'table_id', 'update_time']

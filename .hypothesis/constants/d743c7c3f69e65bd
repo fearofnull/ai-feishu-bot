@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\admin\v1\model\user_report2025.py
-# hypothesis_version: 6.151.6
-
-['UserReport2025', 'ai_notes_create_cnt', 'ai_notes_read_cnt', 'aily_chat_cnt', 'aily_develop_app_cnt', 'base_create_fcnt', 'base_most_rows_cnt', 'ccm_all_read_doc_cnt', 'ccm_create_fcnt', 'ccm_create_liked_cnt', 'ccm_create_rank', 'ccm_create_rank_ucnt', 'feishu_active_days', 'im_emoji_top1', 'im_emoji_top1_cnt', 'im_emoji_top2', 'im_emoji_top2_cnt', 'im_emoji_top3', 'im_emoji_top3_cnt', 'im_private_chat_cnt', 'im_send_msg_cnt', 'im_talked_chat_cnt', 'knowledge_ai_use_cnt', 'meego_create_wi_cnt', 'tenant_all_cnt', 'user_id', 'user_register_date', 'vc_join_meeting_cnt', 'vc_org_meeting_cnt']

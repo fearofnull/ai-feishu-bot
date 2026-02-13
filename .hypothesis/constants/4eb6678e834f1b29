@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\directory\v1\model\update_job_title.py
-# hypothesis_version: 6.151.6
-
-['UpdateJobTitle', 'description', 'external_id', 'is_enabled', 'job_family_ids', 'job_level_ids', 'job_title_id', 'job_title_name', 'title']

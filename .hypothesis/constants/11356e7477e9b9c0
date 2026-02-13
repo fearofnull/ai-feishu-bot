@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\approval\v4\model\trip_group_schedule.py
-# hypothesis_version: 6.151.6
-
-['TripGroupSchedule', 'departure', 'departure_id', 'destination', 'destination_ids', 'remark', 'transportation', 'trip_end_time', 'trip_interval', 'trip_start_time', 'trip_type']

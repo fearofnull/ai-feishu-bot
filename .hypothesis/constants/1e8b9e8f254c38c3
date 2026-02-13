@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\block\v2\model\entity.py
-# hypothesis_version: 6.151.6
-
-['Entity', 'EntityBuilder', 'block_id', 'block_type_id', 'extra', 'i18n_preview', 'i18n_summay', 'owner', 'preview', 'source_data', 'source_link', 'source_meta', 'summary', 'title', 'version']

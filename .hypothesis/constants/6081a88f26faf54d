@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\calendar\v4\model\calendar_event_attendee_chat_member.py
-# hypothesis_version: 6.151.6
-
-['display_name', 'is_external', 'is_optional', 'is_organizer', 'open_id', 'rsvp_status']

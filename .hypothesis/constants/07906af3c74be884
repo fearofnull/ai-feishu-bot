@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\hire\v1\model\job_processes.py
-# hypothesis_version: 6.151.6
-
-['JobProcesses', 'JobProcessesBuilder', 'en_name', 'id', 'stage_list', 'type', 'zh_name']

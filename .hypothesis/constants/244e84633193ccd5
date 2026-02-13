@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\corehr\v2\model\list_signature_template_info_with_thumbnail_request.py
-# hypothesis_version: 6.151.6
-
-['active', 'category_apiname', 'name', 'need_region_info', 'page_size', 'page_token', 'usage_apiname', 'user_id_type']

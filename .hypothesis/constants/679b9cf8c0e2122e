@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\hire\v2\model\composite_talent_education_info.py
-# hypothesis_version: 6.151.6
-
-['academic_ranking', 'customized_data_list', 'degree', 'education_type', 'end_time', 'major', 'school_name', 'start_time', 'tag_list']

@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\hire\v1\model\job_detail_basic_info.py
-# hypothesis_version: 6.151.6
-
-['JobDetailBasicInfo', 'active_status', 'city_list', 'code', 'create_time', 'creator_id', 'customized_data_list', 'department', 'description', 'experience', 'expiry_time', 'head_count', 'highlight_list', 'id', 'job_attribute', 'job_category', 'job_function', 'job_type', 'max_job_level', 'max_salary', 'min_job_level', 'min_salary', 'process_id', 'process_name', 'process_type', 'recruitment_type', 'required_degree', 'requirement', 'storefront_mode', 'subject', 'target_major_list', 'title', 'update_time']

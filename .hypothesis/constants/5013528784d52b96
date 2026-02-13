@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\payroll\v1\model\verif_item.py
-# hypothesis_version: 6.151.6
-
-['VerifItem', 'VerifItemBuilder', 'aggregation_type', 'decimal_places', 'field_type', 'item_id', 'item_name', 'seq', 'source_config', 'source_type', 'status']

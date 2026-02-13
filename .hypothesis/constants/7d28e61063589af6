@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\attendance\v1\model\leave_need_punch_cfg.py
-# hypothesis_version: 6.151.6
-
-['LeaveNeedPunchCfg', 'late_minutes_as_lack', 'late_minutes_as_late', 'not_during_shift']

@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\payroll\v1\model\verification_plan.py
-# hypothesis_version: 6.151.6
-
-['VerificationPlan', 'admins', 'approval_type', 'calendar_type', 'country_region_id', 'currency_id', 'datasource_config', 'effective_period_seq', 'is_active', 'name', 'ovbservers', 'pay_calendars', 'pay_groups', 'plan_id', 'plan_type', 'reviewers', 'scope_type', 'time_zone', 'update_time', 'version_id']

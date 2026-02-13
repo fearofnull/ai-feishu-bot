@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\vc\v1\model\meeting.py
-# hypothesis_version: 6.151.6
-
-['Meeting', 'MeetingBuilder', 'ability', 'create_time', 'end_time', 'host_user', 'id', 'meeting_connect', 'meeting_no', 'participant_count', 'participants', 'password', 'start_time', 'status', 'topic', 'url']

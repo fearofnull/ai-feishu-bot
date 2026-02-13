@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\acs\v1\model\access_record.py
-# hypothesis_version: 6.151.6
-
-['AccessRecord', 'AccessRecordBuilder', 'access_data', 'access_record_id', 'access_time', 'access_type', 'device_id', 'is_clock_in', 'is_door_open', 'user_id']

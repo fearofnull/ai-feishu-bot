@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\hire\v1\model\jr_count_data_info.py
-# hypothesis_version: 6.151.6
-
-['JrCountDataInfo', 'complete_count', 'offer_count', 'pre_hire_count']

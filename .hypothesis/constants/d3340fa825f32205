@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\helpdesk\v1\model\ticket_message_export_entity.py
-# hypothesis_version: 6.151.6
-
-['content', 'created_at_ms', 'id', 'message_type', 'user_id']

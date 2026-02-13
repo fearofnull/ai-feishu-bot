@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\compensation\v1\model\social_plan_item_setting.py
-# hypothesis_version: 6.151.6
-
-['fixed_payment', 'lower_limit', 'payment_decimals', 'payment_ratio', 'upper_limit']

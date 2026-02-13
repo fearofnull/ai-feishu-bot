@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\sheets\v3\model\find_spreadsheet_sheet_request.py
-# hypothesis_version: 6.151.6
-
-['sheet_id', 'spreadsheet_token']

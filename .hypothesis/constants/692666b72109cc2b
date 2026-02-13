@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\helpdesk\v1\model\ticket_v2.py
-# hypothesis_version: 6.151.6
-
-['TicketV2', 'TicketV2Builder', 'agent_entry_time', 'agent_owner', 'agents', 'bot_service_duration', 'channel', 'closed_at', 'closed_by', 'collaborators', 'comments', 'created_at', 'customized_fields', 'guest', 'helpdesk_id', 'score', 'solve', 'status', 'tags', 'ticket_id', 'ticket_type', 'updated_at']

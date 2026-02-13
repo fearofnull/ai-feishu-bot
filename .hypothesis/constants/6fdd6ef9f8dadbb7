@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\directory\v1\model\list_collaboration_rule_response_body.py
-# hypothesis_version: 6.151.6
-
-['has_more', 'items', 'page_token']

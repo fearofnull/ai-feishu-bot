@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\corehr\v1\model\transfer_reason.py
-# hypothesis_version: 6.151.6
-
-['TransferReason', 'active', 'created_time', 'name', 'updated_time']

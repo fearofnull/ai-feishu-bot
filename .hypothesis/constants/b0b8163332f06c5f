@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\corehr\v2\model\p2_corehr_job_change_status_updated_v2.py
-# hypothesis_version: 6.151.6
-
-['effective_date', 'employment_id', 'event', 'job_change_id', 'original_status', 'process_id', 'status', 'target_user_id', 'transfer_key', 'transfer_mode']

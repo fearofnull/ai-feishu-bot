@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\compensation\v1\model\lump_sum_payment.py
-# hypothesis_version: 6.151.6
-
-['LumpSumPayment', 'apply_source', 'binding_period', 'create_time', 'currency_id', 'details', 'id', 'issuance_detail_text', 'issuance_frequency', 'item_id', 'modify_time', 'remark', 'total_amount', 'unique_id', 'user_id']

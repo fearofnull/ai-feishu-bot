@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\drive\v1\model\file_subscription.py
-# hypothesis_version: 6.151.6
-
-['FileSubscription', 'file_type', 'is_subcribe', 'subscription_id', 'subscription_type']

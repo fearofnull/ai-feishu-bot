@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\corehr\v1\model\cpst_grade.py
-# hypothesis_version: 6.151.6
-
-['CpstGrade', 'CpstGradeBuilder', 'currency', 'description', 'grade_id', 'grade_standard_value', 'grade_tid']

@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\apaas\v1\model\audit_log_es_field.py
-# hypothesis_version: 6.151.6
-
-['AuditLogEsField', 'apaas_tenant_id', 'api_path', 'app_name', 'audit_scope', 'client_ip', 'data_changes', 'data_object', 'device_id', 'env_type', 'failed_reason_i18n', 'full_path', 'ip_loc', 'ip_provider', 'lark_tenant_id', 'log_id', 'log_type', 'login_type', 'module', 'namespace', 'op_detail', 'op_source', 'op_time', 'op_type', 'operator', 'origin', 'os_type', 'os_version', 'outsider', 'referer', 'status', 'tenant_id', 'terminal_type', 'user_agent', 'user_geo', 'web_device_id']

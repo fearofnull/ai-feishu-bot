@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\corehr\v2\model\p2_corehr_process_approver_updated_v2.py
-# hypothesis_version: 6.151.6
-
-['approver_id', 'biz_type', 'event', 'flow_definition_id', 'node_definition_id', 'node_id', 'node_id_str', 'process_id', 'status', 'type']

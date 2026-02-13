@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\corehr\v2\model\profile_setting_national.py
-# hypothesis_version: 6.151.6
-
-['country_region', 'custom_fields', 'expiration_date', 'issued_by', 'issued_date', 'national_id_number', 'national_id_type']

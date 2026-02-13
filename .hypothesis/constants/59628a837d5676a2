@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\vc\v1\model\p2_vc_meeting_leave_meeting_v1.py
-# hypothesis_version: 6.151.6
-
-['event', 'leave_reason', 'leave_user', 'meeting', 'operator']

@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\compensation\v1\model\p2_compensation_archive_changed_v1.py
-# hypothesis_version: 6.151.6
-
-['after_tid', 'before_tid', 'effective_date', 'employment_id', 'event', 'operate_type']

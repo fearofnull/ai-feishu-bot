@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\im\v1\model\p2_im_chat_access_event_bot_p2p_chat_entered_v1.py
-# hypothesis_version: 6.151.6
-
-['chat_id', 'event', 'last_message_id', 'operator_id']

@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\search\v2\model\schema_property.py
-# hypothesis_version: 6.151.6
-
-['SchemaProperty', 'answer_option', 'desc', 'filter_options', 'is_filterable', 'is_returnable', 'is_searchable', 'is_sortable', 'name', 'search_options', 'sort_options', 'type', 'type_definitions']

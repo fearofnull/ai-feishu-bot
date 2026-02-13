@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\directory\v1\model\create_department.py
-# hypothesis_version: 6.151.6
-
-['CreateDepartment', 'custom_department_id', 'custom_field_values', 'department_type', 'description', 'enabled_status', 'hrbps', 'leaders', 'name', 'order_weight', 'org_dimension', 'parent_department_id']

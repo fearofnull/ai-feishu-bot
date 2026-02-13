@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\mdm\v3\model\expression.py
-# hypothesis_version: 6.151.6
-
-['Expression', 'ExpressionBuilder', 'field', 'operator', 'value']

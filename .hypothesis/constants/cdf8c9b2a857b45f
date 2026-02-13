@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\corehr\v1\model\dependent.py
-# hypothesis_version: 6.151.6
-
-['Dependent', 'DependentBuilder', 'address', 'custom_fields', 'date_of_birth', 'dependent_name', 'employer', 'gender', 'job', 'name', 'national_id_list', 'nationality_id', 'nationality_id_v2', 'phone', 'relationship']

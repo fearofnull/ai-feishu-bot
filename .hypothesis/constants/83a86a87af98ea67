@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\hire\v1\model\combined_job.py
-# hypothesis_version: 6.151.6
-
-['CombinedJob', 'CombinedJobBuilder', 'address_id', 'address_id_list', 'code', 'customized_data_list', 'department_id', 'description', 'experience', 'expiry_time', 'expiry_timestamp', 'head_count', 'highlight_list', 'id', 'is_never_expired', 'job_attribute', 'job_category_id', 'job_function_id', 'job_managers', 'job_process_id', 'job_type_id', 'max_level_id', 'max_salary', 'min_level_id', 'min_salary', 'process_type', 'recruitment_type_id', 'required_degree', 'requirement', 'subject_id', 'target_major_id_list', 'title']

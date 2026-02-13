@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\mail\v1\model\mail_log_mail_info.py
-# hypothesis_version: 6.151.6
-
-['MailLogMailInfo', 'attachment_num', 'attachments', 'bcc_recipients', 'cc_recipients', 'date', 'event_types', 'header_from', 'image_num', 'images', 'message_id', 'owner', 'smtp_message_id', 'subject', 'to_recipients']

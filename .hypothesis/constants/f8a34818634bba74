@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\corehr\v2\model\p2_corehr_employee_domain_event_v2.py
-# hypothesis_version: 6.151.6
-
-['data', 'employment_id', 'event', 'event_type', 'operator_user_id', 'opt_desc', 'opt_id', 'opt_scene', 'opt_time', 'sub_event_type']

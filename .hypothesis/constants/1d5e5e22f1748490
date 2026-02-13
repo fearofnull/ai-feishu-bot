@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\attendance\v1\model\location_record.py
-# hypothesis_version: 6.151.6
-
-['LocationRecord', 'client_info', 'device_id', 'location', 'rule_snapshot_id', 'scan_wifi_list', 'timestamp', 'type', 'user_id', 'wifi']

@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\helpdesk\v1\model\p2_helpdesk_ticket_message_created_v1.py
-# hypothesis_version: 6.151.6
-
-['chat_id', 'content', 'event', 'event_id', 'message_id', 'msg_type', 'position', 'sender_id', 'sender_type', 'text', 'ticket', 'ticket_message_id']

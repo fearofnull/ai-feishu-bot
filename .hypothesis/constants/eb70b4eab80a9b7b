@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\okr\v1\model\list_user_okr_request.py
-# hypothesis_version: 6.151.6
-
-['lang', 'limit', 'offset', 'period_ids', 'user_id', 'user_id_type']

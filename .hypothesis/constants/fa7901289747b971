@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\sheets\v3\model\conditional_format_range.py
-# hypothesis_version: 6.151.6
-
-['end_column_index', 'end_row_index', 'sheet_id', 'start_column_index', 'start_row_index']

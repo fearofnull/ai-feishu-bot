@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\admin\v1\model\grant.py
-# hypothesis_version: 6.151.6
-
-['Grant', 'GrantBuilder', 'badge_id', 'department_ids', 'grant_type', 'group_ids', 'id', 'is_grant_all', 'name', 'rule_detail', 'time_zone', 'user_ids']

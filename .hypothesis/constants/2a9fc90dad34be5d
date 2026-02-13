@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\hire\v1\model\select_option_result.py
-# hypothesis_version: 6.151.6
-
-['SelectOptionResult', 'is_selected', 'option_desc', 'option_en_desc', 'option_en_name', 'option_id', 'option_name']

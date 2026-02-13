@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\corehr\v1\model\manage_relation.py
-# hypothesis_version: 6.151.6
-
-['ManageRelation', 'effective_time', 'manager_type', 'report_mode_type', 'superior_employee_id']

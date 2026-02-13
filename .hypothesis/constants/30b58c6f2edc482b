@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\aily\v1\model\knowledge.py
-# hypothesis_version: 6.151.6
-
-['Knowledge', 'KnowledgeBuilder', 'chunk_count', 'create_time', 'dataset', 'datatable', 'docs', 'fail_message', 'file', 'folder', 'helpdesk', 'id', 'knowledge_base_id', 'status', 'title', 'type', 'update_time', 'web', 'wiki_space']

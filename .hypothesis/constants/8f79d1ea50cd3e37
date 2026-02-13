@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\security_and_compliance\v1\model\audit_info.py
-# hypothesis_version: 6.151.6
-
-['AuditInfo', 'AuditInfoBuilder', 'audit_context', 'audit_detail', 'common_drawers', 'department_ids', 'event_id', 'event_module', 'event_name', 'event_time', 'extend', 'ip', 'objects', 'operator_app', 'operator_app_name', 'operator_tenant', 'operator_type', 'operator_value', 'recipients', 'unique_id']

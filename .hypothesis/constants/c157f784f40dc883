@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\search\v2\model\wiki_passage_param.py
-# hypothesis_version: 6.151.6
-
-['WikiPassageParam', 'enable_cross_tenant', 'excluded_node_tokens', 'excluded_obj_ids', 'excluded_space_ids', 'excluded_wiki_tokens', 'node_tokens', 'obj_ids', 'only_search_public', 'searchable', 'space_ids', 'wiki_tokens']

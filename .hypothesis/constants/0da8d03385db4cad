@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\corehr\v1\model\wk_calendar_date.py
-# hypothesis_version: 6.151.6
-
-['WkCalendarDate', 'calendar_id', 'date', 'date_type', 'id']

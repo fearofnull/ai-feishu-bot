@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\im\v1\model\get_chat_members_response_body.py
-# hypothesis_version: 6.151.6
-
-['has_more', 'items', 'member_total', 'page_token']

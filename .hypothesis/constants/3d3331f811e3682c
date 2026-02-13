@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\hire\v1\model\external_interview_assessment_dimension.py
-# hypothesis_version: 6.151.6
-
-['assessment_type', 'content', 'description', 'option', 'options', 'score', 'title']

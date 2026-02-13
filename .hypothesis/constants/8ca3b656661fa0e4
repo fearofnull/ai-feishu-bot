@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\hire\v1\model\site_job_post_search_request.py
-# hypothesis_version: 6.151.6
-
-['city_code_list', 'job_type_id_list', 'keyword', 'limit', 'offset', 'site_id']

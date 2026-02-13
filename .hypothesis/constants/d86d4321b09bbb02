@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\calendar\v4\model\list_freebusy_request_body.py
-# hypothesis_version: 6.151.6
-
-['need_rsvp_status', 'only_busy', 'room_id', 'time_max', 'time_min', 'user_id']

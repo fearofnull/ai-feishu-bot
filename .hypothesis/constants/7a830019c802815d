@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\admin\v1\model\user_report2022.py
-# hypothesis_version: 6.151.6
-
-['UserReport2022', 'active_day_count', 'attend_event_count', 'comment_file_count', 'create_file_count', 'event_busy_date', 'msg_busy_date', 'okr_cum_kr_count', 'okr_cum_o_count', 'p2p_chat_count', 'people_interview_num', 'receive_email_count', 'send_email_count', 'talked_chat_count', 'total_parti_count', 'user_id', 'user_register_date']

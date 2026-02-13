@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\hire\v1\model\application_prehire_offer_basic.py
-# hypothesis_version: 6.151.6
-
-['application_id', 'expire_time', 'job_id', 'offer_id', 'offer_job_title', 'offer_status', 'offer_type', 'onboard_time', 'owner', 'remark', 'talent_id', 'time_zone']

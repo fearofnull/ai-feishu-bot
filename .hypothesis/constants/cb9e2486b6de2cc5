@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\corehr\v2\model\contract.py
-# hypothesis_version: 6.151.6
-
-['Contract', 'ContractBuilder', 'contract_end_date', 'contract_number', 'contract_status', 'contract_type', 'duration_type', 'effective_time', 'employment_id', 'expiration_time', 'id', 'original_contract', 'person_id', 'renewal_status', 'signing_times', 'signing_type']

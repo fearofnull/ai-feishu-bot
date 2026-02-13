@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\corehr\v2\model\search_department_request_body.py
-# hypothesis_version: 6.151.6
-
-['active', 'code_list', 'department_id_list', 'fields', 'get_all_children', 'get_all_version', 'manager_list', 'name_list', 'parent_department_id']

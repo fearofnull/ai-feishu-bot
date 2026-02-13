@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\performance\v2\model\review_detail.py
-# hypothesis_version: 6.151.6
-
-['ReviewDetail', 'ReviewDetailBuilder', 'field_id', 'indicator_id', 'metric_data', 'multi_richtexts', 'multi_texts', 'objective_data', 'option_id', 'reviewer_user_id', 'richtext', 'score', 'sub_indicator_data', 'submit_time', 'tag_text_item_data', 'text']

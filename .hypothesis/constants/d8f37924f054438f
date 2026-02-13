@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\corehr\v2\model\bpm_flow_info.py
-# hypothesis_version: 6.151.6
-
-['BpmFlowInfo', 'BpmFlowInfoBuilder', 'biz_type', 'biz_type_name', 'create_time', 'creator_id', 'creator_name', 'description', 'flow_definition_id', 'flow_definition_name', 'last_active_time', 'last_edit_time', 'last_editor_id', 'last_editor_name', 'status']

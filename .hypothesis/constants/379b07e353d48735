@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\directory\v1\model\department.py
-# hypothesis_version: 6.151.6
-
-['Department', 'DepartmentBuilder', 'create_time', 'creator_id', 'custom_field_values', 'data_source', 'delete_status', 'department_count', 'department_id', 'department_paths', 'description', 'enabled_status', 'encrypted_id', 'external_id', 'has_child', 'hrbps', 'is_root', 'leaders', 'name', 'order_weight', 'org_dimension', 'parent_department_id', 'tenant_id', 'type', 'update_time', 'updator_id']

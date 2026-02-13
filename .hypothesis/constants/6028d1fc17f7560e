@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\helpdesk\v1\model\notification.py
-# hypothesis_version: 6.151.6
-
-['Notification', 'NotificationBuilder', 'chat_list', 'create_user', 'created_at', 'department_list', 'ext', 'id', 'job_name', 'new_staff_scope_type', 'push_content', 'push_scope_type', 'push_type', 'read_user_count', 'send_at', 'sent_user_count', 'status', 'target_user_count', 'update_user', 'updated_at', 'user_list']

@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\corehr\v2\model\batch_get_department_request_body.py
-# hypothesis_version: 6.151.6
-
-['department_id_list', 'department_name_list', 'fields']

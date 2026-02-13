@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\application\v6\model\p2_application_application_created_v6.py
-# hypothesis_version: 6.151.6
-
-['app_id', 'app_scene_type', 'avatar', 'create_source', 'description', 'event', 'name', 'operator_id', 'primary_language']

@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\directory\v1\model\employee_base_entity.py
-# hypothesis_version: 6.151.6
-
-['EmployeeBaseEntity', 'active_status', 'avatar', 'avatar_key', 'background_image', 'background_image_key', 'contact_addresses', 'create_time', 'custom_field_values', 'data_source', 'departments', 'description', 'description_flag', 'email', 'employee_id', 'enterprise_email', 'external_id', 'gender', 'geo_name', 'has_been_resurrected', 'is_admin', 'is_primary_admin', 'is_registered', 'is_resigned', 'is_set_custom_avatar', 'leader_id', 'mobile', 'name', 'personal_email', 'residential_address', 'resign_time', 'resigned_departments', 'subscription_ids', 'tenant', 'update_time', 'user_department_path', 'user_id', 'virtual_org_infos', 'work_status']

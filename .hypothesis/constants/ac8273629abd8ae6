@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\hire\v1\model\list_user_role_request.py
-# hypothesis_version: 6.151.6
-
-['page_size', 'page_token', 'role_id', 'update_end_time', 'update_start_time', 'user_id', 'user_id_type']

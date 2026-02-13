@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\contact\v3\model\department.py
-# hypothesis_version: 6.151.6
-
-['Department', 'DepartmentBuilder', 'chat_id', 'create_group_chat', 'department_hrbps', 'department_id', 'i18n_name', 'leader_user_id', 'leaders', 'member_count', 'name', 'open_department_id', 'order', 'parent_department_id', 'primary_member_count', 'status', 'unit_ids']

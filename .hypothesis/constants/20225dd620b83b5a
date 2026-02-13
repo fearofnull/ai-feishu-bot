@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\corehr\v2\model\job_data.py
-# hypothesis_version: 6.151.6
-
-['JobData', 'JobDataBuilder', 'compensation_type', 'cost_center_rates', 'created_at', 'custom_fields', 'department_id', 'direct_manager', 'dotted_line_managers', 'effective_time', 'employee_subtype_id', 'employee_type_id', 'employment_id', 'expiration_time', 'job_data_id', 'job_data_reason', 'job_family_id', 'job_grade_id', 'job_id', 'job_level_id', 'pathway_id', 'position_id', 'primary_job_data', 'probation_end_date', 'probation_outcome', 'probation_start_date', 'service_company', 'version_id', 'weekly_working_hours', 'work_location_id', 'work_shift']

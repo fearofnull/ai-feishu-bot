@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\hire\v1\model\talent_operation_log.py
-# hypothesis_version: 6.151.6
-
-['TalentOperationLog', 'application_id', 'operation_time', 'operation_type', 'operator', 'operator_type', 'talent_id']

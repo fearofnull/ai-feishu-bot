@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\corehr\v1\model\leave_request_created.py
-# hypothesis_version: 6.151.6
-
-['LeaveRequestCreated', 'applicable_scenarios', 'arrive_late_minutes', 'child_date_of_birth', 'daily_leave_mode', 'due_date', 'employment_id', 'end_time', 'is_couple_live_apart', 'leave_early_minutes', 'leave_type_id', 'notes', 'number_of_newborns', 'pregnant_months', 'start_time', 'time_zone']

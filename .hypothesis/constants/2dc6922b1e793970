@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\authen\v1\model\create_refresh_access_token_response_body.py
-# hypothesis_version: 6.151.6
-
-['access_token', 'avatar_big', 'avatar_middle', 'avatar_thumb', 'avatar_url', 'email', 'en_name', 'enterprise_email', 'expires_in', 'mobile', 'name', 'open_id', 'refresh_expires_in', 'refresh_token', 'sid', 'tenant_key', 'token_type', 'union_id', 'user_id']

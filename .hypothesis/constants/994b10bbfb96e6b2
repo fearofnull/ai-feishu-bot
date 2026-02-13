@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\approval\v4\model\cc_node.py
-# hypothesis_version: 6.151.6
-
-['CcNode', 'CcNodeBuilder', 'cc_id', 'create_time', 'display_method', 'extra', 'links', 'open_id', 'read_status', 'title', 'update_time', 'user_id']

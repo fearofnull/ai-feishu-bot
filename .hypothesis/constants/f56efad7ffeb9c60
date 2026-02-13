@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\hire\v2\model\talent_similar.py
-# hypothesis_version: 6.151.6
-
-['TalentSimilar', 'TalentSimilarBuilder', 'is_similar_talent']

@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\im\v2\model\feed_group_rule_cond_item.py
-# hypothesis_version: 6.151.6
-
-['chat_type', 'keyword', 'operator', 'type', 'user_id']

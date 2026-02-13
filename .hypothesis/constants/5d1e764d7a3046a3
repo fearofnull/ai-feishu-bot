@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\approval\v4\model\external_approval_item.py
-# hypothesis_version: 6.151.6
-
-['ExternalApprovalItem', 'approval_code', 'approval_external_id']

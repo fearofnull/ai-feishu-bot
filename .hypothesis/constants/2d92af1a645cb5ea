@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\admin\v1\model\admin_user_stat.py
-# hypothesis_version: 6.151.6
-
-['AdminUserStat', 'AdminUserStatBuilder', 'active_os', 'app_package_type', 'cal_active_flag', 'create_cal_num', 'create_docs_num', 'create_task_num', 'create_time', 'date', 'department_name', 'department_path', 'docs_active_flag', 'email_receive_count', 'email_send_count', 'email_send_ext_count', 'email_send_in_count', 'im_active_flag', 'last_active_time', 'os_name', 'quick_search_count', 'register_time', 'search_active_flag', 'send_messenger_num', 'suite_active_flag', 'tab_search_count', 'total_search_count', 'user_active_flag', 'user_id', 'user_name', 'vc_active_flag', 'vc_duration', 'vc_num']

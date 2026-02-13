@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\search\v2\model\data_source.py
-# hypothesis_version: 6.151.6
-
-['DataSource', 'DataSourceBuilder', 'app_id', 'connect_type', 'connector_param', 'create_time', 'description', 'enable_answer', 'i18n_description', 'i18n_name', 'icon_url', 'id', 'is_exceed_quota', 'name', 'schema_id', 'searchable_fields', 'state', 'template', 'update_time']

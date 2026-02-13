@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\payroll\v1\model\calendar_period.py
-# hypothesis_version: 6.151.6
-
-['CalendarPeriod', 'attendance_end_date', 'cut_off_date', 'manual_modified', 'pay_date', 'payroll_calendar_id', 'payroll_cycle', 'period_end_date', 'period_key', 'period_name', 'period_start_date', 'taxable_period', 'time_zone']

@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\helpdesk\v1\model\ticket_event.py
-# hypothesis_version: 6.151.6
-
-['TicketEvent', 'TicketEventBuilder', 'agents', 'channel', 'chat_id', 'closed_at', 'closed_by', 'collaborators', 'created_at', 'customized_fields', 'guest', 'helpdesk_id', 'score', 'solve', 'stage', 'status', 'ticket_id', 'updated_at']

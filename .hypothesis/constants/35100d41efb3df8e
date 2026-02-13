@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\cardkit\v1\model\ka_card_template_old.py
-# hypothesis_version: 6.151.6
-
-['KaCardTemplateOld', 'biz_ext', 'content', 'create_time', 'creator_id', 'draft_content', 'lock_status', 'mock_data', 'name', 'status', 'template_id', 'update_time', 'variables']

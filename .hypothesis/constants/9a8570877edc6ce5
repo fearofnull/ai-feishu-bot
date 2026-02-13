@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\application\v6\model\patch_application_visibility_request_body.py
-# hypothesis_version: 6.151.6
-
-['add_invisible_list', 'add_visible_list', 'del_invisible_list', 'del_visible_list', 'is_visible_to_all']

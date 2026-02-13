@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\directory\v1\model\tenant_trace_info.py
-# hypothesis_version: 6.151.6
-
-['TenantTraceInfo', 'captcha_info', 'channel', 'client_ip', 'create_source', 'invitation_token', 'inviter_id', 'plan_id', 'reg_params', 'salesforce_id', 'source_page', 'source_system', 'subscribe_email', 'terminal_type', 'tracking_code', 'web_id']

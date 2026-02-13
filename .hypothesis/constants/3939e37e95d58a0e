@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\attendance\v1\model\batch_del_user_flow_response_body.py
-# hypothesis_version: 6.151.6
-
-['fail_record_ids', 'success_record_ids']

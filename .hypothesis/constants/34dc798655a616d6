@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\mdm\v1\model\vendor.py
-# hypothesis_version: 6.151.6
-
-['Vendor', 'VendorBuilder', 'ad_city', 'ad_country', 'ad_postcode', 'ad_province', 'address', 'appendix', 'certification_id', 'certification_type', 'contact_mobile_phone', 'contact_person', 'contact_telephone', 'down_payment_term', 'e_mail', 'extend_info', 'fax', 'gl_account', 'id', 'is_risked', 'legal_person', 'linked_customer', 'linked_employee', 'owner_depts', 'payment_term', 'short_text', 'status', 'vendor', 'vendor_accounts', 'vendor_addresses', 'vendor_category', 'vendor_company_views', 'vendor_contacts', 'vendor_nature', 'vendor_site_code', 'vendor_text', 'vendor_type']

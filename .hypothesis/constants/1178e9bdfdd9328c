@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\base\v2\model\meta.py
-# hypothesis_version: 6.151.6
-
-['Meta', 'MetaBuilder', 'create_time', 'delete_flag', 'doc_version', 'edit_time', 'edit_uid', 'ext', 'icon_info', 'id', 'mix_state', 'obj_type', 'owner_uid', 'parent_id', 'root_block_id', 'root_doc_id', 'sec_label_id', 'sec_label_type', 'source', 'sub_type', 'template_info', 'tenant_id', 'title', 'token']

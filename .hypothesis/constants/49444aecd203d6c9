@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\drive\v1\model\delete_file_version_request.py
-# hypothesis_version: 6.151.6
-
-['file_token', 'obj_type', 'user_id_type', 'version_id']

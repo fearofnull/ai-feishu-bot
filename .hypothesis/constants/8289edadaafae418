@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\calendar\v4\model\calendar_event_resp.py
-# hypothesis_version: 6.151.6
-
-['CalendarEventResp', 'attendee_ability', 'color', 'create_time', 'description', 'end_time', 'event_id', 'free_busy_status', 'is_exception', 'location', 'need_notification', 'recurrence', 'recurring_event_id', 'reminders', 'schemas', 'start_time', 'status', 'summary', 'vchat', 'visibility']

@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\performance\v2\model\sub_indicator.py
-# hypothesis_version: 6.151.6
-
-['SubIndicator', 'SubIndicatorBuilder', 'field_id', 'indicator_id', 'option_id', 'richtext', 'score', 'text']

@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\hire\v1\model\talent_folder.py
-# hypothesis_version: 6.151.6
-
-['TalentFolder', 'TalentFolderBuilder', 'creator_id', 'external_id', 'folder_id', 'name', 'owner_id', 'parent_id']

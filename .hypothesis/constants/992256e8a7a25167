@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\docx\v1\model\okr_progress_rate.py
-# hypothesis_version: 6.151.6
-
-['OkrProgressRate', 'current', 'mode', 'percent', 'progress_status', 'start', 'status_type', 'target']

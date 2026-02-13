@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\mdm\v1\model\i18n_struct.py
-# hypothesis_version: 6.151.6
-
-['I18nStruct', 'I18nStructBuilder', 'lang_locale', 'valid_to', 'value']

@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\mdm\v1\model\project.py
-# hypothesis_version: 6.151.6
-
-['Project', 'ProjectBuilder', 'code', 'end_day', 'extend_info', 'is_all_company', 'level', 'level_info', 'multi_language_name', 'name', 'parent_code', 'project_uid', 'start_day', 'status', 'type']

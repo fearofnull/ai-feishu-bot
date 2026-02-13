@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\mdm\v3\model\i18n_string.py
-# hypothesis_version: 6.151.6
-
-['I18nString', 'I18nStringBuilder', 'multilingual_value', 'return_language', 'value']

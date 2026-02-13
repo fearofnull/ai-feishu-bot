@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\hire\v1\model\background_check_order.py
-# hypothesis_version: 6.151.6
-
-['BackgroundCheckOrder', 'account_third_type', 'application_id', 'begin_time', 'candidate_info', 'conclusion', 'contactor_info', 'creator_info', 'custom_data_list', 'custom_field_list', 'end_time', 'ext_item_info_list', 'feedback_info_list', 'geo', 'location_code', 'name', 'order_id', 'order_status', 'package', 'process_info_list', 'provider_info', 'remark', 'update_time', 'upload_time']

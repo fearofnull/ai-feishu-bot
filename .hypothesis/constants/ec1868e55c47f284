@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\hire\v1\model\website_job_post.py
-# hypothesis_version: 6.151.6
-
-['WebsiteJobPost', 'address', 'address_list', 'create_time', 'creator', 'currency', 'customized_data_list', 'description', 'experience', 'headcount', 'high_light_list', 'id', 'job_active_status', 'job_code', 'job_department', 'job_expire_time', 'job_function', 'job_id', 'job_process_type', 'job_recruitment_type', 'job_sequence_info', 'job_type', 'max_job_level', 'max_salary', 'min_job_level', 'min_salary', 'modify_time', 'required_degree', 'requirement', 'subject', 'target_major_list', 'title']

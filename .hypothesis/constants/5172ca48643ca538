@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\payroll\v1\model\collection_data.py
-# hypothesis_version: 6.151.6
-
-['CollectionData', 'calendar_period', 'collection_type', 'created_at', 'creator_info', 'currency_code', 'currency_id', 'data_period', 'effective_time', 'id', 'modified_at', 'modifier_info', 'related_data_id', 'source_activity_id', 'status', 'template_snapshot']

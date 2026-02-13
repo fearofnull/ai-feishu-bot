@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\passport\v1\model\device.py
-# hypothesis_version: 6.151.6
-
-['Device', 'DeviceBuilder', 'device_id', 'legacy_device_id']

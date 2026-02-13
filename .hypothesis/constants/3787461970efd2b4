@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\board\v1\model\table_cell.py
-# hypothesis_version: 6.151.6
-
-['TableCell', 'TableCellBuilder', 'children', 'col_index', 'merge_info', 'row_index', 'style', 'text']

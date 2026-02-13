@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\hire\v1\model\external_reward.py
-# hypothesis_version: 6.151.6
-
-['ExternalReward', 'application_id', 'bonus', 'comment', 'confirm_time', 'confirm_user_id', 'conversion_time', 'create_time', 'create_user_id', 'external_id', 'job_id', 'onboard_time', 'pay_time', 'pay_user_id', 'reason', 'referral_user_id', 'rule_type', 'stage', 'talent_id']

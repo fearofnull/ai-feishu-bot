@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\corehr\v2\model\bank.py
-# hypothesis_version: 6.151.6
-
-['Bank', 'BankBuilder', 'bank_code', 'bank_id', 'bank_name', 'country_region_id', 'create_time', 'status', 'update_time']

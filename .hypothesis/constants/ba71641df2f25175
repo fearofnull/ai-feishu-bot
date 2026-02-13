@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\application\v6\model\app_visible_list.py
-# hypothesis_version: 6.151.6
-
-['AppVisibleList', 'department_ids', 'group_ids', 'open_ids']

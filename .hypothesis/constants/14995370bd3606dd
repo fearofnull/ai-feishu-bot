@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\apaas\v1\model\data_change_logs_list_application_audit_log_request.py
-# hypothesis_version: 6.151.6
-
-['app_type', 'columns', 'filter', 'from_', 'log_type', 'namespace', 'offset', 'page_size', 'quick_query', 'sort_by', 'sort_order', 'to']

@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\ehr\v1\model\education.py
-# hypothesis_version: 6.151.6
-
-['Education', 'EducationBuilder', 'degree', 'end', 'level', 'major', 'school', 'start']

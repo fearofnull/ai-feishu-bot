@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\hire\v1\model\interview_feedback_form_module.py
-# hypothesis_version: 6.151.6
-
-['description', 'dimensions', 'id', 'name', 'sequence', 'type', 'weight']

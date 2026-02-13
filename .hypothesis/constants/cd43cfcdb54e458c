@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\corehr\v2\model\department_adjust_record.py
-# hypothesis_version: 6.151.6
-
-['change_reasons', 'department_id', 'draft_department_id', 'is_conflict', 'record_id', 'reorganization_info']

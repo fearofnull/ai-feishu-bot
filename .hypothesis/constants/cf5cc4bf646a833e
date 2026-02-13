@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\directory\v1\model\create_resigned_employee.py
-# hypothesis_version: 6.151.6
-
-['avatar_key', 'birthday', 'cancelled_entry_type', 'contact_addresses', 'contract_subject', 'convert_status', 'custom_employee_id', 'department_ids', 'email', 'employment_type', 'ethnicity', 'first_join_date', 'first_work_date', 'gender', 'job_family_id', 'job_level_id', 'job_number', 'job_title_id', 'join_date', 'leader_id', 'location', 'marital_status', 'mobile', 'name', 'nationality', 'native_place', 'personal_email', 'politics_status', 'positions', 'probation_period', 'regularization_date', 'residential_address', 'resign_date', 'resign_reason', 'resign_remark', 'resign_type', 'work_place_id', 'work_station']

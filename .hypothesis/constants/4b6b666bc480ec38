@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\mdm\v1\model\extend_field.py
-# hypothesis_version: 6.151.6
-
-['ExtendField', 'ExtendFieldBuilder', 'appendix', 'date', 'field_code', 'field_type', 'field_value', 'num', 'options', 'range_date']

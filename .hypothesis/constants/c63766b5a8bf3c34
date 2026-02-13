@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\compensation\v1\model\archive_detail.py
-# hypothesis_version: 6.151.6
-
-['ArchiveDetail', 'ArchiveDetailBuilder', 'archive_indicators', 'archive_items', 'change_description', 'change_reason_id', 'created_time', 'currency_id', 'effective_date', 'expiration_date', 'id', 'plan_id', 'plan_tid', 'salary_level_id', 'tid', 'updated_time', 'user_id']

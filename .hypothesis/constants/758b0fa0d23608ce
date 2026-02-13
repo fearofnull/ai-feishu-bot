@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\corehr\v2\model\position_adjustment_info.py
-# hypothesis_version: 6.151.6
-
-['custom_fields', 'original_active', 'original_code', 'original_cost_center', 'original_department', 'original_job', 'original_job_grades', 'original_job_levels', 'original_names', 'target_active', 'target_code', 'target_cost_center', 'target_department', 'target_descriptions', 'target_direct_leader', 'target_job', 'target_job_families', 'target_job_grades', 'target_job_levels', 'target_names']

@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\board\v1\model\table_meta.py
-# hypothesis_version: 6.151.6
-
-['TableMeta', 'TableMetaBuilder', 'col_num', 'col_sizes', 'row_num', 'row_sizes', 'style', 'text']

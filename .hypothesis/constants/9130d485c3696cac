@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\corehr\v1\model\location.py
-# hypothesis_version: 6.151.6
-
-['Location', 'LocationBuilder', 'address', 'custom_fields', 'display_language_id', 'effective_time', 'expiration_time', 'hiberarchy_common', 'id', 'locale', 'location_usage_list', 'time_zone_id']

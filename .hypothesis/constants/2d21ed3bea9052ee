@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\mdm\v1\model\legal_entity.py
-# hypothesis_version: 6.151.6
-
-['LegalEntity', 'LegalEntityBuilder', 'address', 'appendix', 'bank_account', 'bank_id', 'bank_name', 'certification_id', 'certification_type', 'city', 'country', 'extend_info', 'id', 'legal_entity', 'legal_entity_banks', 'legal_entity_text', 'legal_person', 'province', 'short_text', 'status', 'taxpayer_type', 'telephone']

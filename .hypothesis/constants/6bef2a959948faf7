@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\calendar\v4\model\delete_calendar_event_request.py
-# hypothesis_version: 6.151.6
-
-['calendar_id', 'event_id', 'need_notification']

@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\task\v1\model\comment.py
-# hypothesis_version: 6.151.6
-
-['Comment', 'CommentBuilder', 'content', 'create_milli_time', 'creator_id', 'id', 'parent_id', 'rich_content']

@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\im\v1\model\moderator_list.py
-# hypothesis_version: 6.151.6
-
-['ModeratorList', 'ModeratorListBuilder', 'added_member_list', 'removed_member_list']

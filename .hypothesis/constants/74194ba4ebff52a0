@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\mdm\v1\model\vendor_address.py
-# hypothesis_version: 6.151.6
-
-['VendorAddress', 'VendorAddressBuilder', 'address', 'city', 'country', 'county', 'extend_info', 'id', 'province']

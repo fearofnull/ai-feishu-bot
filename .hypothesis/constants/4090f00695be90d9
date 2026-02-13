@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\im\v2\model\chat_pin.py
-# hypothesis_version: 6.151.6
-
-['ChatPin', 'ChatPinBuilder', 'chat_id', 'chat_pin_id', 'chat_pin_type', 'chatter_id', 'create_time', 'is_fixed', 'message_pin_data', 'url_pin_data']

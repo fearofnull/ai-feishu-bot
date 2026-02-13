@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\approval\v4\model\task_resubmit.py
-# hypothesis_version: 6.151.6
-
-['TaskResubmit', 'TaskResubmitBuilder', 'approval_code', 'comment', 'form', 'instance_code', 'task_id', 'user_id']

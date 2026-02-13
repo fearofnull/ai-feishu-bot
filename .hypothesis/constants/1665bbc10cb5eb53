@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\corehr\v2\model\reorganization_info.py
-# hypothesis_version: 6.151.6
-
-['ReorganizationInfo', 'custom_fields', 'orgrole_infos', 'original_cost_center', 'original_sub_type', 'target_cost_center', 'target_descriptions', 'target_sub_type']

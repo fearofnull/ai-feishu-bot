@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\hire\v1\model\test.py
-# hypothesis_version: 6.151.6
-
-['Test', 'TestBuilder', 'application_id', 'created_at', 'job_id', 'reply_status', 'report_url_list', 'result_detail_list', 'result_upload_time', 'review_created_at', 'reviewer', 'score', 'score_submit_time', 'talent_id', 'test_complete_time', 'test_id', 'test_paper_id', 'test_paper_name', 'test_paper_source_id', 'test_schedule', 'test_status']

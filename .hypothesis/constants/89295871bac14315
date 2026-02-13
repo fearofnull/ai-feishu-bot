@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\security_and_compliance\v1\model\admin_log.py
-# hypothesis_version: 6.151.6
-
-['AdminLog', 'AdminLogBuilder', 'category_name', 'content', 'create_time', 'event_name', 'ip_address', 'operation_status', 'unique_id', 'user_id']

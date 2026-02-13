@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\admin\v1\model\user_report2024.py
-# hypothesis_version: 6.151.6
-
-['UserReport2024', 'base_create_chat_cnt', 'base_create_fcnt_2', 'base_view_fcnt', 'busy_day', 'ccm_create_cnt_2', 'ccm_create_liked_cnt', 'duration_cnt_2', 'feishu_day_cnt', 'im_emoji_top1', 'im_emoji_top1_cnt_2', 'im_emoji_top2', 'im_emoji_top2_cnt_2', 'im_emoji_top3', 'im_emoji_top3_cnt_2', 'im_private_chat_cnt', 'im_send_msg_cnt_2', 'im_talked_chat_cnt', 'meego_common_wi_ucnt', 'meego_role_wi_cnt_v2', 'tenant_all_cnt', 'user_id', 'user_register_date', 'vc_join_meeting_cnt', 'vc_last_meeting_time']

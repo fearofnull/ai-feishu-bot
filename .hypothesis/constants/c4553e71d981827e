@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\im\v2\model\unread_at_message.py
-# hypothesis_version: 6.151.6
-
-['UnreadAtMessage', 'chat_id', 'create_time', 'create_time_ms', 'from_id', 'is_at_all', 'message_id', 'type', 'update_time_ms']

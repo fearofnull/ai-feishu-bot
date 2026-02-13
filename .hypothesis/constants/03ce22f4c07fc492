@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\im\v1\model\create_chat_request_body.py
-# hypothesis_version: 6.151.6
-
-['avatar', 'bot_id_list', 'chat_mode', 'chat_tags', 'chat_type', 'description', 'edit_permission', 'external', 'group_message_type', 'i18n_names', 'labels', 'membership_approval', 'name', 'owner_id', 'pin_manage_setting', 'toolkit_ids', 'urgent_setting', 'user_id_list']

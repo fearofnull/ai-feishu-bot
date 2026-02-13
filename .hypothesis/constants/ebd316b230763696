@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\application\v6\model\contacts_range_configuration_application_response_body.py
-# hypothesis_version: 6.151.6
-
-['contacts_range', 'has_more', 'page_token']

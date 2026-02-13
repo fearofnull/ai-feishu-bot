@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\corehr\v2\model\create_employee_response_body.py
-# hypothesis_version: 6.151.6
-
-['contract_id', 'employment_id', 'job_data_id']

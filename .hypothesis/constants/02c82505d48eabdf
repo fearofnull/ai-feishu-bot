@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\ws\pb\pbbp2_pb2.py
-# hypothesis_version: 6.151.6
-
-[b'\xc8\xde\x1f\x00', 264, 'DESCRIPTOR', 'Frame', 'Header', 'LogID', 'LogIDNew', 'SeqID', '__module__', 'headers', 'key', 'method', 'payload', 'payload_encoding', 'payload_type', 'pbbp2', 'pbbp2.Frame', 'pbbp2.Frame.LogID', 'pbbp2.Frame.LogIDNew', 'pbbp2.Frame.SeqID', 'pbbp2.Frame.headers', 'pbbp2.Frame.method', 'pbbp2.Frame.payload', 'pbbp2.Frame.service', 'pbbp2.Header', 'pbbp2.Header.key', 'pbbp2.Header.value', 'pbbp2.proto', 'pbbp2_pb2', 'proto2', 'service', 'utf-8', 'value']

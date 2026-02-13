@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\search\v2\model\doc_passage_param.py
-# hypothesis_version: 6.151.6
-
-['DocPassageParam', 'disable_search_link', 'doc_tokens', 'enable_cross_tenant', 'excluded_doc_tokens', 'excluded_obj_ids', 'folder_tokens', 'obj_ids', 'only_search_public', 'searchable']

@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\compensation\v1\model\social_archive_detail.py
-# hypothesis_version: 6.151.6
-
-['SocialArchiveDetail', 'account_type', 'base_salary', 'company_id', 'description', 'effective_date', 'id', 'insurance_account', 'insurance_details', 'insurance_status', 'insurance_type', 'location_id', 'plan_id', 'plan_tid', 'tid']

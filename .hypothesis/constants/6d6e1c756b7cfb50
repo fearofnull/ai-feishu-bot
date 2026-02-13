@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\corehr\v2\model\qr_code_value.py
-# hypothesis_version: 6.151.6
-
-['QrCodeValue', 'QrCodeValueBuilder', 'bool_value', 'multi_select_value', 'select_value']

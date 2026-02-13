@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\performance\v2\model\template_stage.py
-# hypothesis_version: 6.151.6
-
-['TemplateStage', 'TemplateStageBuilder', 'as_final_result', 'id', 'name', 'perform_role', 'stage_type', 'template_group_id']

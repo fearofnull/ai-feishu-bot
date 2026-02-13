@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\payroll\v1\model\data_summary_dimension.py
-# hypothesis_version: 6.151.6
-
-['DataSummaryDimension', 'dimension_level', 'dimension_names', 'dimension_titles', 'dimension_type', 'dimension_value_id', 'enum_dimension']

@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\directory\v1\model\list_collboration_share_entity_request.py
-# hypothesis_version: 6.151.6
-
-['is_select_subject', 'page_size', 'page_token', 'target_department_id', 'target_group_id', 'target_tenant_key']

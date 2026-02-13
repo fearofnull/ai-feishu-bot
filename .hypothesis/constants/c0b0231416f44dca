@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\drive\v1\model\permission_public.py
-# hypothesis_version: 6.151.6
-
-['PermissionPublic', 'comment_entity', 'external_access', 'invite_external', 'link_share_entity', 'lock_switch', 'security_entity', 'share_entity']

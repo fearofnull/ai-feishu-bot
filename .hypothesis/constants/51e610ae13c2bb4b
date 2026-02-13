@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\hire\v1\model\website_delivery_attachment.py
-# hypothesis_version: 6.151.6
-
-['channel_id', 'email', 'identification', 'job_post_id', 'mobile', 'mobile_country_code', 'resume_file_id', 'user_id']

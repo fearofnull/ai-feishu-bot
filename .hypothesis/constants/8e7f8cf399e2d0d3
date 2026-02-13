@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\aily\v1\model\data_asset.py
-# hypothesis_version: 6.151.6
-
-['DataAsset', 'DataAssetBuilder', 'connect_status', 'connect_type', 'created_time', 'data_asset_id', 'data_source_type', 'description', 'items', 'label', 'tags', 'updated_time']

@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\docx\v1\model\document_display_setting.py
-# hypothesis_version: 6.151.6
-
-['show_authors', 'show_comment_count', 'show_create_time', 'show_like_count', 'show_pv', 'show_related_matters', 'show_uv']

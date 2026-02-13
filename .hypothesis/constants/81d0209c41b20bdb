@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\hire\v1\model\questionnaire.py
-# hypothesis_version: 6.151.6
-
-['Questionnaire', 'QuestionnaireBuilder', 'application_id', 'has_answers', 'interview_id', 'questionnaire_id', 'questions', 'update_time', 'version']

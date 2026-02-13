@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\corehr\v2\model\profile_setting_address.py
-# hypothesis_version: 6.151.6
-
-['address_line_1', 'address_line_2', 'address_line_3', 'address_line_4', 'address_line_5', 'address_line_6', 'address_line_7', 'address_line_8', 'address_line_9', 'address_type', 'city_subdivision_1', 'city_subdivision_2', 'city_text', 'city_v2', 'country_region', 'district_v2', 'local_address_line_1', 'local_address_line_2', 'local_address_line_3', 'local_address_line_4', 'local_address_line_5', 'local_address_line_6', 'local_address_line_7', 'local_address_line_8', 'local_address_line_9', 'local_city_text', 'postal_code', 'region', 'region_subdivision_1', 'region_subdivision_2']

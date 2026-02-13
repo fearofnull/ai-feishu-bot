@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\aily\v1\model\run.py
-# hypothesis_version: 6.151.6
-
-['Run', 'RunBuilder', 'app_id', 'created_at', 'ended_at', 'error', 'id', 'metadata', 'session_id', 'started_at', 'status']

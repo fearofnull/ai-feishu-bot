@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\minutes\v1\model\minute.py
-# hypothesis_version: 6.151.6
-
-['Minute', 'MinuteBuilder', 'cover', 'create_time', 'duration', 'owner_id', 'title', 'token', 'url']

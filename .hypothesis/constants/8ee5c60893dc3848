@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\corehr\v1\model\person.py
-# hypothesis_version: 6.151.6
-
-['Person', 'PersonBuilder', 'address_list', 'age', 'bank_account_list', 'custom_fields', 'date_of_birth', 'dependent_list', 'education_list', 'email_address', 'email_list', 'gender', 'id', 'legal_name', 'marital_status', 'name_list', 'national_id_list', 'nationality_id', 'nationality_id_v2', 'personal_profile', 'phone_list', 'phone_number', 'preferred_name', 'profile_image_id', 'race', 'resident_tax_id_list', 'work_experience_list']

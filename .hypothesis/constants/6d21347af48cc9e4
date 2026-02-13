@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\apaas\v1\model\runtime_log.py
-# hypothesis_version: 6.151.6
-
-['RuntimeLog', 'RuntimeLogBuilder', 'basic_log', 'basic_log_to_show', 'json_log', 'json_log_to_show', 'level', 'node_api_name', 'tags', 'timestamp', 'title', 'uri', 'uri_labels']

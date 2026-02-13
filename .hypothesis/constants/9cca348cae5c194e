@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\hire\v1\model\interview_record_v2.py
-# hypothesis_version: 6.151.6
-
-['InterviewRecordV2', 'attachments', 'commit_status', 'feedback_form_id', 'id', 'interviewer', 'module_assessments', 'record_score', 'submit_time']

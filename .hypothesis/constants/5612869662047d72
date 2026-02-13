@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\bitable\v1\model\app_table_field_property.py
-# hypothesis_version: 6.151.6
-
-['allowed_edit_modes', 'auto_fill', 'auto_serial', 'back_field_name', 'currency_code', 'date_formatter', 'filter_info', 'formatter', 'formula_expression', 'location', 'max', 'min', 'multiple', 'options', 'range_customize', 'rating', 'table_id', 'table_name', 'type']

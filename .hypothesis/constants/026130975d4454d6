@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\attendance\v1\model\location.py
-# hypothesis_version: 6.151.6
-
-['Location', 'LocationBuilder', 'address', 'bssid', 'feature', 'gps_range', 'ip', 'latitude', 'location_id', 'location_name', 'location_type', 'longitude', 'map_type', 'ssid']

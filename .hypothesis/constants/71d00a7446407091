@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\corehr\v2\model\process_comment_info.py
-# hypothesis_version: 6.151.6
-
-['ProcessCommentInfo', 'at_user_ids', 'comment_id', 'comment_msg', 'comment_time', 'commentor_id', 'commentor_name', 'file_count', 'image_count']

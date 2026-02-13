@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\speech_to_text\v1\model\stream_config.py
-# hypothesis_version: 6.151.6
-
-['StreamConfig', 'StreamConfigBuilder', 'action', 'engine_type', 'format', 'sequence_id', 'stream_id']

@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\corehr\v2\model\search_basic_info_bank_request_body.py
-# hypothesis_version: 6.151.6
-
-['bank_id_list', 'bank_name_list', 'status_list', 'update_end_time', 'update_start_time']

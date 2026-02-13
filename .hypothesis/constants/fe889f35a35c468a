@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\apaas\v1\model\approval_comment.py
-# hypothesis_version: 6.151.6
-
-['ApprovalComment', 'commenter', 'content', 'create_at', 'id', 'update_at']

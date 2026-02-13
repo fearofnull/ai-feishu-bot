@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\approval\v4\model\create_approval_response_body.py
-# hypothesis_version: 6.151.6
-
-['approval_code', 'approval_id']

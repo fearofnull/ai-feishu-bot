@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\corehr\v2\model\profile_setting_personal_info.py
-# hypothesis_version: 6.151.6
-
-['bank_accounts', 'citizenship_statuses', 'contact_addresses', 'custom_groups', 'dependents', 'emergency_contacts', 'hukou', 'nationals', 'personal_basic_info', 'resident_taxes']

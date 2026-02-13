@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\im\v1\model\forward_thread_response_body.py
-# hypothesis_version: 6.151.6
-
-['body', 'chat_id', 'create_time', 'deleted', 'mentions', 'message_id', 'msg_type', 'parent_id', 'root_id', 'sender', 'thread_id', 'update_time', 'updated', 'upper_message_id']

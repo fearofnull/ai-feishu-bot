@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\directory\v1\model\i18n_text.py
-# hypothesis_version: 6.151.6
-
-['I18nText', 'I18nTextBuilder', 'default_locale', 'default_value', 'i18n_value']

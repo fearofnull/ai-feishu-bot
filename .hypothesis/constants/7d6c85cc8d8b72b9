@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\vc\v1\model\time_config.py
-# hypothesis_version: 6.151.6
-
-['TimeConfig', 'TimeConfigBuilder', 'days_in_advance', 'end_time', 'if_cover_child_scope', 'max_duration', 'opening_hour', 'start_time', 'time_switch']

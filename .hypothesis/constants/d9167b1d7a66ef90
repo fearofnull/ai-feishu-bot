@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\contact\v3\model\user_position.py
-# hypothesis_version: 6.151.6
-
-['UserPosition', 'UserPositionBuilder', 'department_id', 'is_major', 'leader_position_code', 'leader_user_id', 'position_code', 'position_name']

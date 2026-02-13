@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\ws\client.py
-# hypothesis_version: 6.151.6
-
-[120, 1000, 3600, 'AppID', 'AppSecret', 'connected to {}', 'connection is closed', 'disconnected to {}', 'locale', 'nd', 'ping failed, err: {}', 'ping success', 'rd', 'receive pong', 'st', 'system busy', 'th', 'zh']

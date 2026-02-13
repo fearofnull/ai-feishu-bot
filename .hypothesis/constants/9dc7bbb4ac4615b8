@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\vc\v1\model\meeting_info.py
-# hypothesis_version: 6.151.6
-
-['MeetingInfo', 'MeetingInfoBuilder', 'ai_note', 'audio', 'department', 'email', 'employee_id', 'has_related_document', 'is_external', 'meeting_duration', 'meeting_end_time', 'meeting_id', 'meeting_instance_id', 'meeting_start_time', 'meeting_subtype', 'meeting_topic', 'meeting_type', 'mobile', 'number_of_devices', 'organizer', 'recording', 'reserved_rooms', 'sharing', 'telephone', 'user_id', 'video']

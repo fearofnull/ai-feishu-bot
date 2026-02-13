@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\corehr\v2\model\country_region.py
-# hypothesis_version: 6.151.6
-
-['CountryRegion', 'CountryRegionBuilder', 'alpha_2_code', 'alpha_3_code', 'country_region_id', 'full_name', 'global_code', 'name', 'status']

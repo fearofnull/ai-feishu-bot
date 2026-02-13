@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\attendance\v1\model\punch_time_rule.py
-# hypothesis_version: 6.151.6
-
-['PunchTimeRule', 'PunchTimeRuleBuilder', 'late_minutes_as_lack', 'late_minutes_as_late', 'no_need_off', 'no_need_on', 'off_delay_minutes', 'off_time', 'on_advance_minutes', 'on_time']

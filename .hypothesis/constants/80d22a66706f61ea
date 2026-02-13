@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\sheets\v3\model\sheet_filter_info.py
-# hypothesis_version: 6.151.6
-
-['SheetFilterInfo', 'filter_infos', 'filtered_out_rows', 'range']

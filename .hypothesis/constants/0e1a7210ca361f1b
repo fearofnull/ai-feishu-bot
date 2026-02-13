@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\mdm\v1\model\company_asset.py
-# hypothesis_version: 6.151.6
-
-['CompanyAsset', 'CompanyAssetBuilder', 'asset_name', 'asset_no', 'asset_sub_no', 'asset_type', 'asset_type_name', 'asset_type_name_en', 'asset_uid', 'company_uid', 'quantity', 'unit']

@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\vc\v1\model\quality_network.py
-# hypothesis_version: 6.151.6
-
-['QualityNetwork', 'bitrate_received', 'bitrate_sent', 'network_delay', 'packet_loss_avg_sent', 'packet_loss_max_sent', 'time']

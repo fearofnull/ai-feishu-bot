@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\drive\v2\model\export_job.py
-# hypothesis_version: 6.151.6
-
-['ExportJob', 'ExportJobBuilder', 'file_extension', 'file_name', 'file_token', 'job_error_msg', 'job_status', 'token', 'type']

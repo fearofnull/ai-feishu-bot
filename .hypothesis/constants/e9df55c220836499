@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\attendance\v1\model\normal_leave_balance.py
-# hypothesis_version: 6.151.6
-
-['NormalLeaveBalance', 'balance_id', 'desc', 'effective_time', 'expire_time', 'grant_daily', 'grant_quota', 'grant_source', 'leave_type_id', 'plan_end_time', 'plan_target_quota', 'quota', 'status', 'sub_type', 'unit', 'used_quota', 'user_id']

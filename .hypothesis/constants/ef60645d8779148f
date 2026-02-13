@@ -1,4 +1,0 @@
-# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\corehr\v1\model\national_id.py
-# hypothesis_version: 6.151.6
-
-['NationalId', 'NationalIdBuilder', 'country_region_id', 'custom_fields', 'expiration_date', 'issue_date', 'issued_by', 'national_id_number', 'national_id_type_id']
