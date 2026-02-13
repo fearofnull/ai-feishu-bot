@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\security_and_compliance\v2\model\user_edit_docs_record.py
+# hypothesis_version: 6.151.6
+
+['UserEditDocsRecord', 'docs', 'latest_edit_time']

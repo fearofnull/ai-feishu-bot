@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\hire\v1\model\question.py
+# hypothesis_version: 6.151.6
+
+['Question', 'QuestionBuilder', 'description_result', 'is_required', 'question_desc', 'question_en_desc', 'question_en_name', 'question_id', 'question_name', 'question_type']

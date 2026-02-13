@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\security_and_compliance\v1\model\dlp_evidence_detail.py
+# hypothesis_version: 6.151.6
+
+['DlpEvidenceDetail', 'file_name_ext_hits', 'file_size_hits', 'file_type_hits', 'keyword_hits', 'regular_hits', 'secure_label_hits', 'sensitive_hits', 'trigger_snippets']

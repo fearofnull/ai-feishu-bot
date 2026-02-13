@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\corehr\v1\model\company.py
+# hypothesis_version: 6.151.6
+
+['Company', 'CompanyBuilder', 'branch_company', 'confidential', 'currency', 'custom_fields', 'fax', 'hiberarchy_common', 'id', 'industry_list', 'legal_representative', 'office_address', 'office_address_info', 'phone', 'post_code', 'primary_manager', 'sub_type_list', 'tax_payer_id', 'type']

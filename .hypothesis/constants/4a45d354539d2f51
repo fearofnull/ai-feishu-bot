@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\workplace\v1\model\workplace_tenant_notification.py
+# hypothesis_version: 6.151.6
+
+['content', 'expire_time', 'notification_id', 'rule']

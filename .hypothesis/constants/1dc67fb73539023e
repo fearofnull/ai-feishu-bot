@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\okr\v1\model\okr_comment.py
+# hypothesis_version: 6.151.6
+
+['OkrComment', 'OkrCommentBuilder', 'comment_time', 'commentator', 'content', 'content_modify_time', 'id', 'last_modifier', 'solved_time']

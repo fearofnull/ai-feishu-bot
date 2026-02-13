@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\hire\v1\model\search_website_job_post_request_body.py
+# hypothesis_version: 6.151.6
+
+['city_code_list', 'create_end_time', 'create_start_time', 'job_function_id_list', 'job_type_id_list', 'keyword', 'subject_id_list', 'update_end_time', 'update_start_time']

@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\attendance\v1\model\work_time_apply_data.py
+# hypothesis_version: 6.151.6
+
+['WorkTimeApplyData', 'approval_record_id', 'check_details', 'check_message', 'check_result', 'reason', 'time_zone']

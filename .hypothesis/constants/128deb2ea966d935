@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\calendar\v4\model\batch_freebusy_request_body.py
+# hypothesis_version: 6.151.6
+
+['need_rsvp_status', 'only_busy', 'time_max', 'time_min', 'user_ids']

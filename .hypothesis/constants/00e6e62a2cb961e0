@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\corehr\v2\model\profile_setting_employment_record.py
+# hypothesis_version: 6.151.6
+
+['cost_centers', 'department', 'direct_manager', 'dotted_line_manager', 'employee_type', 'job', 'job_family', 'job_grade', 'job_level', 'pathway', 'position', 'weekly_working_hours', 'work_location', 'working_hours_type']

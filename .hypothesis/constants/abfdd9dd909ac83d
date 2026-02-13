@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\im\v2\model\open_app_feed_card.py
+# hypothesis_version: 6.151.6
+
+['OpenAppFeedCard', 'avatar_key', 'biz_id', 'buttons', 'link', 'notify', 'preview', 'status_label', 'time_sensitive', 'title']

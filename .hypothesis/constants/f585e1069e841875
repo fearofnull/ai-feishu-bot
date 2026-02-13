@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\im\v1\model\update_chat_moderation_request_body.py
+# hypothesis_version: 6.151.6
+
+['moderation_setting', 'moderator_added_list']

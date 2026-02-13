@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\approval\v4\model\task_search.py
+# hypothesis_version: 6.151.6
+
+['TaskSearch', 'TaskSearchBuilder', 'approval_code', 'group_external_id', 'instance_code', 'instance_external_id', 'locale', 'order', 'task_start_time_from', 'task_start_time_to', 'task_status', 'task_status_list', 'task_title', 'user_id']

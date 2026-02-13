@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\report\v1\model\query_rule_request.py
+# hypothesis_version: 6.151.6
+
+['include_deleted', 'rule_name', 'user_id_type']

@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\performance\v2\model\metric_in_library.py
+# hypothesis_version: 6.151.6
+
+['MetricInLibrary', 'fields', 'is_active', 'metric_id', 'name', 'scoring_formula', 'scoring_setting_type', 'tags', 'type_id']

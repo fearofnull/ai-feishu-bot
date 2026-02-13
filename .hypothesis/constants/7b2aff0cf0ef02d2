@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\aily\v1\model\source_setting.py
+# hypothesis_version: 6.151.6
+
+['SourceSetting', 'SourceSettingBuilder', 'api_id', 'api_name', 'auth_key', 'auth_name', 'from_type', 'label']

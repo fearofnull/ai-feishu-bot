@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\corehr\v2\model\prehire_update.py
+# hypothesis_version: 6.151.6
+
+['PrehireUpdate', 'PrehireUpdateBuilder', 'basic_info_update', 'custom_update_fields', 'offer_info_update']

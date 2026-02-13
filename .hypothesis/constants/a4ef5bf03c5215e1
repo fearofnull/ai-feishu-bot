@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\security_and_compliance\v1\model\subscribe_audit_log_file.py
+# hypothesis_version: 6.151.6
+
+['end_time', 'file_id', 'file_size', 'file_url', 'file_url_expire_time', 'start_time']

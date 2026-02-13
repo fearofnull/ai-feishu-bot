@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\search\v2\model\chunk.py
+# hypothesis_version: 6.151.6
+
+['Chunk', 'ChunkBuilder', 'chunk_id', 'content', 'dataset_id', 'doc_id', 'filter_data', 'overlength', 'score', 'token_num', 'update_time']

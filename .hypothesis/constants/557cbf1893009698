@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\search\v2\model\scenario_context_extra.py
+# hypothesis_version: 6.151.6
+
+['ScenarioContextExtra', 'grounding_id', 'model_key', 'specified_obj_ids', 'suggest_query_id']

@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\corehr\v2\model\process_approver.py
+# hypothesis_version: 6.151.6
+
+['ProcessApprover', 'field_values_v2', 'reason', 'status', 'system_approval', 'user_id']

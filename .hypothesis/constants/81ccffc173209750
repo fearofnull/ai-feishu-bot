@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\admin\v1\model\task.py
+# hypothesis_version: 6.151.6
+
+['Task', 'TaskBuilder', 'file_list', 'original_user_email', 'original_user_id', 'status', 'target_owner_email', 'target_owner_id', 'task_id', 'type']

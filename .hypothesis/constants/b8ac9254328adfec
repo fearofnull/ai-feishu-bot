@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\hire\v1\model\store.py
+# hypothesis_version: 6.151.6
+
+['Store', 'StoreBuilder', 'active_status', 'address_id', 'department_id', 'id', 'manager_id', 'name', 'name_en', 'remark', 'remark_en']

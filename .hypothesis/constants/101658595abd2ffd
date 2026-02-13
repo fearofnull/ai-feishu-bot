@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\document_ai\v1\model\code_detail.py
+# hypothesis_version: 6.151.6
+
+['CodeDetail', 'CodeDetailBuilder', 'content', 'language', 'language_name']

@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\calendar\v4\model\exchange_binding.py
+# hypothesis_version: 6.151.6
+
+['ExchangeBinding', 'admin_account', 'exchange_account', 'exchange_binding_id', 'status', 'user_id']

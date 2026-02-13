@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\security_and_compliance\v2\model\tenant_restriction_device_allow_list_policy.py
+# hypothesis_version: 6.151.6
+
+['allow_tenants', 'observe_mode', 'self_only']

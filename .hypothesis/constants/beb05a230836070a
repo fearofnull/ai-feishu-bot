@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\approval\v4\model\instance_create.py
+# hypothesis_version: 6.151.6
+
+['InstanceCreate', 'allow_resubmit', 'allow_submit_again', 'approval_code', 'byte_extra', 'department_id', 'forbid_revoke', 'form', 'i18n_resources', 'node_cc_open_id_list', 'node_cc_user_id_list', 'open_id', 'title', 'title_display_method', 'user_id', 'uuid', 'with_link']

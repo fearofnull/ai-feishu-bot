@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\application\v6\model\cloud_doc.py
+# hypothesis_version: 6.151.6
+
+['CloudDoc', 'CloudDocBuilder', 'i18n', 'icon_url', 'mode', 'space_url']

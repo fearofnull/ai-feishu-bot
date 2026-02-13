@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\corehr\v2\model\basic_employee.py
+# hypothesis_version: 6.151.6
+
+['BasicEmployee', 'BasicEmployeeBuilder', 'email_address', 'employee_number', 'employment_id', 'employment_id_v2', 'person_info']

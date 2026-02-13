@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\search\v2\model\user_info.py
+# hypothesis_version: 6.151.6
+
+['UserInfo', 'UserInfoBuilder', 'locale', 'tenant_id', 'timezone', 'user_id', 'user_language', 'user_open_id']

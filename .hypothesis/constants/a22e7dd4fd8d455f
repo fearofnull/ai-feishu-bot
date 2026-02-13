@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\search\v2\model\patch_data_source_request_body.py
+# hypothesis_version: 6.151.6
+
+['connector_param', 'description', 'enable_answer', 'i18n_description', 'i18n_name', 'icon_url', 'name', 'state']

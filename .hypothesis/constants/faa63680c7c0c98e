@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\corehr\v2\model\bank_account.py
+# hypothesis_version: 6.151.6
+
+['BankAccount', 'BankAccountBuilder', 'account_holder', 'bank', 'bank_account_number', 'bank_account_type', 'bank_account_usage', 'bank_id', 'bank_id_v2', 'bank_name', 'branch_id', 'branch_id_v2', 'branch_name', 'country_region_id', 'currency_id', 'custom_fields', 'i_b_a_n', 'payment_amount', 'payment_rate', 'payment_type', 'priority']

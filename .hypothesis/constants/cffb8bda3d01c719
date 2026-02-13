@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\corehr\v1\model\job_change.py
+# hypothesis_version: 6.151.6
+
+['JobChange', 'JobChangeBuilder', 'created_time', 'effective_date', 'employment_id', 'job_change_id', 'process_id', 'status', 'transfer_info', 'updated_time']

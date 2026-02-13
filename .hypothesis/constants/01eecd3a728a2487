@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\apaas\v1\model\workflow_instance_log.py
+# hypothesis_version: 6.151.6
+
+['WorkflowInstanceLog', 'has_read_auth', 'logs', 'next_keyword_offset', 'total', 'total_keyword']

@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\im\v1\model\message.py
+# hypothesis_version: 6.151.6
+
+['Message', 'MessageBuilder', 'body', 'chat_id', 'create_time', 'deleted', 'mentions', 'message_id', 'msg_type', 'parent_id', 'root_id', 'sender', 'thread_id', 'update_time', 'updated', 'upper_message_id']

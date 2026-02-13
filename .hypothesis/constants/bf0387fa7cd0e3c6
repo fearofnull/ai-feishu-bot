@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\corehr\v2\model\search_signature_template_request.py
+# hypothesis_version: 6.151.6
+
+['select_custom_field', 'template_ids']

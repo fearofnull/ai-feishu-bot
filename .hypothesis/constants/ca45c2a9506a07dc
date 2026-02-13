@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\bitable\v1\model\display_app.py
+# hypothesis_version: 6.151.6
+
+['DisplayApp', 'DisplayAppBuilder', 'advance_version', 'app_token', 'formula_type', 'is_advanced', 'name', 'revision', 'time_zone']

@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\vc\v1\model\room_digital_signage.py
+# hypothesis_version: 6.151.6
+
+['RoomDigitalSignage', 'enable', 'if_cover_child_scope', 'materials', 'mute', 'start_display', 'stop_display']

@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\im\v2\model\update_url_pin.py
+# hypothesis_version: 6.151.6
+
+['UpdateUrlPin', 'UpdateUrlPinBuilder', 'i18n_title', 'icon', 'title']

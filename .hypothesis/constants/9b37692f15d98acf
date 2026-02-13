@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\task\v2\model\input_comment.py
+# hypothesis_version: 6.151.6
+
+['InputComment', 'InputCommentBuilder', 'content', 'reply_to_comment_id', 'resource_id', 'resource_type']

@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\mdm\v1\model\fixed_exchange_rate.py
+# hypothesis_version: 6.151.6
+
+['FixedExchangeRate', 'effective_date', 'exchange_rate', 'source_currency', 'status', 'target_currency']

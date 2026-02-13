@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\corehr\v1\model\person_info_mys.py
+# hypothesis_version: 6.151.6
+
+['PersonInfoMys', 'PersonInfoMysBuilder', 'common_reserve_fund', 'custom_fields', 'fresh_graduate', 'id', 'monthly_gross', 'person_id', 'social_insurance', 'tax_relief_1', 'tax_relief_2', 'tax_relief_3', 'tax_relief_4', 'tax_relief_5']

@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\drive\v1\model\bitable_table_field_action_value_property.py
+# hypothesis_version: 6.151.6
+
+['auto_fill', 'auto_serial', 'back_field_id', 'back_field_name', 'date_formatter', 'formatter', 'formula_expression', 'input_type', 'multiple', 'options', 'table_id', 'table_name']

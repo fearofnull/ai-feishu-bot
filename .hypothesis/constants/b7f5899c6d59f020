@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\mail\v1\model\message_meta.py
+# hypothesis_version: 6.151.6
+
+['MessageMeta', 'MessageMetaBuilder', 'folder_id', 'internal_date', 'message_id', 'message_state', 'smtp_message_id', 'thread_id']

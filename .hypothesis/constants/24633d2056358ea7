@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\apaas\v1\model\component_lib_ref.py
+# hypothesis_version: 6.151.6
+
+['ComponentLibRef', 'basic_info', 'can_upgrade', 'comps_count', 'developer_names', 'installed_at', 'installed_by', 'operating_task_info', 'operating_type', 'updated_at', 'updated_by', 'version_id', 'version_number']

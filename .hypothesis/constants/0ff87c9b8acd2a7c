@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\corehr\v2\model\pre_hire_employment_info.py
+# hypothesis_version: 6.151.6
+
+['abnormal_reason', 'company_id', 'compensation_type', 'condition_worker', 'cost_allocation', 'cost_center_rates', 'created_at', 'created_by', 'custom_fields', 'default_cost_center', 'department_id', 'direct_leader_id', 'employee_subtype_id', 'employee_type_id', 'employment_type', 'has_offer_salary', 'is_over_due', 'job_family_id', 'job_grade_id', 'job_id', 'job_level_id', 'job_title', 'non_compete_covenant', 'office_address', 'office_location_id', 'pathway', 'pay_group', 'position_id', 'rehire', 'rehire_employment_id', 'reuse_feishu_account', 'seniority_date', 'service_company', 'suspected_rehiring', 'task_completed', 'updated_at', 'updated_by', 'weekly_working_hours', 'work_email', 'work_location_id', 'work_shift', 'work_station', 'worker_id', 'working_calendar_id', 'working_hours_type']

@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\drive\v1\model\file_search.py
+# hypothesis_version: 6.151.6
+
+['FileSearch', 'FileSearchBuilder', 'docs_token', 'docs_type', 'owner_id', 'title']

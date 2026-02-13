@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\wiki\v2\model\node_search.py
+# hypothesis_version: 6.151.6
+
+['NodeSearch', 'NodeSearchBuilder', 'area_id', 'domain', 'icon', 'node_id', 'obj_token', 'obj_type', 'parent_id', 'sort_id', 'space_id', 'title', 'url']

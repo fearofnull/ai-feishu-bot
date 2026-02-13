@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\directory\v1\model\employee_education_and_work_experience_entity.py
+# hypothesis_version: 6.151.6
+
+['certificate_of_merit', 'diploma', 'educations', 'former_employer', 'id_photo', 'personal_profiles', 'work_experiences']

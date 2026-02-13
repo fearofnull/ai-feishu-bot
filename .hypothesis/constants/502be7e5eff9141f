@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\board\v1\model\rich_text_element_text.py
+# hypothesis_version: 6.151.6
+
+['RichTextElementText', 'text', 'text_style']

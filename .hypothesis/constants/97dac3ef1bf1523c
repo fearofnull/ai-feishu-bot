@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\application\v6\model\p2_application_application_app_version_publish_revoke_v6.py
+# hypothesis_version: 6.151.6
+
+['app_id', 'creator_id', 'event', 'operator_id', 'version_id']

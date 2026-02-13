@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\corehr\v1\model\leave_request.py
+# hypothesis_version: 6.151.6
+
+['LeaveRequest', 'LeaveRequestBuilder', 'actual_end_date', 'approval_date', 'data_source', 'details', 'employment_id', 'employment_name', 'end_time', 'estimated_end_date', 'grant_source', 'is_deducted', 'leave_duration', 'leave_duration_unit', 'leave_process_id', 'leave_request_id', 'leave_request_status', 'leave_type_code', 'leave_type_id', 'leave_type_name', 'notes', 'return_time', 'start_time', 'submitted_at', 'submitted_by', 'time_zone', 'wd_paid_type', 'workday_extend_infos']

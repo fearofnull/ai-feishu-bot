@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\okr\v1\model\okr_objective_kr.py
+# hypothesis_version: 6.151.6
+
+['OkrObjectiveKr', 'content', 'deadline', 'id', 'kr_weight', 'mentioned_user_list', 'progress_rate', 'progress_record_list', 'score', 'weight']

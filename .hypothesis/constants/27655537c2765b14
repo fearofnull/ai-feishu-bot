@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\directory\v1\model\update_employee.py
+# hypothesis_version: 6.151.6
+
+['UpdateEmployee', 'avatar_key', 'background_image_key', 'birthday', 'cancelled_entry_type', 'contact_addresses', 'contract_subject', 'convert_status', 'custom_employee_id', 'custom_field_values', 'description', 'email', 'employee_id', 'employment_type', 'enterprise_email', 'ethnicity', 'extension_number', 'first_join_date', 'first_work_date', 'frozen_reason', 'gender', 'is_frozen', 'job_family_id', 'job_level_id', 'job_number', 'job_title_id', 'join_date', 'leader_id', 'location', 'marital_status', 'mobile', 'name', 'nationality', 'native_place', 'personal_email', 'politics_status', 'positions', 'probation_period', 'regularization_date', 'residential_address', 'resign_date', 'resign_reason', 'resign_remark', 'resign_type', 'staff_status', 'virtual_org_infos', 'work_place_id', 'work_station']

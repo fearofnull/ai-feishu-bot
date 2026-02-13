@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\payroll\v1\model\dmp_change_event.py
+# hypothesis_version: 6.151.6
+
+['DmpChangeEvent', 'employee_number', 'new_version_data', 'old_version_data']

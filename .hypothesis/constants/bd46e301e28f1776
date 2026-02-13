@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\corehr\v2\model\leave_accrual_record.py
+# hypothesis_version: 6.151.6
+
+['LeaveAccrualRecord', 'created_at', 'created_by', 'effective_date', 'employment_id', 'expiration_date', 'granted_by', 'granting_quantity', 'granting_unit', 'id', 'leave_type_id', 'reason', 'updated_at', 'updated_by']

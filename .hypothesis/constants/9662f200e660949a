@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\compensation\v1\model\grade.py
+# hypothesis_version: 6.151.6
+
+['Grade', 'GradeBuilder', 'created_at', 'currency', 'description', 'dimensions', 'effective_time', 'id', 'serial_number', 'standard_id', 'standard_kind', 'tid', 'updated_at']

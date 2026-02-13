@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\corehr\v1\model\background_check_target.py
+# hypothesis_version: 6.151.6
+
+['biz_unit', 'email', 'first_name', 'id', 'job_title', 'last_name', 'offer_hr_email', 'work_city', 'work_country']

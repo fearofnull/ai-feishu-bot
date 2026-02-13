@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\helpdesk\v1\model\agent_skill_less_info.py
+# hypothesis_version: 6.151.6
+
+['AgentSkillLessInfo', 'id', 'is_default', 'name']

@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\hire\v1\model\job_department.py
+# hypothesis_version: 6.151.6
+
+['JobDepartment', 'JobDepartmentBuilder', 'en_name', 'id', 'zh_name']

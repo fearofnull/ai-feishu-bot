@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\attendance\v1\model\user_setting.py
+# hypothesis_version: 6.151.6
+
+['UserSetting', 'UserSettingBuilder', 'face_key', 'face_key_update_time', 'user_id']

@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\corehr\v1\model\convert_common_data_id_request.py
+# hypothesis_version: 6.151.6
+
+['feishu_user_id_type', 'id_transform_type', 'id_type']

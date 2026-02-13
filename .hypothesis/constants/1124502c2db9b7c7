@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\application\v6\model\app_recommend_rule_visibility_info.py
+# hypothesis_version: 6.151.6
+
+['department_ids', 'group_ids', 'is_all', 'user_ids']

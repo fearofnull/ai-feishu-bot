@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\compensation\v1\model\standard.py
+# hypothesis_version: 6.151.6
+
+['Standard', 'StandardBuilder', 'created_at', 'created_by', 'dimensions', 'id', 'name', 'reference_objects', 'scope', 'updated_at', 'updated_by']

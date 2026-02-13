@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\approval\v4\model\open_widget_instance.py
+# hypothesis_version: 6.151.6
+
+['OpenWidgetInstance', 'create_time', 'form_content', 'instance_code', 'status', 'update_time']

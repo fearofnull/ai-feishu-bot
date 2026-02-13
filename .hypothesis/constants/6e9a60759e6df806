@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\im\v2\model\un_read_urgent_message.py
+# hypothesis_version: 6.151.6
+
+['UnReadUrgentMessage', 'chat_id', 'chatter_id', 'confirm_time', 'from_id', 'id', 'message_id', 'send_time', 'status', 'type']

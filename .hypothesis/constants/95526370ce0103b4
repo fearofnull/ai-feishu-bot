@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\corehr\v2\model\batch_workforce_plan_detail_request_body.py
+# hypothesis_version: 6.151.6
+
+['cost_center_ids', 'department_ids', 'employee_type_ids', 'job_family_ids', 'job_ids', 'job_level_ids', 'work_location_ids', 'workforce_plan_id']

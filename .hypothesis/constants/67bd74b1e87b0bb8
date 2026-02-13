@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\calendar\v4\model\event_check_in.py
+# hypothesis_version: 6.151.6
+
+['EventCheckIn', 'EventCheckInBuilder', 'check_in_end_time', 'check_in_start_time', 'enable_check_in']

@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\attendance\v1\model\query_shift_response_body.py
+# hypothesis_version: 6.151.6
+
+['day_type', 'flexible_minutes', 'flexible_rule', 'id', 'is_flexible', 'no_need_off', 'overtime_rule', 'punch_time_rule', 'punch_times', 'rest_time_rule', 'shift_id', 'shift_name', 'sub_shift_leader_ids']

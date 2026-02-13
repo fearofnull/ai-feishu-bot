@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\hire\v1\model\provider_id_name_object.py
+# hypothesis_version: 6.151.6
+
+['ProviderIdNameObject', 'provider_id', 'provider_name']

@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\hire\v1\model\offer_basic_info_v2.py
+# hypothesis_version: 6.151.6
+
+['OfferBasicInfoV2', 'attachment_list', 'company_main_body', 'contract_period', 'create_time', 'customize_info_list', 'department', 'employee_type', 'id', 'job_requirement_id', 'leader', 'level', 'offer_status', 'offer_type', 'onboard_address', 'onboard_date', 'owner', 'probation_month', 'remark', 'sequence', 'work_address']

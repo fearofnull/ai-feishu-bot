@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\ws\pb\google\protobuf\internal\type_checkers.py
+# hypothesis_version: 6.151.6
+
+[0.0, -2147483648, 2147483647, '-inf', '0x1.fffffep+127', '__float__', '__index__', 'inf', 'ndarray', 'numpy', 'proto3', 'utf-8', 'utf8', '{0:.{1}g}']

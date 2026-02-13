@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\bitable\v1\model\app_table_record.py
+# hypothesis_version: 6.151.6
+
+['AppTableRecord', 'created_by', 'created_time', 'fields', 'last_modified_by', 'last_modified_time', 'record_id', 'record_url', 'shared_url']

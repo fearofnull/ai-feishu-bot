@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\drive\v2\model\file_like.py
+# hypothesis_version: 6.151.6
+
+['FileLike', 'FileLikeBuilder', 'last_liked_time', 'user_avatar_url', 'user_en_name', 'user_id', 'user_is_desensitized', 'user_name']

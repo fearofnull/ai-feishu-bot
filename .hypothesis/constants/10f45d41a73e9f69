@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\directory\v1\model\set_employee_pre_resigned.py
+# hypothesis_version: 6.151.6
+
+['employee_id', 'resign_date', 'resign_reason', 'resign_remark', 'resign_type']

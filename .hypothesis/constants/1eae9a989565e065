@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\admin\v1\model\user_report2021.py
+# hypothesis_version: 6.151.6
+
+['UserReport2021', 'active_day_count', 'approval_start_count', 'busy_week', 'busy_week_act_days', 'busy_week_mdate', 'create_file_count', 'favorite_emoji', 'like_record_count', 'minutes_duration', 'minutes_object_count', 'okr_cum_kr_count', 'okr_cum_o_count', 'p2p_chat_count', 'reaction_count', 'talked_chat_count', 'total_parti_count', 'user_id']

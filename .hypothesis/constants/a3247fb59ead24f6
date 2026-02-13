@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\im\v1\model\thread.py
+# hypothesis_version: 6.151.6
+
+['Thread', 'ThreadBuilder', 'chat_id', 'thread_id', 'update_time']

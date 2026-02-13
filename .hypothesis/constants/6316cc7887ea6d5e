@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\im\v1\model\list_chat.py
+# hypothesis_version: 6.151.6
+
+['ListChat', 'ListChatBuilder', 'avatar', 'chat_id', 'chat_status', 'description', 'external', 'labels', 'name', 'owner_id', 'owner_id_type', 'tenant_key']

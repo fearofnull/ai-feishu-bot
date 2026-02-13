@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\document_ai\v1\model\resume.py
+# hypothesis_version: 6.151.6
+
+['Resume', 'ResumeBuilder', 'awards', 'careers', 'certificates', 'competitions', 'content', 'country_code', 'current_location', 'date_of_birth', 'educations', 'email', 'file_md5', 'gender', 'home_location', 'languages', 'mobile', 'mobile_is_virtual', 'name', 'new_content', 'projects', 'self_evaluation', 'social_links', 'urls', 'willing_locations', 'willing_positions', 'work_year']

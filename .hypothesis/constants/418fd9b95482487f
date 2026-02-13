@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\search\v2\model\create_doc_param.py
+# hypothesis_version: 6.151.6
+
+['CreateDocParam', 'chunks', 'content', 'doc_id', 'filter_data']

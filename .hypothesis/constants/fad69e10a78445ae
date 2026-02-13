@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\apaas\v1\model\data_model_permission_v2.py
+# hypothesis_version: 6.151.6
+
+['access_permissions', 'data_model_api_name', 'data_model_name', 'data_model_type', 'role_api_name']

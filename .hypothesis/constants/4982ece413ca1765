@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\ehr\v1\model\manager.py
+# hypothesis_version: 6.151.6
+
+['Manager', 'ManagerBuilder', 'en_name', 'name', 'user_id']

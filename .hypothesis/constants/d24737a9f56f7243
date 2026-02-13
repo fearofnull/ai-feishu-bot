@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\task\v2\model\input_task.py
+# hypothesis_version: 6.151.6
+
+['InputTask', 'InputTaskBuilder', 'client_token', 'completed_at', 'custom_complete', 'custom_fields', 'description', 'docx_source', 'due', 'extra', 'is_milestone', 'members', 'mode', 'origin', 'positive_reminders', 'reminders', 'repeat_rule', 'start', 'summary', 'tasklists']

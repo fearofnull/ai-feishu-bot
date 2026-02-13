@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\directory\v1\model\position.py
+# hypothesis_version: 6.151.6
+
+['Position', 'PositionBuilder', 'department_id', 'employee_id', 'is_main_position', 'leader_id', 'leader_position_code', 'position_code', 'position_name', 'tenant_id', 'update_time']

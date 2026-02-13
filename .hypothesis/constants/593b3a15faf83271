@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\hire\v1\model\offer.py
+# hypothesis_version: 6.151.6
+
+['Offer', 'OfferBuilder', 'application_id', 'basic_info', 'id', 'job_info', 'job_requirement_id', 'offer_status', 'offer_type', 'salary_plan', 'schema_id']

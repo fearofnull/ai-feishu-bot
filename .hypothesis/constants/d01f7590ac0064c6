@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\drive\v1\model\p2_drive_file_created_in_folder_v1.py
+# hypothesis_version: 6.151.6
+
+['event', 'file_token', 'file_type', 'folder_token', 'operator_id', 'subscriber_ids']

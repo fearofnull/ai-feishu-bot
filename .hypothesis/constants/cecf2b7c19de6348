@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\attendance\v1\model\status_change.py
+# hypothesis_version: 6.151.6
+
+['StatusChange', 'StatusChangeBuilder', 'before_status', 'before_supplement', 'current_status', 'current_supplement', 'index', 'work_type']

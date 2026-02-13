@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\corehr\v2\model\signature_file.py
+# hypothesis_version: 6.151.6
+
+['SignatureFile', 'SignatureFileBuilder', 'contract_code', 'create_time', 'effective_date', 'employment_id', 'names', 'pre_hire_id', 'sign_url', 'signature_file_id', 'signature_file_state', 'template_id', 'update_time']

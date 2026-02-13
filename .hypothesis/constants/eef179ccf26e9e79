@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\hire\v1\model\talent_education_info.py
+# hypothesis_version: 6.151.6
+
+['TalentEducationInfo', 'academic_ranking', 'customized_data_list', 'degree', 'education_type', 'end_time', 'end_time_v2', 'field_of_study', 'id', 'school', 'start_time', 'tag_list']

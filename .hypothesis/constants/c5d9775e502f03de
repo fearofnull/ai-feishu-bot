@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\apaas\v1\model\kctx.py
+# hypothesis_version: 6.151.6
+
+['Kctx', 'KctxBuilder', 'authentication_type', 'breakout_retry_psm', 'credential_id', 'host', 'lang_id', 'namespace', 'psm_link', 'request_id', 'tenant_domain_name', 'tenant_id', 'tenant_type', 'transaction_id', 'user_id', 'user_setting']

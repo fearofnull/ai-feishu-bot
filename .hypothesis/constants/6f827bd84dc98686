@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\helpdesk\v1\model\list_ticket_request.py
+# hypothesis_version: 6.151.6
+
+['agent_id', 'channel', 'closed_by_id', 'create_time_end', 'create_time_start', 'guest_id', 'guest_name', 'page', 'page_size', 'score', 'solved', 'status_list', 'tags', 'ticket_id', 'type', 'update_time_end', 'update_time_start']

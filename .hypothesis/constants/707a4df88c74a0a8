@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\minutes\v1\model\get_minute_statistics_request.py
+# hypothesis_version: 6.151.6
+
+['minute_token', 'user_id_type']

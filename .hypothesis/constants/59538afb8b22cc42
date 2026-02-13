@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\aily\v1\model\progress_item.py
+# hypothesis_version: 6.151.6
+
+['ProgressItem', 'ProgressItemBuilder', 'content', 'input', 'node_id', 'node_type', 'output', 'progress_item_state', 'skill_id', 'skill_strategy', 'usages']

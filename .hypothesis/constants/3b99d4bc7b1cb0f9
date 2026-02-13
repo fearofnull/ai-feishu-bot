@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\security_and_compliance\v1\model\audit_object_detail.py
+# hypothesis_version: 6.151.6
+
+['AuditObjectDetail', 'clone_source', 'contain_file_num', 'container_id', 'container_type', 'current_page', 'file_name', 'file_service_source', 'okr_download_content', 'text_detail', 'third_party_app_i_d']

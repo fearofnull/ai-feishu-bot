@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\application\v6\model\application_app_version_event.py
+# hypothesis_version: 6.151.6
+
+['ability', 'app_id', 'app_name', 'avatar_url', 'back_home_url', 'common_categories', 'create_time', 'description', 'events', 'i18n', 'publish_time', 'remark', 'scopes', 'status', 'version', 'version_id']

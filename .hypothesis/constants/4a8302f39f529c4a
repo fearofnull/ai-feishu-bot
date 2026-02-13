@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\mdm\v1\model\cost_center.py
+# hypothesis_version: 6.151.6
+
+['CostCenter', 'CostCenterBuilder', 'business_area', 'co_area_code', 'company_code', 'company_code_list', 'cost_center_code', 'cost_center_name', 'cost_center_uid', 'fee_type', 'profit_center_code', 'valid_to']

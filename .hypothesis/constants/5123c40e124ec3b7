@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\docx\v1\model\mention_doc.py
+# hypothesis_version: 6.151.6
+
+['MentionDoc', 'MentionDocBuilder', 'fallback_type', 'obj_type', 'text_element_style', 'title', 'token', 'url']

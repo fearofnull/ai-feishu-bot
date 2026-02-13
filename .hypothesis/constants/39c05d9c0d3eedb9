@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\hire\v1\model\website_delivery_dto.py
+# hypothesis_version: 6.151.6
+
+['WebsiteDeliveryDto', 'application_id', 'id', 'job_id', 'job_post_id', 'portal_resume_id', 'talent_id', 'user_id']

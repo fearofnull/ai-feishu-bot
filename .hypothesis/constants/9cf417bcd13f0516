@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\attendance\v1\model\free_clock_setting.py
+# hypothesis_version: 6.151.6
+
+['FreeClockSetting', 'clock_internal_hhmm', 'clock_mode']

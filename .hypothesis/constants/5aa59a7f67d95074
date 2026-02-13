@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\docx\v1\model\batch_delete_document_block_children_request.py
+# hypothesis_version: 6.151.6
+
+['block_id', 'client_token', 'document_id', 'document_revision_id']

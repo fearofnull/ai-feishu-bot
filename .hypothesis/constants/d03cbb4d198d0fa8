@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\corehr\v2\model\profile_setting_employment_info.py
+# hypothesis_version: 6.151.6
+
+['basic_info', 'cost_allocation', 'custom_groups', 'custom_org_groups', 'default_cost_center', 'emp_contract_record', 'employment_record', 'probation_info']

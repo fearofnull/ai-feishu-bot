@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\security_and_compliance\v1\model\key_person.py
+# hypothesis_version: 6.151.6
+
+['KeyPerson', 'KeyPersonBuilder', 'avatar_url', 'email', 'key_person_id', 'name']

@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\hire\v1\model\interview_feedback_form_dimension.py
+# hypothesis_version: 6.151.6
+
+['ability_list', 'description', 'display_not_evident', 'enabled', 'id', 'is_required', 'name', 'option_items', 'sequence', 'type', 'weight']

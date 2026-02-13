@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\approval\v4\model\external_instance_task_node.py
+# hypothesis_version: 6.151.6
+
+['action_configs', 'action_context', 'create_time', 'display_method', 'end_time', 'exclude_statistics', 'extra', 'generate_type', 'links', 'node_id', 'node_name', 'open_id', 'status', 'task_id', 'title', 'update_time', 'user_id']

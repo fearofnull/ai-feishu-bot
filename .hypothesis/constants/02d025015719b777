@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\task\v2\model\task_assignee.py
+# hypothesis_version: 6.151.6
+
+['TaskAssignee', 'TaskAssigneeBuilder', 'completed_at', 'id']

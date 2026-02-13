@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\apaas\v1\model\audit_log_device_info.py
+# hypothesis_version: 6.151.6
+
+['AuditLogDeviceInfo', 'device_id', 'os_type', 'os_version', 'terminal_type', 'web_device_id']

@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\calendar\v4\model\my_ai_event_info.py
+# hypothesis_version: 6.151.6
+
+['MyAiEventInfo', 'MyAiEventInfoBuilder', 'end_time', 'event_id', 'meeting_room_ids', 'participant_ids', 'recurrence_rule', 'start_time', 'start_timezone', 'summary']

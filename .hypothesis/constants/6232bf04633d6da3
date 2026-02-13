@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\compensation\v1\model\standard_scope_expression.py
+# hypothesis_version: 6.151.6
+
+['api_name', 'contain_sub', 'operator_type', 'scope_name', 'values']

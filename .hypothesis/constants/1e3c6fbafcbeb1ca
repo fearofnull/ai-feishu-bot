@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\approval\v4\model\approval_create.py
+# hypothesis_version: 6.151.6
+
+['ApprovalCreate', 'approval_code', 'approval_name', 'config', 'description', 'form', 'i18n_resources', 'icon', 'node_list', 'process_manager_ids', 'settings', 'viewers']

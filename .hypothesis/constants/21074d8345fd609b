@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\im\v1\model\chat_change.py
+# hypothesis_version: 6.151.6
+
+['ChatChange', 'ChatChangeBuilder', 'at_all_permission', 'avatar', 'description', 'edit_permission', 'group_message_type', 'i18n_names', 'labels', 'membership_approval', 'name', 'owner_id']

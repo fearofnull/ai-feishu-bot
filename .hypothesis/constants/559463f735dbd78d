@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\apaas\v1\model\records_delete_workspace_table_request.py
+# hypothesis_version: 6.151.6
+
+['filter', 'table_name', 'workspace_id']

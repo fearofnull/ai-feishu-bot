@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\performance\v2\model\review_profile.py
+# hypothesis_version: 6.151.6
+
+['ReviewProfile', 'ReviewProfileBuilder', 'activity_id', 'review_template_id', 'semester_id', 'stages', 'user_id']

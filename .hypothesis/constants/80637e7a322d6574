@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\auth\v3\model\revoke_token_event.py
+# hypothesis_version: 6.151.6
+
+['RevokeTokenEvent', 'open_id', 'revoke_reason', 'revoke_token_type', 'union_id', 'user_id']

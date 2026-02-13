@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\performance\v2\model\write_user_group_scope_fail_user_data.py
+# hypothesis_version: 6.151.6
+
+['fail_code', 'user_id']

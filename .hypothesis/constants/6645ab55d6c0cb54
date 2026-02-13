@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\payroll\v1\model\verif_field_source_config.py
+# hypothesis_version: 6.151.6
+
+['api_name', 'formula_id', 'formula_item_id', 'formula_text', 'ref_type']

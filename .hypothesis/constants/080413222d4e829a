@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\payroll\v1\model\donations_tax_data.py
+# hypothesis_version: 6.151.6
+
+['DonationsTaxData', 'employee_id', 'identity_number', 'identity_type', 'issuing_company', 'legal_name', 'non_tax_residence']

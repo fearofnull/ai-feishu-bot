@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\drive\v1\model\media.py
+# hypothesis_version: 6.151.6
+
+['Media', 'MediaBuilder', 'file_name', 'file_token', 'mime_type', 'size']

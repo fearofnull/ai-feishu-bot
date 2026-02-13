@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\corehr\v2\model\search_employee_request_body.py
+# hypothesis_version: 6.151.6
+
+['contract_type_list', 'cost_center_id_list', 'department_id_list', 'effective_time_end', 'effective_time_start', 'email_address_list', 'employee_number_list', 'employee_type_id', 'employment_id_list', 'employment_status', 'fields', 'job_family_id_list', 'job_grade_id_list', 'job_id_list', 'job_level_id_list', 'key_word', 'nationality_id_list', 'pay_group_id_list', 'phone_number', 'phone_number_list', 'position_id_list', 'service_company_list', 'user_name', 'work_email']

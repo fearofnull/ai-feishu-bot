@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\corehr\v2\model\emp_custom_object_info.py
+# hypothesis_version: 6.151.6
+
+['EmpCustomObjectInfo', 'is_activate', 'is_timeline', 'system_info']

@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\calendar\v4\model\myai_card_status.py
+# hypothesis_version: 6.151.6
+
+['MyaiCardStatus', 'from_status', 'to_status']

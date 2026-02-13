@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\hire\v1\model\application.py
+# hypothesis_version: 6.151.6
+
+['Application', 'ApplicationBuilder', 'active_status', 'create_time', 'creator_id', 'delivery_type', 'id', 'job_id', 'modify_time', 'resume_source_id', 'resume_source_info', 'stage', 'stage_time_list', 'talent_id', 'termination_type']

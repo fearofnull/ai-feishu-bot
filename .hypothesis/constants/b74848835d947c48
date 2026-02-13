@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\corehr\v1\model\person_info_chn.py
+# hypothesis_version: 6.151.6
+
+['PersonInfoChn', 'PersonInfoChnBuilder', 'custom_fields', 'hukou_location', 'hukou_type', 'id', 'native_region', 'person_id', 'working_years']

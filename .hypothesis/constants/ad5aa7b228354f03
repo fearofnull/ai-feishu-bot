@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\corehr\v1\model\custom_field.py
+# hypothesis_version: 6.151.6
+
+['CustomField', 'CustomFieldBuilder', 'common_schema_config', 'create_time', 'custom_api_name', 'description', 'is_open', 'is_required', 'is_unique', 'name', 'object_api_name', 'type', 'update_time']

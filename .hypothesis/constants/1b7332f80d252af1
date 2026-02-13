@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\attendance\v1\model\late_off_late_on_rule.py
+# hypothesis_version: 6.151.6
+
+['LateOffLateOnRule', 'late_off_minutes', 'late_on_minutes']

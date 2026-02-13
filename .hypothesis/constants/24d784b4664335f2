@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\hire\v1\model\job_requirement.py
+# hypothesis_version: 6.151.6
+
+['JobRequirement', 'address_id', 'category', 'customized_data_list', 'deadline', 'department_id', 'description', 'display_progress', 'employee_type_id', 'employment_job_id', 'head_count', 'job_id_list', 'job_type_id', 'max_level_id', 'max_salary', 'min_level_id', 'min_salary', 'name', 'position_id', 'priority', 'process_type', 'recruiter_id_list', 'recruitment_type_id', 'required_degree', 'sequence_id', 'short_code', 'start_time', 'update_option']

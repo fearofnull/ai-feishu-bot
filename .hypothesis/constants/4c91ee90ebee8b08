@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\attendance\v1\model\user_task_remedy.py
+# hypothesis_version: 6.151.6
+
+['UserTaskRemedy', 'approval_id', 'create_time', 'punch_no', 'reason', 'remedy_date', 'remedy_time', 'status', 'time', 'time_zone', 'update_time', 'user_id', 'work_type']

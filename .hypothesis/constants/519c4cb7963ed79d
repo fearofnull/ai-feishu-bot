@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\sheets\v3\model\cell_value.py
+# hypothesis_version: 6.151.6
+
+['CellValue', 'CellValueBuilder', 'date_time', 'file', 'formula', 'image', 'link', 'mention_document', 'mention_user', 'reminder', 'text', 'type', 'value']

@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\drive\v1\model\list_file_view_record_request.py
+# hypothesis_version: 6.151.6
+
+['file_token', 'file_type', 'page_size', 'page_token', 'viewer_id_type']

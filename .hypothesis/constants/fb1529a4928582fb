@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\directory\v1\model\update_address.py
+# hypothesis_version: 6.151.6
+
+['UpdateAddress', 'UpdateAddressBuilder', 'city', 'country', 'county', 'external_id', 'id', 'is_enabled', 'is_main', 'is_public', 'name', 'place_id', 'post_code', 'province', 'types']

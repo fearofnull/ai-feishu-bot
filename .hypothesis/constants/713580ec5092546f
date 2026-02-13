@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\drive\v1\model\bitable_table_record_action_field_identity_user.py
+# hypothesis_version: 6.151.6
+
+['avatar_url', 'en_name', 'name', 'user_id']

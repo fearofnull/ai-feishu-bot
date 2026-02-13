@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\hire\v1\model\score_dimension_config.py
+# hypothesis_version: 6.151.6
+
+['ScoreDimensionConfig', 'lower_limit_score', 'score_dimension_type', 'upper_limit_score']

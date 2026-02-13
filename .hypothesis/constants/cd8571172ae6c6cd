@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\core\const.py
+# hypothesis_version: 6.151.6
+
+['1.5.3', 'Authorization', 'Content-Disposition', 'Content-Type', 'UTF-8', 'User-Agent', 'X-Lark-Request-Nonce', 'X-Lark-Signature', 'X-Request-Id', 'X-Tt-Logid', 'application/json', 'oapi-sdk-python', 'url_verification']

@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\search\v2\model\passage.py
+# hypothesis_version: 6.151.6
+
+['Passage', 'PassageBuilder', 'content', 'content_for_llm', 'extra', 'passage_id', 'passage_source', 'score', 'title', 'url']

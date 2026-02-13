@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\document_ai\v1\model\doc_chunk_table_detail.py
+# hypothesis_version: 6.151.6
+
+['DocChunkTableDetail', 'caption', 'cells', 'desc_ranges', 'header_ranges', 'html_text', 'md_text', 'sub_table_idx', 'table_idx', 'table_img', 'table_name', 'table_range', 'text']

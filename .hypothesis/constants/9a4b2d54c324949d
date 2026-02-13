@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\approval\v4\model\my_ai_present.py
+# hypothesis_version: 6.151.6
+
+['MyAiPresent', 'MyAiPresentBuilder', 'body', 'callback_info', 'callback_url', 'card_template_id', 'card_variables', 'interactable', 'operation_type', 'operation_url', 'type']

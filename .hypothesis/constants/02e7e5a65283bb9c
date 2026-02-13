@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\apaas\v1\model\user_task.py
+# hypothesis_version: 6.151.6
+
+['UserTask', 'UserTaskBuilder', 'initiator', 'summarys', 'task_id', 'task_start_time', 'workflow_instance']

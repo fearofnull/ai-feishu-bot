@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\calendar\v4\model\create_timeoff_event_response_body.py
+# hypothesis_version: 6.151.6
+
+['description', 'end_time', 'start_time', 'timeoff_event_id', 'timezone', 'title', 'user_id']

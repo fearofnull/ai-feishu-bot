@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\baike\v1\model\statistical_report.py
+# hypothesis_version: 6.151.6
+
+['StatisticalReport', 'correct_info', 'date_interval', 'update_date', 'word_info']

@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\corehr\v2\model\onboarding_qr_code.py
+# hypothesis_version: 6.151.6
+
+['OnboardingQrCode', 'active', 'created_at', 'created_by', 'dimension_values', 'id', 'pngs', 'updated_at', 'updated_by', 'url']

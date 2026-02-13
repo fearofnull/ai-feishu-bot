@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\search\v2\model\doc_filter.py
+# hypothesis_version: 6.151.6
+
+['DocFilter', 'DocFilterBuilder', 'creator_ids', 'doc_types', 'folder_tokens', 'only_title', 'open_time', 'sort_type']

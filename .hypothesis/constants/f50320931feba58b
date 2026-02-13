@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\aily\v1\model\session.py
+# hypothesis_version: 6.151.6
+
+['Session', 'SessionBuilder', 'active_intent_id', 'channel_type', 'created_at', 'effected_at', 'enable_debug', 'id', 'kvs', 'status', 'type']

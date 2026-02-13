@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\attendance\v1\model\shift_middle_time_rule.py
+# hypothesis_version: 6.151.6
+
+['ShiftMiddleTimeRule', 'fixed_middle_time', 'middle_time_type']

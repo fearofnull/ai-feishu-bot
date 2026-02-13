@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\corehr\v1\model\edit_enum_option_common_data_meta_data_request_body.py
+# hypothesis_version: 6.151.6
+
+['enum_field_api_name', 'enum_field_option', 'object_api_name']

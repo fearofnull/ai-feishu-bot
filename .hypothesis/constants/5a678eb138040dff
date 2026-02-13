@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\corehr\v2\model\position_create.py
+# hypothesis_version: 6.151.6
+
+['PositionCreate', 'code', 'cost_center_id', 'custom_fields', 'department_id', 'descriptions', 'direct_leader_id', 'effective_time', 'employee_type_ids', 'is_key_position', 'job_family_ids', 'job_grade_ids', 'job_id', 'job_level_ids', 'names', 'work_location_ids']

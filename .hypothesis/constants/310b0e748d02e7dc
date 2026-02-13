@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\approval\v4\model\specified_rollback.py
+# hypothesis_version: 6.151.6
+
+['SpecifiedRollback', 'extra', 'reason', 'task_def_key_list', 'task_id', 'user_id']

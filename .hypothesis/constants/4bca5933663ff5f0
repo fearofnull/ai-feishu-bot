@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\apaas\v1\model\event_subscribe_rule.py
+# hypothesis_version: 6.151.6
+
+['EventSubscribeRule', 'create_time', 'created_by', 'creator', 'event_type', 'id', 'namespace']

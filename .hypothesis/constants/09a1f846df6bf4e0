@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\compensation\v1\model\archive.py
+# hypothesis_version: 6.151.6
+
+['Archive', 'ArchiveBuilder', 'archive_id', 'archive_tid', 'effective_date', 'plan', 'user_id']

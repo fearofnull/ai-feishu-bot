@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\performance\v2\model\query_indicator_request.py
+# hypothesis_version: 6.151.6
+
+['page_size', 'page_token']

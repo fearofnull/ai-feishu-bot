@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\mdm\v1\model\gl_account.py
+# hypothesis_version: 6.151.6
+
+['GlAccount', 'GlAccountBuilder', 'gl_account', 'gl_account_name', 'gl_account_uid', 'i18n_gl_account_name', 'type', 'valid_to']

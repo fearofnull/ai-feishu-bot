@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\im\v2\model\open_failed_user_app_feed_card_item.py
+# hypothesis_version: 6.151.6
+
+['biz_id', 'reason', 'user_id']

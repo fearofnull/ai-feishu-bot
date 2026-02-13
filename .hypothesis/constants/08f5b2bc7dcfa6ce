@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\board\v1\model\text.py
+# hypothesis_version: 6.151.6
+
+['Text', 'TextBuilder', 'angle', 'font_size', 'font_weight', 'horizontal_align', 'italic', 'line_through', 'rich_text', 'text', 'text_color', 'text_color_type', 'underline', 'vertical_align']

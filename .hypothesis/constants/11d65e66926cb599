@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\hire\v2\model\composite_talent.py
+# hypothesis_version: 6.151.6
+
+['CompositeTalent', 'award_list', 'basic_info', 'block_info', 'career_list', 'customized_data_list', 'education_list', 'internship_list', 'is_in_agency_period', 'is_onboarded', 'language_list', 'note_list_v2', 'project_list', 'registration_list', 'resume_source_list', 'similar_info_v2', 'sns_list', 'tag_list', 'talent_id', 'talent_pool_id_list', 'top_degree', 'works_list']

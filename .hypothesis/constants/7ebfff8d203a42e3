@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\vc\v1\model\reserve_form_config.py
+# hypothesis_version: 6.151.6
+
+['ReserveFormConfig', 'custom_list', 'if_cover_child_scope', 'notified_time', 'notified_users', 'reserve_form', 'time_unit']

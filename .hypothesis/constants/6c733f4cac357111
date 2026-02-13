@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\helpdesk\v1\model\get_notification_request.py
+# hypothesis_version: 6.151.6
+
+['notification_id', 'user_id_type']

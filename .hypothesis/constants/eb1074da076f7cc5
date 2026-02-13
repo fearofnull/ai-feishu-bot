@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\im\v1\model\message_reaction.py
+# hypothesis_version: 6.151.6
+
+['MessageReaction', 'action_time', 'operator', 'reaction_id', 'reaction_type']

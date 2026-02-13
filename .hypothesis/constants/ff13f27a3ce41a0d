@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\admin\v1\model\list_audit_info_request.py
+# hypothesis_version: 6.151.6
+
+['event_module', 'event_name', 'latest', 'object_type', 'object_value', 'oldest', 'operator_type', 'operator_value', 'page_size', 'page_token', 'user_id_type', 'user_type']

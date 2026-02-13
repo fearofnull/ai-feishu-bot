@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\hire\v1\model\basic_info.py
+# hypothesis_version: 6.151.6
+
+['BasicInfo', 'BasicInfoBuilder', 'birthday', 'confidentiality', 'creator_account_type', 'creator_id', 'current_city_code', 'email', 'gender', 'hometown_city_code', 'identification', 'init_source_id', 'mobile', 'mobile_country_code', 'name', 'nationality_id', 'resume_attachment_id', 'self_evaluation', 'start_work_time']

@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\vc\v1\model\reserve_scope_config.py
+# hypothesis_version: 6.151.6
+
+['ReserveScopeConfig', 'allow_all_users', 'allow_depts', 'allow_users', 'if_cover_child_scope']

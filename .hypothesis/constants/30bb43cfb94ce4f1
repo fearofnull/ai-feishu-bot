@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\authen\v1\model\token_info.py
+# hypothesis_version: 6.151.6
+
+['TokenInfo', 'TokenInfoBuilder', 'access_token', 'expires_in', 'refresh_expires_in', 'refresh_token', 'scope', 'token_type']

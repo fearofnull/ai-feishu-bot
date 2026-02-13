@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\wiki\v1\model\space.py
+# hypothesis_version: 6.151.6
+
+['Space', 'SpaceBuilder', 'avatar_url', 'cover_info', 'default_attr', 'description', 'domain', 'home_page', 'is_cross_tenant', 'name', 'space_id', 'tenant_id', 'version']

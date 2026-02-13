@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\vc\v1\model\alert.py
+# hypothesis_version: 6.151.6
+
+['Alert', 'AlertBuilder', 'alert_id', 'alert_level', 'alert_rule', 'alert_rule_id', 'alert_strategy', 'alert_time', 'contacts', 'monitor_target', 'notify_methods', 'process_status', 'process_time', 'recover_time', 'resource_scope']

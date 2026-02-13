@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\core\model\error.py
+# hypothesis_version: 6.151.6
+
+['description', 'details', 'field', 'field_violations', 'helps', 'key', 'log_id', 'subject', 'troubleshooter', 'type', 'url', 'value']

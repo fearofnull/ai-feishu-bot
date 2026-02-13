@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\aily\v1\model\data_asset_chunk.py
+# hypothesis_version: 6.151.6
+
+['DataAssetChunk', 'content', 'data_asset_id', 'data_asset_label', 'score', 'source_info']

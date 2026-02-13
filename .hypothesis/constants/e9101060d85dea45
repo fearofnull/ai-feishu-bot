@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\calendar\v4\model\get_calendar_response_body.py
+# hypothesis_version: 6.151.6
+
+['calendar_id', 'color', 'description', 'is_deleted', 'is_third_party', 'permissions', 'role', 'summary', 'summary_alias', 'type']

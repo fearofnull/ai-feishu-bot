@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\security_and_compliance\v2\model\param_mail_public_mail.py
+# hypothesis_version: 6.151.6
+
+['ParamMailPublicMail', 'mail_box', 'mail_id']

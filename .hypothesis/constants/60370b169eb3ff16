@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\corehr\v2\model\field_variable_value_to.py
+# hypothesis_version: 6.151.6
+
+['FieldVariableValueTo', 'bool_value', 'date_time_value', 'date_value', 'department_value', 'employment_value', 'enum_value', 'file_value', 'i18n_value', 'list_values', 'number_value', 'object_value', 'record_values', 'text_value', 'user_value']

@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\bitable\v1\model\app_role_member.py
+# hypothesis_version: 6.151.6
+
+['AppRoleMember', 'AppRoleMemberBuilder', 'chat_id', 'department_id', 'member_en_name', 'member_id', 'member_name', 'member_type', 'open_department_id', 'open_id', 'union_id', 'user_id']

@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\admin\v1\model\audit_ios_context.py
+# hypothesis_version: 6.151.6
+
+['AuditIosContext', 'active_ip', 'active_ip_detail', 'app_ver', 'cell_base_station', 'did', 'i_p', 'location', 'm_l', 'os', 'proxyip', 's_t_zone', 'sjd', 'udid', 'ver', 'wifip']

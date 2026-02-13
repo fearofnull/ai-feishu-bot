@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\corehr\v1\model\leave_type.py
+# hypothesis_version: 6.151.6
+
+['LeaveType', 'LeaveTypeBuilder', 'created_at', 'created_by', 'leave_subtype_list', 'leave_type_id', 'leave_type_name', 'status', 'updated_at', 'updated_by']

@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\hire\v1\model\talent_pool_talent_basic.py
+# hypothesis_version: 6.151.6
+
+['age', 'birthday', 'create_time', 'creator_id', 'current_city', 'email', 'experience_years', 'gender', 'hometown_city', 'id', 'identification_type', 'marital_status', 'mobile', 'mobile_code', 'mobile_country_code', 'name', 'nationality', 'preferred_city_list', 'update_time']

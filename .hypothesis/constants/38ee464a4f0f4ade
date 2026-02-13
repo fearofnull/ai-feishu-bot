@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\corehr\v1\model\offboarding_info.py
+# hypothesis_version: 6.151.6
+
+['OffboardingInfo', 'add_block_list', 'block_reason', 'custom_fields', 'employee_reason', 'employment_id', 'hrbp_id', 'last_attendance_date', 'offboarding_date', 'reason', 'reason_explanation', 'retain_account', 'sign_type', 'signature_file']

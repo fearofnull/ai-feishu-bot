@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\mdm\v1\model\vendor_account.py
+# hypothesis_version: 6.151.6
+
+['VendorAccount', 'VendorAccountBuilder', 'account', 'account_name', 'bank_acronym', 'bank_code', 'bank_control_code', 'bank_id', 'bank_name', 'country', 'extend_info', 'iban', 'id', 'swift_code', 'vendor_site_code']

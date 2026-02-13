@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\vc\v1\model\query_room_config_request.py
+# hypothesis_version: 6.151.6
+
+['building_id', 'country_id', 'district_id', 'floor_name', 'room_id', 'scope', 'user_id_type']

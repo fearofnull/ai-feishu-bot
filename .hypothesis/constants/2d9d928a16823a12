@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\event\callback\model\p2_card_action_trigger.py
+# hypothesis_version: 6.151.6
+
+['action', 'card', 'checked', 'content', 'context', 'data', 'delivery_type', 'event', 'form_value', 'host', 'i18n', 'input_value', 'name', 'open_chat_id', 'open_id', 'open_message_id', 'operator', 'option', 'options', 'preview_token', 'tag', 'tenant_key', 'timezone', 'toast', 'token', 'type', 'union_id', 'url', 'user_id', 'value']

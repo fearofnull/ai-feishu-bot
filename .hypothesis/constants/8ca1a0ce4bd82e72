@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\docx\v1\model\isv.py
+# hypothesis_version: 6.151.6
+
+['Isv', 'IsvBuilder', 'component_id', 'component_type_id']

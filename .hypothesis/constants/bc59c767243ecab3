@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\hire\v1\model\resume_source.py
+# hypothesis_version: 6.151.6
+
+['ResumeSource', 'ResumeSourceBuilder', 'active_status', 'en_name', 'id', 'resume_source_type', 'zh_name']

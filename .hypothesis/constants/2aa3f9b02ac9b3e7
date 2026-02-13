@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\cardkit\v1\model\operator.py
+# hypothesis_version: 6.151.6
+
+['Operator', 'OperatorBuilder', 'open_id', 'tenant_key', 'union_id', 'user_id']

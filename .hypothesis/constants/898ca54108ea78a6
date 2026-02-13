@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\drive\v1\model\export_task.py
+# hypothesis_version: 6.151.6
+
+['ExportTask', 'ExportTaskBuilder', 'file_extension', 'file_name', 'file_size', 'file_token', 'job_error_msg', 'job_status', 'sub_id', 'token', 'type']

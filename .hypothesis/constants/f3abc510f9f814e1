@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\approval\v4\model\cc_search_item.py
+# hypothesis_version: 6.151.6
+
+['CcSearchItem', 'CcSearchItemBuilder', 'approval', 'cc', 'group', 'instance']

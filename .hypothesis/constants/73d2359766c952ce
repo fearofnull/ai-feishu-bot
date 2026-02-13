@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\directory\v1\model\employee_work_entity.py
+# hypothesis_version: 6.151.6
+
+['EmployeeWorkEntity', 'application_lable', 'cancelled_entry_type', 'contract_start_date', 'contract_subject', 'contract_type', 'convert_status', 'employment_type', 'extension_number', 'first_join_date', 'first_work_date', 'job_family', 'job_level', 'job_number', 'job_title', 'join_date', 'positions', 'probation_period', 'recruitment_type', 'regularization_date', 'resign_date', 'resign_reason', 'resign_remark', 'resign_type', 'seniority_date', 'staff_status', 'work_place', 'work_station']

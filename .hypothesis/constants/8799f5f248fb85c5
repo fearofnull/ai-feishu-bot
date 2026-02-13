@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\corehr\v2\model\p2_corehr_process_node_updated_v2.py
+# hypothesis_version: 6.151.6
+
+['biz_type', 'event', 'flow_definition_id', 'node_definition_id', 'node_status', 'node_type', 'process_id', 'process_node_id']

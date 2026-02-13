@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\corehr\v2\model\profile_setting_emergency_contact.py
+# hypothesis_version: 6.151.6
+
+['address', 'custom_fields', 'email', 'is_primary', 'legal_name', 'phone', 'relationship']

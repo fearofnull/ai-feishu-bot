@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\hire\v1\model\salary.py
+# hypothesis_version: 6.151.6
+
+['Salary', 'SalaryBuilder', 'offer_id', 'operate_time', 'operator_id', 'salary_status', 'salay_id']

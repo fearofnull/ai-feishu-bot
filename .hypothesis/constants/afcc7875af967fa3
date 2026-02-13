@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\board\v1\model\style.py
+# hypothesis_version: 6.151.6
+
+['Style', 'StyleBuilder', 'border_color', 'border_color_type', 'border_opacity', 'border_style', 'border_width', 'fill_color', 'fill_color_type', 'fill_opacity', 'h_flip', 'v_flip']

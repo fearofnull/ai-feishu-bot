@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\hire\v1\model\website_channel_info.py
+# hypothesis_version: 6.151.6
+
+['WebsiteChannelInfo', 'code', 'id', 'link', 'name']

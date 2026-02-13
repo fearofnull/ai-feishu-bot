@@ -1,0 +1,4 @@
+# file: E:\TraeProjects\lark-bot\feishu_bot\config.py
+# hypothesis_version: 6.151.6
+
+[600, 1000, 86400, './data/sessions.json', '.env', '1000', '50', '600', '86400', '=', 'AI_TIMEOUT', 'AI_TIMEOUT 必须大于 0', 'BotConfig', 'CACHE_SIZE', 'CACHE_SIZE 必须大于 0', 'CLAUDE_API_KEY', 'CRITICAL', 'DEBUG', 'DEFAULT_LAYER', 'DEFAULT_PROVIDER', 'ERROR', 'FEISHU_APP_ID', 'FEISHU_APP_ID 未配置', 'FEISHU_APP_SECRET', 'GEMINI_API_KEY', 'INFO', 'LOG_LEVEL', 'MAX_SESSION_MESSAGES', 'OPENAI_API_KEY', 'SESSION_STORAGE_PATH', 'SESSION_TIMEOUT', 'SSL_CERT_FILE', 'TARGET_PROJECT_DIR', 'WARNING', '__main__', 'api', 'claude', 'cli', 'gemini', 'openai', '✅ 配置验证通过', '配置状态', '配置验证失败:\n']

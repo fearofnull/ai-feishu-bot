@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\bitable\v1\model\app_connector.py
+# hypothesis_version: 6.151.6
+
+['AppConnector', 'AppConnectorBuilder', 'field_sync_type', 'source_type', 'src_table_path', 'sync_fields', 'sync_type', 'table_id', 'token']

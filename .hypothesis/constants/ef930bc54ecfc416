@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\corehr\v2\model\prehire_seniority_adjust_information_update.py
+# hypothesis_version: 6.151.6
+
+['custom_fields', 'end_date', 'seniority_adjustment', 'start_date']

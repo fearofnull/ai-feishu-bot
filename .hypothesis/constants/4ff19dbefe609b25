@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\application\v6\model\msg_action_i18n_info.py
+# hypothesis_version: 6.151.6
+
+['MsgActionI18nInfo', 'i18n_key', 'name']

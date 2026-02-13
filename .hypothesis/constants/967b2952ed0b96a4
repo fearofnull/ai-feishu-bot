@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\corehr\v2\model\education_info.py
+# hypothesis_version: 6.151.6
+
+['EducationInfo', 'EducationInfoBuilder', 'custom_fields', 'education', 'end_time', 'field_of_study', 'school_name', 'start_time']

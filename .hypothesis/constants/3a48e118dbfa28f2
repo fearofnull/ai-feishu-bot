@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\corehr\v2\model\department.py
+# hypothesis_version: 6.151.6
+
+['Department', 'DepartmentBuilder', 'active', 'code', 'cost_center_id', 'created_by', 'created_time', 'custom_fields', 'department_name', 'description', 'effective_date', 'expiration_date', 'id', 'is_confidential', 'is_root', 'list_order', 'manager', 'parent_department_id', 'record_created_by', 'record_created_time', 'record_updated_by', 'record_updated_time', 'staffing_model', 'sub_type', 'tree_order', 'updated_by', 'updated_time', 'version_id']

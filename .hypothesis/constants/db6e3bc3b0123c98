@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\corehr\v2\model\time_zone.py
+# hypothesis_version: 6.151.6
+
+['TimeZone', 'TimeZoneBuilder', 'name', 'status', 'time_zone_code', 'time_zone_id', 'utc_offset']

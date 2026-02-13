@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\drive\v1\model\get_subscribe_file_request.py
+# hypothesis_version: 6.151.6
+
+['event_type', 'file_token', 'file_type']

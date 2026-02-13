@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\compensation\v1\model\social_archive_adjust_record_event.py
+# hypothesis_version: 6.151.6
+
+['id', 'insurance_type', 'operate_type', 'record_type', 'source_type']

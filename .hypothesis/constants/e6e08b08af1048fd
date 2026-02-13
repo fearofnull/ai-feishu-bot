@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\vc\v1\model\participant.py
+# hypothesis_version: 6.151.6
+
+['Participant', 'ParticipantBuilder', 'accept_status', 'app_version', 'audio', 'camera', 'department', 'device', 'email', 'employee_id', 'internal_ip', 'is_external', 'join_time', 'leave_reason', 'leave_time', 'location', 'meeting_room_id', 'microphone', 'network_type', 'participant_name', 'phone', 'protocol', 'public_ip', 'sharing', 'speaker', 'time_in_meeting', 'use_rtc_proxy', 'user_id', 'video', 'webinar_user_role']

@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\security_and_compliance\v1\model\policy_log_item.py
+# hypothesis_version: 6.151.6
+
+['PolicyLogItem', 'PolicyLogItemBuilder', 'action', 'condition', 'detect_rules', 'event_time', 'hit_contents', 'policy_infos', 'proof_details', 'resource', 'resource_attributes', 'system_action', 'user_id', 'user_name']

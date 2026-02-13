@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\security_and_compliance\v2\model\param_minutes_search.py
+# hypothesis_version: 6.151.6
+
+['ParamMinutesSearch', 'owner_ids', 'participant_ids', 'query', 'start_time_gte', 'start_time_lt', 'update_time_gte', 'update_time_lt']

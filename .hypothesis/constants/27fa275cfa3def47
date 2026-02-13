@@ -1,0 +1,4 @@
+# file: E:\TraeProjects\lark-bot\feishu_bot\session_manager.py
+# hypothesis_version: 6.151.6
+
+[100, 86400, '...', './data/sessions.json', '/history', '/new', '/session', '<>:"/\\|?*\x00', 'Assistant', 'User', '_', 'age_seconds', 'archived_sessions', 'content', 'created_at', 'exists', 'last_active', 'message', 'message_count', 'messages', 'r', 'role', 'session_id', 'sessions', 'timestamp', 'user', 'user_id', 'utf-8', 'w', '会话信息', '历史记录', '新会话', '👤 User', '🤖 Assistant']

@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\task\v1\model\task.py
+# hypothesis_version: 6.151.6
+
+['Task', 'TaskBuilder', 'can_edit', 'collaborator_ids', 'collaborators', 'complete_time', 'create_time', 'creator_id', 'custom', 'description', 'due', 'extra', 'follower_ids', 'followers', 'id', 'origin', 'repeat_rule', 'rich_description', 'rich_summary', 'source', 'summary', 'update_time']

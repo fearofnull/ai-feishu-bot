@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\contact\v3\model\group_event.py
+# hypothesis_version: 6.151.6
+
+['GroupEvent', 'GroupEventBuilder', 'name', 'user_group_id']

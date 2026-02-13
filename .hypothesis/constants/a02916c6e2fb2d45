@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\im\v1\model\im_depth_data.py
+# hypothesis_version: 6.151.6
+
+['ImDepthData', 'ImDepthDataBuilder', 'avg_send_msg_cnt', 'department_id', 'department_path', 'file_send_msg_rate', 'group_at_msg_rate', 'group_reply_msg_rate', 'img_send_msg_rate', 'mobile_send_msg_rate', 'p2p_send_msg_rate', 'p_date', 'pc_avg_send_msg_cnt', 'pc_send_msg_rate', 'post_send_msg_rate', 'reaction_rate', 'send_msg_rate']

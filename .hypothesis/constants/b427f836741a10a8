@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\corehr\v2\model\name.py
+# hypothesis_version: 6.151.6
+
+['Name', 'NameBuilder', 'additional_name', 'country_region_id', 'custom_local_name', 'custom_western_name', 'first_name', 'full_name', 'local_first_name', 'local_middle_name', 'local_primary', 'middle_name', 'name_primary']

@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\wiki\v1\model\search_node_request_body.py
+# hypothesis_version: 6.151.6
+
+['node_id', 'query', 'space_id']

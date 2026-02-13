@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\corehr\v2\model\company_version_data.py
+# hypothesis_version: 6.151.6
+
+['CompanyVersionData', 'active', 'code', 'company_id', 'company_names', 'company_version_id', 'descriptions', 'effective_date', 'expiration_date', 'parent_company_id']

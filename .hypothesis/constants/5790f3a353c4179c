@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\mdm\v1\model\legal_entity_bank.py
+# hypothesis_version: 6.151.6
+
+['LegalEntityBank', 'account_name', 'bank_account', 'bank_acronym', 'bank_code', 'bank_control_code', 'bank_id', 'bank_name', 'clearing_account', 'company_code', 'country', 'currency', 'extend_info', 'gl_account', 'iban_account', 'id', 'swift_code']

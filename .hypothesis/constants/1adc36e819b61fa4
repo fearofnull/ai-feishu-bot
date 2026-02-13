@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\attendance\v1\model\user_stats_view.py
+# hypothesis_version: 6.151.6
+
+['UserStatsView', 'UserStatsViewBuilder', 'items', 'stats_type', 'user_id', 'view_id']

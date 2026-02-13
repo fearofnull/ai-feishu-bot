@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\hire\v1\model\p2_hire_talent_tag_subscription_v1.py
+# hypothesis_version: 6.151.6
+
+['application_id', 'application_stage', 'event', 'lock_status', 'tag', 'talent_id', 'type']

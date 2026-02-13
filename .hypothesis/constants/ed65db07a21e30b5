@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\performance\v2\model\tag_text.py
+# hypothesis_version: 6.151.6
+
+['TagText', 'TagTextBuilder', 'tag_richtext', 'tag_text', 'tag_text_id']

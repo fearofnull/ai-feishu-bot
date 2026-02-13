@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\hire\v1\model\talent_basic_info.py
+# hypothesis_version: 6.151.6
+
+['TalentBasicInfo', 'age', 'birthday', 'creator_id', 'current_city', 'current_home_address', 'customized_data_list', 'email', 'experience_years', 'gender', 'hometown_city', 'hukou_location_code', 'identification', 'identification_type', 'marital_status', 'mobile', 'mobile_code', 'mobile_country_code', 'modify_time', 'name', 'nationality', 'preferred_city_list']

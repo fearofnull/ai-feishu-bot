@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\corehr\v2\model\process_extra.py
+# hypothesis_version: 6.151.6
+
+['ProcessExtra', 'ProcessExtraBuilder', 'approval_type', 'approver_id', 'extra_type', 'extra_user_ids', 'node_id', 'operator', 'remark', 'system_user']

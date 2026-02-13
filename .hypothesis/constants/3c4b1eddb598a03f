@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\drive\v1\model\copy_file_request_body.py
+# hypothesis_version: 6.151.6
+
+['CopyFileRequestBody', 'extra', 'folder_token', 'name', 'type']

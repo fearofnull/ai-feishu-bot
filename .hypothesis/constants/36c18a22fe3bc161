@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\aily\v1\model\aily_message.py
+# hypothesis_version: 6.151.6
+
+['AilyMessage', 'AilyMessageBuilder', 'content', 'content_type', 'created_at', 'files', 'id', 'mentions', 'plain_text', 'quote_message_id', 'reasoning_content', 'run_id', 'sender', 'session_id', 'status']

@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\hire\v1\model\referral_basic_info.py
+# hypothesis_version: 6.151.6
+
+['ReferralBasicInfo', 'application_id', 'create_time', 'id', 'referral_method', 'referral_type', 'user_info']

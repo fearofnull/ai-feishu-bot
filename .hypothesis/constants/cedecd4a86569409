@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\security_and_compliance\v1\model\dlp_execute_log.py
+# hypothesis_version: 6.151.6
+
+['DlpExecuteLog', 'DlpExecuteLogBuilder', 'alias_ingroup', 'applicable_service', 'chat_id', 'chat_name', 'chat_type', 'document_link', 'document_name', 'document_owner_id', 'document_owner_name', 'document_type', 'evidence_detail', 'file_key', 'file_name', 'file_token', 'group_description', 'group_owner_id', 'group_owner_name', 'group_tab_content', 'hit_policies', 'message_content', 'message_id', 'recipient_id', 'recipient_name', 'sender_id', 'sender_name', 'system_action', 'time', 'trigger', 'trigger_event_type', 'user_id', 'user_name']

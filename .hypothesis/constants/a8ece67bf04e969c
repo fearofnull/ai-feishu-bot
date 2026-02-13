@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\ws\const.py
+# hypothesis_version: 6.151.6
+
+[403, 514, 1000040343, 1000040344, 1000040350, 'biz_rt', 'device_id', 'handshake-msg', 'handshake-status', 'message_id', 'seq', 'service_id', 'sum', 'trace_id', 'type']

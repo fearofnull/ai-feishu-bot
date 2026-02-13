@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\task\v2\model\patch_tasklist_activity_subscription_request.py
+# hypothesis_version: 6.151.6
+
+['tasklist_guid', 'user_id_type']

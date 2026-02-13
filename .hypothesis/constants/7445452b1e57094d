@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\attendance\v1\model\arrange_shift_group.py
+# hypothesis_version: 6.151.6
+
+['ArrangeShiftGroup', 'group_id', 'shift_group_id', 'shift_group_name']

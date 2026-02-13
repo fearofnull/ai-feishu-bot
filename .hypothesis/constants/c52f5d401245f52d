@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\vc\v1\model\meeting_subtitle_ssd_speaker.py
+# hypothesis_version: 6.151.6
+
+['speaker_id', 'speaker_id_type', 'user_id']

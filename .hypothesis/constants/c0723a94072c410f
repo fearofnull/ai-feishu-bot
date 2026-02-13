@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\docx\v1\model\update_block_request.py
+# hypothesis_version: 6.151.6
+
+['UpdateBlockRequest', 'block_id', 'delete_grid_column', 'delete_table_columns', 'delete_table_rows', 'insert_grid_column', 'insert_table_column', 'insert_table_row', 'merge_table_cells', 'replace_file', 'replace_image', 'unmerge_table_cells', 'update_task', 'update_text', 'update_text_elements', 'update_text_style']

@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\security_and_compliance\v1\model\data_archiving_message_struct.py
+# hypothesis_version: 6.151.6
+
+['action_time', 'action_type', 'chat_id', 'chat_mode', 'chat_name', 'content', 'is_cross_tenant_chat', 'is_super_chat', 'message_id', 'message_type', 'parent_msg_id', 'reaction_type', 'receiver_ids', 'sender_info']

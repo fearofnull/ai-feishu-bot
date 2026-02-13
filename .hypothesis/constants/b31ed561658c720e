@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\hire\v1\model\education_info.py
+# hypothesis_version: 6.151.6
+
+['EducationInfo', 'EducationInfoBuilder', 'academic_ranking', 'degree', 'education_type', 'end_time', 'field_of_study', 'school', 'start_time']

@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\hire\v1\model\list_website_job_post_request.py
+# hypothesis_version: 6.151.6
+
+['create_end_time', 'create_start_time', 'department_id_type', 'job_level_id_type', 'page_size', 'page_token', 'update_end_time', 'update_start_time', 'user_id_type', 'website_id']

@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\im\v2\model\create_app_feed_card_request_body.py
+# hypothesis_version: 6.151.6
+
+['app_feed_card', 'user_ids']

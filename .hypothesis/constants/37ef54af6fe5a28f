@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\search\v2\model\doc_request.py
+# hypothesis_version: 6.151.6
+
+['DocRequest', 'DocRequestBuilder', 'docs_filter', 'page_size', 'pagination_token', 'query', 'wiki_filter']

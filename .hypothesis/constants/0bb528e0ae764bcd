@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\aily\v1\model\message.py
+# hypothesis_version: 6.151.6
+
+['Message', 'MessageBuilder', 'builtin_actions', 'content', 'error', 'id', 'message_progress', 'message_status', 'sender', 'skill_base_infos', 'title', 'trigger_type', 'visibility']

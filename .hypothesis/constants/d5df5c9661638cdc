@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\hire\v1\model\job.py
+# hypothesis_version: 6.151.6
+
+['Job', 'JobBuilder', 'active_status', 'city', 'city_list', 'code', 'create_time', 'create_timestamp', 'create_user_id', 'customized_data_list', 'department', 'description', 'experience', 'expiry_time', 'expiry_timestamp', 'head_count', 'highlight_list', 'id', 'job_attribute', 'job_category', 'job_function', 'job_type', 'max_job_level', 'max_salary', 'min_job_level', 'min_salary', 'process_en_name', 'process_id', 'process_name', 'process_type', 'recruitment_type', 'required_degree', 'requirement', 'subject', 'target_major_list', 'title', 'update_time', 'update_timestamp']

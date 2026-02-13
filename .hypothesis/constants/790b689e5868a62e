@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\directory\v1\model\education.py
+# hypothesis_version: 6.151.6
+
+['Education', 'EducationBuilder', 'country_region_id', 'degree', 'education_id', 'end_date', 'expected_end_date', 'field_of_study', 'field_of_study_enum', 'id', 'level_of_education', 'school', 'school_enum', 'start_date']

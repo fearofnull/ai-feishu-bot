@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\contact\v3\model\functional_role_member.py
+# hypothesis_version: 6.151.6
+
+['FunctionalRoleMember', 'department_ids', 'scope_type', 'user_id']

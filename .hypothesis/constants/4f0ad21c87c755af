@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\approval\v4\model\instance_timeline.py
+# hypothesis_version: 6.151.6
+
+['InstanceTimeline', 'cc_user_list', 'comment', 'create_time', 'ext', 'files', 'node_key', 'open_id', 'open_id_list', 'task_id', 'type', 'user_id', 'user_id_list']

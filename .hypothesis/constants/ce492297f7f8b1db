@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\hire\v1\model\site_job_post.py
+# hypothesis_version: 6.151.6
+
+['SiteJobPost', 'SiteJobPostBuilder', 'city_info', 'description', 'id', 'job_type_info', 'publish_time', 'recruitment_type', 'requirement', 'title']

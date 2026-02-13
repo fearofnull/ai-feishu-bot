@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\corehr\v2\model\bank_account_for_update.py
+# hypothesis_version: 6.151.6
+
+['BankAccountForUpdate', 'account_holder', 'bank_account_number', 'bank_account_type', 'bank_account_usages', 'bank_name', 'branch_name', 'country_region_id', 'custom_fields']

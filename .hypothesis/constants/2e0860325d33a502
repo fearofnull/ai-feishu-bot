@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\im\v1\model\msg_process_data.py
+# hypothesis_version: 6.151.6
+
+['MsgProcessData', 'avg_imp_read_msg_cnt', 'avg_read_msg_cnt', 'avg_receive_msg_cnt', 'big_group_msg_rate', 'department_id', 'department_path', 'high_load_rate', 'msg_read_rate_12h', 'p_date', 'read_mute_msg_rate', 'receive_bot_msg_rate', 'use_chat_box_rate']

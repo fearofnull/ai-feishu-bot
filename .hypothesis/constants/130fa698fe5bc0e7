@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\wiki\v1\model\space_home_page.py
+# hypothesis_version: 6.151.6
+
+['SpaceHomePage', 'SpaceHomePageBuilder', 'node_id', 'obj_token', 'obj_type', 'url']

@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\mdm\v1\model\company.py
+# hypothesis_version: 6.151.6
+
+['Company', 'CompanyBuilder', 'co_area_code', 'company_code', 'company_name', 'company_name_en', 'company_uid', 'country_code', 'currency_code', 'legal_entity_code']

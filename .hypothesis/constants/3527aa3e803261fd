@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\corehr\v2\model\basic_info.py
+# hypothesis_version: 6.151.6
+
+['BasicInfo', 'BasicInfoBuilder', 'additional_name', 'address_list', 'bank_account_list', 'born_country_region', 'custom_fields', 'date_of_birth', 'dependent_list', 'disable_card_number', 'email', 'ethnicity_race', 'gender_id', 'home_address', 'hukou_location', 'hukou_type', 'is_disabled', 'is_martyr_family', 'is_old_alone', 'legal_name', 'marital_status', 'martyr_card_number', 'name', 'national_id_list', 'nationality_id', 'nationality_v2_id', 'native_region', 'personal_id_number', 'personal_id_type', 'phone_number', 'religion', 'resident_tax_list', 'user_geo', 'worker_id']

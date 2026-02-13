@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\hire\v1\model\interview_dimension_assessment.py
+# hypothesis_version: 6.151.6
+
+['ability_list', 'content', 'dimension_id', 'dimension_score', 'dimension_score_list', 'dimension_type', 'full_score', 'id', 'name', 'question_list']

@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\approval\v4\model\approval_form.py
+# hypothesis_version: 6.151.6
+
+['ApprovalForm', 'ApprovalFormBuilder', 'form_content', 'widget_relation']

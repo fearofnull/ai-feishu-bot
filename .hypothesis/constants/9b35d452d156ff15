@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\hire\v1\model\talent.py
+# hypothesis_version: 6.151.6
+
+['Talent', 'TalentBuilder', 'award_list', 'basic_info', 'career_list', 'customized_data_list', 'education_list', 'first_degree', 'id', 'is_in_agency_period', 'is_onboarded', 'language_list', 'project_list', 'registration_list', 'resume_source_list', 'sns_list', 'top_degree', 'works_list']

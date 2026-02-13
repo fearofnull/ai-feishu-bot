@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\mdm\v1\model\user_auth_data_relation.py
+# hypothesis_version: 6.151.6
+
+['UserAuthDataRelation', 'authorized_user_ids', 'root_dimension_type', 'sub_dimension_types', 'uams_app_id']

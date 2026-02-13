@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\sheets\v3\model\sheet.py
+# hypothesis_version: 6.151.6
+
+['Sheet', 'SheetBuilder', 'grid_properties', 'hidden', 'index', 'merges', 'resource_type', 'sheet_id', 'title']

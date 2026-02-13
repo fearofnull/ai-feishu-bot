@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\hire\v1\model\combined_update_job_request.py
+# hypothesis_version: 6.151.6
+
+['department_id_type', 'job_family_id_type', 'job_id', 'job_level_id_type', 'user_id_type']

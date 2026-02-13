@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\attendance\v1\model\overtime_apply_detail.py
+# hypothesis_version: 6.151.6
+
+['OvertimeApplyDetail', 'date', 'date_type', 'duration', 'is_time_bank', 'unit', 'update_time', 'user_id']

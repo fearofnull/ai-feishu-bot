@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\hire\v1\model\interview_extend.py
+# hypothesis_version: 6.151.6
+
+['InterviewExtend', 'address', 'application_id', 'arrangement_status', 'arrangement_type', 'begin_time', 'biz_create_time', 'biz_modify_time', 'contact_mobile', 'contact_user', 'creator', 'end_time', 'feedback_submit_time', 'id', 'interview_round_type', 'interview_type', 'meeting_room_list', 'remark', 'round', 'stage', 'stage_id', 'talent_time_zone', 'video_type']

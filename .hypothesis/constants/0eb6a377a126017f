@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\tenant\v2\model\avatar.py
+# hypothesis_version: 6.151.6
+
+['Avatar', 'AvatarBuilder', 'avatar_240', 'avatar_640', 'avatar_72', 'avatar_origin']

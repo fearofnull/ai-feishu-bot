@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\corehr\v2\model\submit_v2_offboarding_response_body.py
+# hypothesis_version: 6.151.6
+
+['add_block_list', 'block_reason', 'created_time', 'employment_id', 'offboarding_date', 'offboarding_id', 'retain_account']

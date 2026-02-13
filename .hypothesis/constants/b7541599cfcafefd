@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\vc\v1\model\reserve.py
+# hypothesis_version: 6.151.6
+
+['Reserve', 'ReserveBuilder', 'app_link', 'end_time', 'expire_status', 'id', 'live_link', 'meeting_no', 'meeting_settings', 'password', 'reserve_user_id', 'url']

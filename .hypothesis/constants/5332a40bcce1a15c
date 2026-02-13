@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\corehr\v2\model\position.py
+# hypothesis_version: 6.151.6
+
+['Position', 'PositionBuilder', 'active', 'code', 'cost_center_id', 'created_by', 'custom_fields', 'department_id', 'descriptions', 'direct_leader_id', 'effective_time', 'expiration_time', 'is_key_position', 'job_family_id_list', 'job_grade_id_list', 'job_id', 'job_level_id_list', 'names', 'position_id']

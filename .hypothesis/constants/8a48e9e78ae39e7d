@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\vc\v1\model\my_ai_room_openapi_response.py
+# hypothesis_version: 6.151.6
+
+['oapi_msg', 'other_msg', 'response_type', 'schedule_event_id']

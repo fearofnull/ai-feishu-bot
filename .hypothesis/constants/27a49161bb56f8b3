@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\apaas\v1\model\p2_apaas_workspace_record_change_v1.py
+# hypothesis_version: 6.151.6
+
+['after', 'app', 'before', 'event', 'operator', 'table', 'type', 'workspace']

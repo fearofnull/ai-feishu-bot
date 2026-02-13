@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\corehr\v2\model\field_variable_value_to_record.py
+# hypothesis_version: 6.151.6
+
+['record_id', 'sub_value_key', 'variable_api_name']

@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\corehr\v1\model\match_compensation_standard_request.py
+# hypothesis_version: 6.151.6
+
+['company_id', 'cpst_plan_id', 'cpst_salary_level_id', 'custom_org_1_ids', 'custom_org_2_ids', 'custom_org_3_ids', 'custom_org_4_ids', 'custom_org_5_ids', 'department_id', 'department_id_type', 'effective_time', 'employee_type_id', 'employment_id', 'job_family_id', 'job_id', 'job_level_id', 'recruitment_type', 'reference_object_api', 'reference_object_id', 'user_id_type', 'work_location_id']

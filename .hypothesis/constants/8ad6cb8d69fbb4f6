@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\payroll\v1\model\dimension_value.py
+# hypothesis_version: 6.151.6
+
+['DimensionValue', 'api_name', 'obj_api_name', 'value']

@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\approval\v4\model\connector_log_data.py
+# hypothesis_version: 6.151.6
+
+['ConnectorLogData', 'data', 'date_time', 'level', 'location', 'pod', 'type', 'version']

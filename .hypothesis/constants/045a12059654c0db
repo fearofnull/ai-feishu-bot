@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\sheets\v3\model\float_image.py
+# hypothesis_version: 6.151.6
+
+['FloatImage', 'FloatImageBuilder', 'float_image_id', 'float_image_token', 'height', 'offset_x', 'offset_y', 'range', 'width']

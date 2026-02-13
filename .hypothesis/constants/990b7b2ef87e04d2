@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\vc\v1\model\quality_cpu_usage.py
+# hypothesis_version: 6.151.6
+
+['QualityCpuUsage', 'client_avg_cpu_usage', 'client_max_cpu_usage', 'system_avg_cpu_usage', 'system_max_cpu_usage', 'time']

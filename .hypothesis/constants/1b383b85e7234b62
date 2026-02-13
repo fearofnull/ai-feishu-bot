@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\compensation\v1\model\lump_sum_payment_operate_result.py
+# hypothesis_version: 6.151.6
+
+['code', 'id', 'message', 'unique_id']

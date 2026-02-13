@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\corehr\v1\model\resident_tax.py
+# hypothesis_version: 6.151.6
+
+['ResidentTax', 'ResidentTaxBuilder', 'custom_fields', 'id', 'resident_status', 'tax_address', 'year_resident_tax']

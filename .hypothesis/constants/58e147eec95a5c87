@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\corehr\v2\model\pre_hire_onboarding_info.py
+# hypothesis_version: 6.151.6
+
+['ats_application_id', 'check_in_method', 'check_in_time', 'entry_mode', 'flow_id', 'flow_name', 'offer_hr_id', 'offer_hr_id_v2', 'offer_id', 'onboarding_address', 'onboarding_date', 'onboarding_status', 'onboarding_task_list', 'recruitment_type', 'withdrawn_reason']

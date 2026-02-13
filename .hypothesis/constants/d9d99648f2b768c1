@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\compensation\v1\model\query_recurring_payment_request_body.py
+# hypothesis_version: 6.151.6
+
+['company_ids', 'create_time_gte', 'create_time_lte', 'department_ids', 'employee_type_ids', 'end_date_gte', 'end_date_lte', 'ids', 'item_ids', 'job_family_ids', 'job_level_ids', 'modify_time_gte', 'modify_time_lte', 'offboard_date_gte', 'offboard_date_lte', 'onboard_date_gte', 'onboard_date_lte', 'service_company_ids', 'start_date_gte', 'start_date_lte', 'unique_ids', 'user_ids', 'work_location_ids']

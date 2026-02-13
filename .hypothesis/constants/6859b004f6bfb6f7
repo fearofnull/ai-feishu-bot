@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\corehr\v1\model\create_leave_granting_record_request_body.py
+# hypothesis_version: 6.151.6
+
+['effective_date', 'employment_id', 'expiration_date', 'external_id', 'granting_quantity', 'granting_unit', 'leave_type_id', 'reason', 'section_type']

@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\apaas\v1\model\dataset.py
+# hypothesis_version: 6.151.6
+
+['Dataset', 'DatasetBuilder', 'api_id', 'api_name', 'create_time', 'created_by', 'data_refresh_time', 'fields', 'label', 'namespace', 'source', 'update_time', 'updated_by']

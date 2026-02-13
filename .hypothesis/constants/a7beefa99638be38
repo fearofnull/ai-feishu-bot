@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\corehr\v2\model\process_form_variable_v2.py
+# hypothesis_version: 6.151.6
+
+['sub_values', 'variable_api_name', 'variable_value']

@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\corehr\v2\model\draft_info.py
+# hypothesis_version: 6.151.6
+
+['DraftInfo', 'DraftInfoBuilder', 'adjust_reason', 'draft_id', 'effective_date', 'topic']

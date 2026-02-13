@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\attendance\v1\model\user_tmp_daily_shift.py
+# hypothesis_version: 6.151.6
+
+['UserTmpDailyShift', 'date', 'group_id', 'shift_name', 'user_id']

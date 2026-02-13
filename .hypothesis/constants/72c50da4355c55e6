@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\corehr\v1\model\p2_corehr_offboarding_updated_v1.py
+# hypothesis_version: 6.151.6
+
+['employment_id', 'event', 'offboarding_id', 'process_id', 'status', 'target_user_id']

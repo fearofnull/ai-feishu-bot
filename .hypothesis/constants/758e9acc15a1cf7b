@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\directory\v1\model\user_field_key_container.py
+# hypothesis_version: 6.151.6
+
+['enabled', 'fixed', 'user_field_key']

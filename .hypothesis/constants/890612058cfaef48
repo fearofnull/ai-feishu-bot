@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\apaas\v1\model\component_lib_basic.py
+# hypothesis_version: 6.151.6
+
+['ComponentLibBasic', 'created_at', 'created_by', 'descriptions', 'i_s_v_customer_count', 'i_s_v_market_version', 'install_task_info', 'lib_id', 'lib_status', 'lib_type', 'logo', 'names', 'namespace', 'on_top', 'owner', 'sandbox_tenant_name', 'status', 'updated_at', 'updated_by']

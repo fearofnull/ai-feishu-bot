@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\attendance\v1\model\task_result.py
+# hypothesis_version: 6.151.6
+
+['TaskResult', 'TaskResultBuilder', 'check_in_record', 'check_in_record_id', 'check_in_result', 'check_in_shift_time', 'check_out_record', 'check_out_record_id', 'check_out_result', 'check_out_shift_time', 'task_shift_type']

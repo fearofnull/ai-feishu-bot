@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\calendar\v4\model\calendar_event.py
+# hypothesis_version: 6.151.6
+
+['CalendarEvent', 'CalendarEventBuilder', 'app_link', 'attachments', 'attendee_ability', 'attendees', 'color', 'create_time', 'description', 'end_time', 'event_check_in', 'event_id', 'event_organizer', 'free_busy_status', 'has_more_attendee', 'is_exception', 'location', 'need_notification', 'recurrence', 'recurring_event_id', 'reminders', 'schemas', 'source', 'start_time', 'status', 'summary', 'vchat', 'visibility']

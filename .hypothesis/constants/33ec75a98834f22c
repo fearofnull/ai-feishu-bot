@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\corehr\v2\model\profile_setting_personal_basic_info.py
+# hypothesis_version: 6.151.6
+
+['additional_name', 'born_country_region', 'custom_fields', 'date_of_birth', 'disable_card_number', 'email', 'ethnicity_race', 'first_entry_time', 'gender', 'is_disabled', 'is_martyr_family', 'is_old_alone', 'leave_time', 'legal_name', 'marital_status', 'martyr_card_number', 'nationality_v2', 'native_region', 'phone', 'preferred_name']

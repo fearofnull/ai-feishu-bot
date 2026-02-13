@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\sheets\v3\model\filter_view.py
+# hypothesis_version: 6.151.6
+
+['FilterView', 'FilterViewBuilder', 'filter_view_id', 'filter_view_name', 'range']

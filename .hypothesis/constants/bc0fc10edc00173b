@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\document_ai\v1\model\table_img.py
+# hypothesis_version: 6.151.6
+
+['TableImg', 'TableImgBuilder', 'base64', 'type', 'url']

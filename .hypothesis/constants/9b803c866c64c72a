@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\bitable\v1\model\app_table_field_property_type_ui_property.py
+# hypothesis_version: 6.151.6
+
+['currency_code', 'date_formatter', 'formatter', 'max', 'min', 'range_customize', 'rating']

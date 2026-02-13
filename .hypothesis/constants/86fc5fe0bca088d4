@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\corehr\v1\model\leave_request_created_error_message.py
+# hypothesis_version: 6.151.6
+
+['code', 'employment_id', 'end_time', 'leave_type_id', 'msg', 'start_time']

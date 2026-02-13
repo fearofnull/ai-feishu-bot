@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\security_and_compliance\v2\model\p2_security_and_compliance_device_apply_record_device_apply_event_v2.py
+# hypothesis_version: 6.151.6
+
+['apply_status', 'apply_time', 'device_record', 'event', 'operator']

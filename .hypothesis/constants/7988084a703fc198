@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\corehr\v2\model\create_transfer_info.py
+# hypothesis_version: 6.151.6
+
+['CreateTransferInfo', 'offer_info', 'probation_exist', 'remark', 'target_company', 'target_contract_type', 'target_department', 'target_duration_type', 'target_job', 'target_job_family', 'target_job_grade', 'target_job_level', 'target_pathway', 'target_position', 'target_signing_type', 'target_work_location', 'target_work_shift']

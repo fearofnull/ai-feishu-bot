@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\directory\v1\model\group_set_member.py
+# hypothesis_version: 6.151.6
+
+['GroupSetMember', 'group_id', 'group_set_id']

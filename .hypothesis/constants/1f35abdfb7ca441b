@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\security_and_compliance\v2\model\list_device_record_request.py
+# hypothesis_version: 6.151.6
+
+['aaid', 'android_id', 'current_user_id', 'device_name', 'device_ownership', 'device_record_id', 'device_status', 'device_terminal_type', 'did', 'disk_serial_number', 'idfv', 'is_managed', 'latest_user_id', 'mac_address', 'mdm_device_id', 'mdm_provider_name', 'os', 'page_size', 'page_token', 'serial_number', 'user_id_type', 'uuid']

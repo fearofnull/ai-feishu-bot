@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\mdm\v3\model\language.py
+# hypothesis_version: 6.151.6
+
+['Language', 'LanguageBuilder', 'create_by', 'create_time', 'enable', 'id', 'ietf_language_tag', 'mdm_code', 'name', 'remark', 'status', 'system_status', 'update_by', 'update_reason', 'update_time']

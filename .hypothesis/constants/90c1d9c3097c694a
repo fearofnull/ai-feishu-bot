@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\corehr\v1\model\job_level.py
+# hypothesis_version: 6.151.6
+
+['JobLevel', 'JobLevelBuilder', 'active', 'code', 'custom_fields', 'description', 'id', 'job_grade', 'level_order', 'name', 'pathway_ids']

@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\directory\v1\model\update_tenant.py
+# hypothesis_version: 6.151.6
+
+['UpdateTenant', 'UpdateTenantBuilder', 'address', 'avatar_key', 'contact_user_info', 'country_code', 'creator_id', 'description', 'id', 'industry', 'name', 'post_code', 'purpose', 'scale', 'sub_domain', 'tag', 'telephone', 'type']

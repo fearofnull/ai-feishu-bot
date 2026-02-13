@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\docx\v1\model\get_chat_announcement_response_body.py
+# hypothesis_version: 6.151.6
+
+['announcement_type', 'create_time', 'create_time_v2', 'modifier_id', 'modifier_id_type', 'owner_id', 'owner_id_type', 'revision_id', 'update_time', 'update_time_v2']

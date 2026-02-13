@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\directory\v1\model\custom_field.py
+# hypothesis_version: 6.151.6
+
+['CustomField', 'CustomFieldBuilder', 'create_source', 'create_time', 'creator_id', 'description', 'entity_type', 'enum_meta', 'external_id', 'field_key', 'field_name', 'field_type', 'id', 'is_enabled', 'tenant_id', 'update_time', 'updator_id']

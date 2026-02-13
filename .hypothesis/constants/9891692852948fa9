@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\wiki\v2\model\node.py
+# hypothesis_version: 6.151.6
+
+['Node', 'NodeBuilder', 'creator', 'has_child', 'node_create_time', 'node_creator', 'node_token', 'node_type', 'obj_create_time', 'obj_edit_time', 'obj_token', 'obj_type', 'origin_node_token', 'origin_space_id', 'owner', 'parent_node_token', 'space_id', 'title']

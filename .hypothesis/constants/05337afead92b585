@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\bitable\v1\model\app_table_form.py
+# hypothesis_version: 6.151.6
+
+['AppTableForm', 'AppTableFormBuilder', 'description', 'name', 'shared', 'shared_limit', 'shared_url', 'submit_limit_once']

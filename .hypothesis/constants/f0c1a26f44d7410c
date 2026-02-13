@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\approval\v4\model\external_task_list.py
+# hypothesis_version: 6.151.6
+
+['ExternalTaskList', 'approval_code', 'approval_id', 'instance_id', 'status', 'tasks', 'update_time']

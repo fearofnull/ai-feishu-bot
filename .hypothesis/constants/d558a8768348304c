@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\mdm\v3\model\country_region.py
+# hypothesis_version: 6.151.6
+
+['CountryRegion', 'CountryRegionBuilder', 'alpha_2_code', 'alpha_3_code', 'continents', 'create_by', 'create_time', 'full_name', 'global_code', 'id', 'level', 'local_script', 'md_local_script', 'md_time_zone', 'md_western_script', 'mdm_code', 'name', 'numeric_code', 'overseas', 'remark', 'status', 'time_zone', 'update_by', 'update_reason', 'update_time', 'western_script']

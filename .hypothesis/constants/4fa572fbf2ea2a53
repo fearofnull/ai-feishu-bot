@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\search\v2\model\batch_item_result.py
+# hypothesis_version: 6.151.6
+
+['BatchItemResult', 'err', 'is_success', 'item_id']

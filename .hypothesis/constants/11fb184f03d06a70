@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\hire\v1\model\update_progress_eco_background_check_request_body.py
+# hypothesis_version: 6.151.6
+
+['background_check_id', 'operator_role', 'report_file_list', 'result', 'stage_en_name', 'stage_id', 'stage_name', 'stage_time']

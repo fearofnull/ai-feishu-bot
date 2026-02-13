@@ -1,0 +1,4 @@
+# file: C:\Users\xpeng\AppData\Roaming\Python\Python314\site-packages\lark_oapi\api\directory\v1\model\profile_card.py
+# hypothesis_version: 6.151.6
+
+['ProfileCard', 'ProfileCardBuilder', 'avatar_key', 'background_image_key', 'contacts', 'description', 'is_custom_avatar', 'name']
