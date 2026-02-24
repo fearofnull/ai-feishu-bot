@@ -8,14 +8,14 @@
 
 1. **lark_bot.py**
    ```python
-   lark.APP_ID = 'cli_a9f47e209db8dcc5'  # 需要移除
-   lark.APP_SECRET = 'nS3exdQZS8ZsO6FHEEgnueAeiY1K0DnT'  # 需要移除
+   lark.APP_ID = 'your_app_id_here'  # 需要移除
+   lark.APP_SECRET = 'your_app_secret_here'  # 需要移除
    ```
 
 2. **test_bot_message.py**
    ```python
-   APP_ID = 'cli_a9f47e209db8dcc5'  # 需要移除
-   APP_SECRET = 'nS3exdQZS8ZsO6FHEEgnueAeiY1K0DnT'  # 需要移除
+   APP_ID = 'your_app_id_here'  # 需要移除
+   APP_SECRET = 'your_app_secret_here'  # 需要移除
    ```
 
 3. **其他测试文件**
@@ -30,10 +30,10 @@
 
 1. 创建 `.env` 文件（已在.gitignore中）：
 ```bash
-FEISHU_APP_ID=cli_a9f47e209db8dcc5
-FEISHU_APP_SECRET=nS3exdQZS8ZsO6FHEEgnueAeiY1K0DnT
-FEISHU_CHAT_ID=oc_585f29d10679c7a0b5c3bf0d34adba90
-FEISHU_USER_ID=155529283
+FEISHU_APP_ID=your_app_id_here
+FEISHU_APP_SECRET=your_app_secret_here
+FEISHU_CHAT_ID=your_chat_id_here
+FEISHU_USER_ID=your_user_id_here
 ```
 
 2. 安装 python-dotenv：
@@ -57,10 +57,10 @@ APP_SECRET = os.getenv('FEISHU_APP_SECRET')
 1. 创建 `config.json`（已在.gitignore中）：
 ```json
 {
-  "app_id": "cli_a9f47e209db8dcc5",
-  "app_secret": "nS3exdQZS8ZsO6FHEEgnueAeiY1K0DnT",
-  "chat_id": "oc_585f29d10679c7a0b5c3bf0d34adba90",
-  "user_id": "155529283"
+  "app_id": "your_app_id_here",
+  "app_secret": "your_app_secret_here",
+  "chat_id": "your_chat_id_here",
+  "user_id": "your_user_id_here"
 }
 ```
 

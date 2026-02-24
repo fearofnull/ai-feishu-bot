@@ -7,10 +7,13 @@ OpenAI API 执行器实现
 参考文档: https://platform.openai.com/docs/api-reference/chat
 """
 import time
+import logging
 from typing import Optional, List, Dict, Any
 import openai
 from feishu_bot.ai_api_executor import AIAPIExecutor
 from feishu_bot.models import ExecutionResult, Message
+
+logger = logging.getLogger(__name__)
 
 
 class OpenAIAPIExecutor(AIAPIExecutor):
@@ -104,6 +107,7 @@ class OpenAIAPIExecutor(AIAPIExecutor):
             ExecutionResult: 包含执行结果的对象
         """
         try:
+            logger.info(f"Executing OpenAI API call with model={self.model}")
             messages = self.format_messages(user_prompt, conversation_history)
             
             # 构建请求参数
@@ -119,6 +123,8 @@ class OpenAIAPIExecutor(AIAPIExecutor):
                 if "max_tokens" in additional_params:
                     request_params["max_tokens"] = additional_params["max_tokens"]
             
+            logger.debug(f"OpenAI API request params: {request_params.keys()}")
+            
             # 调用 API
             start_time = time.time()
             response = self.client.chat.completions.create(**request_params)
@@ -126,6 +132,11 @@ class OpenAIAPIExecutor(AIAPIExecutor):
             
             # 提取响应内容
             content = response.choices[0].message.content
+            
+            logger.info(
+                f"OpenAI API call successful: execution_time={execution_time:.2f}s, "
+                f"response_length={len(content)}"
+            )
             
             return ExecutionResult(
                 success=True,
@@ -136,6 +147,7 @@ class OpenAIAPIExecutor(AIAPIExecutor):
             )
             
         except openai.APIError as e:
+            logger.error(f"OpenAI API error: {e}", exc_info=True)
             return ExecutionResult(
                 success=False,
                 stdout="",
@@ -144,6 +156,7 @@ class OpenAIAPIExecutor(AIAPIExecutor):
                 execution_time=0
             )
         except Exception as e:
+            logger.error(f"Unexpected error in OpenAI API execution: {e}", exc_info=True)
             return ExecutionResult(
                 success=False,
                 stdout="",

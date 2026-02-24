@@ -54,6 +54,12 @@ config.json
 secrets.json
 .env
 
+# Kiro specs and local settings (contains sensitive information)
+.kiro/
+
+# Session data (contains user information)
+data/
+
 # 测试输出
 .pytest_cache/
 .coverage

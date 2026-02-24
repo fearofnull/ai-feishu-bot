@@ -7,10 +7,13 @@ import subprocess
 import time
 import json
 import os
+import logging
 from typing import Optional, List, Dict, Any
 from filelock import FileLock
 from feishu_bot.ai_cli_executor import AICLIExecutor
 from feishu_bot.models import ExecutionResult
+
+logger = logging.getLogger(__name__)
 
 
 class GeminiCLIExecutor(AICLIExecutor):
@@ -155,16 +158,19 @@ class GeminiCLIExecutor(AICLIExecutor):
         """
         # 验证目录
         if not self.verify_directory():
+            error_msg = f"目标目录不存在: {self.target_dir}"
+            logger.error(error_msg)
             return ExecutionResult(
                 success=False,
                 stdout="",
                 stderr="",
-                error_message=f"目标目录不存在: {self.target_dir}",
+                error_message=error_msg,
                 execution_time=0
             )
         
         # 构建命令
         command_args = self.build_command_args(user_prompt, additional_params)
+        logger.info(f"Executing Gemini CLI command: {' '.join(command_args[:3])}...")
         
         try:
             # 执行命令
@@ -177,6 +183,12 @@ class GeminiCLIExecutor(AICLIExecutor):
                 timeout=self.timeout
             )
             execution_time = time.time() - start_time
+            
+            logger.info(
+                f"Gemini CLI execution completed: return_code={result.returncode}, "
+                f"execution_time={execution_time:.2f}s, "
+                f"stdout_length={len(result.stdout)}, stderr_length={len(result.stderr)}"
+            )
             
             # 检查是否需要更新会话 ID
             # Gemini CLI 会在输出中包含会话 ID（如果使用了 --session）
@@ -197,29 +209,36 @@ class GeminiCLIExecutor(AICLIExecutor):
             )
             
         except subprocess.TimeoutExpired:
+            error_msg = f"命令执行超时（{self.timeout} 秒）"
+            logger.error(error_msg)
             return ExecutionResult(
                 success=False,
                 stdout="",
                 stderr="",
-                error_message=f"命令执行超时（{self.timeout} 秒）",
+                error_message=error_msg,
                 execution_time=self.timeout
             )
         except FileNotFoundError:
+            error_msg = f"Gemini CLI 未安装或不在 PATH 中: {self.get_command_name()}"
+            logger.error(error_msg)
             return ExecutionResult(
                 success=False,
                 stdout="",
                 stderr="",
-                error_message=f"Gemini CLI 未安装或不在 PATH 中: {self.get_command_name()}",
+                error_message=error_msg,
                 execution_time=0
             )
         except Exception as e:
+            error_msg = f"执行命令时发生错误: {e}"
+            logger.error(error_msg, exc_info=True)
             return ExecutionResult(
                 success=False,
                 stdout="",
                 stderr=str(e),
-                error_message=f"执行命令时发生错误: {e}",
+                error_message=error_msg,
                 execution_time=0
             )
+
     
     def _try_extract_session_id(self, user_id: str, output: str) -> None:
         """尝试从 Gemini CLI 输出中提取会话 ID

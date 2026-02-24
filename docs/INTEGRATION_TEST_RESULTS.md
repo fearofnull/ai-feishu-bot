@@ -198,7 +198,7 @@ WARNING - Fallback successful: using claude/cli instead of claude/api
 
 **日志记录**:
 ```
-INFO - Received message om_x100b56e09a74b498c2c95bcf80ed9fb from user 155529283
+INFO - Received message om_x100b56e09a74b498c2c95bcf80ed9fb from user [user_id]
 INFO - Message om_x100b56e09a74b498c2c95bcf80ed9fb already processed, skipping
 ```
 

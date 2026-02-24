@@ -167,7 +167,7 @@ class FeishuBot:
                 logger.warning(f"Failed to register OpenAI API executor: {e}")
         
         # 注册 Claude Code CLI 执行器
-        claude_cli_dir = self.config.get_claude_cli_target_dir()
+        claude_cli_dir = self.config.claude_cli_target_dir or self.config.target_directory
         if claude_cli_dir:
             try:
                 claude_cli = ClaudeCodeCLIExecutor(
@@ -195,7 +195,7 @@ class FeishuBot:
                 logger.warning(f"Failed to register Claude Code CLI executor: {e}")
         
         # 注册 Gemini CLI 执行器
-        gemini_cli_dir = self.config.get_gemini_cli_target_dir()
+        gemini_cli_dir = self.config.gemini_cli_target_dir or self.config.target_directory
         if gemini_cli_dir:
             try:
                 gemini_cli = GeminiCLIExecutor(

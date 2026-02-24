@@ -1,11 +1,18 @@
 """
 响应格式化器
+
+格式化 AI 响应消息，确保消息格式清晰易读。
 """
 from typing import Optional
 
 
 class ResponseFormatter:
-    """格式化响应消息，包含原始问题和执行结果"""
+    """响应格式化器
+    
+    格式化 AI 执行结果为用户友好的消息格式。
+    
+    Requirements: 5.1, 5.2, 5.3, 5.4
+    """
     
     def format_response(
         self,
@@ -26,11 +33,9 @@ class ResponseFormatter:
         if error:
             return self.format_error(user_message, error)
         
-        return (
-            f"收到你发送的消息：{user_message}\n"
-            f"Received message: {user_message}\n\n"
-            f"AI 输出：\n{ai_output}"
-        )
+        # 成功响应格式
+        # 直接返回 AI 输出，不添加额外的格式化
+        return ai_output
     
     def format_error(self, user_message: str, error_message: str) -> str:
         """格式化错误消息
@@ -42,8 +47,4 @@ class ResponseFormatter:
         Returns:
             格式化后的错误消息
         """
-        return (
-            f"收到你发送的消息：{user_message}\n"
-            f"Received message: {user_message}\n\n"
-            f"执行失败：{error_message}"
-        )
+        return f"❌ 处理失败 / Error\n\n{error_message}"

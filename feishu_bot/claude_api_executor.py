@@ -7,10 +7,13 @@ Claude API 执行器实现
 参考文档: https://docs.anthropic.com/en/api/messages
 """
 import time
+import logging
 from typing import Optional, List, Dict, Any
 import anthropic
 from feishu_bot.ai_api_executor import AIAPIExecutor
 from feishu_bot.models import ExecutionResult, Message
+
+logger = logging.getLogger(__name__)
 
 
 class ClaudeAPIExecutor(AIAPIExecutor):
@@ -100,6 +103,7 @@ class ClaudeAPIExecutor(AIAPIExecutor):
             ExecutionResult: 包含执行结果的对象
         """
         try:
+            logger.info(f"Executing Claude API call with model={self.model}")
             messages = self.format_messages(user_prompt, conversation_history)
             
             # 构建请求参数
@@ -116,6 +120,8 @@ class ClaudeAPIExecutor(AIAPIExecutor):
                 if "system" in additional_params:
                     request_params["system"] = additional_params["system"]
             
+            logger.debug(f"Claude API request params: {request_params.keys()}")
+            
             # 调用 API
             start_time = time.time()
             response = self.client.messages.create(**request_params)
@@ -123,6 +129,11 @@ class ClaudeAPIExecutor(AIAPIExecutor):
             
             # 提取响应内容
             content = response.content[0].text
+            
+            logger.info(
+                f"Claude API call successful: execution_time={execution_time:.2f}s, "
+                f"response_length={len(content)}"
+            )
             
             return ExecutionResult(
                 success=True,
@@ -133,6 +144,7 @@ class ClaudeAPIExecutor(AIAPIExecutor):
             )
             
         except anthropic.APIError as e:
+            logger.error(f"Claude API error: {e}", exc_info=True)
             return ExecutionResult(
                 success=False,
                 stdout="",
@@ -141,6 +153,7 @@ class ClaudeAPIExecutor(AIAPIExecutor):
                 execution_time=0
             )
         except Exception as e:
+            logger.error(f"Unexpected error in Claude API execution: {e}", exc_info=True)
             return ExecutionResult(
                 success=False,
                 stdout="",

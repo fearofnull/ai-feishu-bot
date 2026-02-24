@@ -8,9 +8,9 @@
 
 ```bash
 # 必需配置
-FEISHU_APP_ID=cli_a9f47e209db8dcc5
-FEISHU_APP_SECRET=nS3exdQZS8ZsO6FHEEgnueAeiY1K0DnT
-FEISHU_CHAT_ID=oc_585f29d10679c7a0b5c3bf0d34adba90
+FEISHU_APP_ID=your_app_id_here
+FEISHU_APP_SECRET=your_app_secret_here
+FEISHU_CHAT_ID=your_chat_id_here
 
 # AI API密钥（至少配置一个）
 CLAUDE_API_KEY=your_key_here

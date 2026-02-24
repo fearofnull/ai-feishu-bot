@@ -12,15 +12,15 @@
 
 ```bash
 # 飞书机器人凭证（必需）
-FEISHU_APP_ID=cli_a9f47e209db8dcc5
-FEISHU_APP_SECRET=nS3exdQZS8ZsO6FHEEgnueAeiY1K0DnT
+FEISHU_APP_ID=your_app_id_here
+FEISHU_APP_SECRET=your_app_secret_here
 
 # 测试配置（必需）
-FEISHU_CHAT_ID=oc_585f29d10679c7a0b5c3bf0d34adba90
-FEISHU_USER_ID=155529283
+FEISHU_CHAT_ID=your_chat_id_here
+FEISHU_USER_ID=your_user_id_here
 
 # 目标项目目录（可选，CLI层需要）
-TARGET_PROJECT_DIR=E:\IdeaProjects\xp-ass-part
+TARGET_PROJECT_DIR=E:\IdeaProjects\your-project
 
 # AI API密钥（至少配置一个）
 CLAUDE_API_KEY=your_claude_api_key_here
@@ -76,7 +76,7 @@ python test_bot_message.py
 [步骤 1] 发送测试消息: 自动化测试：请回复这条消息
 ✅ 消息发送成功
    - Message ID: om_xxxxx
-   - Chat ID: oc_585f29d10679c7a0b5c3bf0d34adba90
+   - Chat ID: your_chat_id_here
 
 [步骤 2] 等待 10 秒，让机器人处理消息...
 
@@ -123,7 +123,7 @@ Starting FeishuBot...
 python send_test_message.py "你好，请介绍一下你自己"
 
 # 或指定chat_id
-python send_test_message.py oc_585f29d10679c7a0b5c3bf0d34adba90 "你好"
+python send_test_message.py your_chat_id_here "你好"
 ```
 
 #### 步骤3: 查看聊天历史
@@ -288,7 +288,7 @@ python send_test_message.py "/new"
 import time
 from test_bot_message import send_message_to_chat, get_chat_history
 
-chat_id = "oc_585f29d10679c7a0b5c3bf0d34adba90"
+chat_id = "your_chat_id_here"
 
 # 记录开始时间
 start = time.time()
@@ -313,7 +313,7 @@ print(f"总响应时间: {end - start:.2f}秒")
 import concurrent.futures
 from test_bot_message import send_message_to_chat
 
-chat_id = "oc_585f29d10679c7a0b5c3bf0d34adba90"
+chat_id = "your_chat_id_here"
 
 def send_test(i):
     return send_message_to_chat(chat_id, f"并发测试消息 {i}")

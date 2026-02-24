@@ -4,8 +4,11 @@
 负责解析用户消息，识别 AI 提供商指令和命令类型
 """
 import re
+import logging
 from typing import Optional
 from .models import ParsedCommand
+
+logger = logging.getLogger(__name__)
 
 
 class CommandParser:
@@ -59,6 +62,10 @@ class CommandParser:
         
         if prefix_result:
             provider, layer, clean_message = prefix_result
+            logger.info(
+                f"Command parsed with explicit prefix: provider={provider}, "
+                f"layer={layer}, message_length={len(clean_message)}"
+            )
             return ParsedCommand(
                 provider=provider,
                 execution_layer=layer,
@@ -67,6 +74,7 @@ class CommandParser:
             )
         
         # 没有显式指定，返回默认值
+        logger.debug("No explicit prefix found, using defaults")
         return ParsedCommand(
             provider="claude",  # 默认提供商
             execution_layer="api",  # 默认执行层
@@ -117,6 +125,7 @@ class CommandParser:
         
         for keyword in self.CLI_KEYWORDS:
             if keyword.lower() in message_lower:
+                logger.debug(f"CLI keyword detected: '{keyword}' in message")
                 return True
         
         return False

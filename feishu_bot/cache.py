@@ -2,8 +2,11 @@
 消息去重缓存模块
 使用 FIFO 队列防止重复处理相同的消息
 """
+import logging
 from collections import deque
 from typing import Set
+
+logger = logging.getLogger(__name__)
 
 
 class DeduplicationCache:
@@ -37,7 +40,10 @@ class DeduplicationCache:
         Returns:
             True 如果消息已经被处理过
         """
-        return message_id in self._cache_set
+        is_duplicate = message_id in self._cache_set
+        if is_duplicate:
+            logger.info(f"Duplicate message detected and skipped: {message_id}")
+        return is_duplicate
     
     def mark_processed(self, message_id: str) -> None:
         """标记消息为已处理
@@ -55,7 +61,9 @@ class DeduplicationCache:
             # 获取即将被移除的最早条目
             oldest = self._cache[0]
             self._cache_set.discard(oldest)
+            logger.debug(f"Cache full, removing oldest message: {oldest}")
         
         # 添加新消息 ID
         self._cache.append(message_id)
         self._cache_set.add(message_id)
+        logger.debug(f"Marked message as processed: {message_id}")

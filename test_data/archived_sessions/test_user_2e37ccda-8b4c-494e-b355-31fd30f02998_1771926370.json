@@ -1,0 +1,33 @@
+{
+  "session_id": "2e37ccda-8b4c-494e-b355-31fd30f02998",
+  "user_id": "test_user",
+  "created_at": 1771926366,
+  "last_active": 1771926370,
+  "messages": [
+    {
+      "role": "user",
+      "content": "用户消息",
+      "timestamp": 1771926369
+    },
+    {
+      "role": "assistant",
+      "content": "AI 回复",
+      "timestamp": 1771926369
+    },
+    {
+      "role": "user",
+      "content": "消息 0",
+      "timestamp": 1771926370
+    },
+    {
+      "role": "user",
+      "content": "消息 1",
+      "timestamp": 1771926370
+    },
+    {
+      "role": "user",
+      "content": "消息 2",
+      "timestamp": 1771926370
+    }
+  ]
+}

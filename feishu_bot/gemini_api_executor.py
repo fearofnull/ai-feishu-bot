@@ -7,10 +7,13 @@ Gemini API 执行器实现
 参考文档: https://ai.google.dev/api/python/google/generativeai
 """
 import time
+import logging
 from typing import Optional, List, Dict, Any
 import google.generativeai as genai
 from feishu_bot.ai_api_executor import AIAPIExecutor
 from feishu_bot.models import ExecutionResult, Message
+
+logger = logging.getLogger(__name__)
 
 
 class GeminiAPIExecutor(AIAPIExecutor):
@@ -103,6 +106,8 @@ class GeminiAPIExecutor(AIAPIExecutor):
             ExecutionResult: 包含执行结果的对象
         """
         try:
+            logger.info(f"Executing Gemini API call with model={self.model}")
+            
             # 构建生成配置
             generation_config = {}
             if additional_params:
@@ -111,8 +116,11 @@ class GeminiAPIExecutor(AIAPIExecutor):
                 if "max_tokens" in additional_params:
                     generation_config["max_output_tokens"] = additional_params["max_tokens"]
             
+            logger.debug(f"Gemini API generation config: {generation_config}")
+            
             # 如果有对话历史，使用 chat 模式
             if conversation_history:
+                logger.debug(f"Using chat mode with {len(conversation_history)} history messages")
                 # 构建历史消息（不包含当前用户消息）
                 history = [
                     {
@@ -130,6 +138,7 @@ class GeminiAPIExecutor(AIAPIExecutor):
                 )
                 execution_time = time.time() - start_time
             else:
+                logger.debug("Using single generation mode (no history)")
                 # 单次生成
                 start_time = time.time()
                 response = self.client.generate_content(
@@ -137,6 +146,11 @@ class GeminiAPIExecutor(AIAPIExecutor):
                     generation_config=generation_config if generation_config else None
                 )
                 execution_time = time.time() - start_time
+            
+            logger.info(
+                f"Gemini API call successful: execution_time={execution_time:.2f}s, "
+                f"response_length={len(response.text)}"
+            )
             
             return ExecutionResult(
                 success=True,
@@ -147,6 +161,7 @@ class GeminiAPIExecutor(AIAPIExecutor):
             )
             
         except Exception as e:
+            logger.error(f"Gemini API error: {e}", exc_info=True)
             return ExecutionResult(
                 success=False,
                 stdout="",
