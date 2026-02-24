@@ -762,8 +762,7 @@ python -c "from feishu_bot.session_manager import SessionManager; sm = SessionMa
 │   ├── CONFIGURATION.md                 # 配置指南
 │   ├── INTEGRATION_TESTING_GUIDE.md     # 集成测试指南
 │   ├── QUICK_START_INTEGRATION_TEST.md  # 快速测试指南
-│   ├── TESTING_STRUCTURE.md             # 测试结构说明
-│   └── INTEGRATION_TEST_RESULTS.md      # 测试结果报告
+│   └── TESTING_STRUCTURE.md             # 测试结构说明
 │
 ├── data/                    # 数据存储（不提交到Git）
 │   ├── sessions.json        # 会话数据
