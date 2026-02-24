@@ -12,6 +12,18 @@
 - ⚡ **快速响应**: API层提供快速响应，CLI层提供深度代码操作
 - 💾 **会话管理**: 支持上下文连续对话，自动管理会话历史和轮换
 - 🔌 **可扩展架构**: 轻松添加新的AI Agent和命令前缀
+- 🔒 **安全保护**: 敏感信息保护，会话数据本地存储
+- 🧪 **完整测试**: 包含单元测试、属性测试和集成测试
+
+## 最新更新
+
+### v1.0.0 (2024)
+- ✅ 完成核心功能开发
+- ✅ 通过10项集成测试
+- ✅ 实现智能路由和会话管理
+- ✅ 支持多AI提供商（Claude、Gemini、OpenAI）
+- ✅ 添加安全保护措施
+- ✅ 完善文档和测试体系
 
 ## 架构设计
 
@@ -145,7 +157,7 @@
 - 对于CLI层：利用AI原生能力，获得更好的上下文理解
 - 统一的会话管理接口，用户体验一致
 
-详细架构设计见：`.kiro/specs/feishu-ai-bot/design.md`
+详细架构设计见项目文档
 
 ## 快速开始
 
@@ -493,9 +505,9 @@ TARGET_PROJECT_DIR=/path/to/your/project
 - **用户指南**: [docs/USER_GUIDE.md](docs/USER_GUIDE.md) - 如何使用机器人
 - **配置指南**: [docs/CONFIGURATION.md](docs/CONFIGURATION.md) - 详细配置说明
 - **测试指南**: [docs/INTEGRATION_TESTING_GUIDE.md](docs/INTEGRATION_TESTING_GUIDE.md) - 集成测试
-- **架构设计**: `.kiro/specs/feishu-ai-bot/design.md` - 系统架构
-- **需求文档**: `.kiro/specs/feishu-ai-bot/requirements.md` - 功能需求
-- **任务列表**: `.kiro/specs/feishu-ai-bot/tasks.md` - 开发任务
+- **快速测试**: [docs/QUICK_START_INTEGRATION_TEST.md](docs/QUICK_START_INTEGRATION_TEST.md) - 5分钟快速测试
+- **测试结构**: [docs/TESTING_STRUCTURE.md](docs/TESTING_STRUCTURE.md) - 测试体系说明
+- **文档目录**: [docs/README.md](docs/README.md) - 所有文档索引
 
 ## 参考文档
 
@@ -715,6 +727,7 @@ python -c "from feishu_bot.session_manager import SessionManager; sm = SessionMa
 ├── SECURITY.md              # 安全说明
 ├── .env                     # 环境变量（不提交到Git）
 ├── .env.example             # 环境变量模板
+├── .gitignore               # Git忽略文件配置
 │
 ├── feishu_bot/              # 机器人核心代码
 │   ├── config.py            # 配置类
@@ -723,37 +736,49 @@ python -c "from feishu_bot.session_manager import SessionManager; sm = SessionMa
 │   ├── command_parser.py    # 命令解析器
 │   ├── smart_router.py      # 智能路由器
 │   ├── session_manager.py   # 会话管理器
-│   ├── *_executor.py        # 各种AI执行器
+│   ├── executor_registry.py # 执行器注册表
+│   ├── *_api_executor.py    # API执行器（Claude、Gemini、OpenAI）
+│   ├── *_cli_executor.py    # CLI执行器（Claude Code、Gemini）
+│   ├── cache.py             # 缓存管理
+│   ├── ssl_config.py        # SSL配置
+│   ├── websocket_client.py  # WebSocket客户端
 │   └── ...                  # 其他模块
 │
 ├── tests/                   # 单元测试和属性测试
-│   ├── test_*.py            # 测试文件
+│   ├── test_*.py            # 单元测试文件
+│   ├── test_*_properties.py # 属性测试文件
 │   └── ...
 │
-├── test_scripts/            # 集成测试脚本
-│   ├── run_integration_test.py
-│   ├── test_bot_message.py
-│   └── ...                  # 其他测试脚本
+├── test_scripts/            # 集成测试和手动测试脚本
+│   ├── run_integration_test.py      # 集成测试主程序
+│   ├── test_bot_message.py          # 自动化消息测试
+│   ├── send_test_message.py         # 发送测试消息
+│   ├── check_chat_history.py        # 查看聊天历史
+│   └── ...                          # 其他测试脚本
 │
 ├── docs/                    # 项目文档
-│   ├── INTEGRATION_TEST_RESULTS.md
-│   ├── INTEGRATION_TESTING_GUIDE.md
-│   ├── QUICK_START_INTEGRATION_TEST.md
-│   └── ...                  # 其他文档
+│   ├── README.md                        # 文档目录
+│   ├── USER_GUIDE.md                    # 用户指南
+│   ├── CONFIGURATION.md                 # 配置指南
+│   ├── INTEGRATION_TESTING_GUIDE.md     # 集成测试指南
+│   ├── QUICK_START_INTEGRATION_TEST.md  # 快速测试指南
+│   ├── TESTING_STRUCTURE.md             # 测试结构说明
+│   └── INTEGRATION_TEST_RESULTS.md      # 测试结果报告
 │
-├── data/                    # 数据存储
-│   ├── sessions/            # 会话数据
-│   └── executor_sessions.json
+├── data/                    # 数据存储（不提交到Git）
+│   ├── sessions.json        # 会话数据
+│   ├── executor_sessions.json  # 执行器会话映射
+│   └── archived_sessions/   # 归档会话
 │
-└── .kiro/                   # Kiro配置和规格
-    ├── specs/
-    │   └── feishu-ai-bot/
-    │       ├── requirements.md    # 需求文档
-    │       ├── design.md          # 设计文档
-    │       └── tasks.md           # 任务列表
-    └── steering/
-        └── feishu-bot-testing.md  # 测试配置
+└── test_data/               # 测试数据
+    ├── sessions.json        # 测试会话数据
+    └── archived_sessions/   # 测试归档会话
 ```
+
+**注意**：
+- `data/` 文件夹包含用户会话数据，已添加到 `.gitignore`，不会提交到Git
+- `.env` 文件包含敏感配置信息，已添加到 `.gitignore`，不会提交到Git
+- 使用 `.env.example` 作为环境变量配置模板
 
 ## 开发计划
 
@@ -781,8 +806,6 @@ python -c "from feishu_bot.session_manager import SessionManager; sm = SessionMa
 - [ ] 监控和日志分析
 - [ ] 生产环境部署
 
-详细任务列表见：`.kiro/specs/feishu-ai-bot/tasks.md`
-
 ## 贡献
 
 欢迎提交Issue和Pull Request！
@@ -793,7 +816,47 @@ MIT License
 
 ## 注意事项
 
-⚠️ **重要**: 
-- 请勿将机器人凭证（APP_ID、APP_SECRET）提交到公开仓库
-- 建议使用环境变量或配置文件管理敏感信息
-- 定期更新依赖包以确保安全性
+⚠️ **安全提醒**: 
+- **请勿将敏感信息提交到公开仓库**
+  - `.env` 文件包含API密钥和凭证，已添加到 `.gitignore`
+  - `data/` 文件夹包含用户会话数据，已添加到 `.gitignore`
+- **使用环境变量管理敏感信息**
+  - 使用 `.env.example` 作为配置模板
+  - 复制为 `.env` 并填入真实凭证
+- **定期更新依赖包以确保安全性**
+  ```bash
+  pip install -r requirements.txt --upgrade
+  ```
+- **定期轮换API密钥**
+  - 建议每3-6个月更换一次API密钥
+  - 如发现密钥泄露，立即在对应平台重置
+
+详细安全指南见：[SECURITY.md](SECURITY.md)
+
+## 数据隐私
+
+本项目重视用户数据隐私和安全：
+
+### 本地存储
+- **会话数据**：存储在本地 `data/` 文件夹，不会上传到Git仓库
+- **会话内容**：包含用户对话历史，仅用于维护上下文
+- **自动清理**：会话超过24小时自动过期并归档
+
+### 数据保护措施
+- `data/` 文件夹已添加到 `.gitignore`，防止意外提交
+- 会话数据仅存储在本地，不会发送到第三方（除AI服务商）
+- 支持手动清理会话：使用 `/new` 命令创建新会话
+
+### AI服务商数据处理
+- **Claude API**：根据Anthropic隐私政策处理
+- **Gemini API**：根据Google隐私政策处理
+- **OpenAI API**：根据OpenAI隐私政策处理
+
+建议定期清理本地会话数据：
+```bash
+# 备份会话数据
+cp -r data/ data_backup/
+
+# 清理过期会话
+python -c "from feishu_bot.session_manager import SessionManager; sm = SessionManager(); sm.cleanup_expired_sessions()"
+```
