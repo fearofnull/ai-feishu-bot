@@ -126,7 +126,12 @@ class SmartRouter:
         return self.executor_registry.get_executor(provider, layer)
     
     def _fallback(self, provider: str, original_layer: str) -> AIExecutor:
-        """降级策略：尝试使用另一层的执行器
+        """降级策略：尝试使用其他可用的执行器
+        
+        降级顺序：
+        1. 同provider的另一层（api ↔ cli）
+        2. 其他provider的同一层
+        3. 其他provider的另一层
         
         Args:
             provider: 提供商名称
@@ -138,28 +143,60 @@ class SmartRouter:
         Raises:
             ExecutorNotAvailableError: 如果降级失败（所有执行器都不可用）
         """
-        # 确定降级目标层
+        # 策略1: 尝试同provider的另一层
         fallback_layer = "cli" if original_layer == "api" else "api"
         
         logger.info(
-            f"Attempting fallback: {provider}/{original_layer} -> {provider}/{fallback_layer}"
+            f"[ROUTING] Fallback strategy 1: {provider}/{original_layer} -> {provider}/{fallback_layer}"
         )
         
         try:
             executor = self.get_executor(provider, fallback_layer)
             logger.warning(
-                f"Fallback successful: using {provider}/{fallback_layer} "
-                f"instead of {provider}/{original_layer}"
+                f"[ROUTING] ✅ Fallback successful: using {provider}/{fallback_layer}"
             )
             return executor
-        except ExecutorNotAvailableError as e:
-            # 降级失败，所有执行器都不可用
-            logger.error(
-                f"Fallback failed: {provider}/{fallback_layer} also not available: {e.reason}"
+        except ExecutorNotAvailableError:
+            logger.debug(f"[ROUTING] Strategy 1 failed: {provider}/{fallback_layer} not available")
+        
+        # 策略2: 尝试其他provider的同一层
+        alternative_providers = ["claude", "gemini", "openai"]
+        alternative_providers.remove(provider) if provider in alternative_providers else None
+        
+        for alt_provider in alternative_providers:
+            logger.info(
+                f"[ROUTING] Fallback strategy 2: {provider}/{original_layer} -> {alt_provider}/{original_layer}"
             )
-            raise ExecutorNotAvailableError(
-                provider,
-                original_layer,
-                f"Both {original_layer} and {fallback_layer} layers are unavailable. "
-                f"Original: {e.reason}"
+            try:
+                executor = self.get_executor(alt_provider, original_layer)
+                logger.warning(
+                    f"[ROUTING] ✅ Fallback successful: using {alt_provider}/{original_layer}"
+                )
+                return executor
+            except ExecutorNotAvailableError:
+                logger.debug(f"[ROUTING] Strategy 2 failed: {alt_provider}/{original_layer} not available")
+        
+        # 策略3: 尝试其他provider的另一层
+        for alt_provider in alternative_providers:
+            logger.info(
+                f"[ROUTING] Fallback strategy 3: {provider}/{original_layer} -> {alt_provider}/{fallback_layer}"
             )
+            try:
+                executor = self.get_executor(alt_provider, fallback_layer)
+                logger.warning(
+                    f"[ROUTING] ✅ Fallback successful: using {alt_provider}/{fallback_layer}"
+                )
+                return executor
+            except ExecutorNotAvailableError:
+                logger.debug(f"[ROUTING] Strategy 3 failed: {alt_provider}/{fallback_layer} not available")
+        
+        # 所有降级策略都失败
+        logger.error(
+            f"[ROUTING] ❌ All fallback strategies failed. No executor available."
+        )
+        raise ExecutorNotAvailableError(
+            provider,
+            original_layer,
+            f"No executor available. Tried: {provider}/{original_layer}, "
+            f"{provider}/{fallback_layer}, and all alternative providers."
+        )
