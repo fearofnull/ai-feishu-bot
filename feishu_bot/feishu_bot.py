@@ -70,7 +70,8 @@ class FeishuBot:
         self.smart_router = SmartRouter(
             executor_registry=self.executor_registry,
             default_provider=config.default_provider,
-            default_layer=config.default_layer
+            default_layer=config.default_layer,
+            use_ai_intent_classification=config.use_ai_intent_classification
         )
         
         # 初始化事件处理器和 WebSocket 客户端

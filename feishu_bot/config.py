@@ -44,6 +44,9 @@ class BotConfig:
     default_provider: str = "claude"
     default_layer: str = "api"
     
+    # 智能路由配置
+    use_ai_intent_classification: bool = True  # 是否使用AI进行意图分类
+    
     # 日志配置
     log_level: str = "INFO"
     
@@ -101,6 +104,9 @@ class BotConfig:
             # 默认设置
             default_provider=os.getenv("DEFAULT_PROVIDER", "claude"),
             default_layer=os.getenv("DEFAULT_LAYER", "api"),
+            
+            # 智能路由配置
+            use_ai_intent_classification=os.getenv("USE_AI_INTENT_CLASSIFICATION", "true").lower() in ("true", "1", "yes"),
             
             # 日志配置
             log_level=os.getenv("LOG_LEVEL", "INFO"),
@@ -180,6 +186,7 @@ class BotConfig:
         print(f"OPENAI_API_KEY: {'✅ 已配置' if self.openai_api_key else '⚠️ 未配置'}")
         print(f"DEFAULT_PROVIDER: {self.default_provider}")
         print(f"DEFAULT_LAYER: {self.default_layer}")
+        print(f"USE_AI_INTENT_CLASSIFICATION: {'✅ 启用' if self.use_ai_intent_classification else '❌ 禁用'}")
         print(f"LOG_LEVEL: {self.log_level}")
         print("=" * 60 + "\n")
 

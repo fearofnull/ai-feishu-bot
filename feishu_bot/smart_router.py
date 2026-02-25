@@ -9,6 +9,7 @@ from typing import Optional
 from .models import ParsedCommand
 from .executor_registry import ExecutorRegistry, ExecutorNotAvailableError, AIExecutor
 from .command_parser import CommandParser
+from .intent_classifier import IntentClassifier
 
 logger = logging.getLogger(__name__)
 
@@ -20,15 +21,17 @@ class SmartRouter:
     
     路由策略：
     1. 显式指定优先：如果用户使用了命令前缀，直接使用指定的提供商和层
-    2. 智能判断：检测 CLI 关键词，如果包含则使用 CLI 层，否则使用默认层
-    3. 降级策略：如果指定的执行器不可用，尝试降级到其他层
+    2. AI意图分类：使用AI判断用户意图，决定是否需要CLI层（推荐）
+    3. 关键词降级：如果AI不可用，使用关键词检测作为降级方案
+    4. 降级策略：如果指定的执行器不可用，尝试降级到其他层
     """
     
     def __init__(
         self,
         executor_registry: ExecutorRegistry,
         default_provider: str = "claude",
-        default_layer: str = "api"
+        default_layer: str = "api",
+        use_ai_intent_classification: bool = True
     ):
         """初始化智能路由器
         
@@ -36,15 +39,21 @@ class SmartRouter:
             executor_registry: 执行器注册表
             default_provider: 默认 AI 提供商
             default_layer: 默认执行层（api 或 cli）
+            use_ai_intent_classification: 是否使用AI进行意图分类（推荐开启）
         """
         self.executor_registry = executor_registry
         self.default_provider = default_provider
         self.default_layer = default_layer
         self.command_parser = CommandParser()
+        self.use_ai_intent_classification = use_ai_intent_classification
+        
+        # 初始化意图分类器（延迟初始化API执行器）
+        self.intent_classifier = None
         
         logger.info(
             f"SmartRouter initialized with default provider={default_provider}, "
-            f"default layer={default_layer}"
+            f"default layer={default_layer}, "
+            f"ai_intent_classification={use_ai_intent_classification}"
         )
     
     def route(self, parsed_command: ParsedCommand) -> AIExecutor:
@@ -80,19 +89,24 @@ class SmartRouter:
                 )
                 return self._fallback(provider, layer)
         
-        # 智能判断：检测是否需要 CLI 层
-        has_cli_keywords = self.command_parser.detect_cli_keywords(parsed_command.message)
+        # 智能判断：使用AI或关键词检测是否需要 CLI 层
+        if self.use_ai_intent_classification:
+            # 使用AI进行意图分类
+            needs_cli = self._classify_intent_with_ai(parsed_command.message)
+        else:
+            # 使用关键词检测（传统方式）
+            needs_cli = self.command_parser.detect_cli_keywords(parsed_command.message)
         
-        if has_cli_keywords:
+        if needs_cli:
             layer = "cli"
             logger.info(
-                f"[ROUTING] CLI keywords detected → routing to CLI layer"
+                f"[ROUTING] Intent classification: needs CLI layer"
             )
             logger.debug(f"[ROUTING] Message: '{message_preview}'")
         else:
             layer = self.default_layer
             logger.info(
-                f"[ROUTING] No CLI keywords → using default layer: {layer}"
+                f"[ROUTING] Intent classification: using default layer: {layer}"
             )
             logger.debug(f"[ROUTING] Message: '{message_preview}'")
         
@@ -124,6 +138,67 @@ class SmartRouter:
             ExecutorNotAvailableError: 如果执行器不可用
         """
         return self.executor_registry.get_executor(provider, layer)
+    
+    def _classify_intent_with_ai(self, message: str) -> bool:
+        """使用AI分类用户意图，判断是否需要CLI层
+        
+        Args:
+            message: 用户消息
+            
+        Returns:
+            bool: True 如果需要CLI层
+        """
+        # 延迟初始化意图分类器
+        if self.intent_classifier is None:
+            # 获取一个可用的API执行器用于意图分类
+            api_executor = self._get_api_executor_for_classification()
+            if api_executor is None:
+                logger.warning(
+                    "[ROUTING] No API executor available for intent classification, "
+                    "falling back to keyword detection"
+                )
+                return self.command_parser.detect_cli_keywords(message)
+            
+            self.intent_classifier = IntentClassifier(
+                api_executor=api_executor,
+                use_cache=True
+            )
+        
+        # 使用AI分类
+        try:
+            classification = self.intent_classifier.classify(message)
+            logger.info(
+                f"[ROUTING] Intent classification result: needs_cli={classification.needs_cli}, "
+                f"confidence={classification.confidence:.2f}, category={classification.category}"
+            )
+            return classification.needs_cli
+        except Exception as e:
+            logger.warning(
+                f"[ROUTING] Intent classification failed: {e}, "
+                f"falling back to keyword detection"
+            )
+            return self.command_parser.detect_cli_keywords(message)
+    
+    def _get_api_executor_for_classification(self) -> Optional[AIExecutor]:
+        """获取用于意图分类的API执行器
+        
+        优先使用轻量级、快速的API（如OpenAI）
+        
+        Returns:
+            Optional[AIExecutor]: API执行器，如果没有可用的返回None
+        """
+        # 优先级：openai > gemini > claude（OpenAI通常更快更便宜）
+        preferred_providers = ["openai", "gemini", "claude"]
+        
+        for provider in preferred_providers:
+            try:
+                executor = self.executor_registry.get_executor(provider, "api")
+                logger.debug(f"[ROUTING] Using {provider}/api for intent classification")
+                return executor
+            except ExecutorNotAvailableError:
+                continue
+        
+        return None
     
     def _fallback(self, provider: str, original_layer: str) -> AIExecutor:
         """降级策略：尝试使用其他可用的执行器

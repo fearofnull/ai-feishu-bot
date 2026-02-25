@@ -23,6 +23,12 @@
   - API层 vs CLI层选择
   - 常见问题解答
 
+- **[AI_INTENT_CLASSIFICATION.md](AI_INTENT_CLASSIFICATION.md)** - AI意图分类功能 🆕
+  - 使用AI判断用户意图
+  - 比关键词检测更准确
+  - 配置和使用指南
+  - 性能和成本分析
+
 ### 开发文档
 - **[BUGFIX_HELP_COMMAND_ROUTING.md](BUGFIX_HELP_COMMAND_ROUTING.md)** - /help命令路由修复
   - 问题描述和根本原因
