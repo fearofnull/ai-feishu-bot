@@ -57,7 +57,7 @@ def test_ai_intent_classification():
         config_required=["api_key"]
     )
     registry.register_api_executor("openai", openai_api, openai_api_metadata)
-    print(f"\n✅ 已注册: OpenAI API")
+    print(f"\n[OK] 已注册: OpenAI API")
     
     # 创建两个路由器：一个使用AI分类，一个使用关键词
     router_ai = SmartRouter(
@@ -137,7 +137,7 @@ def test_ai_intent_classification():
         
         # 显示结果
         expected_str = "CLI" if expected_cli else "API"
-        result_str = "✅" if ai_correct and keyword_correct else ("🔶" if ai_correct != keyword_correct else "❌")
+        result_str = "[OK]" if ai_correct and keyword_correct else ("[DIFF]" if ai_correct != keyword_correct else "[FAIL]")
         
         print(f"{idx:<4} {message[:38]:<40} {description:<20} {ai_result:<10} {keyword_result:<10} {result_str:<10}")
     
@@ -151,19 +151,19 @@ def test_ai_intent_classification():
     print("=" * 80)
     
     if correct_ai > correct_keyword:
-        print(f"🎉 AI分类比关键词检测更准确！")
+        print(f"[SUCCESS] AI分类比关键词检测更准确！")
         print(f"   准确率提升: {(correct_ai - correct_keyword)/total*100:.1f}%")
         print(f"\n优势:")
-        print(f"  ✅ 能理解用户真实意图，不被关键词误导")
-        print(f"  ✅ 可以处理各种表达方式")
-        print(f"  ✅ 能区分理论讨论和实际操作")
+        print(f"  [+] 能理解用户真实意图，不被关键词误导")
+        print(f"  [+] 可以处理各种表达方式")
+        print(f"  [+] 能区分理论讨论和实际操作")
     elif correct_ai == correct_keyword:
-        print(f"⚖️  AI分类和关键词检测准确率相同")
+        print(f"[EQUAL] AI分类和关键词检测准确率相同")
         print(f"\n建议:")
         print(f"  - 可以使用AI分类以获得更好的用户体验")
         print(f"  - 关键词检测可作为降级方案")
     else:
-        print(f"⚠️  关键词检测在这些测试用例中表现更好")
+        print(f"[WARNING] 关键词检测在这些测试用例中表现更好")
         print(f"\n可能原因:")
         print(f"  - AI模型可能需要更好的提示词")
         print(f"  - 测试用例可能不够全面")

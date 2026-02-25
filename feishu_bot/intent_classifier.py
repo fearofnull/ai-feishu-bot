@@ -44,12 +44,12 @@ class IntentClassifier:
 - 算法讲解和示例代码
 
 请以JSON格式返回判断结果：
-{
+{{
     "needs_cli": true/false,
     "confidence": 0.0-1.0,
     "reason": "判断理由",
     "category": "意图类别"
-}
+}}
 
 用户问题：{message}
 
@@ -128,13 +128,14 @@ class IntentClassifier:
             )
             
             if not result.success:
-                logger.warning(f"[INTENT] AI execution failed: {result.error}")
+                logger.warning(f"[INTENT] AI execution failed: {result.error_message}")
                 return None
             
             # 解析JSON响应
-            response_text = result.output.strip()
+            response_text = result.stdout.strip()
+            logger.debug(f"[INTENT] Raw AI response (first 200 chars): {repr(response_text[:200])}")
             
-            # 尝试提取JSON（可能包含markdown代码块）
+            # 尝试提取JSON（可能包含markdown代码块或其他格式）
             if "```json" in response_text:
                 json_start = response_text.find("```json") + 7
                 json_end = response_text.find("```", json_start)
@@ -143,6 +144,12 @@ class IntentClassifier:
                 json_start = response_text.find("```") + 3
                 json_end = response_text.find("```", json_start)
                 response_text = response_text[json_start:json_end].strip()
+            
+            # 如果响应以 { 开始但前面有空白，清理它
+            if "{" in response_text:
+                json_start = response_text.find("{")
+                json_end = response_text.rfind("}") + 1
+                response_text = response_text[json_start:json_end]
             
             # 解析JSON
             classification_data = json.loads(response_text)
@@ -165,10 +172,10 @@ class IntentClassifier:
             
         except json.JSONDecodeError as e:
             logger.warning(f"[INTENT] Failed to parse AI response as JSON: {e}")
-            logger.debug(f"[INTENT] Response text: {response_text}")
+            logger.debug(f"[INTENT] Raw response text: {repr(response_text)}")
             return None
         except Exception as e:
-            logger.error(f"[INTENT] Unexpected error in AI classification: {e}")
+            logger.error(f"[INTENT] Unexpected error in AI classification: {repr(e)}", exc_info=True)
             return None
     
     def _classify_with_keywords(self, message: str) -> IntentClassification:
