@@ -61,42 +61,52 @@ class SmartRouter:
         """
         provider = parsed_command.provider
         layer = parsed_command.execution_layer
+        message_preview = parsed_command.message[:50] + "..." if len(parsed_command.message) > 50 else parsed_command.message
         
         # 如果用户显式指定，直接使用指定的执行器
         if parsed_command.explicit:
             logger.info(
-                f"User explicitly specified: provider={provider}, layer={layer}"
+                f"[ROUTING] Explicit prefix detected → provider={provider}, layer={layer}"
             )
+            logger.debug(f"[ROUTING] Message: '{message_preview}'")
             try:
-                return self.get_executor(provider, layer)
+                executor = self.get_executor(provider, layer)
+                logger.info(f"[ROUTING] ✅ Using {provider}/{layer} (explicit)")
+                return executor
             except ExecutorNotAvailableError as e:
                 # 显式指定的执行器不可用，尝试降级
                 logger.warning(
-                    f"Explicitly specified executor {provider}/{layer} not available: {e.reason}"
+                    f"[ROUTING] ⚠️  Explicitly specified executor {provider}/{layer} not available: {e.reason}"
                 )
                 return self._fallback(provider, layer)
         
         # 智能判断：检测是否需要 CLI 层
-        if self.command_parser.detect_cli_keywords(parsed_command.message):
+        has_cli_keywords = self.command_parser.detect_cli_keywords(parsed_command.message)
+        
+        if has_cli_keywords:
             layer = "cli"
             logger.info(
-                f"CLI keywords detected in message, routing to CLI layer"
+                f"[ROUTING] CLI keywords detected → routing to CLI layer"
             )
+            logger.debug(f"[ROUTING] Message: '{message_preview}'")
         else:
             layer = self.default_layer
-            logger.debug(
-                f"No CLI keywords detected, using default layer: {layer}"
+            logger.info(
+                f"[ROUTING] No CLI keywords → using default layer: {layer}"
             )
+            logger.debug(f"[ROUTING] Message: '{message_preview}'")
         
         # 使用默认提供商（如果没有显式指定）
         provider = self.default_provider
         
         # 获取执行器，如果不可用则降级
         try:
-            return self.get_executor(provider, layer)
+            executor = self.get_executor(provider, layer)
+            logger.info(f"[ROUTING] ✅ Using {provider}/{layer} (smart routing)")
+            return executor
         except ExecutorNotAvailableError as e:
             logger.warning(
-                f"Executor {provider}/{layer} not available: {e.reason}, attempting fallback"
+                f"[ROUTING] ⚠️  Executor {provider}/{layer} not available: {e.reason}, attempting fallback"
             )
             return self._fallback(provider, layer)
     

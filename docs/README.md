@@ -17,6 +17,18 @@
   - 会话管理配置
   - 高级配置选项
 
+- **[SMART_ROUTING_EXPLAINED.md](SMART_ROUTING_EXPLAINED.md)** - 智能路由详解 ⭐
+  - 路由流程和决策逻辑
+  - 会话命令优先级
+  - API层 vs CLI层选择
+  - 常见问题解答
+
+### 开发文档
+- **[BUGFIX_HELP_COMMAND_ROUTING.md](BUGFIX_HELP_COMMAND_ROUTING.md)** - /help命令路由修复
+  - 问题描述和根本原因
+  - 解决方案和修改内容
+  - 测试验证
+
 ### 测试文档
 - **[QUICK_START_INTEGRATION_TEST.md](QUICK_START_INTEGRATION_TEST.md)** - 5分钟快速测试
   - 快速验证机器人功能
