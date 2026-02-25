@@ -54,10 +54,13 @@ class GeminiCLIExecutor(AICLIExecutor):
     def get_command_name(self) -> str:
         """返回 Gemini CLI 命令名称
         
+        Windows 上需要使用 gemini.cmd，Unix-like 使用 gemini
+        
         Returns:
-            命令名称 "gemini"
+            命令名称 "gemini.cmd" (Windows) 或 "gemini" (Unix-like)
         """
-        return "gemini"
+        import platform
+        return "gemini.cmd" if platform.system() == "Windows" else "gemini"
     
     def get_provider_name(self) -> str:
         """返回提供商名称
