@@ -241,6 +241,102 @@ DEFAULT_PROVIDER=claude
 DEFAULT_LAYER=api
 ```
 
+## 降级策略（Fallback）
+
+当指定的AI服务不可用时（例如API密钥未配置），系统会自动降级到其他可用的服务。
+
+### 降级顺序
+
+系统采用**3层降级策略**：
+
+```
+原始选择: claude/api (不可用)
+    ↓
+策略1: 同provider的另一层
+    → claude/cli (尝试)
+    ↓ (失败)
+策略2: 其他provider的同一层
+    → gemini/api (尝试)
+    → openai/api (尝试)
+    ↓ (失败)
+策略3: 其他provider的另一层
+    → gemini/cli (尝试)
+    → openai/cli (尝试)
+    ↓ (失败)
+所有策略都失败 → 返回错误
+```
+
+### 降级示例
+
+**场景1：只配置了OpenAI**
+
+```
+配置:
+  DEFAULT_PROVIDER=claude
+  DEFAULT_LAYER=api
+  只有 OPENAI_API_KEY 配置
+
+用户消息: "你是谁"
+    ↓
+路由决策: claude/api (默认)
+    ↓
+检查可用性: claude/api 不可用（未配置API密钥）
+    ↓
+降级策略1: claude/cli 不可用
+    ↓
+降级策略2: openai/api 可用 ✅
+    ↓
+最终使用: openai/api
+```
+
+**场景2：显式指定不可用的服务**
+
+```
+用户消息: "@claude 你是谁"
+    ↓
+路由决策: claude/api (显式指定)
+    ↓
+检查可用性: claude/api 不可用
+    ↓
+降级策略: 自动尝试其他可用服务
+    ↓
+最终使用: openai/api (降级成功)
+```
+
+### 降级日志
+
+系统会在日志中显示降级过程：
+
+```
+[ROUTING] ⚠️  Executor claude/api not available: API key not configured
+[ROUTING] Fallback strategy 1: claude/api -> claude/cli
+[ROUTING] Strategy 1 failed: claude/cli not available
+[ROUTING] Fallback strategy 2: claude/api -> openai/api
+[ROUTING] ✅ Fallback successful: using openai/api
+```
+
+### 配置建议
+
+为了避免频繁降级，建议：
+
+1. **设置正确的默认提供商**：
+   ```bash
+   # 如果只配置了OpenAI
+   DEFAULT_PROVIDER=openai
+   ```
+
+2. **配置多个AI服务**（可选）：
+   ```bash
+   CLAUDE_API_KEY=your_claude_key
+   GEMINI_API_KEY=your_gemini_key
+   OPENAI_API_KEY=your_openai_key
+   ```
+
+3. **查看降级日志**：
+   ```bash
+   LOG_LEVEL=INFO  # 显示降级警告
+   ```
+
 ## 常见问题
 
 ### Q1: 为什么简单问题也要经过AI？
@@ -260,10 +356,19 @@ DEFAULT_LAYER=api
 **A**: 智能路由主要决定使用API层还是CLI层。AI提供商的选择基于：
 1. 显式前缀（如果有）
 2. 默认配置（如果没有前缀）
+3. 降级策略（如果首选不可用）
 
 ### Q5: 如何查看路由决策过程？
 
 **A**: 在 `.env` 文件中设置 `LOG_LEVEL=DEBUG`，日志会显示详细的路由决策过程。
+
+### Q6: 我只配置了OpenAI，为什么还能正常工作？
+
+**A**: 系统会自动降级。即使默认配置是Claude，当Claude不可用时，系统会自动使用OpenAI。建议将 `DEFAULT_PROVIDER` 设置为 `openai` 以避免不必要的降级。
+
+### Q7: 降级会影响响应速度吗？
+
+**A**: 降级检查非常快速（毫秒级），对用户体验影响极小。但建议配置正确的默认提供商以避免每次都降级。
 
 ## 总结
 
@@ -273,9 +378,11 @@ DEFAULT_LAYER=api
 2. **显式前缀** → 使用指定的服务
 3. **CLI关键词** → 使用CLI层（代码操作）
 4. **默认情况** → 使用API层（快速响应）
+5. **降级策略** → 自动切换到可用服务
 
 这个设计确保：
 - ✅ 简单问题快速响应（API层）
 - ✅ 代码操作准确执行（CLI层）
 - ✅ 用户可以显式控制（前缀）
 - ✅ 系统智能判断（关键词检测）
+- ✅ 服务不可用时自动降级（容错机制）
