@@ -376,13 +376,16 @@ class FeishuBot:
         Returns:
             True 如果是会话命令并已处理
         """
-        message_lower = message.lower().strip()
+        # 检查是否为会话命令
+        if not self.session_manager.is_session_command(message):
+            return False
         
-        # /new 或 新会话
-        if message_lower in ["/new", "新会话"]:
-            self.session_manager.create_new_session(user_id)
-            
-            # 清除 CLI 会话
+        # 使用 session_manager 处理命令
+        response = self.session_manager.handle_session_command(user_id, message)
+        
+        # 如果是新会话命令，额外清除 CLI 会话
+        message_lower = message.lower().strip()
+        if message_lower in [cmd.lower() for cmd in self.session_manager.NEW_SESSION_COMMANDS]:
             for provider in ["claude", "gemini"]:
                 try:
                     cli_executor = self.executor_registry.get_executor(provider, "cli")
@@ -390,31 +393,9 @@ class FeishuBot:
                         cli_executor.clear_session(user_id)
                 except:
                     pass
-            
-            response = "已创建新会话！\nNew session created!"
-            self.message_sender.send_message(
-                chat_type, chat_id, message_id, response
-            )
-            return True
         
-        # /session 或 会话信息
-        if message_lower in ["/session", "会话信息"]:
-            session_info = self.session_manager.get_session_info(user_id)
-            response = (
-                f"会话信息 / Session Info:\n"
-                f"Session ID: {session_info['session_id']}\n"
-                f"消息数 / Message Count: {session_info['message_count']}\n"
-                f"创建时间 / Created: {session_info['created_at']}"
-            )
-            self.message_sender.send_message(
-                chat_type, chat_id, message_id, response
-            )
-            return True
-        
-        # /history 或 历史记录
-        if message_lower in ["/history", "历史记录"]:
-            history = self.session_manager.format_history_for_ai(user_id)
-            response = f"对话历史 / Conversation History:\n\n{history}"
+        # 发送响应
+        if response:
             self.message_sender.send_message(
                 chat_type, chat_id, message_id, response
             )
