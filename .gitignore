@@ -60,6 +60,9 @@ secrets.json
 # Session data (contains user information)
 data/
 
+# Test data (temporary test files)
+test_data/
+
 # 测试输出
 .pytest_cache/
 .coverage

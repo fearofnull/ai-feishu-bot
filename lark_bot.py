@@ -10,7 +10,7 @@ import time
 from threading import Thread
 
 # 配置 SSL 证书
-from feishu_bot.ssl_config import configure_ssl
+from feishu_bot.utils.ssl_config import configure_ssl
 configure_ssl()
 
 # 导入配置和主应用

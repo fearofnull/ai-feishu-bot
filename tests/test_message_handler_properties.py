@@ -465,17 +465,17 @@ def test_quoted_message_combination_order(quoted_text, current_text):
 @given(
     message_type=st.sampled_from([
         "image", "file", "audio", "media", "sticker", 
-        "interactive", "share_chat", "share_user", "system"
+        "share_chat", "share_user", "system"
     ])
 )
 def test_non_text_message_error_handling(message_type):
     """
     Property 3: 非文本消息错误处理
     
-    For any 非文本类型的消息（message_type != "text"），Feishu_Bot 应该返回包含
-    "请发送文本消息" 或 "please send text message" 的错误消息。
+    For any 非文本类型的消息（message_type != "text" and != "interactive"），Feishu_Bot 应该返回包含
+    "请发送文本消息或卡片消息" 或 "please send text message or card message" 的错误消息。
     
-    **Validates: Requirements 1.3**
+    **Validates: Requirements 1.3, 3.4**
     """
     # 创建 MessageHandler 实例
     mock_client = Mock()
@@ -492,10 +492,13 @@ def test_non_text_message_error_handling(message_type):
     with pytest.raises(ValueError) as exc_info:
         handler.parse_message_content(message)
     
-    # 验证错误消息包含必要的提示
+    # 验证错误消息包含必要的提示（更新为支持卡片消息）
     error_message = str(exc_info.value).lower()
-    assert "请发送文本消息" in error_message or "please send text message" in error_message, \
-        f"Error message should contain '请发送文本消息' or 'please send text message'. Got: {exc_info.value}"
+    assert ("请发送文本消息或卡片消息" in error_message or 
+            "please send text message or card message" in error_message or
+            "请发送文本消息" in error_message or 
+            "please send text message" in error_message), \
+        f"Error message should contain message type hint. Got: {exc_info.value}"
     
     # 验证错误消息包含消息类型信息
     assert message_type in str(exc_info.value), \
