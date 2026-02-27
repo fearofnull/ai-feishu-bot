@@ -48,6 +48,9 @@ class BotConfig:
     # 智能路由配置
     use_ai_intent_classification: bool = True  # 是否使用AI进行意图分类
     
+    # 语言配置
+    response_language: Optional[str] = None  # AI回复语言（如：zh-CN, en-US, ja-JP等），None表示由AI自动判断
+    
     # 日志配置
     log_level: str = "INFO"
     
@@ -109,6 +112,9 @@ class BotConfig:
             
             # 智能路由配置
             use_ai_intent_classification=os.getenv("USE_AI_INTENT_CLASSIFICATION", "true").lower() in ("true", "1", "yes"),
+            
+            # 语言配置
+            response_language=os.getenv("RESPONSE_LANGUAGE"),  # 例如: zh-CN, en-US, ja-JP
             
             # 日志配置
             log_level=os.getenv("LOG_LEVEL", "INFO"),
@@ -175,6 +181,50 @@ class BotConfig:
             return bool(self.openai_api_key)
         return False
     
+    def get_language_instruction(self) -> str:
+        """获取语言指令文本
+        
+        Returns:
+            语言指令字符串，如果未设置语言则返回空字符串
+        """
+        if not self.response_language:
+            return ""
+        
+        # 语言代码到自然语言的映射
+        language_map = {
+            "zh-CN": "中文（简体）",
+            "zh-TW": "中文（繁體）",
+            "en-US": "English",
+            "en-GB": "English (UK)",
+            "ja-JP": "日本語",
+            "ko-KR": "한국어",
+            "fr-FR": "Français",
+            "de-DE": "Deutsch",
+            "es-ES": "Español",
+            "ru-RU": "Русский",
+            "pt-BR": "Português (Brasil)",
+            "it-IT": "Italiano",
+            "ar-SA": "العربية",
+            "hi-IN": "हिन्दी",
+        }
+        
+        language_name = language_map.get(self.response_language, self.response_language)
+        return f"Please respond in {language_name}."
+    
+    def prepend_language_instruction(self, message: str) -> str:
+        """在消息前添加语言指令
+        
+        Args:
+            message: 原始消息
+            
+        Returns:
+            添加了语言指令的消息（如果配置了语言）
+        """
+        instruction = self.get_language_instruction()
+        if instruction:
+            return f"{instruction}\n\n{message}"
+        return message
+    
     def print_status(self) -> None:
         """打印配置状态（用于调试，隐藏敏感信息）"""
         print("\n" + "=" * 60)
@@ -189,6 +239,7 @@ class BotConfig:
         print(f"DEFAULT_PROVIDER: {self.default_provider}")
         print(f"DEFAULT_LAYER: {self.default_layer}")
         print(f"USE_AI_INTENT_CLASSIFICATION: {'✅ 启用' if self.use_ai_intent_classification else '❌ 禁用'}")
+        print(f"RESPONSE_LANGUAGE: {self.response_language if self.response_language else '⚠️ 未设置（由AI自动判断）'}")
         print(f"LOG_LEVEL: {self.log_level}")
         print("=" * 60 + "\n")
 

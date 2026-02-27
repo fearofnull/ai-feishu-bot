@@ -177,7 +177,93 @@
 
 ## 快速开始
 
-### 环境要求
+有两种部署方式可选：
+
+### 方式1：Docker 部署（推荐，适合生产环境）
+
+#### 环境要求
+- Docker 20.10+
+- Docker Compose 2.0+（可选）
+- 至少 1GB 内存
+
+#### 部署步骤
+
+1. **克隆项目**
+```bash
+git clone <repository-url>
+cd feishu-ai-bot
+```
+
+2. **配置环境变量**
+```bash
+# 复制配置模板
+cp .env.example .env
+
+# 编辑配置文件
+nano .env  # 或使用其他编辑器
+```
+
+填入必需配置：
+- `FEISHU_APP_ID`: 飞书应用ID
+- `FEISHU_APP_SECRET`: 飞书应用密钥
+- 至少一个AI API密钥
+
+3. **启动服务**
+
+使用 Docker Compose（推荐）：
+```bash
+docker-compose up -d
+```
+
+或使用部署脚本：
+```bash
+chmod +x scripts/deploy.sh
+./scripts/deploy.sh start
+```
+
+或使用 Docker 命令：
+```bash
+docker build -t feishu-ai-bot .
+docker run -d \
+  --name feishu-ai-bot \
+  --restart unless-stopped \
+  --env-file .env \
+  -v $(pwd)/data:/app/data \
+  feishu-ai-bot
+```
+
+4. **查看日志**
+```bash
+# 使用 Docker Compose
+docker-compose logs -f
+
+# 使用部署脚本
+./scripts/deploy.sh logs
+
+# 使用 Docker 命令
+docker logs -f feishu-ai-bot
+```
+
+5. **管理服务**
+```bash
+# 停止服务
+./scripts/deploy.sh stop
+
+# 重启服务
+./scripts/deploy.sh restart
+
+# 查看状态
+./scripts/deploy.sh status
+
+# 更新服务
+./scripts/deploy.sh update
+```
+
+详细部署文档见 [部署指南](docs/deployment/DEPLOYMENT.md)。
+
+### 方式2：本地运行（适合开发测试）
+
+#### 环境要求
 
 - Python 3.8+
 - 飞书机器人账号和凭证
@@ -185,7 +271,7 @@
 - Claude Code CLI（可选，用于代码操作）
 - Gemini CLI（可选，用于代码操作）
 
-### 安装步骤
+#### 安装步骤
 
 1. **克隆项目**
 ```bash
@@ -241,14 +327,28 @@ cp .env.example .env    # Linux/Mac
   - 启用后使用AI判断用户意图，比关键词检测更准确
   - 详细说明见 [AI意图分类文档](docs/AI_INTENT_CLASSIFICATION.md)
 
+**语言配置**（可选）：
+- `RESPONSE_LANGUAGE`: AI回复语言（默认：空，由AI自动判断）
+  - 支持的语言代码：
+    - `zh-CN`: 中文（简体）
+    - `zh-TW`: 中文（繁體）
+    - `en-US`: English
+    - `ja-JP`: 日本語
+    - `ko-KR`: 한국어
+    - `fr-FR`: Français
+    - `de-DE`: Deutsch
+    - `es-ES`: Español
+  - 设置后，AI会被要求使用指定语言回复
+  - 留空则由AI根据用户输入自动判断使用什么语言
+
 详细配置说明见 [配置文档](docs/CONFIGURATION.md) 或 `.env.example` 文件。
 
 4. **验证配置**
 ```bash
-python config.py
+python scripts/verify_config.py
 ```
 
-### 运行机器人
+#### 运行机器人
 
 ```bash
 python lark_bot.py

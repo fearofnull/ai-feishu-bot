@@ -348,19 +348,22 @@ class FeishuBot:
                 executor_metadata = self.executor_registry.get_executor_metadata(provider, layer)
                 executor_name = executor_metadata.name if executor_metadata else None
                 
+                # 添加语言指令（如果配置了）
+                message_with_language = self.config.prepend_language_instruction(parsed_command.message)
+                
                 # 执行 AI
                 if executor.get_provider_name().endswith("-api"):
                     # API 层：传递对话历史
-                    logger.debug(f"[API] Executing with message: {parsed_command.message[:200]}...")
+                    logger.debug(f"[API] Executing with message: {message_with_language[:200]}...")
                     result = executor.execute(
-                        parsed_command.message,
+                        message_with_language,
                         conversation_history=conversation_history
                     )
                 else:
                     # CLI 层：使用原生会话
-                    logger.info(f"[CLI] Executing with message: {parsed_command.message[:200]}...")
+                    logger.info(f"[CLI] Executing with message: {message_with_language[:200]}...")
                     result = executor.execute(
-                        parsed_command.message,
+                        message_with_language,
                         additional_params={"user_id": sender_id}
                     )
                 

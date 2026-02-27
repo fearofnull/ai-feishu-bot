@@ -6,12 +6,14 @@ from .cache import DeduplicationCache
 from .command_parser import CommandParser
 from .intent_classifier import IntentClassifier
 from .response_formatter import ResponseFormatter
-from .ssl_config import get_ssl_context
+from .ssl_config import configure_ssl, get_ssl_cert_path, is_ssl_configured
 
 __all__ = [
     'DeduplicationCache',
     'CommandParser',
     'IntentClassifier',
     'ResponseFormatter',
-    'get_ssl_context',
+    'configure_ssl',
+    'get_ssl_cert_path',
+    'is_ssl_configured',
 ]

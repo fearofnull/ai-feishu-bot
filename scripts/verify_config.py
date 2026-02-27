@@ -8,8 +8,8 @@ from pathlib import Path
 # 尝试加载 .env 文件
 try:
     from dotenv import load_dotenv
-    # 查找 .env 文件
-    env_path = Path(__file__).parent / '.env'
+    # 查找 .env 文件（在项目根目录）
+    env_path = Path(__file__).parent.parent / '.env'
     if env_path.exists():
         load_dotenv(env_path)
         print(f"✅ 已加载配置文件: {env_path}")
