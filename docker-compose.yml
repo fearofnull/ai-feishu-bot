@@ -1,0 +1,44 @@
+version: '3.8'
+
+services:
+  feishu-bot:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: feishu-ai-bot
+    restart: unless-stopped
+    
+    # 环境变量（从 .env 文件加载）
+    env_file:
+      - .env
+    
+    # 数据卷挂载（持久化会话数据）
+    volumes:
+      - ./data:/app/data
+      # 如果需要访问本地代码仓库（CLI 功能）
+      # - /path/to/your/project:/workspace:ro
+    
+    # 日志配置
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+    
+    # 资源限制
+    deploy:
+      resources:
+        limits:
+          cpus: '2'
+          memory: 2G
+        reservations:
+          cpus: '0.5'
+          memory: 512M
+    
+    # 健康检查
+    healthcheck:
+      test: ["CMD", "python", "-c", "import sys; sys.exit(0)"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
