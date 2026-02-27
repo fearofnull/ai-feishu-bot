@@ -17,44 +17,24 @@
   - 会话管理配置
   - 高级配置选项
 
-- **[SMART_ROUTING_EXPLAINED.md](SMART_ROUTING_EXPLAINED.md)** - 智能路由详解 ⭐
-  - 路由流程和决策逻辑
-  - 会话命令优先级
-  - API层 vs CLI层选择
-  - 常见问题解答
+- **[LANGUAGE_CONFIGURATION.md](LANGUAGE_CONFIGURATION.md)** - 语言配置说明
+  - 如何设置AI回复语言
+  - 支持的语言列表
+  - 配置示例
 
-- **[AI_INTENT_CLASSIFICATION.md](AI_INTENT_CLASSIFICATION.md)** - AI意图分类功能 🆕
-  - 使用AI判断用户意图
-  - 比关键词检测更准确
-  - 配置和使用指南
-  - 性能和成本分析
+### 部署文档
+- **[deployment/DEPLOYMENT.md](deployment/DEPLOYMENT.md)** - 完整部署指南
+  - Docker 部署
+  - 云服务商部署
+  - 监控和维护
 
-### 开发文档
-- **[BUGFIX_HELP_COMMAND_ROUTING.md](BUGFIX_HELP_COMMAND_ROUTING.md)** - /help命令路由修复
-  - 问题描述和根本原因
-  - 解决方案和修改内容
-  - 测试验证
+- **[deployment/QUICKSTART.md](deployment/QUICKSTART.md)** - 5分钟快速部署
+  - 快速部署到云端
+  - 常用命令
+  - 故障排除
 
 ### 测试文档
-- **[QUICK_START_INTEGRATION_TEST.md](QUICK_START_INTEGRATION_TEST.md)** - 5分钟快速测试
-  - 快速验证机器人功能
-  - 基础测试场景
-  - 常见问题排查
-
-- **[INTEGRATION_TESTING_GUIDE.md](INTEGRATION_TESTING_GUIDE.md)** - 集成测试指南
-  - 完整测试流程
-  - 测试不同AI提供商
-  - 会话管理测试
-  - 性能测试
-
-- **[TESTING_STRUCTURE.md](TESTING_STRUCTURE.md)** - 测试体系说明
-  - 测试架构概述
-  - 单元测试说明
-  - 属性测试说明
-  - 集成测试说明
-
-### 测试结果
-- **INTEGRATION_TEST_RESULTS.md** - 集成测试结果报告
+- **[INTEGRATION_TEST_RESULTS.md](INTEGRATION_TEST_RESULTS.md)** - 测试结果报告
   - ⚠️ 此文件包含用户信息，不提交到Git仓库
   - 本地生成和查看
   - 用于验证功能正确性
@@ -70,9 +50,9 @@
    - 设置环境变量
    - 配置AI服务
    
-3. **[QUICK_START_INTEGRATION_TEST.md](QUICK_START_INTEGRATION_TEST.md)** - 快速测试
+3. **[deployment/QUICKSTART.md](deployment/QUICKSTART.md)** - 快速部署
+   - 5分钟部署到云端
    - 验证配置是否正确
-   - 测试基本功能
    
 4. **[USER_GUIDE.md](USER_GUIDE.md)** - 开始使用
    - 学习如何使用机器人
@@ -84,13 +64,9 @@
    - 了解系统设计
    - 可扩展性说明
    
-2. **[TESTING_STRUCTURE.md](TESTING_STRUCTURE.md)** - 测试体系
-   - 了解测试架构
-   - 运行测试套件
-   
-3. **[INTEGRATION_TESTING_GUIDE.md](INTEGRATION_TESTING_GUIDE.md)** - 集成测试
-   - 完整测试流程
-   - 故障排查
+2. **[../STRUCTURE.md](../STRUCTURE.md)** - 项目结构
+   - 了解目录组织
+   - 代码模块说明
 
 ## 📖 文档说明
 
@@ -109,10 +85,9 @@
 - 配置验证方法
 - 配置最佳实践
 
-### 测试指南
-- **快速测试**：5分钟验证基本功能
-- **集成测试**：完整的功能测试流程
-- **测试结构**：了解测试体系和如何运行测试
+### 部署指南
+- **完整部署**：Docker 和云服务商部署方案
+- **快速部署**：5分钟快速部署指南
 
 ## 🔒 安全注意事项
 

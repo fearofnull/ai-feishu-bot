@@ -522,4 +522,4 @@ deploy:
 
 - [快速开始](../../README.md#快速开始)
 - [配置文档](../CONFIGURATION.md)
-- [故障排除](../TROUBLESHOOTING.md)
+- [快速部署指南](QUICKSTART.md)

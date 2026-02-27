@@ -311,15 +311,10 @@ CACHE_SIZE=500           # 减少缓存大小
 - 阅读 [完整部署文档](DEPLOYMENT.md)
 - 了解 [配置选项](../CONFIGURATION.md)
 - 查看 [使用示例](../../README.md#使用示例)
-- 加入社区讨论
 
 ## 获取帮助
 
-如果遇到问题：
-
-1. 查看 [故障排除文档](../TROUBLESHOOTING.md)
-2. 搜索 [GitHub Issues](https://github.com/your-repo/issues)
-3. 提交新的 Issue
+如果遇到问题，请查看日志文件或提交 GitHub Issue。
 
 ---
 

@@ -38,7 +38,7 @@
 
 ### 智能路由功能
 
-系统提供两种路由方式。**详细说明请参考：[智能路由详解](docs/SMART_ROUTING_EXPLAINED.md)**
+系统提供两种路由方式：
 
 #### 1. 显式指定（推荐用于明确需求）
 
@@ -86,7 +86,6 @@
 - 当指定的AI服务不可用时（如API密钥未配置），系统会自动降级到其他可用服务
 - 降级顺序：同provider另一层 → 其他provider同一层 → 其他provider另一层
 - 示例：claude/api不可用 → 尝试claude/cli → 尝试openai/api → 尝试gemini/api
-- 详细说明见：[智能路由详解 - 降级策略](docs/SMART_ROUTING_EXPLAINED.md#降级策略fallback)
 
 ### AI API层 vs AI CLI层
 
@@ -310,7 +309,6 @@ cp .env.example .env    # Linux/Mac
 **智能路由配置**（可选）：
 - `USE_AI_INTENT_CLASSIFICATION`: 是否使用AI进行意图分类（可选值：`true`、`false`，默认：`true`）
   - 启用后使用AI判断用户意图，比关键词检测更准确
-  - 详细说明见 [AI意图分类文档](docs/AI_INTENT_CLASSIFICATION.md)
 
 **语言配置**（可选）：
 - `RESPONSE_LANGUAGE`: AI回复语言（默认：空，由AI自动判断）
@@ -395,7 +393,7 @@ python lark_bot.py
 
 ## 测试
 
-项目包含两套测试体系，详见 `docs/TESTING_STRUCTURE.md`
+项目包含完整的测试体系：
 
 ### 自动化测试（tests/）
 
@@ -410,23 +408,15 @@ pytest tests/ -k property
 pytest tests/ --cov=feishu_bot
 ```
 
-### 手动测试工具（test_scripts/）
+### 手动测试工具（scripts/test/）
 
 ```bash
-# 运行集成测试
-python test_scripts/run_integration_test.py
-
 # 发送测试消息
-python test_scripts/test_bot_message.py
+python scripts/test/test_bot_message.py
 
 # 查看聊天历史
-python test_scripts/check_chat_history.py
+python scripts/test/check_chat_history.py
 ```
-
-### 测试文档
-- `docs/TESTING_STRUCTURE.md` - 测试结构说明
-- `docs/INTEGRATION_TESTING_GUIDE.md` - 集成测试指南
-- `docs/INTEGRATION_TEST_RESULTS.md` - 最新测试结果
 
 ## 可扩展性
 
@@ -601,9 +591,9 @@ class CommandParser:
 
 - **用户指南**: [docs/USER_GUIDE.md](docs/USER_GUIDE.md) - 如何使用机器人
 - **配置指南**: [docs/CONFIGURATION.md](docs/CONFIGURATION.md) - 详细配置说明
-- **测试指南**: [docs/INTEGRATION_TESTING_GUIDE.md](docs/INTEGRATION_TESTING_GUIDE.md) - 集成测试
-- **快速测试**: [docs/QUICK_START_INTEGRATION_TEST.md](docs/QUICK_START_INTEGRATION_TEST.md) - 5分钟快速测试
-- **测试结构**: [docs/TESTING_STRUCTURE.md](docs/TESTING_STRUCTURE.md) - 测试体系说明
+- **语言配置**: [docs/LANGUAGE_CONFIGURATION.md](docs/LANGUAGE_CONFIGURATION.md) - 语言设置说明
+- **部署指南**: [docs/deployment/DEPLOYMENT.md](docs/deployment/DEPLOYMENT.md) - Docker 和云端部署
+- **快速部署**: [docs/deployment/QUICKSTART.md](docs/deployment/QUICKSTART.md) - 5分钟快速部署
 - **文档目录**: [docs/README.md](docs/README.md) - 所有文档索引
 
 ## 参考文档
@@ -818,12 +808,14 @@ python -c "from feishu_bot.session_manager import SessionManager; sm = SessionMa
 ```
 .
 ├── lark_bot.py              # 主机器人程序
-├── config.py                # 配置管理
 ├── requirements.txt         # Python依赖
 ├── README.md                # 项目说明
+├── STRUCTURE.md             # 项目结构详细说明
 ├── .env                     # 环境变量（不提交到Git）
 ├── .env.example             # 环境变量模板
 ├── .gitignore               # Git忽略文件配置
+├── Dockerfile               # Docker镜像构建文件
+├── docker-compose.yml       # Docker Compose配置
 │
 ├── feishu_bot/              # 机器人核心代码
 │   ├── config.py            # 配置类
@@ -836,8 +828,6 @@ python -c "from feishu_bot.session_manager import SessionManager; sm = SessionMa
 │   ├── *_api_executor.py    # API执行器（Claude、Gemini、OpenAI）
 │   ├── *_cli_executor.py    # CLI执行器（Claude Code、Gemini）
 │   ├── cache.py             # 缓存管理
-│   ├── ssl_config.py        # SSL配置
-│   ├── websocket_client.py  # WebSocket客户端
 │   └── ...                  # 其他模块
 │
 ├── tests/                   # 单元测试和属性测试
@@ -845,29 +835,30 @@ python -c "from feishu_bot.session_manager import SessionManager; sm = SessionMa
 │   ├── test_*_properties.py # 属性测试文件
 │   └── ...
 │
-├── test_scripts/            # 集成测试和手动测试脚本
-│   ├── run_integration_test.py      # 集成测试主程序
-│   ├── test_bot_message.py          # 自动化消息测试
-│   ├── send_test_message.py         # 发送测试消息
-│   ├── check_chat_history.py        # 查看聊天历史
-│   └── ...                          # 其他测试脚本
+├── scripts/                 # 脚本工具
+│   ├── deploy.sh            # 部署管理脚本
+│   ├── verify_config.py     # 配置验证脚本
+│   ├── test/                # 测试脚本
+│   │   ├── test_bot_message.py      # 自动化消息测试
+│   │   ├── send_test_message.py     # 发送测试消息
+│   │   ├── check_chat_history.py    # 查看聊天历史
+│   │   └── ...                      # 其他测试脚本
+│   └── README.md            # 脚本说明文档
 │
 ├── docs/                    # 项目文档
-│   ├── README.md                        # 文档目录
-│   ├── USER_GUIDE.md                    # 用户指南
-│   ├── CONFIGURATION.md                 # 配置指南
-│   ├── INTEGRATION_TESTING_GUIDE.md     # 集成测试指南
-│   ├── QUICK_START_INTEGRATION_TEST.md  # 快速测试指南
-│   └── TESTING_STRUCTURE.md             # 测试结构说明
+│   ├── README.md                    # 文档目录
+│   ├── USER_GUIDE.md                # 用户指南
+│   ├── CONFIGURATION.md             # 配置指南
+│   ├── LANGUAGE_CONFIGURATION.md    # 语言配置说明
+│   ├── INTEGRATION_TEST_RESULTS.md  # 测试结果
+│   └── deployment/                  # 部署文档
+│       ├── DEPLOYMENT.md            # 完整部署指南
+│       └── QUICKSTART.md            # 快速部署指南
 │
-├── data/                    # 数据存储（不提交到Git）
-│   ├── sessions.json        # 会话数据
-│   ├── executor_sessions.json  # 执行器会话映射
-│   └── archived_sessions/   # 归档会话
-│
-└── test_data/               # 测试数据
-    ├── sessions.json        # 测试会话数据
-    └── archived_sessions/   # 测试归档会话
+└── data/                    # 数据存储（不提交到Git）
+    ├── sessions.json        # 会话数据
+    ├── executor_sessions.json  # 执行器会话映射
+    └── archived_sessions/   # 归档会话
 ```
 
 **注意**：
