@@ -439,24 +439,24 @@ python test_scripts/check_chat_history.py
 创建新的API执行器类，继承`AIAPIExecutor`：
 
 ```python
-# feishu_bot/qwen_api_executor.py
+# feishu_bot/new_api_executor.py
 from feishu_bot.ai_api_executor import AIAPIExecutor
 from feishu_bot.models import ExecutionResult
 
-class QwenAPIExecutor(AIAPIExecutor):
-    def __init__(self, api_key: str, model: str = "qwen-plus", timeout: int = 60):
+class NewAPIExecutor(AIAPIExecutor):
+    def __init__(self, api_key: str, model: str = "default-model", timeout: int = 60):
         super().__init__(api_key, model, timeout)
-        # 初始化Qwen API客户端
+        # 初始化API客户端
         
     def get_provider_name(self) -> str:
-        return "qwen-api"
+        return "new-api"
     
     def format_messages(self, user_prompt: str, conversation_history=None):
-        # 格式化为Qwen API消息格式
+        # 格式化为API消息格式
         pass
     
     def execute(self, user_prompt: str, conversation_history=None, additional_params=None) -> ExecutionResult:
-        # 调用Qwen API
+        # 调用API
         pass
 ```
 
@@ -465,21 +465,21 @@ class QwenAPIExecutor(AIAPIExecutor):
 创建新的CLI执行器类，继承`AICLIExecutor`：
 
 ```python
-# feishu_bot/qwen_cli_executor.py
+# feishu_bot/new_cli_executor.py
 from feishu_bot.ai_cli_executor import AICLIExecutor
 from feishu_bot.models import ExecutionResult
 
-class QwenCodeCLIExecutor(AICLIExecutor):
+class NewCLIExecutor(AICLIExecutor):
     def __init__(self, target_dir: str, timeout: int = 600):
         super().__init__(target_dir, timeout)
         
     def get_command_name(self) -> str:
-        return "qwen-code"  # CLI命令名称
+        return "new-cli"  # CLI命令名称
     
     def build_command_args(self, user_prompt: str, additional_params=None):
-        # 构建Qwen Code CLI命令参数
+        # 构建CLI命令参数
         args = [self.get_command_name()]
-        args.extend(["--cwd", self.target_dir])
+        args.extend(["--directory", self.target_dir])
         args.extend(["--prompt", user_prompt])
         return args
     
@@ -488,7 +488,7 @@ class QwenCodeCLIExecutor(AICLIExecutor):
         return os.path.exists(self.target_dir)
     
     def execute(self, user_prompt: str, additional_params=None) -> ExecutionResult:
-        # 执行Qwen Code CLI命令
+        # 执行CLI命令
         pass
 ```
 
@@ -498,49 +498,49 @@ class QwenCodeCLIExecutor(AICLIExecutor):
 
 ```python
 from feishu_bot.executor_registry import ExecutorRegistry, ExecutorMetadata
-from feishu_bot.qwen_api_executor import QwenAPIExecutor
-from feishu_bot.qwen_cli_executor import QwenCodeCLIExecutor
+from feishu_bot.new_api_executor import NewAPIExecutor
+from feishu_bot.new_cli_executor import NewCLIExecutor
 
 # 创建执行器注册表
 registry = ExecutorRegistry()
 
-# 注册Qwen API执行器
-if config.qwen_api_key:
-    qwen_api = QwenAPIExecutor(
-        api_key=config.qwen_api_key,
-        model="qwen-plus"
+# 注册API执行器
+if config.new_api_key:
+    new_api = NewAPIExecutor(
+        api_key=config.new_api_key,
+        model="default-model"
     )
-    qwen_api_metadata = ExecutorMetadata(
-        name="Qwen API",
-        provider="qwen",
+    new_api_metadata = ExecutorMetadata(
+        name="New AI API",
+        provider="new",
         layer="api",
         version="1.0.0",
-        description="Qwen AI API for general Q&A",
+        description="New AI API for general Q&A",
         capabilities=["general_qa", "translation", "writing"],
-        command_prefixes=["@qwen", "@qwen-api"],
+        command_prefixes=["@new", "@new-api"],
         priority=3,
-        config_required=["qwen_api_key"]
+        config_required=["new_api_key"]
     )
-    registry.register_api_executor("qwen", qwen_api, qwen_api_metadata)
+    registry.register_api_executor("new", new_api, new_api_metadata)
 
-# 注册Qwen CLI执行器
+# 注册CLI执行器
 if config.target_directory:
-    qwen_cli = QwenCodeCLIExecutor(
+    new_cli = NewCLIExecutor(
         target_dir=config.target_directory,
         timeout=config.ai_timeout
     )
-    qwen_cli_metadata = ExecutorMetadata(
-        name="Qwen Code CLI",
-        provider="qwen",
+    new_cli_metadata = ExecutorMetadata(
+        name="New CLI",
+        provider="new",
         layer="cli",
         version="1.0.0",
-        description="Qwen Code CLI for code analysis",
+        description="New CLI for code analysis",
         capabilities=["code_analysis", "file_operations"],
-        command_prefixes=["@qwen-code", "@qwen-cli"],
+        command_prefixes=["@new-cli"],
         priority=3,
         config_required=["target_directory"]
     )
-    registry.register_cli_executor("qwen", qwen_cli, qwen_cli_metadata)
+    registry.register_cli_executor("new", new_cli, new_cli_metadata)
 ```
 
 ### 如何添加新的命令前缀
@@ -562,39 +562,24 @@ class CommandParser:
             "@openai": ("openai", "api"),
             "@gpt": ("openai", "api"),
             
-            # 新增Qwen前缀
-            "@qwen": ("qwen", "api"),
-            "@qwen-api": ("qwen", "api"),
-            "@qwen-code": ("qwen", "cli"),
-            "@qwen-cli": ("qwen", "cli"),
+            # 新增前缀示例
+            "@new": ("new", "api"),
+            "@new-api": ("new", "api"),
+            "@new-cli": ("new", "cli"),
         }
 ```
 
-### 集成示例：Qwen Code
+### 集成示例
 
-完整的Qwen Code集成示例：
+如需集成其他 AI 服务（如 Qwen、Cohere、Mistral 等），请参考上述步骤：
 
-1. **安装Qwen Code CLI**（假设存在）
-```bash
-pip install qwen-code-cli
-```
+1. 创建对应的 API 执行器类（继承 `AIAPIExecutor`）
+2. 创建对应的 CLI 执行器类（继承 `AICLIExecutor`，如果该服务提供 CLI 工具）
+3. 在执行器注册表中注册新的执行器
+4. 在命令解析器中添加命令前缀映射
+5. 配置相应的环境变量
 
-2. **配置环境变量**（`.env`）
-```bash
-# Qwen API配置
-QWEN_API_KEY=your_qwen_api_key_here
-
-# Qwen Code CLI配置
-TARGET_PROJECT_DIR=/path/to/your/project
-```
-
-3. **创建执行器**（参考上面的代码示例）
-
-4. **使用新的AI Agent**
-```
-@机器人 @qwen 解释一下机器学习
-@机器人 @qwen-code 分析这个项目的代码质量
-```
+具体实现细节请参考现有的 Claude、Gemini、OpenAI 执行器代码。
 
 ### 扩展点总结
 
