@@ -106,6 +106,11 @@ class GeminiCLIExecutor(AICLIExecutor):
     ) -> List[str]:
         """构建 Gemini CLI 命令参数
         
+        Gemini CLI headless 模式要求：
+        1. 查询作为位置参数（不使用 -p 标志）
+        2. 使用 --resume 恢复会话
+        3. 使用 --output-format json 获取结构化输出
+        
         Args:
             user_prompt: 用户提示
             additional_params: 额外参数（user_id, model, temperature 等）
@@ -115,10 +120,7 @@ class GeminiCLIExecutor(AICLIExecutor):
         """
         args = [self.get_command_name()]
         
-        # Gemini CLI 不支持 --cwd 参数，需要通过 subprocess 的 cwd 参数设置工作目录
-        # 或者使用 --include-directories 参数
-        
-        # 如果启用原生会话管理，添加会话参数
+        # 如果启用原生会话管理，添加会话恢复参数
         if self.use_native_session and additional_params:
             user_id = additional_params.get("user_id")
             if user_id:
@@ -126,8 +128,8 @@ class GeminiCLIExecutor(AICLIExecutor):
                 if session_id:
                     args.extend(["--resume", session_id])
         
-        # 添加用户提示（使用 -p 简写）
-        args.extend(["-p", user_prompt])
+        # 使用 JSON 输出格式以便解析
+        args.extend(["--output-format", "json"])
         
         # 添加额外参数
         if additional_params:
@@ -142,6 +144,9 @@ class GeminiCLIExecutor(AICLIExecutor):
                 # 其他参数
                 elif value is not None:
                     args.extend([f"--{key}", str(value)])
+        
+        # 查询作为位置参数（必须在最后）
+        args.append(user_prompt)
         
         return args
     
@@ -194,19 +199,31 @@ class GeminiCLIExecutor(AICLIExecutor):
                 f"stdout_length={len(result.stdout)}, stderr_length={len(result.stderr)}"
             )
             
-            # 检查是否需要更新会话 ID
-            # Gemini CLI 会在输出中包含会话 ID（如果使用了 --session）
-            if self.use_native_session and additional_params:
-                user_id = additional_params.get("user_id")
-                if user_id and result.returncode == 0:
-                    # 尝试从输出中提取会话 ID
-                    # 注意：这里假设 Gemini CLI 会在某处输出会话 ID
-                    # 实际实现可能需要根据 Gemini CLI 的输出格式调整
-                    self._try_extract_session_id(user_id, result.stdout)
+            # 解析 JSON 输出
+            response_text = result.stdout
+            if result.returncode == 0 and result.stdout.strip():
+                try:
+                    # Gemini CLI 返回 JSON 格式的输出
+                    output_json = json.loads(result.stdout)
+                    response_text = output_json.get("response", result.stdout)
+                    
+                    # 提取会话 ID（如果有）
+                    if self.use_native_session and additional_params:
+                        user_id = additional_params.get("user_id")
+                        if user_id:
+                            # 从 JSON 输出中提取会话 ID
+                            # 注意：需要根据实际输出格式调整
+                            session_id = output_json.get("session_id") or output_json.get("sessionId")
+                            if session_id:
+                                self.update_session_id(user_id, session_id)
+                except json.JSONDecodeError:
+                    # 如果不是 JSON 格式，使用原始输出
+                    logger.warning("Failed to parse Gemini CLI JSON output, using raw output")
+                    response_text = result.stdout
             
             return ExecutionResult(
                 success=result.returncode == 0,
-                stdout=result.stdout,
+                stdout=response_text,
                 stderr=result.stderr,
                 error_message=None if result.returncode == 0 else f"命令执行失败，返回码: {result.returncode}",
                 execution_time=execution_time
@@ -243,17 +260,6 @@ class GeminiCLIExecutor(AICLIExecutor):
                 execution_time=0
             )
 
-    
-    def _try_extract_session_id(self, user_id: str, output: str) -> None:
-        """尝试从 Gemini CLI 输出中提取会话 ID
-        
-        Args:
-            user_id: 用户 ID
-            output: Gemini CLI 输出
-        """
-        # TODO: 根据 Gemini CLI 的实际输出格式实现会话 ID 提取
-        # 这里是一个占位实现
-        pass
     
     def update_session_id(self, user_id: str, session_id: str) -> None:
         """更新用户的 Gemini CLI 会话 ID
