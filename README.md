@@ -353,7 +353,7 @@ python -c "import secrets; print(secrets.token_hex(32))"
 
 #### 详细文档
 
-完整的 Web 管理界面文档请参见 [WEB_ADMIN_README.md](docs/api/WEB_ADMIN_README.md)，包括：
+完整的 Web 管理界面文档请参见 [WEB_ADMIN_README.md](docs/guides/WEB_ADMIN_README.md)，包括：
 - 详细的安装和配置说明
 - 环境变量配置详解
 - 使用指南和操作说明
@@ -795,7 +795,7 @@ class CommandParser:
 - **用户指南**: [docs/guides/USER_GUIDE.md](docs/guides/USER_GUIDE.md) - 如何使用机器人
 - **配置指南**: [docs/guides/CONFIGURATION.md](docs/guides/CONFIGURATION.md) - 详细配置说明
 - **语言配置**: [docs/guides/LANGUAGE_CONFIGURATION.md](docs/guides/LANGUAGE_CONFIGURATION.md) - 语言设置说明
-- **Web 管理界面**: [docs/api/WEB_ADMIN_README.md](docs/api/WEB_ADMIN_README.md) - Web 管理界面完整文档
+- **Web 管理界面**: [docs/guides/WEB_ADMIN_README.md](docs/guides/WEB_ADMIN_README.md) - Web 管理界面完整文档
 - **部署指南**: [docs/deployment/DEPLOYMENT.md](docs/deployment/DEPLOYMENT.md) - Docker 和云端部署
 - **快速部署**: [docs/deployment/QUICKSTART.md](docs/deployment/QUICKSTART.md) - 5分钟快速部署
 - **文档目录**: [docs/README.md](docs/README.md) - 所有文档索引
@@ -1075,18 +1075,17 @@ python -c "from feishu_bot.session_manager import SessionManager; sm = SessionMa
 │   ├── guides/              # 使用指南
 │   │   ├── USER_GUIDE.md            # 用户指南
 │   │   ├── WEB_ADMIN_USER_GUIDE.md  # Web 管理界面用户指南
+│   │   ├── WEB_ADMIN_README.md      # Web 管理界面完整文档
 │   │   ├── CONFIGURATION.md         # 配置指南
 │   │   ├── DYNAMIC_CONFIG.md        # 动态配置说明
 │   │   ├── LANGUAGE_CONFIGURATION.md  # 语言配置说明
-│   │   └── SESSION_MANAGEMENT.md    # 会话管理说明
-│   ├── api/                 # API 文档
-│   │   └── WEB_ADMIN_README.md  # Web 管理界面 API
+│   │   ├── SESSION_MANAGEMENT.md    # 会话管理说明
+│   │   └── FRONTEND_BACKEND_INTEGRATION_TESTS.md  # 前后端集成测试
 │   ├── deployment/          # 部署文档
 │   │   ├── DEPLOYMENT.md        # 完整部署指南
 │   │   ├── QUICKSTART.md        # 快速部署指南
 │   │   └── GUNICORN_DEPLOYMENT.md  # Gunicorn 部署指南
-│   ├── examples/            # 示例文档
-│   └── FRONTEND_BACKEND_INTEGRATION_TESTS.md  # 前后端集成测试
+│   └── examples/            # 示例文档
 │
 ├── data/                    # 数据存储（不提交到Git）
 │   ├── sessions.json        # 会话数据
