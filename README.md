@@ -536,9 +536,35 @@ python scripts/verify_config.py
 
 #### 运行机器人
 
+有两种启动方式：
+
+**方式1：统一启动（推荐）- 同时启动机器人和 Web 管理界面**
+
+Linux/Mac:
+```bash
+# 开发模式
+./scripts/start_all.sh development
+
+# 生产模式
+./scripts/start_all.sh production
+```
+
+Windows:
+```bash
+# 开发模式
+scripts\start_all.bat development
+
+# 生产模式
+scripts\start_all.bat production
+```
+
+**方式2：单独启动机器人**
+
 ```bash
 python lark_bot.py
 ```
+
+注意：如果需要 Web 管理界面，需要在 `.env` 中设置 `ENABLE_WEB_ADMIN=true`
 
 ### 使用示例
 
