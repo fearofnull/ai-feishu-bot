@@ -272,7 +272,7 @@
 机器人: [临时使用 /tmp/test 目录和英文回复，不影响持久化配置]
 ```
 
-详细配置文档见 [动态配置系统](docs/DYNAMIC_CONFIG.md)。
+详细配置文档见 [动态配置系统](docs/guides/DYNAMIC_CONFIG.md)。
 
 #### 测试验证 / Test Verification
 
@@ -281,7 +281,7 @@
 - ✅ 15 个手动测试（100% 通过）
 - ✅ 配置优先级、持久化、验证等核心功能全部验证
 
-详细测试结果见 [动态配置系统文档](docs/DYNAMIC_CONFIG.md#测试验证) 和 [实现总结](IMPLEMENTATION_SUMMARY.md#测试覆盖)。
+详细测试结果见 [动态配置系统文档](docs/guides/DYNAMIC_CONFIG.md#测试验证) 和 [实现总结](IMPLEMENTATION_SUMMARY.md#测试覆盖)。
 
 ### Web 管理界面
 
@@ -353,7 +353,7 @@ python -c "import secrets; print(secrets.token_hex(32))"
 
 #### 详细文档
 
-完整的 Web 管理界面文档请参见 [WEB_ADMIN_README.md](WEB_ADMIN_README.md)，包括：
+完整的 Web 管理界面文档请参见 [WEB_ADMIN_README.md](docs/api/WEB_ADMIN_README.md)，包括：
 - 详细的安装和配置说明
 - 环境变量配置详解
 - 使用指南和操作说明
@@ -398,6 +398,7 @@ nano .env  # 或使用其他编辑器
 
 使用 Docker Compose（推荐）：
 ```bash
+cd deployment/docker
 docker-compose up -d
 ```
 
@@ -409,7 +410,7 @@ chmod +x scripts/deploy.sh
 
 或使用 Docker 命令：
 ```bash
-docker build -t feishu-ai-bot .
+docker build -f deployment/docker/Dockerfile -t feishu-ai-bot .
 docker run -d \
   --name feishu-ai-bot \
   --restart unless-stopped \
@@ -526,7 +527,7 @@ cp .env.example .env    # Linux/Mac
   - 设置后，AI会被要求使用指定语言回复
   - 留空则由AI根据用户输入自动判断使用什么语言
 
-详细配置说明见 [配置文档](docs/CONFIGURATION.md) 或 `.env.example` 文件。
+详细配置说明见 [配置文档](docs/guides/CONFIGURATION.md) 或 `.env.example` 文件。
 
 4. **验证配置**
 ```bash
@@ -591,7 +592,7 @@ python lark_bot.py
 @机器人 翻译这段文字
 ```
 
-详细使用方法见 [用户指南](docs/USER_GUIDE.md)
+详细使用方法见 [用户指南](docs/guides/USER_GUIDE.md)
 
 ## 测试
 
@@ -791,10 +792,10 @@ class CommandParser:
 
 ## 文档
 
-- **用户指南**: [docs/USER_GUIDE.md](docs/USER_GUIDE.md) - 如何使用机器人
-- **配置指南**: [docs/CONFIGURATION.md](docs/CONFIGURATION.md) - 详细配置说明
-- **语言配置**: [docs/LANGUAGE_CONFIGURATION.md](docs/LANGUAGE_CONFIGURATION.md) - 语言设置说明
-- **Web 管理界面**: [WEB_ADMIN_README.md](WEB_ADMIN_README.md) - Web 管理界面完整文档
+- **用户指南**: [docs/guides/USER_GUIDE.md](docs/guides/USER_GUIDE.md) - 如何使用机器人
+- **配置指南**: [docs/guides/CONFIGURATION.md](docs/guides/CONFIGURATION.md) - 详细配置说明
+- **语言配置**: [docs/guides/LANGUAGE_CONFIGURATION.md](docs/guides/LANGUAGE_CONFIGURATION.md) - 语言设置说明
+- **Web 管理界面**: [docs/api/WEB_ADMIN_README.md](docs/api/WEB_ADMIN_README.md) - Web 管理界面完整文档
 - **部署指南**: [docs/deployment/DEPLOYMENT.md](docs/deployment/DEPLOYMENT.md) - Docker 和云端部署
 - **快速部署**: [docs/deployment/QUICKSTART.md](docs/deployment/QUICKSTART.md) - 5分钟快速部署
 - **文档目录**: [docs/README.md](docs/README.md) - 所有文档索引
@@ -1012,13 +1013,13 @@ python -c "from feishu_bot.session_manager import SessionManager; sm = SessionMa
 .
 ├── lark_bot.py              # 主机器人程序
 ├── requirements.txt         # Python依赖
+├── gunicorn.conf.py         # Gunicorn 生产配置
+├── wsgi.py                  # WSGI 入口
 ├── README.md                # 项目说明
-├── STRUCTURE.md             # 项目结构详细说明
 ├── .env                     # 环境变量（不提交到Git）
 ├── .env.example             # 环境变量模板
 ├── .gitignore               # Git忽略文件配置
-├── Dockerfile               # Docker镜像构建文件
-├── docker-compose.yml       # Docker Compose配置
+├── .dockerignore            # Docker忽略文件配置
 │
 ├── feishu_bot/              # 机器人核心代码
 │   ├── config.py            # 配置类
@@ -1028,40 +1029,74 @@ python -c "from feishu_bot.session_manager import SessionManager; sm = SessionMa
 │   ├── smart_router.py      # 智能路由器
 │   ├── session_manager.py   # 会话管理器
 │   ├── executor_registry.py # 执行器注册表
-│   ├── *_api_executor.py    # API执行器（Claude、Gemini、OpenAI）
-│   ├── *_cli_executor.py    # CLI执行器（Claude Code、Gemini）
-│   ├── cache.py             # 缓存管理
-│   └── ...                  # 其他模块
+│   ├── executors/           # AI 执行器
+│   │   ├── *_api_executor.py    # API执行器（Claude、Gemini、OpenAI）
+│   │   └── *_cli_executor.py    # CLI执行器（Claude Code、Gemini）
+│   ├── web_admin/           # Web 管理界面
+│   └── utils/               # 工具类
+│
+├── frontend/                # 前端项目（独立）
+│   ├── src/                 # 前端源代码
+│   ├── public/              # 静态资源
+│   ├── dist/                # 构建产物
+│   └── package.json         # 前端依赖
 │
 ├── tests/                   # 单元测试和属性测试
 │   ├── test_*.py            # 单元测试文件
 │   ├── test_*_properties.py # 属性测试文件
 │   └── ...
 │
-├── scripts/                 # 脚本工具
+├── scripts/                 # 工具脚本
 │   ├── deploy.sh            # 部署管理脚本
 │   ├── verify_config.py     # 配置验证脚本
+│   ├── set_file_permissions.py  # 文件权限设置
+│   ├── start_web_admin.sh   # Web 管理界面启动
 │   ├── test/                # 测试脚本
-│   │   ├── test_bot_message.py      # 自动化消息测试
+│   │   ├── run_integration_test.py  # 集成测试
 │   │   ├── send_test_message.py     # 发送测试消息
-│   │   ├── check_chat_history.py    # 查看聊天历史
-│   │   └── ...                      # 其他测试脚本
+│   │   ├── get_chat_id.py           # 获取聊天ID
+│   │   └── README.md                # 测试脚本说明
 │   └── README.md            # 脚本说明文档
 │
-├── docs/                    # 项目文档
-│   ├── README.md                    # 文档目录
-│   ├── USER_GUIDE.md                # 用户指南
-│   ├── CONFIGURATION.md             # 配置指南
-│   ├── LANGUAGE_CONFIGURATION.md    # 语言配置说明
-│   ├── INTEGRATION_TEST_RESULTS.md  # 测试结果
-│   └── deployment/                  # 部署文档
-│       ├── DEPLOYMENT.md            # 完整部署指南
-│       └── QUICKSTART.md            # 快速部署指南
+├── deployment/              # 部署配置文件
+│   ├── docker/              # Docker 相关
+│   │   ├── Dockerfile       # Docker 镜像构建
+│   │   ├── docker-compose.yml  # Docker Compose 配置
+│   │   └── README.md        # Docker 部署说明
+│   ├── nginx/               # Nginx 配置
+│   │   └── nginx.conf.example  # Nginx 配置示例
+│   ├── systemd/             # Systemd 服务配置
+│   │   └── feishu-bot-web-admin.service  # Systemd 服务文件
+│   └── README.md            # 部署说明文档
 │
-└── data/                    # 数据存储（不提交到Git）
-    ├── sessions.json        # 会话数据
-    ├── executor_sessions.json  # 执行器会话映射
-    └── archived_sessions/   # 归档会话
+├── docs/                    # 项目文档
+│   ├── README.md            # 文档目录
+│   ├── STRUCTURE.md         # 项目结构详细说明
+│   ├── guides/              # 使用指南
+│   │   ├── USER_GUIDE.md            # 用户指南
+│   │   ├── WEB_ADMIN_USER_GUIDE.md  # Web 管理界面用户指南
+│   │   ├── CONFIGURATION.md         # 配置指南
+│   │   ├── DYNAMIC_CONFIG.md        # 动态配置说明
+│   │   ├── LANGUAGE_CONFIGURATION.md  # 语言配置说明
+│   │   └── SESSION_MANAGEMENT.md    # 会话管理说明
+│   ├── api/                 # API 文档
+│   │   └── WEB_ADMIN_README.md  # Web 管理界面 API
+│   ├── deployment/          # 部署文档
+│   │   ├── DEPLOYMENT.md        # 完整部署指南
+│   │   ├── QUICKSTART.md        # 快速部署指南
+│   │   └── GUNICORN_DEPLOYMENT.md  # Gunicorn 部署指南
+│   ├── examples/            # 示例文档
+│   └── FRONTEND_BACKEND_INTEGRATION_TESTS.md  # 前后端集成测试
+│
+├── data/                    # 数据存储（不提交到Git）
+│   ├── sessions.json        # 会话数据
+│   ├── session_configs.json # 会话配置
+│   ├── executor_sessions.json  # 执行器会话映射
+│   └── archived_sessions/   # 归档会话
+│
+└── logs/                    # 日志文件（不提交到Git）
+    ├── web_admin.log        # Web 管理界面日志
+    └── web_admin_access.log # Web 管理界面访问日志
 ```
 
 **注意**：

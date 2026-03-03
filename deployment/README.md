@@ -2,9 +2,24 @@
 
 本目录包含生产环境部署所需的配置文件。
 
+## 目录结构
+
+```
+deployment/
+├── docker/              # Docker 相关配置
+│   ├── Dockerfile
+│   ├── docker-compose.yml
+│   └── README.md
+├── nginx/               # Nginx 配置
+│   └── nginx.conf.example
+├── systemd/             # Systemd 服务配置
+│   └── feishu-bot-web-admin.service
+└── README.md            # 本文件
+```
+
 ## 文件说明
 
-### nginx.conf.example
+### nginx/nginx.conf.example
 
 Nginx 反向代理配置示例文件，用于在生产环境中部署 Web 管理界面。
 
@@ -22,7 +37,7 @@ Nginx 反向代理配置示例文件，用于在生产环境中部署 Web 管理
 
 1. 复制配置文件到 Nginx 配置目录：
 ```bash
-sudo cp deployment/nginx.conf.example /etc/nginx/sites-available/feishu-bot-web-admin
+sudo cp deployment/nginx/nginx.conf.example /etc/nginx/sites-available/feishu-bot-web-admin
 ```
 
 2. 根据实际部署环境修改配置文件：
@@ -72,7 +87,7 @@ sudo certbot renew --dry-run
 - **速率限制**：取消注释 `limit_req_zone` 部分以启用 API 速率限制
 - **Unix Socket**：修改 upstream 配置使用 Unix socket 以获得更好的性能
 
-### feishu-bot-web-admin.service
+### systemd/feishu-bot-web-admin.service
 
 Systemd 服务单元文件，用于在 Linux 系统上管理 Web 管理界面服务。
 
@@ -80,7 +95,7 @@ Systemd 服务单元文件，用于在 Linux 系统上管理 Web 管理界面服
 
 1. 复制服务文件到 systemd 目录：
 ```bash
-sudo cp deployment/feishu-bot-web-admin.service /etc/systemd/system/
+sudo cp deployment/systemd/feishu-bot-web-admin.service /etc/systemd/system/
 ```
 
 2. 根据实际部署路径修改服务文件中的路径：
