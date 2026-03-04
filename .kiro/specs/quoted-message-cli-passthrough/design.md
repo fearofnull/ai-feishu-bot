@@ -61,27 +61,30 @@ All inputs that do NOT involve quoting card messages to CLI executors should be 
 
 Based on the bug description and code analysis, the root cause has been identified:
 
-**CONFIRMED ROOT CAUSE: Multi-line Message Format in CLI Headless Mode**
+**CONFIRMED ROOT CAUSE: Card Content Extraction Failure**
 
-The `combine_messages()` method in `message_handler.py` was using newline characters (`\n\n`) to separate the quoted message and current message:
+The user's production log shows: `可用语言：【卡片消息】 >>> 当前消息：...`
 
-```python
-combined = f"引用消息：{quoted}\n\n当前消息：{current}"
-```
+This reveals that the quoted card content is being extracted as `【卡片消息】` (the placeholder text) instead of the actual card content. The problem is NOT the separator format (the `>>>` separator is working correctly), but rather the `extract_card_content()` method in `message_handler.py` is failing to extract content from the quoted card message structure.
 
-However, CLI executors (Gemini CLI, Claude CLI) running in headless mode do NOT support multi-line input. When the combined message with newlines is passed to the CLI command, the newlines cause the message to be truncated or improperly parsed, resulting in only the current message being passed to the CLI executor.
+**Analysis:**
+
+1. The `extract_card_content()` method returns `"[卡片消息]"` when `content_parts` is empty (line 195)
+2. This means the card structure being received doesn't match any of the extraction patterns in `_extract_element_content()`
+3. The method has patterns for: text, markdown, div, action, button, url_preview, column_set, field, hr elements
+4. But the actual card structure being sent by Feishu may use different field names or nesting patterns
 
 **The Fix:**
 
-Change the message format to use a single-line separator instead of newlines:
+1. Add detailed logging to capture the actual card JSON structure when extraction fails (already added at line 401-402)
+2. Restart the bot to apply the logging
+3. Reproduce the issue to capture the actual card structure in logs
+4. Update `_extract_element_content()` to handle the actual card format being used
+5. The separator fix (using `>>>`) is correct and should be kept
 
-```python
-combined = f"引用消息：{quoted} >>> 当前消息：{current}"
-```
+**Previous Hypothesis (Partially Correct):**
 
-The `>>>` separator is CLI-friendly (not interpreted as a shell operator), visually clear, and avoids encoding issues that might occur with special Unicode characters like `【】`.
-
-This is consistent with the fix previously applied to `_prepend_language_instruction()` method, which also uses single-line format to avoid CLI headless mode issues.
+The multi-line format issue was real and has been fixed by changing to single-line format with `>>>` separator. However, this fix alone doesn't solve the problem because the card content isn't being extracted in the first place.
 
 **Previous Hypotheses (Incorrect):**
 

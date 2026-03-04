@@ -155,7 +155,10 @@ class MessageHandler:
             if "title" in card:
                 title = card["title"]
                 if isinstance(title, str) and title:
-                    content_parts.append(title)
+                    # 清理换行符和多余空白，转换为单行
+                    title = re.sub(r'\s+', ' ', title).strip()
+                    if title:  # 再次检查清理后是否为空
+                        content_parts.append(title)
             
             # 提取 header 部分（飞书官方文档的发送格式）
             if "header" in card:
@@ -163,7 +166,10 @@ class MessageHandler:
                 if "title" in header and "content" in header["title"]:
                     title = header["title"]["content"]
                     if title:
-                        content_parts.append(title)
+                        # 清理换行符和多余空白，转换为单行
+                        title = re.sub(r'\s+', ' ', title).strip()
+                        if title:  # 再次检查清理后是否为空
+                            content_parts.append(title)
             
             # 递归处理 elements 数组
             if "elements" in card:
@@ -181,12 +187,13 @@ class MessageHandler:
             
             # 格式化输出
             if content_parts:
-                # 使用换行符分隔不同部分
-                content = "\n".join(content_parts)
+                # 使用单行格式，避免 CLI headless 模式的多行问题
+                # 使用 | 分隔不同部分，保持单行
+                content = " | ".join(content_parts)
                 # 限制总长度（最大2000字符）
                 if len(content) > 2000:
                     content = content[:2000] + "..."
-                return f"[卡片消息]\n{content}"
+                return f"[卡片消息] {content}"
             else:
                 # 如果未提取到内容，返回降级处理
                 return "[卡片消息]"
@@ -213,19 +220,28 @@ class MessageHandler:
             if "text" in element:
                 text = element["text"]
                 if text:
-                    content_parts.append(text)
+                    # 清理换行符和多余空白，转换为单行
+                    text = re.sub(r'\s+', ' ', text).strip()
+                    if text:  # 再次检查清理后是否为空
+                        content_parts.append(text)
             # 飞书官方文档的发送格式：在 "content" 字段
             elif "content" in element:
                 content = element["content"]
                 if content:
-                    content_parts.append(content)
+                    # 清理换行符和多余空白，转换为单行
+                    content = re.sub(r'\s+', ' ', content).strip()
+                    if content:  # 再次检查清理后是否为空
+                        content_parts.append(content)
         
         # 处理 markdown 元素
         elif tag == "markdown":
             if "content" in element:
                 content = element["content"]
                 if content:
-                    content_parts.append(content)
+                    # 清理换行符和多余空白，转换为单行
+                    content = re.sub(r'\s+', ' ', content).strip()
+                    if content:  # 再次检查清理后是否为空
+                        content_parts.append(content)
         
         # 处理 div 元素
         elif tag == "div":
@@ -235,7 +251,10 @@ class MessageHandler:
                 if isinstance(text_obj, dict) and "content" in text_obj:
                     content = text_obj["content"]
                     if content:
-                        content_parts.append(content)
+                        # 清理换行符和多余空白，转换为单行
+                        content = re.sub(r'\s+', ' ', content).strip()
+                        if content:  # 再次检查清理后是否为空
+                            content_parts.append(content)
             
             # 递归处理 fields
             if "fields" in element:
@@ -247,7 +266,10 @@ class MessageHandler:
                             if isinstance(text_obj, dict) and "content" in text_obj:
                                 content = text_obj["content"]
                                 if content:
-                                    content_parts.append(content)
+                                    # 清理换行符和多余空白，转换为单行
+                                    content = re.sub(r'\s+', ' ', content).strip()
+                                    if content:  # 再次检查清理后是否为空
+                                        content_parts.append(content)
             
             # 递归处理嵌套的 elements
             if "elements" in element:
@@ -273,22 +295,34 @@ class MessageHandler:
                 text = element["text"]
                 # text可能是字符串或对象
                 if isinstance(text, str) and text:
-                    content_parts.append(text)
+                    # 清理换行符和多余空白，转换为单行
+                    text = re.sub(r'\s+', ' ', text).strip()
+                    if text:  # 再次检查清理后是否为空
+                        content_parts.append(text)
                 elif isinstance(text, dict) and "content" in text:
                     content = text["content"]
                     if content:
-                        content_parts.append(content)
+                        # 清理换行符和多余空白，转换为单行
+                        content = re.sub(r'\s+', ' ', content).strip()
+                        if content:  # 再次检查清理后是否为空
+                            content_parts.append(content)
         
         # 处理 url_preview 元素
         elif tag == "url_preview":
             if "title" in element:
                 title = element["title"]
                 if title:
-                    content_parts.append(title)
+                    # 清理换行符和多余空白，转换为单行
+                    title = re.sub(r'\s+', ' ', title).strip()
+                    if title:  # 再次检查清理后是否为空
+                        content_parts.append(title)
             if "description" in element:
                 description = element["description"]
                 if description:
-                    content_parts.append(description)
+                    # 清理换行符和多余空白，转换为单行
+                    description = re.sub(r'\s+', ' ', description).strip()
+                    if description:  # 再次检查清理后是否为空
+                        content_parts.append(description)
         
         # 处理 column_set 元素
         elif tag == "column_set":
@@ -309,7 +343,10 @@ class MessageHandler:
                 if isinstance(text_obj, dict) and "content" in text_obj:
                     content = text_obj["content"]
                     if content:
-                        content_parts.append(content)
+                        # 清理换行符和多余空白，转换为单行
+                        content = re.sub(r'\s+', ' ', content).strip()
+                        if content:  # 再次检查清理后是否为空
+                            content_parts.append(content)
         
         # 处理 hr 元素（分隔线，跳过）
         elif tag == "hr":
@@ -395,6 +432,11 @@ class MessageHandler:
                     content = json.loads(content_str)
                     logger.debug(f"卡片消息原始内容: {json.dumps(content, ensure_ascii=False)[:500]}...")
                     result = self.extract_card_content(content)
+                    
+                    # 添加详细调试：检查提取结果
+                    if result == "[卡片消息]" or result == "[卡片消息]\n":
+                        logger.warning(f"卡片内容提取失败，仅返回占位符。卡片结构: {json.dumps(content, ensure_ascii=False)[:1000]}")
+                    
                     logger.info(f"成功提取引用的卡片消息内容: {result[:100]}...")
                     return result
                     
