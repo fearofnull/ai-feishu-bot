@@ -308,6 +308,7 @@ class FeishuBot:
                 message=final_message,
                 explicit=parsed_command.explicit
             )
+            logger.info(f"[DEBUG] parsed_command.message after update: {parsed_command.message[:300]}")
             logger.info(f"Final message to be sent to executor (first 200 chars): {final_message[:200]}")
             
             # 5. 确定会话 ID（私聊用 user_id，群聊用 chat_id）
@@ -390,6 +391,7 @@ class FeishuBot:
                 message_with_language = self._prepend_language_instruction(
                     parsed_command.message, effective_config["response_language"]
                 )
+                logger.info(f"[DEBUG] message_with_language after prepend: {message_with_language[:300]}")
                 
                 # 执行 AI
                 if executor.get_provider_name().endswith("-api"):
@@ -402,6 +404,8 @@ class FeishuBot:
                 else:
                     # CLI 层：使用原生会话，传递有效的项目目录
                     logger.info(f"[CLI] Executing with message: {message_with_language[:200]}...")
+                    logger.info(f"[DEBUG] Full message_with_language length: {len(message_with_language)}")
+                    logger.debug(f"[CLI] Message being passed to executor: {parsed_command.message[:200]}...")
                     # 临时更新 CLI 执行器的目标目录
                     if hasattr(executor, 'target_dir') and effective_config["target_project_dir"]:
                         original_target_dir = executor.target_dir
