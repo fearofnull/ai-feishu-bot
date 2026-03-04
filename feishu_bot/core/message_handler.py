@@ -420,9 +420,13 @@ class MessageHandler:
             
         Returns:
             组合后的消息字符串
+        
+        Note:
+            使用单行格式，避免 CLI headless 模式的多行问题
         """
         if quoted:
-            combined = f"引用消息：{quoted}\n\n当前消息：{current}"
+            # 使用单行格式，避免 CLI headless 模式的多行问题
+            combined = f"引用消息：{quoted} | 当前消息：{current}"
             logger.debug(f"组合消息: 引用消息长度={len(quoted)}, 当前消息长度={len(current)}")
             return combined
         else:

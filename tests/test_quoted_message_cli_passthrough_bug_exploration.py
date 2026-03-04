@@ -49,8 +49,8 @@ class TestQuotedMessageCLIPassthroughBugExploration:
         current_message_text = "explain this"
         parent_id = "parent_msg_123"
         
-        # 期望的组合消息
-        expected_combined_message = f"引用消息：[卡片消息]\n{quoted_card_content}\n\n当前消息：{current_message_text}"
+        # 期望的组合消息（使用单行格式，避免 CLI headless 模式的多行问题）
+        expected_combined_message = f"引用消息：[卡片消息]\n{quoted_card_content} | 当前消息：{current_message_text}"
         
         # 创建模拟配置
         mock_config = Mock(spec=BotConfig)
@@ -73,6 +73,7 @@ class TestQuotedMessageCLIPassthroughBugExploration:
         mock_config.openai_api_key = None
         mock_config.openai_base_url = None
         mock_config.openai_model = None
+        mock_config.response_language = None  # 不添加语言指令
         
         # 捕获传递给CLI执行器的参数
         captured_user_prompt = None
@@ -92,7 +93,7 @@ class TestQuotedMessageCLIPassthroughBugExploration:
         
         with patch('feishu_bot.feishu_bot.LarkClient') as mock_lark_client_class, \
              patch('feishu_bot.feishu_bot.WebSocketClient'), \
-             patch('feishu_bot.gemini_cli_executor.GeminiCLIExecutor') as mock_gemini_cli_class:
+             patch('feishu_bot.feishu_bot.GeminiCLIExecutor') as mock_gemini_cli_class:
             
             # 设置飞书客户端mock
             mock_lark_client = Mock()
@@ -115,12 +116,13 @@ class TestQuotedMessageCLIPassthroughBugExploration:
             })
             mock_lark_client.im.v1.message.get.return_value = mock_quoted_response
             
-            # 设置CLI执行器mock
+            # 设置CLI执行器mock - 在创建bot之前
             mock_gemini_cli = Mock()
             mock_gemini_cli.execute.side_effect = mock_cli_execute
             mock_gemini_cli.get_provider_name.return_value = "gemini-cli"
             mock_gemini_cli.verify_directory.return_value = True
             mock_gemini_cli._verify_directory_exists.return_value = True
+            mock_gemini_cli.is_available.return_value = True  # 确保执行器可用
             mock_gemini_cli_class.return_value = mock_gemini_cli
             
             # 创建机器人实例
