@@ -195,8 +195,8 @@ sudo apt-get install -y git
 
 ```bash
 # 克隆代码
-git clone https://github.com/your-username/lark-bot.git
-cd lark-bot
+git clone https://github.com/fearofnull/feishu-ai-bot.git
+cd feishu-ai-bot
 
 # 创建虚拟环境
 python3.11 -m venv venv
