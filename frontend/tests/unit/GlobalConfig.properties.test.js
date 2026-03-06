@@ -207,8 +207,7 @@ describe('GlobalConfig.vue - Property-Based Tests', () => {
         target_project_dir: '/test/path',
         response_language: '中文',
         default_provider: 'claude',
-        default_layer: 'api',
-        default_cli_provider: 'gemini'
+                default_cli_provider: 'gemini'
       }
       
       wrapper = await createWrapper(testConfig)
@@ -229,8 +228,7 @@ describe('GlobalConfig.vue - Property-Based Tests', () => {
         target_project_dir: '/test/path',
         response_language: '中文',
         default_provider: 'claude',
-        default_layer: 'api',
-        default_cli_provider: null
+                default_cli_provider: null
       }
       
       wrapper = await createWrapper(testConfig)
@@ -294,8 +292,7 @@ describe('GlobalConfig.vue - Property-Based Tests', () => {
         target_project_dir: '/test/path',
         response_language: '中文',
         default_provider: 'claude',
-        default_layer: 'api',
-        default_cli_provider: 'gemini'
+                default_cli_provider: 'gemini'
       }
       
       wrapper = await createWrapper(testConfig)

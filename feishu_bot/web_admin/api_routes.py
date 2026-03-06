@@ -15,7 +15,6 @@ from feishu_bot.web_admin.logging_config import log_api_error, log_config_change
 
 logger = logging.getLogger(__name__)
 
-
 def register_api_routes(
     app: Flask, 
     config_manager: ConfigManager, 
@@ -151,6 +150,38 @@ def register_api_routes(
     
     # ==================== Configuration Routes ====================
     
+    @app.route('/api/configs/options', methods=['GET'])
+    @auth_manager.require_auth
+    def get_config_options():
+        """Get available configuration options
+        
+        Response:
+            {
+                "success": true,
+                "data": {
+                    "layers": ["api", "cli"],
+                    "cli_providers": ["claude", "gemini", "qwen"]
+                }
+            }
+        """
+        try:
+            return jsonify({
+                'success': True,
+                'data': {
+                    'layers': config_manager.VALID_LAYERS,
+                    'cli_providers': config_manager.VALID_CLI_PROVIDERS
+                }
+            }), 200
+        except Exception as e:
+            logger.error(f"Error getting config options: {e}", exc_info=True)
+            return jsonify({
+                'success': False,
+                'error': {
+                    'code': 'INTERNAL_ERROR',
+                    'message': 'Failed to retrieve configuration options'
+                }
+            }), 500
+    
     def _get_configs():
         """Get all session configurations
         
@@ -183,8 +214,7 @@ def register_api_routes(
                     'config': {
                         'target_project_dir': config.target_project_dir,
                         'response_language': config.response_language,
-                        'default_provider': config.default_provider,
-                        'default_layer': config.default_layer,
+
                         'default_cli_provider': config.default_cli_provider
                     },
                     'metadata': {
@@ -288,8 +318,7 @@ def register_api_routes(
                 'config': {
                     'target_project_dir': config.target_project_dir,
                     'response_language': config.response_language,
-                    'default_provider': config.default_provider,
-                    'default_layer': config.default_layer,
+
                     'default_cli_provider': config.default_cli_provider
                 },
                 'metadata': {
@@ -378,8 +407,7 @@ def register_api_routes(
                 global_config = {
                     'target_project_dir': config_manager.global_config.target_directory or "",
                     'response_language': config_manager.global_config.response_language,
-                    'default_provider': config_manager.global_config.default_provider,
-                    'default_layer': config_manager.global_config.default_layer,
+
                     'default_cli_provider': config_manager.global_config.default_cli_provider
                 }
             else:
@@ -387,8 +415,7 @@ def register_api_routes(
                 global_config = {
                     'target_project_dir': "",
                     'response_language': None,
-                    'default_provider': "claude",
-                    'default_layer': "api",
+
                     'default_cli_provider': None
                 }
             
@@ -418,8 +445,6 @@ def register_api_routes(
             {
                 "target_project_dir": "/path/to/project",
                 "response_language": "zh-CN",
-                "default_provider": "openai",
-                "default_layer": "api",
                 "default_cli_provider": "gemini"
             }
         
@@ -439,18 +464,6 @@ def register_api_routes(
             data = request.get_json()
             
             # Validate provider values
-            if 'default_provider' in data:
-                provider = data['default_provider'] if data['default_provider'] else None
-                if provider and provider not in config_manager.VALID_PROVIDERS:
-                    return jsonify({
-                        'success': False,
-                        'error': {
-                            'code': 'INVALID_PROVIDER',
-                            'message': f'Invalid provider. Must be one of: {config_manager.VALID_PROVIDERS}',
-                            'field': 'default_provider'
-                        }
-                    }), 400
-            
             if 'default_cli_provider' in data:
                 cli_provider = data['default_cli_provider'] if data['default_cli_provider'] else None
                 if cli_provider and cli_provider not in config_manager.VALID_PROVIDERS:
@@ -464,20 +477,7 @@ def register_api_routes(
                     }), 400
             
             # Validate layer values
-            if 'default_layer' in data:
-                layer = data['default_layer'] if data['default_layer'] else None
-                if layer and layer not in config_manager.VALID_LAYERS:
-                    return jsonify({
-                        'success': False,
-                        'error': {
-                            'code': 'INVALID_LAYER',
-                            'message': f'Invalid layer. Must be one of: {config_manager.VALID_LAYERS}',
-                            'field': 'default_layer'
-                        }
-                    }), 400
             
-            # Read current .env file
-            env_path = Path('.env')
             if not env_path.exists():
                 return jsonify({
                     'success': False,
@@ -516,14 +516,6 @@ def register_api_routes(
                         value = data['response_language'] or ''
                         updated_lines.append(f'{key}={value}\n')
                         updated_keys.add('response_language')
-                    elif key == 'DEFAULT_PROVIDER' and 'default_provider' in data:
-                        value = data['default_provider'] or ''
-                        updated_lines.append(f'{key}={value}\n')
-                        updated_keys.add('default_provider')
-                    elif key == 'DEFAULT_LAYER' and 'default_layer' in data:
-                        value = data['default_layer'] or ''
-                        updated_lines.append(f'{key}={value}\n')
-                        updated_keys.add('default_layer')
                     elif key == 'DEFAULT_CLI_PROVIDER' and 'default_cli_provider' in data:
                         value = data['default_cli_provider'] or ''
                         updated_lines.append(f'{key}={value}\n')
@@ -543,95 +535,7 @@ def register_api_routes(
                     config_manager.global_config.target_directory = data['target_project_dir'] or None
                 if 'response_language' in data:
                     config_manager.global_config.response_language = data['response_language'] or None
-                if 'default_provider' in data:
-                    config_manager.global_config.default_provider = data['default_provider'] or None
-                if 'default_layer' in data:
-                    config_manager.global_config.default_layer = data['default_layer'] or None
-                if 'default_cli_provider' in data:
-                    config_manager.global_config.default_cli_provider = data['default_cli_provider'] or None
-            
-            # Clear effective config cache
-            config_manager.clear_cache()
-            
-            # Log configuration change
-            log_config_change(
-                session_id='global',
-                action='update',
-                user='admin',
-                changes=data
-            )
-            
-            # Return updated configuration
-            updated_config = {
-                'target_project_dir': config_manager.global_config.target_directory or "" if config_manager.global_config else "",
-                'response_language': config_manager.global_config.response_language if config_manager.global_config else None,
-                'default_provider': config_manager.global_config.default_provider if config_manager.global_config else None,
-                'default_layer': config_manager.global_config.default_layer if config_manager.global_config else None,
-                'default_cli_provider': config_manager.global_config.default_cli_provider if config_manager.global_config else None
-            }
-            
-            logger.info("Global configuration updated successfully")
-            return jsonify({
-                'success': True,
-                'data': {
-                    'global_config': updated_config
-                },
-                'message': 'Global configuration updated successfully'
-            }), 200
-            
-        except Exception as e:
-            logger.error(f"Error updating global config: {e}", exc_info=True)
-            return jsonify({
-                'success': False,
-                'error': {
-                    'code': 'INTERNAL_ERROR',
-                    'message': 'Failed to update global configuration'
-                }
-            }), 500
-    
-    @app.route('/api/configs/<session_id>', methods=['PUT'])
-    @auth_manager.require_auth
-    def update_config(session_id: str):
-        """Update session configuration
-        
-        Request body:
-            {
-                "session_type": "user",
-                "target_project_dir": "/path/to/project",
-                "response_language": "中文",
-                "default_provider": "claude",
-                "default_layer": "api",
-                "default_cli_provider": "claude"
-            }
-        
-        Response:
-            {
-                "success": true,
-                "data": {
-                    "session_id": "ou_xxx",
-                    "config": {...},
-                    "metadata": {...}
-                },
-                "message": "Configuration updated successfully"
-            }
-        """
-        try:
-            data = request.get_json()
-            
-            # Validate provider values
-            valid_providers = ['claude', 'gemini', 'openai', None, '']
-            if 'default_provider' in data:
-                provider = data['default_provider'] if data['default_provider'] else None
-                if provider and provider not in config_manager.VALID_PROVIDERS:
-                    return jsonify({
-                        'success': False,
-                        'error': {
-                            'code': 'INVALID_PROVIDER',
-                            'message': f'Invalid provider. Must be one of: {config_manager.VALID_PROVIDERS}',
-                            'field': 'default_provider'
-                        }
-                    }), 400
-            
+                
             if 'default_cli_provider' in data:
                 cli_provider = data['default_cli_provider'] if data['default_cli_provider'] else None
                 if cli_provider and cli_provider not in config_manager.VALID_PROVIDERS:
@@ -645,21 +549,6 @@ def register_api_routes(
                     }), 400
             
             # Validate layer values
-            if 'default_layer' in data:
-                layer = data['default_layer'] if data['default_layer'] else None
-                if layer and layer not in config_manager.VALID_LAYERS:
-                    return jsonify({
-                        'success': False,
-                        'error': {
-                            'code': 'INVALID_LAYER',
-                            'message': f'Invalid layer. Must be one of: {config_manager.VALID_LAYERS}',
-                            'field': 'default_layer'
-                        }
-                    }), 400
-            
-            # Get or create session config
-            session_type = data.get('session_type', 'user')
-            user_id = 'admin'  # Web admin user
             
             if session_id not in config_manager.configs:
                 from feishu_bot.models import SessionConfig
@@ -668,8 +557,6 @@ def register_api_routes(
                     session_type=session_type,
                     target_project_dir=None,
                     response_language=None,
-                    default_provider=None,
-                    default_layer=None,
                     default_cli_provider=None,
                     created_by=user_id,
                     created_at=config_manager._get_timestamp(),
@@ -685,10 +572,7 @@ def register_api_routes(
                 config.target_project_dir = data['target_project_dir'] if data['target_project_dir'] else None
             if 'response_language' in data:
                 config.response_language = data['response_language'] if data['response_language'] else None
-            if 'default_provider' in data:
-                config.default_provider = data['default_provider'] if data['default_provider'] else None
-            if 'default_layer' in data:
-                config.default_layer = data['default_layer'] if data['default_layer'] else None
+            
             if 'default_cli_provider' in data:
                 config.default_cli_provider = data['default_cli_provider'] if data['default_cli_provider'] else None
             
@@ -706,10 +590,7 @@ def register_api_routes(
                 changes['target_project_dir'] = data['target_project_dir']
             if 'response_language' in data:
                 changes['response_language'] = data['response_language']
-            if 'default_provider' in data:
-                changes['default_provider'] = data['default_provider']
-            if 'default_layer' in data:
-                changes['default_layer'] = data['default_layer']
+            
             if 'default_cli_provider' in data:
                 changes['default_cli_provider'] = data['default_cli_provider']
             
@@ -727,8 +608,7 @@ def register_api_routes(
                 'config': {
                     'target_project_dir': config.target_project_dir,
                     'response_language': config.response_language,
-                    'default_provider': config.default_provider,
-                    'default_layer': config.default_layer,
+
                     'default_cli_provider': config.default_cli_provider
                 },
                 'metadata': {
@@ -829,8 +709,7 @@ def register_api_routes(
                     'config': {
                         'target_project_dir': config.target_project_dir,
                         'response_language': config.response_language,
-                        'default_provider': config.default_provider,
-                        'default_layer': config.default_layer,
+
                         'default_cli_provider': config.default_cli_provider
                     },
                     'metadata': {
@@ -974,7 +853,7 @@ def register_api_routes(
             # Validate each configuration
             required_fields = ['session_id', 'session_type', 'config', 'metadata']
             required_config_fields = ['target_project_dir', 'response_language', 
-                                     'default_provider', 'default_layer', 'default_cli_provider']
+                                     'default_cli_provider']
             required_metadata_fields = ['created_by', 'created_at', 'updated_by', 
                                        'updated_at', 'update_count']
             
@@ -1015,16 +894,6 @@ def register_api_routes(
                     }), 400
                 
                 # Validate provider values
-                provider = config_obj.get('default_provider')
-                if provider and provider not in config_manager.VALID_PROVIDERS:
-                    return jsonify({
-                        'success': False,
-                        'error': {
-                            'code': 'INVALID_PROVIDER',
-                            'message': f'Configuration at index {idx} has invalid provider: {provider}'
-                        }
-                    }), 400
-                
                 cli_provider = config_obj.get('default_cli_provider')
                 if cli_provider and cli_provider not in config_manager.VALID_PROVIDERS:
                     return jsonify({
@@ -1036,7 +905,7 @@ def register_api_routes(
                     }), 400
                 
                 # Validate layer values
-                layer = config_obj.get('default_layer')
+                layer = config_obj.get()
                 if layer and layer not in config_manager.VALID_LAYERS:
                     return jsonify({
                         'success': False,
@@ -1073,8 +942,6 @@ def register_api_routes(
                         session_type=session_type,
                         target_project_dir=config_obj.get('target_project_dir'),
                         response_language=config_obj.get('response_language'),
-                        default_provider=config_obj.get('default_provider'),
-                        default_layer=config_obj.get('default_layer'),
                         default_cli_provider=config_obj.get('default_cli_provider'),
                         created_by=metadata_obj.get('created_by'),
                         created_at=metadata_obj.get('created_at'),

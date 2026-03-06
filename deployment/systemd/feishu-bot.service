@@ -1,19 +1,17 @@
 [Unit]
-Description=Feishu Bot Web Admin Interface
+Description=Feishu Bot Service (Bot + Web Admin Interface)
 After=network.target
 
 [Service]
-Type=notify
+Type=simple
 User=www-data
 Group=www-data
 WorkingDirectory=/opt/feishu-bot
 Environment="PATH=/opt/feishu-bot/venv/bin"
 EnvironmentFile=/opt/feishu-bot/.env
 
-# Gunicorn command
-ExecStart=/opt/feishu-bot/venv/bin/gunicorn \
-    -c /opt/feishu-bot/gunicorn.conf.py \
-    wsgi:app
+# Start the bot service (includes both bot and web admin)
+ExecStart=/opt/feishu-bot/venv/bin/python lark_bot.py
 
 # Restart policy
 Restart=always

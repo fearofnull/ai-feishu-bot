@@ -1,31 +1,43 @@
 version: '3.8'
 
 services:
-  feishu-bot-web-admin:
+  feishu-bot:
     build:
-      context: .
-      dockerfile: Dockerfile
-    container_name: feishu-bot-web-admin
+      context: ../..
+      dockerfile: deployment/docker/Dockerfile
+    container_name: feishu-bot
     restart: unless-stopped
     
-    # 端口映射
+    # 端口映射（Web 管理界面）
     ports:
-      - "5000:5000"
+      - "8080:8080"
     
     # 环境变量（从 .env 文件加载）
     env_file:
-      - .env
+      - ../../.env
     
-    # 也可以直接指定环境变量
+    # 也可以直接指定环境变量（会覆盖 .env 文件）
     environment:
+      # 飞书应用配置（必需）
+      - FEISHU_APP_ID=${FEISHU_APP_ID}
+      - FEISHU_APP_SECRET=${FEISHU_APP_SECRET}
+      
+      # Web 管理界面配置
       - ENABLE_WEB_ADMIN=true
-      - WEB_ADMIN_PORT=5000
+      - WEB_ADMIN_PORT=8080
       - WEB_ADMIN_HOST=0.0.0.0
+      - WEB_ADMIN_PASSWORD=${WEB_ADMIN_PASSWORD:-admin123}
+      - JWT_SECRET_KEY=${JWT_SECRET_KEY:-dev-secret-key}
+      
+      # 其他配置
+      - TARGET_PROJECT_DIR=${TARGET_PROJECT_DIR:-}
+      - DEFAULT_CLI_PROVIDER=${DEFAULT_CLI_PROVIDER:-gemini}
+      - RESPONSE_LANGUAGE=${RESPONSE_LANGUAGE:-zh-CN}
     
     # 数据卷挂载（持久化会话数据和日志）
     volumes:
-      - ./data:/app/data
-      - ./logs:/app/logs
+      - ../../data:/app/data
+      - ../../logs:/app/logs
       # 如果需要访问本地代码仓库（CLI 功能）
       # - /path/to/your/project:/workspace:ro
     
@@ -40,19 +52,19 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '1.0'
-          memory: 512M
+          cpus: '2.0'
+          memory: 1G
         reservations:
           cpus: '0.5'
-          memory: 256M
+          memory: 512M
     
     # 健康检查
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:5000/api/health"]
+      test: ["CMD", "curl", "-f", "http://localhost:8080/api/health"]
       interval: 30s
       timeout: 10s
       retries: 3
-      start_period: 5s
+      start_period: 10s
     
     # 网络配置
     networks:

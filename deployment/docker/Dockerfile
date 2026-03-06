@@ -81,11 +81,11 @@ RUN useradd -m -u 1000 appuser && \
 USER appuser
 
 # 暴露 Web 管理界面端口
-EXPOSE 5000
+EXPOSE 8080
 
 # 设置健康检查
 HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
-    CMD curl -f http://localhost:5000/api/health || exit 1
+    CMD curl -f http://localhost:8080/api/health || exit 1
 
-# 默认运行 Web 管理界面（使用 Gunicorn）
-CMD ["gunicorn", "--config", "gunicorn.conf.py", "wsgi:app"]
+# 运行完整的机器人服务（包括飞书消息监听和 Web 管理界面）
+CMD ["python", "lark_bot.py"]

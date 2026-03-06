@@ -34,8 +34,7 @@ describe('ConfigForm.vue', () => {
     target_project_dir: '/test/project',
     response_language: '中文',
     default_provider: 'claude',
-    default_layer: 'api',
-    default_cli_provider: null
+        default_cli_provider: null
   }
 
   beforeEach(() => {
@@ -89,8 +88,7 @@ describe('ConfigForm.vue', () => {
     expect(wrapper.vm.formData.target_project_dir).toBe('/test/project')
     expect(wrapper.vm.formData.response_language).toBe('中文')
     expect(wrapper.vm.formData.default_provider).toBe('claude')
-    expect(wrapper.vm.formData.default_layer).toBe('api')
-  })
+      })
 
   it('updates form when config prop changes', async () => {
     const wrapper = mount(ConfigForm, {
@@ -153,8 +151,7 @@ describe('ConfigForm.vue', () => {
     })
 
     // Set invalid layer
-    wrapper.vm.formData.default_layer = 'invalid_layer'
-
+    
     // Trigger validation
     try {
       await wrapper.vm.formRef.validate()
@@ -289,8 +286,7 @@ describe('ConfigForm.vue', () => {
     wrapper.vm.formData.target_project_dir = ''
     wrapper.vm.formData.response_language = ''
     wrapper.vm.formData.default_provider = ''
-    wrapper.vm.formData.default_layer = ''
-    wrapper.vm.formData.default_cli_provider = ''
+        wrapper.vm.formData.default_cli_provider = ''
 
     // Submit form
     await wrapper.vm.handleSubmit()
@@ -313,8 +309,7 @@ describe('ConfigForm.vue', () => {
 
     // Set only some fields
     wrapper.vm.formData.default_provider = 'claude'
-    wrapper.vm.formData.default_layer = 'api'
-    wrapper.vm.formData.target_project_dir = ''
+        wrapper.vm.formData.target_project_dir = ''
     wrapper.vm.formData.response_language = ''
     wrapper.vm.formData.default_cli_provider = ''
 
@@ -324,8 +319,7 @@ describe('ConfigForm.vue', () => {
 
     expect(configStore.updateConfig).toHaveBeenCalledWith('test_session', {
       default_provider: 'claude',
-      default_layer: 'api'
-    })
+          })
   })
 
   it('resets form to initial values', async () => {

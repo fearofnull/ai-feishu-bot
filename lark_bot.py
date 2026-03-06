@@ -69,7 +69,7 @@ def start_web_admin(bot: FeishuBot) -> Optional[object]:
         
         # 读取配置
         host = os.environ.get("WEB_ADMIN_HOST", "0.0.0.0")
-        port = int(os.environ.get("WEB_ADMIN_PORT", "5000"))
+        port = int(os.environ.get("WEB_ADMIN_PORT", "8080"))
         admin_password = os.environ.get("WEB_ADMIN_PASSWORD")
         jwt_secret_key = os.environ.get("JWT_SECRET_KEY")
         static_folder = os.environ.get("WEB_ADMIN_STATIC_FOLDER")

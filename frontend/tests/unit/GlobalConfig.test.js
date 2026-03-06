@@ -60,8 +60,7 @@ describe('GlobalConfig.vue', () => {
     target_project_dir: '/default/project/path',
     response_language: '中文',
     default_provider: 'claude',
-    default_layer: 'api',
-    default_cli_provider: 'gemini'
+        default_cli_provider: 'gemini'
   }
 
   const createWrapper = async (mockFetchResponse = mockGlobalConfig) => {

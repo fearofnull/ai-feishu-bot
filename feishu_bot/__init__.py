@@ -17,8 +17,6 @@ from .core.executor_registry import (
 )
 from .core.smart_router import SmartRouter
 from .executors.ai_api_executor import AIAPIExecutor
-from .executors.claude_api_executor import ClaudeAPIExecutor
-from .executors.gemini_api_executor import GeminiAPIExecutor
 from .executors.ai_cli_executor import AICLIExecutor
 from .executors.claude_cli_executor import ClaudeCodeCLIExecutor
 from .executors.gemini_cli_executor import GeminiCLIExecutor
@@ -41,8 +39,6 @@ __all__ = [
     "AIExecutor",
     "SmartRouter",
     "AIAPIExecutor",
-    "ClaudeAPIExecutor",
-    "GeminiAPIExecutor",
     "AICLIExecutor",
     "ClaudeCodeCLIExecutor",
     "GeminiCLIExecutor",

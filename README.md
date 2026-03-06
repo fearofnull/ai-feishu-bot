@@ -1,1287 +1,189 @@
-# 飞书AI机器人 (Feishu AI Bot)
+# 飞书 AI 机器人
 
-一个智能的飞书机器人，集成了多个AI能力（Claude、Gemini、OpenAI等），支持通过API和CLI两种方式调用AI服务，提供智能路由、会话管理和可扩展的架构。
+一个功能强大的飞书智能机器人，集成多个主流 AI 服务（Claude、Gemini、OpenAI、Qwen 等），支持统一 API 接口、智能路由、会话管理和可视化配置。
 
-## 功能特性
+## ✨ 核心特性
 
-- 🤖 **多AI支持**: 支持Claude、Gemini、OpenAI等多个AI服务
-- 🔀 **智能路由**: 自动根据用户命令和消息内容选择最合适的AI服务（API层或CLI层）
-- 💬 **消息处理**: 接收和回复飞书消息，支持文本、引用等多种消息类型
-- 🔄 **消息去重**: 使用deque实现高效的消息去重机制
-- 🛠️ **代码操作**: 通过Claude Code CLI、Gemini CLI和Qwen Code CLI执行代码查看、修改等操作
-- ⚡ **快速响应**: API层提供快速响应，CLI层提供深度代码操作
-- 💾 **会话管理**: 支持上下文连续对话，自动管理会话历史和轮换
-- 🔌 **可扩展架构**: 轻松添加新的AI Agent和命令前缀
-- 🔒 **安全保护**: 敏感信息保护，会话数据本地存储
-- 🧪 **完整测试**: 包含单元测试、属性测试和集成测试
+- 🤖 **统一 API 接口**: 通过 Web 管理界面配置任意 AI 提供商，使用 `@gpt` 统一调用
+- 🔧 **CLI 代码工具**: Claude CLI、Gemini CLI、Qwen CLI，支持代码分析和文件操作
+- 🔀 **智能路由**: 自动识别意图，选择合适的执行方式
+- 💬 **会话管理**: 上下文连续对话，自动管理会话历史
+- 🎨 **Web 管理界面**: 可视化配置 AI 提供商、会话设置、全局配置
+- 🔄 **动态配置**: 配置更改实时生效，无需重启服务
+- 🔒 **安全可靠**: JWT 认证，敏感信息保护，数据本地存储
 
-## 架构设计
+## 🏗️ 系统架构
 
-系统采用分层架构，核心是智能路由器，根据用户指令和消息内容选择API层或CLI层：
+系统采用统一 API + CLI 工具的架构设计：
 
-```
-用户消息 → 飞书平台 → 机器人 → 命令解析器 → 智能路由器
-                                              ↓
-                                    ┌─────────┴─────────┐
-                                    ↓                   ↓
-                              AI API层              AI CLI层
-                          (快速响应)            (代码操作)
-                            ↓                       ↓
-                    Claude API              Claude Code CLI
-                    Gemini API              Gemini CLI
-                    OpenAI API
-                                    ↓
-                              执行器注册表
-                                    ↓
-                              返回结果 → 用户
-```
+- **统一 API 接口**: 通过 Web 管理界面配置 AI 提供商，使用 `@gpt` 命令统一调用
+- **CLI 工具集**: Claude CLI、Gemini CLI、Qwen CLI，支持代码分析和文件操作
+- **智能路由**: 根据命令前缀和消息内容自动选择执行方式
+- **Web 管理界面**: 可视化配置提供商、会话、全局设置
 
-### 智能路由功能
+详细架构图和交互流程见 [项目介绍文档](docs/INTRODUCTION.md)。
 
-系统提供两种路由方式：
+## 🚀 快速开始
 
-#### 1. 显式指定（推荐用于明确需求）
+### 方式 1: Docker 部署（推荐）
 
-使用命令前缀明确指定AI服务和执行层：
-
-**API层前缀**：
-- `@claude` 或 `@claude-api` → Claude API
-- `@gemini` 或 `@gemini-api` → Gemini API
-- `@openai` 或 `@gpt` → OpenAI API
-
-**CLI层前缀**：
-- `@code` 或 `@claude-cli` → Claude Code CLI
-- `@gemini-cli` → Gemini CLI
-- `@qwen-cli` → Qwen Code CLI
-
-示例：
-```
-@机器人 @claude 解释量子计算        # 使用Claude API
-@机器人 @code 分析项目架构          # 使用Claude Code CLI
-```
-
-#### 2. 智能判断（自动选择最佳方式）
-
-当用户未指定前缀时，系统会根据消息内容自动选择：
-
-**会话命令优先**（不经过AI）：
-- `/help` 或 `帮助` → 显示帮助信息
-- `/new` 或 `新会话` → 创建新会话
-- `/session` 或 `会话信息` → 查看会话信息
-- `/history` 或 `历史记录` → 查看对话历史
-
-**自动选择CLI层**（检测到以下关键词）：
-- 代码相关：`查看代码`、`view code`、`分析代码`、`analyze code`
-- 文件操作：`修改文件`、`modify file`、`读取文件`、`read file`
-- 命令执行：`执行命令`、`execute command`、`运行脚本`、`run script`
-- 项目分析：`分析项目`、`analyze project`、`项目结构`、`project structure`
-- 代码库：`代码库`、`codebase`
-
-**自动选择API层**（默认）：
-- 一般问答（如"你是谁"）
-- 概念解释（如"什么是Python装饰器"）
-- 代码生成（不需要查看现有代码）
-- 翻译、写作等不需要访问代码库的任务
-
-**降级策略**（自动容错）：
-- 当指定的AI服务不可用时（如API密钥未配置），系统会自动降级到其他可用服务
-- 降级顺序：同provider另一层 → 其他provider同一层 → 其他provider另一层
-- 示例：claude/api不可用 → 尝试claude/cli → 尝试openai/api → 尝试gemini/api
-
-### AI API层 vs AI CLI层
-
-| 特性 | AI API层 | AI CLI层 |
-|------|---------|---------|
-| **响应速度** | 快速（秒级） | 较慢（需要启动CLI工具） |
-| **成本** | 较低（按token计费） | 较高（CLI工具可能有额外开销） |
-| **代码访问** | 无法访问本地代码 | 可以访问和操作本地代码 |
-| **适用场景** | 一般问答、概念解释、翻译、写作 | 代码分析、文件操作、项目查看 |
-| **上下文管理** | 手动传递对话历史 | 使用原生会话管理 |
-| **支持的AI** | Claude API、Gemini API、OpenAI API | Claude Code CLI、Gemini CLI、Qwen Code CLI |
-
-**选择建议**：
-- 简单问答、概念解释 → 使用API层（`@claude`、`@gemini`、`@openai`）
-- 代码分析、文件操作 → 使用CLI层（`@code`、`@gemini-cli`）
-- 不确定时 → 让系统智能判断（不使用前缀）
-
-### 会话管理
-
-系统采用三层会话管理架构，充分利用CLI工具的原生会话能力：
-
-#### 1. 飞书机器人会话层
-
-**功能**：
-- 管理用户与机器人的交互历史
-- 提供会话信息查询和历史记录查看
-- 支持会话轮换和过期管理
-- 会话归档到 `data/archived_sessions/` 目录
-
-**会话命令**：
-- `/help` 或 `帮助`：查看所有可用命令和使用说明
-- `/session` 或 `会话信息`：查看当前会话ID、消息数、创建时间
-- `/history` 或 `历史记录`：查看对话历史
-- `/new` 或 `新会话`：开启新会话（清除所有三层会话）
-
-**自动管理**：
-- 单个会话最大消息数：50条（可配置）
-- 会话超时时间：24小时（可配置）
-- 超过限制后自动创建新会话并归档旧会话
-
-#### 2. Claude Code CLI 会话层
-
-**功能**：
-- 利用 Claude Code CLI 的原生会话管理（`--session` 参数）
-- 会话存储在 `~/.claude/sessions/` 目录
-- 系统维护 user_id → claude_session_id 映射
-- 会话映射持久化到 `data/executor_sessions.json`
-
-**工作流程**：
-1. 首次调用：不传 `--session` 参数，Claude Code 自动创建新会话
-2. 后续调用：传递 `--session <session_id>`，恢复上下文
-3. `/new` 命令：清除映射，下次调用创建新会话
-
-#### 3. Gemini CLI 会话层
-
-**功能**：
-- 利用 Gemini CLI 的原生会话管理（`--resume` 参数）
-- 会话存储在 `~/.gemini/sessions/` 目录
-- 系统维护 user_id → gemini_session_id 映射
-- 会话映射持久化到 `data/executor_sessions.json`
-
-**工作流程**：
-1. 首次调用：不传 `--resume` 参数，Gemini CLI 自动创建新会话
-2. 后续调用：传递 `--resume <session_id>`，恢复上下文
-3. `/new` 命令：清除映射，下次调用创建新会话
-
-#### `/new` 命令完整流程
-
-当用户发送 `/new` 命令时，系统会执行以下操作：
-
-1. **归档旧会话**：
-   - 将当前会话保存到 `data/archived_sessions/{user_id}_{session_id}_{timestamp}.json`
-   - 包含完整的消息历史和元数据
-
-2. **创建新的飞书机器人会话**：
-   - 生成新的 session_id (UUID)
-   - 清空消息历史
-   - 重置会话时间戳
-
-3. **清除 Claude CLI 会话映射**：
-   - 从 `data/executor_sessions.json` 中删除 user_id 映射
-   - 下次调用时不传 `--session` 参数，让 Claude Code 创建新会话
-
-4. **清除 Gemini CLI 会话映射**：
-   - 从 `data/executor_sessions.json` 中删除 user_id 映射
-   - 下次调用时不传 `--resume` 参数，让 Gemini CLI 创建新会话
-
-5. **清除 Qwen CLI 会话映射**：
-   - 从 `data/executor_sessions.json` 中删除 user_id 映射
-   - 下次调用时不传 `--resume` 参数，让 Qwen Code CLI 创建新会话
-
-6. **返回确认消息**：
-   - "✅ 已创建新会话 / New session created"
-
-#### 会话管理架构说明
-
-**API层对话历史**：
-- 对于API层（Claude API、Gemini API、OpenAI API），系统会将飞书机器人会话中的对话历史格式化后传递给API
-- 每次API调用都包含完整的对话历史，确保上下文连续性
-
-**CLI层原生会话**：
-- 对于CLI层（Claude Code CLI、Gemini CLI），系统使用AI工具的原生会话管理
-- 飞书机器人会话仅用于显示历史记录和会话信息
-- AI CLI会话用于实际的AI上下文管理，由AI工具自动维护
-- 会话映射存储在 `data/executor_sessions.json`，支持重启后恢复
-
-**优势**：
-- 对于API层：完全控制对话历史，灵活管理上下文
-- 对于CLI层：利用AI原生能力，获得更好的上下文理解和代码操作连续性
-- 统一的会话管理接口，用户体验一致
-- `/new` 命令同步清理所有三层会话，确保完全重置
-
-**会话存储位置**：
-- 飞书机器人活跃会话：`data/sessions.json`
-- 飞书机器人归档会话：`data/archived_sessions/`
-- CLI 会话映射：`data/executor_sessions.json`
-- Claude Code 会话：`~/.claude/sessions/`（由 Claude Code 管理）
-- Gemini CLI 会话：`~/.gemini/sessions/`（由 Gemini CLI 管理）
-
-详细架构设计见项目文档
-
-### 动态配置系统
-
-系统支持在对话窗口中动态配置机器人行为，无需修改环境变量或重启服务。
-
-#### 配置优先级
-
-配置系统采用四层优先级结构（从高到低）：
-
-1. **临时参数** - 单次使用，通过 `--key=value` 格式传递
-2. **会话配置** - 持久化配置，基于会话 ID
-3. **全局配置** - 环境变量配置
-4. **默认值** - 系统默认值
-
-#### 会话类型
-
-- **私聊**：配置基于 `user_id`（用户级别），每个用户有独立的配置
-- **群聊**：配置基于 `chat_id`（群组级别），群组内所有成员共享配置，任何成员都可以修改
-
-#### 配置命令
-
-| 命令 | 说明 | 示例 |
-|------|------|------|
-| `/setdir <path>` | 设置 CLI 工具的目标项目目录 | `/setdir /home/user/my-project` |
-| `/lang <code>` | 设置 AI 回复语言（zh-CN, en-US 等） | `/lang zh-CN` |
-| `/provider <name>` | 设置默认 AI 提供商（claude, gemini, openai） | `/provider claude` |
-| `/layer <type>` | 设置默认执行层（api, cli） | `/layer api` |
-| `/cliprovider <name>` | 设置 CLI 层专用提供商 | `/cliprovider gemini` |
-| `/config` 或 `配置` | 查看当前配置 | `/config` |
-| `/reset` 或 `重置配置` | 重置所有配置 | `/reset` |
-
-#### 临时参数
-
-临时参数允许在单次请求中覆盖配置，不会持久化保存：
-
-```
---dir=/tmp/test 查看项目结构
---lang=en-US What is AI?
---provider=gemini --layer=api 解释量子计算
-```
-
-#### 使用示例
-
-**私聊中设置个人偏好**：
-```
-用户: /lang zh-CN
-机器人: ✅ 配置已更新 / Config updated: response_language = zh-CN
-
-用户: /setdir /home/user/my-project
-机器人: ✅ 配置已更新 / Config updated: target_project_dir = /home/user/my-project
-
-用户: 查看项目结构
-机器人: [使用 zh-CN 语言，在 /home/user/my-project 目录下执行]
-```
-
-**群聊中共享配置**：
-```
-用户A: /setdir /team/shared-project
-机器人: ✅ 配置已更新 / Config updated: target_project_dir = /team/shared-project
-
-用户B: 查看代码
-机器人: [使用群组配置的 /team/shared-project 目录]
-```
-
-**临时参数覆盖**：
-```
-用户: --dir=/tmp/test --lang=en-US Analyze the code
-机器人: [临时使用 /tmp/test 目录和英文回复，不影响持久化配置]
-```
-
-详细配置文档见 [动态配置系统](docs/guides/DYNAMIC_CONFIG.md)。
-
-#### 测试验证 / Test Verification
-
-动态配置系统已通过完整的测试验证：
-- ✅ 16 个单元测试（100% 通过率）
-- ✅ 15 个手动测试（100% 通过）
-- ✅ 配置优先级、持久化、验证等核心功能全部验证
-
-详细测试结果见 [动态配置系统文档](docs/guides/DYNAMIC_CONFIG.md#测试验证) 和 [实现总结](IMPLEMENTATION_SUMMARY.md#测试覆盖)。
-
-### Web 管理界面
-
-除了在飞书对话窗口中使用命令配置，系统还提供了一个美观、易用的 Web 管理界面，用于可视化管理所有会话的配置。
-
-#### 功能特性
-
-- 🎨 **现代化界面**: 基于 Vue.js 3 + Element Plus 的响应式单页应用
-- 🔐 **安全认证**: 基于 JWT 令牌的身份验证系统
-- 🛡️ **速率限制**: 防止暴力破解和 API 滥用
-- 📋 **配置管理**: 查看、编辑、重置会话配置，支持批量操作
-- 🔍 **智能搜索**: 支持按会话类型筛选和会话 ID 搜索
-- 📊 **配置详情**: 查看配置元数据、历史记录和有效配置
-- 💾 **导出导入**: 支持配置数据的备份和迁移
-- 🌐 **全局配置**: 查看系统默认配置
-- 📱 **响应式设计**: 适配桌面、平板和移动设备
-
-#### AI 提供商配置（推荐）
-
-Web 管理界面提供了统一的 AI 提供商配置系统，用于管理所有 AI API 提供商的连接配置。
-
-**功能特性**：
-- 🔧 **多提供商管理**: 支持添加多个 AI 提供商配置（OpenAI、Claude、Gemini 等）
-- 🎯 **多模型支持**: 每个提供商可配置多个模型，并指定默认模型
-- 🔄 **动态切换**: 无需重启服务即可切换默认提供商
-- 🔐 **安全管理**: API Key 安全存储和脱敏显示
-- ✨ **图形化界面**: 直观的卡片式布局，易于管理
-
-**使用步骤**：
-
-1. **访问提供商配置页面**：
-   - 登录 Web 管理界面
-   - 点击左侧菜单的 "AI 提供商配置"
-
-2. **添加提供商**：
-   - 点击 "添加提供商" 按钮
-   - 填写配置信息：
-     - 名称：如 `openai-gpt4`
-     - 类型：选择 `OpenAI 兼容`、`Claude 兼容` 或 `Gemini 兼容`
-     - Base URL：API 端点地址（可选）
-     - API Key：你的 API 密钥
-     - 模型列表：添加一个或多个模型（如 `gpt-4o`、`gpt-4-turbo`）
-     - 默认模型：从模型列表中选择默认使用的模型
-   - 点击 "添加" 保存
-
-3. **设置默认提供商**：
-   - 在提供商卡片上点击 "设为默认" 按钮
-   - 系统会自动使用该提供商处理 `@gpt` 命令
-
-4. **编辑和删除**：
-   - 点击 "编辑" 按钮修改配置
-   - 点击 "删除" 按钮移除提供商
-
-**配置示例**：
-
-```
-名称: openai-gpt4
-类型: OpenAI 兼容
-Base URL: https://api.openai.com/v1
-API Key: sk-...
-模型列表: 
-  - gpt-4o ✓ (默认)
-  - gpt-4-turbo
-  - gpt-3.5-turbo
-```
-
-**迁移指南**：
-
-如果你之前使用 `.env` 文件配置 API 密钥，建议迁移到 Web 管理界面：
-
-1. 访问 Web 管理界面的 "AI 提供商配置" 页面
-2. 为每个 AI 服务创建提供商配置
-3. 将 `.env` 中的 API Key 复制到对应的提供商配置中
-4. 设置默认提供商
-5. 测试配置是否正常工作
-6. （可选）从 `.env` 文件中移除已废弃的 API 配置项
-
-**优势**：
-- ✅ 支持多个提供商和多个模型
-- ✅ 动态切换，无需重启服务
-- ✅ 图形化界面，更易管理
-- ✅ 更安全的 API Key 管理
-- ✅ 配置持久化到 `data/provider_configs.json`
-
-#### 快速启动
-
-1. **配置环境变量**（在 `.env` 文件中添加）：
 ```bash
-# Web 管理界面管理员密码（必需）
-WEB_ADMIN_PASSWORD=your_secure_password
+# 1. 克隆项目
+git clone https://github.com/fearofnull/feishu-ai-bot
+cd feishu-ai-bot
 
-# JWT 令牌签名密钥（必需）
+# 2. 配置环境变量
+cp .env.example .env
+# 编辑 .env 填入飞书凭证
+
+# 3. 启动服务（包括机器人和 Web 管理界面）
+cd deployment/docker
+docker-compose up -d
+
+# 4. 查看日志
+docker-compose logs -f feishu-bot
+```
+
+详细部署文档见 [Docker 部署指南](deployment/docker/README.md)。
+
+### 方式 2: 本地运行
+
+```bash
+# 1. 安装 Python 依赖
+pip install -r requirements.txt
+
+# 2. 构建前端
+cd frontend
+npm install
+npm run build
+cd ..
+
+# 3. 配置环境变量
+cp .env.example .env
+# 编辑 .env 填入配置
+
+# 4. 启动服务（同时启动机器人和 Web 管理界面）
+python lark_bot.py
+```
+
+### 必需配置
+
+在 `.env` 文件中配置：
+
+```bash
+# 飞书应用凭证（必需）
+FEISHU_APP_ID=your_app_id
+FEISHU_APP_SECRET=your_app_secret
+
+# Web 管理界面（推荐启用）
+ENABLE_WEB_ADMIN=true
+WEB_ADMIN_PORT=8080
+WEB_ADMIN_PASSWORD=your_secure_password
 JWT_SECRET_KEY=your_random_secret_key
 ```
 
-2. **启动服务**：
-```bash
-# 生产模式（推荐）
-python -m feishu_bot.web_admin.server
+### 配置 AI 提供商
 
-# 或指定端口
-python -m feishu_bot.web_admin.server --port 8080
-```
+通过 Web 管理界面配置 AI 提供商：
 
-3. **访问界面**：
-打开浏览器访问 http://localhost:5000
+1. 访问 `http://localhost:8080` 登录管理界面
+2. 进入"提供商配置"页面
+3. 添加 AI 提供商（如 Claude、Gemini、OpenAI 等）
+4. 配置 API 密钥和模型参数
+5. 设置默认提供商
 
-#### 环境变量配置
+完成后，使用 `@gpt` 命令即可调用配置的提供商。
 
-**必需配置**：
-- `WEB_ADMIN_PASSWORD`: 管理员登录密码（建议使用强密码）
-- `JWT_SECRET_KEY`: JWT 令牌签名密钥（使用随机生成的长字符串）
+详细配置说明见 [配置文档](docs/guides/CONFIGURATION.md)。
 
-**可选配置**：
-- `WEB_ADMIN_HOST`: 监听地址（默认：`0.0.0.0`）
-- `WEB_ADMIN_PORT`: 监听端口（默认：`5000`）
-- `JWT_EXPIRATION`: 令牌有效期（默认：`7200` 秒，2 小时）
-- `FLASK_ENV`: Flask 运行环境（`development` 或 `production`）
-- `CORS_ALLOWED_ORIGINS`: 允许的 CORS 源（生产环境，逗号分隔）
+## 💡 使用示例
 
-**生成随机密钥**：
-```bash
-# 使用 OpenSSL
-openssl rand -hex 32
-
-# 使用 Python
-python -c "import secrets; print(secrets.token_hex(32))"
-```
-
-#### 使用场景
-
-- **配置管理员**: 需要管理多个用户或群组的配置
-- **配置迁移**: 需要在不同环境间迁移配置
-- **配置审计**: 需要查看配置历史和变更记录
-- **批量操作**: 需要同时查看或修改多个配置
-
-#### 详细文档
-
-完整的 Web 管理界面文档请参见 [WEB_ADMIN_README.md](docs/guides/WEB_ADMIN_README.md)，包括：
-- 详细的安装和配置说明
-- 环境变量配置详解
-- 使用指南和操作说明
-- 故障排查和常见问题
-- 部署指南（Gunicorn、Nginx、HTTPS、Systemd）
-- 性能优化说明
-
-## 快速开始
-
-有两种部署方式可选：
-
-### 方式1：Docker 部署（推荐，适合生产环境）
-
-#### 环境要求
-- Docker 20.10+
-- Docker Compose 2.0+（可选）
-- 至少 1GB 内存
-
-#### 部署步骤
-
-1. **克隆项目**
-```bash
-git clone <repository-url>
-cd feishu-ai-bot
-```
-
-2. **配置环境变量**
-```bash
-# 复制配置模板
-cp .env.example .env
-
-# 编辑配置文件
-nano .env  # 或使用其他编辑器
-```
-
-填入必需配置：
-- `FEISHU_APP_ID`: 飞书应用ID
-- `FEISHU_APP_SECRET`: 飞书应用密钥
-- 至少一个AI API密钥
-
-3. **启动服务**
-
-使用 Docker Compose（推荐）：
-```bash
-cd deployment/docker
-docker-compose up -d
-```
-
-或使用部署脚本：
-```bash
-chmod +x scripts/deploy.sh
-./scripts/deploy.sh start
-```
-
-或使用 Docker 命令：
-```bash
-docker build -f deployment/docker/Dockerfile -t feishu-ai-bot .
-docker run -d \
-  --name feishu-ai-bot \
-  --restart unless-stopped \
-  --env-file .env \
-  -v $(pwd)/data:/app/data \
-  feishu-ai-bot
-```
-
-4. **查看日志**
-```bash
-# 使用 Docker Compose
-docker-compose logs -f
-
-# 使用部署脚本
-./scripts/deploy.sh logs
-
-# 使用 Docker 命令
-docker logs -f feishu-ai-bot
-```
-
-5. **管理服务**
-```bash
-# 停止服务
-./scripts/deploy.sh stop
-
-# 重启服务
-./scripts/deploy.sh restart
-
-# 查看状态
-./scripts/deploy.sh status
-
-# 更新服务
-./scripts/deploy.sh update
-```
-
-详细部署文档见 [部署指南](docs/deployment/DEPLOYMENT.md)。
-
-### 方式2：本地运行（适合开发测试）
-
-#### 环境要求
-
-- Python 3.8+
-- 飞书机器人账号和凭证
-- 至少一个AI服务的API密钥（Claude API、Gemini API或OpenAI API）
-- Claude Code CLI（可选，用于代码操作）
-- Gemini CLI（可选，用于代码操作）
-- Qwen Code CLI（可选，用于代码操作）
-
-#### 安装步骤
-
-1. **克隆项目**
-```bash
-git clone <repository-url>
-cd feishu-ai-bot
-```
-
-2. **安装依赖**
-```bash
-pip install -r requirements.txt
-```
-
-3. **配置环境变量**
-
-复制环境变量模板文件：
-```bash
-copy .env.example .env  # Windows
-# 或
-cp .env.example .env    # Linux/Mac
-```
-
-编辑 `.env` 文件，填入你的配置：
-
-**必需配置**：
-- `FEISHU_APP_ID`: 飞书应用ID（在[飞书开放平台](https://open.feishu.cn/)获取）
-- `FEISHU_APP_SECRET`: 飞书应用密钥
-
-**AI服务配置**（至少配置一个）：
-- `CLAUDE_API_KEY`: Claude API密钥（[获取地址](https://console.anthropic.com/)）
-- `GEMINI_API_KEY`: Gemini API密钥（[获取地址](https://aistudio.google.com/app/apikey)）
-- `OPENAI_API_KEY`: OpenAI API密钥（[获取地址](https://platform.openai.com/api-keys)）
-
-**CLI工具配置**（可选，用于代码操作）：
-- `TARGET_PROJECT_DIR`: 目标项目目录路径
-- 安装[Claude Code CLI](https://code.claude.com/docs/)或[Gemini CLI](https://geminicli.com/docs/)
-
-**会话管理配置**（可选）：
-- `SESSION_STORAGE_PATH`: 会话存储路径（默认：`./data/sessions.json`）
-- `MAX_SESSION_MESSAGES`: 单个会话最大消息数（默认：50）
-- `SESSION_TIMEOUT`: 会话超时时间（默认：86400秒，24小时）
-
-**默认设置**（可选）：
-- `DEFAULT_PROVIDER`: 默认AI提供商（可选值：`claude`、`gemini`、`openai`，默认：`claude`）
-  - 主要用于API层的默认提供商
-- `DEFAULT_LAYER`: 默认执行层（可选值：`api`、`cli`，默认：`api`）
-- `DEFAULT_CLI_PROVIDER`: CLI层专用默认提供商（可选，默认使用`DEFAULT_PROVIDER`）
-  - 当AI判断需要CLI层时，使用此提供商
-  - 适用场景：API层和CLI层想使用不同的提供商
-  - 示例：`DEFAULT_PROVIDER=openai`（API层用OpenAI），`DEFAULT_CLI_PROVIDER=gemini`（CLI层用Gemini）
-
-**智能路由配置**（可选）：
-- `USE_AI_INTENT_CLASSIFICATION`: 是否使用AI进行意图分类（可选值：`true`、`false`，默认：`true`）
-  - 启用后使用AI判断用户意图，比关键词检测更准确
-
-**语言配置**（可选）：
-- `RESPONSE_LANGUAGE`: AI回复语言（默认：空，由AI自动判断）
-  - 支持的语言代码：
-    - `zh-CN`: 中文（简体）
-    - `zh-TW`: 中文（繁體）
-    - `en-US`: English
-    - `ja-JP`: 日本語
-    - `ko-KR`: 한국어
-    - `fr-FR`: Français
-    - `de-DE`: Deutsch
-    - `es-ES`: Español
-  - 设置后，AI会被要求使用指定语言回复
-  - 留空则由AI根据用户输入自动判断使用什么语言
-
-详细配置说明见 [配置文档](docs/guides/CONFIGURATION.md) 或 `.env.example` 文件。
-
-4. **验证配置**
-```bash
-python scripts/verify_config.py
-```
-
-#### 运行机器人
-
-有两种启动方式：
-
-**方式1：统一启动（推荐）- 同时启动机器人和 Web 管理界面**
-
-Linux/Mac:
-```bash
-# 开发模式
-./scripts/start_all.sh development
-
-# 生产模式
-./scripts/start_all.sh production
-```
-
-Windows:
-```bash
-# 开发模式
-scripts\start_all.bat development
-
-# 生产模式
-scripts\start_all.bat production
-```
-
-**方式2：单独启动机器人**
-
-```bash
-python lark_bot.py
-```
-
-注意：如果需要 Web 管理界面，需要在 `.env` 中设置 `ENABLE_WEB_ADMIN=true`
-
-### 使用示例
-
-在飞书群聊中 @机器人 并发送消息即可开始对话。
-
-#### 基本对话
+### 基本对话（使用统一 API）
 ```
 @机器人 你好，介绍一下自己
-@机器人 什么是Python装饰器？
+@机器人 什么是 Python 装饰器？
+@机器人 @gpt 解释量子计算原理
 ```
 
-#### 使用命令前缀指定AI服务
-
-**API层（快速响应）**：
+### CLI 代码工具
 ```
-@机器人 @claude 解释一下量子计算
-@机器人 @gemini 翻译这段文字
-@机器人 @openai 写一首诗
+@机器人 @claude-cli 分析项目架构
+@机器人 @gemini-cli 检查代码质量
+@机器人 @qwen-cli 优化这段代码
 ```
 
-**CLI层（代码操作）**：
+### 会话管理
 ```
-@机器人 @code 分析这个项目的架构
-@机器人 @claude-cli 查看src/main.py文件
-@机器人 @gemini-cli 修改README.md文件
-@机器人 @qwen-cli 分析代码质量
-```
-
-#### 会话管理命令
-```
-@机器人 /help           # 查看所有可用命令
-@机器人 /session        # 查看当前会话信息
-@机器人 /history        # 查看对话历史
-@机器人 /new            # 开启新会话
+@机器人 /help           # 查看帮助
+@机器人 /session        # 查看会话信息
+@机器人 /new            # 创建新会话
+@机器人 /setdir /path   # 设置项目目录（CLI 工具使用）
+@机器人 /lang zh-CN     # 设置回复语言
+@机器人 /cliprovider claude  # 设置默认 CLI 提供商
 ```
 
-#### 智能路由（自动选择）
+更多使用方法见 [用户指南](docs/guides/USER_GUIDE.md)。
 
-系统会根据消息内容自动选择合适的执行方式：
+## 📚 文档
 
-**自动使用CLI层**（包含代码相关关键词）：
-```
-@机器人 查看代码库的结构
-@机器人 分析项目中的错误
-@机器人 修改配置文件
-```
+### 核心文档
+- [项目介绍](docs/INTRODUCTION.md) - 功能特性、架构设计、使用场景
+- [用户指南](docs/guides/USER_GUIDE.md) - 如何使用机器人
+- [配置指南](docs/guides/CONFIGURATION.md) - 详细配置说明
 
-**自动使用API层**（一般问答）：
-```
-@机器人 解释一下这个概念
-@机器人 帮我写一段代码
-@机器人 翻译这段文字
-```
+### Web 管理界面
+- [Web 管理界面](docs/guides/WEB_ADMIN_README.md) - 完整的 Web 管理文档
+- [Web 用户指南](docs/guides/WEB_ADMIN_USER_GUIDE.md) - Web 界面使用指南
 
-详细使用方法见 [用户指南](docs/guides/USER_GUIDE.md)
+### 部署文档
+- [Docker 部署指南](deployment/docker/README.md) - Docker 容器化部署
+- [部署指南](docs/deployment/DEPLOYMENT.md) - 完整部署文档
+- [快速部署](docs/deployment/QUICKSTART.md) - 5 分钟快速部署
 
-## 测试
+### 其他文档
+- [动态配置](docs/guides/DYNAMIC_CONFIG.md) - 会话级配置
+- [会话管理](docs/guides/SESSION_MANAGEMENT.md) - 会话管理说明
+- [项目结构](docs/STRUCTURE.md) - 代码结构说明
 
-项目包含完整的测试体系：
+## 🔒 安全与隐私
 
-### 自动化测试（tests/）
+- ✅ 敏感信息本地存储，不提交到 Git
+- ✅ API 密钥通过环境变量管理
+- ✅ Web 管理界面 JWT 认证 + 速率限制
+- ✅ 会话数据仅存储在本地
+- ✅ 支持手动清理会话历史
 
-```bash
-# 运行所有测试
-pytest tests/
+详细安全说明见 [项目介绍文档](docs/INTRODUCTION.md#-安全与隐私)。
 
-# 运行属性测试
-pytest tests/ -k property
+## 🛠️ 技术栈
 
-# 查看测试覆盖率
-pytest tests/ --cov=feishu_bot
-```
+### 后端
+- Python 3.8+
+- Flask 3.0+
+- lark-oapi (飞书 SDK)
 
-### 手动测试工具（scripts/test/）
+### 前端
+- Vue.js 3
+- Element Plus
+- Vite
 
-```bash
-# 发送测试消息
-python scripts/test/test_bot_message.py
+### 部署
+- Docker
+- Nginx
+- Systemd
 
-# 查看聊天历史
-python scripts/test/check_chat_history.py
-```
+## 🤝 贡献
 
-## 可扩展性
+欢迎提交 Issue 和 Pull Request！
 
-系统采用插件式架构，支持轻松添加新的AI Agent和命令前缀。
-
-### 如何添加新的AI Agent
-
-#### 1. 添加API执行器
-
-创建新的API执行器类，继承`AIAPIExecutor`：
-
-```python
-# feishu_bot/new_api_executor.py
-from feishu_bot.ai_api_executor import AIAPIExecutor
-from feishu_bot.models import ExecutionResult
-
-class NewAPIExecutor(AIAPIExecutor):
-    def __init__(self, api_key: str, model: str = "default-model", timeout: int = 60):
-        super().__init__(api_key, model, timeout)
-        # 初始化API客户端
-        
-    def get_provider_name(self) -> str:
-        return "new-api"
-    
-    def format_messages(self, user_prompt: str, conversation_history=None):
-        # 格式化为API消息格式
-        pass
-    
-    def execute(self, user_prompt: str, conversation_history=None, additional_params=None) -> ExecutionResult:
-        # 调用API
-        pass
-```
-
-#### 2. 添加CLI执行器
-
-创建新的CLI执行器类，继承`AICLIExecutor`：
-
-```python
-# feishu_bot/new_cli_executor.py
-from feishu_bot.ai_cli_executor import AICLIExecutor
-from feishu_bot.models import ExecutionResult
-
-class NewCLIExecutor(AICLIExecutor):
-    def __init__(self, target_dir: str, timeout: int = 600):
-        super().__init__(target_dir, timeout)
-        
-    def get_command_name(self) -> str:
-        return "new-cli"  # CLI命令名称
-    
-    def build_command_args(self, user_prompt: str, additional_params=None):
-        # 构建CLI命令参数
-        args = [self.get_command_name()]
-        args.extend(["--directory", self.target_dir])
-        args.extend(["--prompt", user_prompt])
-        return args
-    
-    def verify_directory(self) -> bool:
-        # 验证目标目录
-        return os.path.exists(self.target_dir)
-    
-    def execute(self, user_prompt: str, additional_params=None) -> ExecutionResult:
-        # 执行CLI命令
-        pass
-```
-
-#### 3. 注册到执行器注册表
-
-在`lark_bot.py`或配置文件中注册新的执行器：
-
-```python
-from feishu_bot.executor_registry import ExecutorRegistry, ExecutorMetadata
-from feishu_bot.new_api_executor import NewAPIExecutor
-from feishu_bot.new_cli_executor import NewCLIExecutor
-
-# 创建执行器注册表
-registry = ExecutorRegistry()
-
-# 注册API执行器
-if config.new_api_key:
-    new_api = NewAPIExecutor(
-        api_key=config.new_api_key,
-        model="default-model"
-    )
-    new_api_metadata = ExecutorMetadata(
-        name="New AI API",
-        provider="new",
-        layer="api",
-        version="1.0.0",
-        description="New AI API for general Q&A",
-        capabilities=["general_qa", "translation", "writing"],
-        command_prefixes=["@new", "@new-api"],
-        priority=3,
-        config_required=["new_api_key"]
-    )
-    registry.register_api_executor("new", new_api, new_api_metadata)
-
-# 注册CLI执行器
-if config.target_directory:
-    new_cli = NewCLIExecutor(
-        target_dir=config.target_directory,
-        timeout=config.ai_timeout
-    )
-    new_cli_metadata = ExecutorMetadata(
-        name="New CLI",
-        provider="new",
-        layer="cli",
-        version="1.0.0",
-        description="New CLI for code analysis",
-        capabilities=["code_analysis", "file_operations"],
-        command_prefixes=["@new-cli"],
-        priority=3,
-        config_required=["target_directory"]
-    )
-    registry.register_cli_executor("new", new_cli, new_cli_metadata)
-```
-
-### 如何添加新的命令前缀
-
-在`feishu_bot/command_parser.py`中添加新的前缀映射：
-
-```python
-class CommandParser:
-    def __init__(self):
-        self.prefix_map = {
-            # 现有前缀
-            "@claude": ("claude", "api"),
-            "@claude-api": ("claude", "api"),
-            "@claude-cli": ("claude", "cli"),
-            "@code": ("claude", "cli"),
-            "@gemini": ("gemini", "api"),
-            "@gemini-api": ("gemini", "api"),
-            "@gemini-cli": ("gemini", "cli"),
-            "@openai": ("openai", "api"),
-            "@gpt": ("openai", "api"),
-            
-            # 新增前缀示例
-            "@new": ("new", "api"),
-            "@new-api": ("new", "api"),
-            "@new-cli": ("new", "cli"),
-        }
-```
-
-### 集成示例
-
-如需集成其他 AI 服务（如 Qwen、Cohere、Mistral 等），请参考上述步骤：
-
-1. 创建对应的 API 执行器类（继承 `AIAPIExecutor`）
-2. 创建对应的 CLI 执行器类（继承 `AICLIExecutor`，如果该服务提供 CLI 工具）
-3. 在执行器注册表中注册新的执行器
-4. 在命令解析器中添加命令前缀映射
-5. 配置相应的环境变量
-
-具体实现细节请参考现有的 Claude、Gemini、OpenAI 执行器代码。
-
-### 扩展点总结
-
-系统提供以下扩展点：
-
-1. **AI API执行器**：实现`AIAPIExecutor`接口
-2. **AI CLI执行器**：实现`AICLIExecutor`接口
-3. **命令前缀**：在`CommandParser`中添加映射
-4. **执行器元数据**：定义能力、优先级、配置要求
-5. **配置管理**：在`BotConfig`中添加新的配置项
-
-**未来扩展方向**：
-- 支持更多AI提供商：Cohere、Mistral、Anthropic等
-- 支持更多CLI工具：Cursor AI、Codeium、Tabnine等
-- 支持混合执行：同时调用多个Agent并合并结果
-- 支持Agent链：一个Agent的输出作为另一个Agent的输入
-
-## 文档
-
-- **用户指南**: [docs/guides/USER_GUIDE.md](docs/guides/USER_GUIDE.md) - 如何使用机器人
-- **配置指南**: [docs/guides/CONFIGURATION.md](docs/guides/CONFIGURATION.md) - 详细配置说明
-- **语言配置**: [docs/guides/LANGUAGE_CONFIGURATION.md](docs/guides/LANGUAGE_CONFIGURATION.md) - 语言设置说明
-- **Web 管理界面**: [docs/guides/WEB_ADMIN_README.md](docs/guides/WEB_ADMIN_README.md) - Web 管理界面完整文档
-- **部署指南**: [docs/deployment/DEPLOYMENT.md](docs/deployment/DEPLOYMENT.md) - Docker 和云端部署
-- **快速部署**: [docs/deployment/QUICKSTART.md](docs/deployment/QUICKSTART.md) - 5分钟快速部署
-- **文档目录**: [docs/README.md](docs/README.md) - 所有文档索引
-
-## 参考文档
-
-### AI API文档
-- **Claude API**: https://docs.anthropic.com/en/api/messages
-- **Gemini API**: https://ai.google.dev/api/python/google/generativeai
-- **OpenAI API**: https://platform.openai.com/docs/api-reference/chat
-
-### AI CLI文档
-- **Claude Code CLI**: 
-  - 中文文档：https://code.claude.com/docs/zh-CN/cli-reference
-  - 英文文档：https://code.claude.com/docs/
-- **Gemini CLI**:
-  - 会话管理：https://geminicli.com/docs/cli/session-management/
-  - Headless模式：https://geminicli.com/docs/cli/headless/
-- **Qwen Code CLI**:
-  - 文档：https://qwenlm.github.io/qwen-code-docs/
-  - Headless模式：https://qwenlm.github.io/qwen-code-docs/zh/users/features/headless/
-
-### 飞书开放平台
-- **飞书API Explorer**: https://open.feishu.cn/api-explorer
-- **飞书Python SDK**: https://open.feishu.cn/document/server-side-sdk/python--sdk
-
-## 故障排查指南
-
-### 常见问题
-
-#### 1. 机器人无法启动
-
-**问题**：运行`python lark_bot.py`时报错
-
-**可能原因**：
-- 缺少必需的环境变量
-- Python依赖未安装
-- 飞书应用凭证无效
-
-**解决方法**：
-```bash
-# 1. 检查环境变量
-python config.py
-
-# 2. 重新安装依赖
-pip install -r requirements.txt --upgrade
-
-# 3. 验证飞书凭证
-# 登录飞书开放平台检查APP_ID和APP_SECRET是否正确
-```
-
-#### 2. 机器人收不到消息
-
-**问题**：在飞书中@机器人，但没有响应
-
-**可能原因**：
-- WebSocket连接未建立
-- 机器人未添加到群聊
-- 事件订阅未配置
-
-**解决方法**：
-```bash
-# 1. 检查日志中的WebSocket连接状态
-# 查看是否有"WebSocket connected"日志
-
-# 2. 确认机器人已添加到群聊
-# 在飞书群聊中查看成员列表
-
-# 3. 检查飞书开放平台的事件订阅配置
-# 确保订阅了"接收消息"事件（im.message.receive_v1）
-```
-
-#### 3. AI执行失败
-
-**问题**：机器人返回"执行失败"错误
-
-**可能原因**：
-- API密钥无效或过期
-- CLI工具未安装
-- 目标目录不存在
-- 网络连接问题
-
-**解决方法**：
-```bash
-# 1. 验证API密钥
-# 检查.env文件中的API密钥是否正确
-
-# 2. 检查CLI工具安装
-claude --version  # 检查Claude Code CLI
-gemini --version  # 检查Gemini CLI
-qwen --version    # 检查Qwen Code CLI
-
-# 3. 验证目标目录
-# 确保TARGET_PROJECT_DIR指向的目录存在
-
-# 4. 测试网络连接
-curl https://api.anthropic.com/v1/messages  # 测试Claude API
-curl https://generativelanguage.googleapis.com  # 测试Gemini API
-```
-
-#### 4. 会话管理问题
-
-**问题**：会话历史丢失或会话无法创建
-
-**可能原因**：
-- 会话存储文件损坏
-- 磁盘空间不足
-- 文件权限问题
-
-**解决方法**：
-```bash
-# 1. 检查会话存储文件
-ls -la data/sessions.json
-
-# 2. 检查磁盘空间
-df -h
-
-# 3. 修复文件权限
-chmod 644 data/sessions.json
-
-# 4. 备份并重置会话
-cp data/sessions.json data/sessions.json.backup
-echo '{"sessions": {}}' > data/sessions.json
-```
-
-#### 5. 智能路由不工作
-
-**问题**：系统没有正确选择API层或CLI层
-
-**可能原因**：
-- 命令前缀拼写错误
-- CLI关键词检测失败
-- 执行器不可用
-
-**解决方法**：
-```bash
-# 1. 检查命令前缀
-# 确保使用正确的前缀：@claude, @code, @gemini等
-
-# 2. 查看日志中的路由决策
-# 日志会显示"Routing to API layer"或"Routing to CLI layer"
-
-# 3. 检查执行器可用性
-# 日志会显示哪些执行器已注册和可用
-
-# 4. 尝试显式指定执行层
-@机器人 @claude-api 测试API层
-@机器人 @claude-cli 测试CLI层
-```
-
-### 日志调试
-
-启用DEBUG日志以获取更详细的信息：
-
-```bash
-# 在.env文件中设置
-LOG_LEVEL=DEBUG
-
-# 或在命令行中设置
-export LOG_LEVEL=DEBUG  # Linux/Mac
-set LOG_LEVEL=DEBUG     # Windows
-
-python lark_bot.py
-```
-
-DEBUG日志会显示：
-- WebSocket连接状态
-- 消息解析详情
-- 命令路由决策
-- API请求和响应
-- CLI命令执行详情
-
-### 性能优化
-
-如果遇到性能问题：
-
-1. **减少会话历史长度**
-```bash
-# 在.env中设置
-MAX_SESSION_MESSAGES=20  # 默认50
-```
-
-2. **调整超时时间**
-```bash
-# 在.env中设置
-AI_TIMEOUT=300  # 默认600秒
-```
-
-3. **使用API层而非CLI层**
-```bash
-# API层响应更快
-@机器人 @claude 你的问题
-```
-
-4. **定期清理会话**
-```bash
-# 手动清理过期会话
-python -c "from feishu_bot.session_manager import SessionManager; sm = SessionManager(); sm.cleanup_expired_sessions()"
-```
-
-### 获取帮助
-
-如果以上方法无法解决问题：
-
-1. **查看日志文件**：检查详细的错误信息
-2. **查看文档**：阅读相关的设计文档和需求文档
-3. **提交Issue**：在GitHub上提交问题，附上日志和配置信息
-4. **联系开发者**：通过邮件或其他方式联系项目维护者
-
-**提交Issue时请包含**：
-- 错误信息和日志
-- 配置文件（隐藏敏感信息）
-- 复现步骤
-- 系统环境（Python版本、操作系统等）
-
-## 项目结构
-
-```
-.
-├── lark_bot.py              # 主机器人程序
-├── requirements.txt         # Python依赖
-├── gunicorn.conf.py         # Gunicorn 生产配置
-├── wsgi.py                  # WSGI 入口
-├── README.md                # 项目说明
-├── .env                     # 环境变量（不提交到Git）
-├── .env.example             # 环境变量模板
-├── .gitignore               # Git忽略文件配置
-├── .dockerignore            # Docker忽略文件配置
-│
-├── feishu_bot/              # 机器人核心代码
-│   ├── config.py            # 配置类
-│   ├── feishu_bot.py        # 主应用类
-│   ├── message_handler.py   # 消息处理器
-│   ├── command_parser.py    # 命令解析器
-│   ├── smart_router.py      # 智能路由器
-│   ├── session_manager.py   # 会话管理器
-│   ├── executor_registry.py # 执行器注册表
-│   ├── executors/           # AI 执行器
-│   │   ├── *_api_executor.py    # API执行器（Claude、Gemini、OpenAI）
-│   │   └── *_cli_executor.py    # CLI执行器（Claude Code、Gemini CLI、Qwen Code）
-│   ├── web_admin/           # Web 管理界面
-│   └── utils/               # 工具类
-│
-├── frontend/                # 前端项目（独立）
-│   ├── src/                 # 前端源代码
-│   ├── public/              # 静态资源
-│   ├── dist/                # 构建产物
-│   └── package.json         # 前端依赖
-│
-├── tests/                   # 单元测试和属性测试
-│   ├── test_*.py            # 单元测试文件
-│   ├── test_*_properties.py # 属性测试文件
-│   └── ...
-│
-├── scripts/                 # 工具脚本
-│   ├── deploy.sh            # 部署管理脚本
-│   ├── verify_config.py     # 配置验证脚本
-│   ├── set_file_permissions.py  # 文件权限设置
-│   ├── start_web_admin.sh   # Web 管理界面启动
-│   ├── test/                # 测试脚本
-│   │   ├── run_integration_test.py  # 集成测试
-│   │   ├── send_test_message.py     # 发送测试消息
-│   │   ├── get_chat_id.py           # 获取聊天ID
-│   │   └── README.md                # 测试脚本说明
-│   └── README.md            # 脚本说明文档
-│
-├── deployment/              # 部署配置文件
-│   ├── docker/              # Docker 相关
-│   │   ├── Dockerfile       # Docker 镜像构建
-│   │   ├── docker-compose.yml  # Docker Compose 配置
-│   │   └── README.md        # Docker 部署说明
-│   ├── nginx/               # Nginx 配置
-│   │   └── nginx.conf.example  # Nginx 配置示例
-│   ├── systemd/             # Systemd 服务配置
-│   │   └── feishu-bot-web-admin.service  # Systemd 服务文件
-│   └── README.md            # 部署说明文档
-│
-├── docs/                    # 项目文档
-│   ├── README.md            # 文档目录
-│   ├── STRUCTURE.md         # 项目结构详细说明
-│   ├── guides/              # 使用指南
-│   │   ├── USER_GUIDE.md            # 用户指南
-│   │   ├── WEB_ADMIN_USER_GUIDE.md  # Web 管理界面用户指南
-│   │   ├── WEB_ADMIN_README.md      # Web 管理界面完整文档
-│   │   ├── CONFIGURATION.md         # 配置指南
-│   │   ├── DYNAMIC_CONFIG.md        # 动态配置说明
-│   │   ├── LANGUAGE_CONFIGURATION.md  # 语言配置说明
-│   │   ├── SESSION_MANAGEMENT.md    # 会话管理说明
-│   │   └── FRONTEND_BACKEND_INTEGRATION_TESTS.md  # 前后端集成测试
-│   ├── deployment/          # 部署文档
-│   │   ├── DEPLOYMENT.md        # 完整部署指南
-│   │   ├── QUICKSTART.md        # 快速部署指南
-│   │   └── GUNICORN_DEPLOYMENT.md  # Gunicorn 部署指南
-│   └── examples/            # 示例文档
-│
-├── data/                    # 数据存储（不提交到Git）
-│   ├── sessions.json        # 会话数据
-│   ├── session_configs.json # 会话配置
-│   ├── executor_sessions.json  # 执行器会话映射
-│   └── archived_sessions/   # 归档会话
-│
-└── logs/                    # 日志文件（不提交到Git）
-    ├── web_admin.log        # Web 管理界面日志
-    └── web_admin_access.log # Web 管理界面访问日志
-```
-
-**注意**：
-- `data/` 文件夹包含用户会话数据，已添加到 `.gitignore`，不会提交到Git
-- `.env` 文件包含敏感配置信息，已添加到 `.gitignore`，不会提交到Git
-- 使用 `.env.example` 作为环境变量配置模板
-
-## 开发计划
-
-当前进度：✅ 核心功能已完成并通过集成测试
-
-### 已完成 ✅
-- [x] 消息接收和回复
-- [x] 消息去重机制
-- [x] 命令解析器
-- [x] 智能路由器
-- [x] AI API层（Claude API、Gemini API、OpenAI API）
-- [x] AI CLI层（Claude Code CLI、Gemini CLI）
-- [x] 执行器注册表
-- [x] 会话管理（上下文、历史记录）
-- [x] 集成测试（10项测试全部通过）
-
-### 进行中 🚧
-- [ ] 单元测试完善
-- [ ] 属性测试完善
-- [ ] 性能优化
-
-### 计划中 📋
-- [ ] 更多AI提供商支持
-- [ ] Web管理界面
-- [ ] 监控和日志分析
-- [ ] 生产环境部署
-
-## 贡献
-
-欢迎提交Issue和Pull Request！
-
-## 许可证
+## 📄 许可证
 
 MIT License
 
-## 注意事项
+---
 
-⚠️ **安全提醒**: 
-- **请勿将敏感信息提交到公开仓库**
-  - `.env` 文件包含API密钥和凭证，已添加到 `.gitignore`
-  - `data/` 文件夹包含用户会话数据，已添加到 `.gitignore`
-- **使用环境变量管理敏感信息**
-  - 使用 `.env.example` 作为配置模板
-  - 复制为 `.env` 并填入真实凭证
-- **定期更新依赖包以确保安全性**
-  ```bash
-  pip install -r requirements.txt --upgrade
-  ```
-- **定期轮换API密钥**
-  - 建议每3-6个月更换一次API密钥
-  - 如发现密钥泄露，立即在对应平台重置
+**开始使用**: 查看 [快速开始](#-快速开始) 部署你的飞书 AI 机器人
 
-## 数据隐私
+**详细介绍**: 阅读 [项目介绍文档](docs/INTRODUCTION.md) 了解更多功能和架构
 
-本项目重视用户数据隐私和安全：
-
-### 本地存储
-- **会话数据**：存储在本地 `data/` 文件夹，不会上传到Git仓库
-- **会话内容**：包含用户对话历史，仅用于维护上下文
-- **自动清理**：会话超过24小时自动过期并归档
-
-### 数据保护措施
-- `data/` 文件夹已添加到 `.gitignore`，防止意外提交
-- 会话数据仅存储在本地，不会发送到第三方（除AI服务商）
-- 支持手动清理会话：使用 `/new` 命令创建新会话
-
-### AI服务商数据处理
-- **Claude API**：根据Anthropic隐私政策处理
-- **Gemini API**：根据Google隐私政策处理
-- **OpenAI API**：根据OpenAI隐私政策处理
-
-建议定期清理本地会话数据：
-```bash
-# 备份会话数据
-cp -r data/ data_backup/
-
-# 清理过期会话
-python -c "from feishu_bot.session_manager import SessionManager; sm = SessionManager(); sm.cleanup_expired_sessions()"
-```
+**获取帮助**: 查看 [用户指南](docs/guides/USER_GUIDE.md) 了解详细使用方法

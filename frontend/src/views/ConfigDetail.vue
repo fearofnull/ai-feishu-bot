@@ -103,22 +103,6 @@
               默认值
             </el-tag>
           </el-descriptions-item>
-          <el-descriptions-item label="默认提供商">
-            <span :class="{ 'default-value': !currentConfig.config.default_provider }">
-              {{ effectiveConfig.default_provider || '(未设置)' }}
-            </span>
-            <el-tag v-if="!currentConfig.config.default_provider" size="small" type="info" class="value-tag">
-              默认值
-            </el-tag>
-          </el-descriptions-item>
-          <el-descriptions-item label="默认层级">
-            <span :class="{ 'default-value': !currentConfig.config.default_layer }">
-              {{ effectiveConfig.default_layer || '(未设置)' }}
-            </span>
-            <el-tag v-if="!currentConfig.config.default_layer" size="small" type="info" class="value-tag">
-              默认值
-            </el-tag>
-          </el-descriptions-item>
           <el-descriptions-item label="默认 CLI 提供商">
             <span :class="{ 'default-value': !currentConfig.config.default_cli_provider }">
               {{ effectiveConfig.default_cli_provider || '(未设置)' }}

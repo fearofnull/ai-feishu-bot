@@ -45,8 +45,7 @@ describe('ConfigDetail.vue', () => {
       target_project_dir: '/test/project',
       response_language: '中文',
       default_provider: 'claude',
-      default_layer: 'api',
-      default_cli_provider: null
+            default_cli_provider: null
     },
     metadata: {
       created_by: 'ou_creator',
@@ -61,8 +60,7 @@ describe('ConfigDetail.vue', () => {
     target_project_dir: '/test/project',
     response_language: '中文',
     default_provider: 'claude',
-    default_layer: 'api',
-    default_cli_provider: 'gemini'
+        default_cli_provider: 'gemini'
   }
 
   beforeEach(() => {

@@ -50,7 +50,6 @@ Web 管理界面使用 **JWT (JSON Web Token)** 令牌进行身份验证：
 - **自动携带**: 每次 API 请求会自动携带令牌
 - **过期处理**: 令牌过期后需要重新登录
 
-
 ### 登出
 
 当你完成配置管理工作后，建议主动登出：
@@ -103,7 +102,6 @@ JWT_EXPIRATION=14400  # 4 小时（单位：秒）
 - 📥 **导出配置**: 导出所有配置为 JSON 文件
 - 📤 **导入配置**: 从 JSON 文件导入配置
 
-
 #### 搜索和筛选
 
 **按会话 ID 搜索**：
@@ -141,7 +139,7 @@ JWT_EXPIRATION=14400  # 4 小时（单位：秒）
 | target_project_dir | CLI 工具的目标项目目录 | `/path/to/project` |
 | response_language | AI 回复语言 | `zh-CN` |
 | default_provider | 默认 AI 提供商 | `claude` |
-| default_layer | 默认执行层 | `api` |
+
 | default_cli_provider | CLI 层专用提供商 | `gemini` |
 
 **2. 元数据**
@@ -160,7 +158,6 @@ JWT_EXPIRATION=14400  # 4 小时（单位：秒）
 - 会话配置 > 全局配置 > 系统默认值
 - 标注哪些字段使用了会话配置，哪些使用了默认值
 
-
 ### 编辑配置
 
 在配置详情页面，点击 **"编辑"** 按钮进入编辑模式。
@@ -171,7 +168,7 @@ JWT_EXPIRATION=14400  # 4 小时（单位：秒）
    - **target_project_dir**: 输入项目目录的绝对路径
    - **response_language**: 输入语言代码（如 `zh-CN`、`en-US`）
    - **default_provider**: 从下拉框选择 `claude`、`gemini` 或 `openai`
-   - **default_layer**: 从下拉框选择 `api` 或 `cli`
+
    - **default_cli_provider**: 从下拉框选择 `claude`、`gemini`、`openai` 或留空
 
 2. **保存更改**
@@ -192,7 +189,7 @@ JWT_EXPIRATION=14400  # 4 小时（单位：秒）
 | 字段 | 验证规则 |
 |------|----------|
 | default_provider | 必须是 `claude`、`gemini` 或 `openai` |
-| default_layer | 必须是 `api` 或 `cli` |
+
 | default_cli_provider | 可以为空，或是 `claude`、`gemini`、`openai` |
 | target_project_dir | 检查路径格式（警告但不阻止保存） |
 
@@ -223,7 +220,6 @@ JWT_EXPIRATION=14400  # 4 小时（单位：秒）
 - `gemini`: Google Gemini（推荐用于多模态任务）
 - `openai`: OpenAI GPT（推荐用于通用对话）
 
-**default_layer**（默认执行层）：
 - 不指定命令前缀时使用的执行层
 - `api`: API 层（快速对话，秒级响应）
 - `cli`: CLI 层（代码操作，分钟级响应）
@@ -232,7 +228,6 @@ JWT_EXPIRATION=14400  # 4 小时（单位：秒）
 - 使用 CLI 层时优先使用的 AI
 - 可以为空（使用 default_provider）
 - 用于区分 API 和 CLI 使用不同的 AI
-
 
 ### 重置配置
 
@@ -280,7 +275,6 @@ JWT_EXPIRATION=14400  # 4 小时（单位：秒）
    TARGET_PROJECT_DIR=/path/to/project
    RESPONSE_LANGUAGE=zh-CN
    DEFAULT_PROVIDER=claude
-   DEFAULT_LAYER=api
    DEFAULT_CLI_PROVIDER=gemini
    ```
 3. 重启 Web 服务器使配置生效
@@ -321,7 +315,7 @@ JWT_EXPIRATION=14400  # 4 小时（单位：秒）
         "target_project_dir": "/path/to/project",
         "response_language": "zh-CN",
         "default_provider": "claude",
-        "default_layer": "api",
+
         "default_cli_provider": null
       },
       "metadata": {
@@ -337,7 +331,6 @@ JWT_EXPIRATION=14400  # 4 小时（单位：秒）
   "total_count": 1
 }
 ```
-
 
 #### 导出用途
 
@@ -471,7 +464,6 @@ git push
    - 检查配置列表
    - 测试配置是否正常工作
 
-
 ---
 
 ## 常见问题解答
@@ -571,7 +563,6 @@ JWT_EXPIRATION=14400  # 4 小时（单位：秒）
 - 允许灵活配置
 
 **建议**：确保目录路径正确，否则 CLI 层功能可能无法正常工作。
-
 
 #### Q11: 如何查看配置的修改历史？
 
@@ -689,7 +680,6 @@ curl -X PUT http://localhost:5000/api/configs/ou_xxx \
 4. **检查日志**
    - 查看 `logs/web_admin.log`
    - 确认没有错误信息
-
 
 ### 技术和故障排查
 
@@ -885,7 +875,6 @@ gunicorn -w 4 -b 0.0.0.0:5000 feishu_bot.web_admin.server:app
 **数据库优化**：
 - 定期清理不再使用的配置
 - 考虑使用数据库替代 JSON 文件（高级）
-
 
 ### 安全相关
 

@@ -34,17 +34,8 @@ class BotConfig:
     max_session_messages: int = 50
     session_timeout: int = 86400  # 24小时
     
-    # AI API 配置
-    claude_api_key: Optional[str] = None
-    gemini_api_key: Optional[str] = None
-    openai_api_key: Optional[str] = None
-    openai_base_url: Optional[str] = None
-    openai_model: str = "gpt-4o"
-    
     # 默认设置
-    default_provider: str = "claude"
-    default_layer: str = "api"
-    default_cli_provider: Optional[str] = None  # CLI层专用默认提供商（如果不设置则使用default_provider）
+    default_cli_provider: Optional[str] = None  # CLI层专用默认提供商（当AI判断需要CLI时使用）
     
     # 智能路由配置
     use_ai_intent_classification: bool = True  # 是否使用AI进行意图分类
@@ -100,17 +91,8 @@ class BotConfig:
             max_session_messages=int(os.getenv("MAX_SESSION_MESSAGES", "50")),
             session_timeout=int(os.getenv("SESSION_TIMEOUT", "86400")),
             
-            # AI API 配置
-            claude_api_key=os.getenv("CLAUDE_API_KEY"),
-            gemini_api_key=os.getenv("GEMINI_API_KEY"),
-            openai_api_key=os.getenv("OPENAI_API_KEY"),
-            openai_base_url=os.getenv("OPENAI_BASE_URL"),
-            openai_model=os.getenv("OPENAI_MODEL", "gpt-4o"),
-            
             # 默认设置
-            default_provider=os.getenv("DEFAULT_PROVIDER", "claude"),
-            default_layer=os.getenv("DEFAULT_LAYER", "api"),
-            default_cli_provider=os.getenv("DEFAULT_CLI_PROVIDER"),  # 如果不设置则使用default_provider
+            default_cli_provider=os.getenv("DEFAULT_CLI_PROVIDER"),  # 当AI判断需要CLI时使用
             
             # 智能路由配置
             use_ai_intent_classification=os.getenv("USE_AI_INTENT_CLASSIFICATION", "true").lower() in ("true", "1", "yes"),
@@ -136,16 +118,6 @@ class BotConfig:
         if not self.app_secret:
             errors.append("FEISHU_APP_SECRET 未配置")
         
-        # 验证默认提供商
-        valid_providers = ["claude", "gemini", "openai"]
-        if self.default_provider not in valid_providers:
-            errors.append(f"DEFAULT_PROVIDER 必须是以下之一: {', '.join(valid_providers)}")
-        
-        # 验证默认执行层
-        valid_layers = ["api", "cli"]
-        if self.default_layer not in valid_layers:
-            errors.append(f"DEFAULT_LAYER 必须是以下之一: {', '.join(valid_layers)}")
-        
         # 验证数值范围
         if self.ai_timeout <= 0:
             errors.append("AI_TIMEOUT 必须大于 0")
@@ -165,23 +137,6 @@ class BotConfig:
             raise ValueError(
                 "配置验证失败:\n" + "\n".join(f"  - {error}" for error in errors)
             )
-    
-    def has_api_key(self, provider: str) -> bool:
-        """检查指定提供商的 API 密钥是否已配置
-        
-        Args:
-            provider: AI 提供商名称 (claude, gemini, openai)
-            
-        Returns:
-            True 如果 API 密钥已配置
-        """
-        if provider == "claude":
-            return bool(self.claude_api_key)
-        elif provider == "gemini":
-            return bool(self.gemini_api_key)
-        elif provider == "openai":
-            return bool(self.openai_api_key)
-        return False
     
     def get_language_instruction(self) -> str:
         """获取语言指令文本
@@ -238,11 +193,7 @@ class BotConfig:
         print(f"APP_ID: {'✅ 已配置' if self.app_id else '❌ 未配置'}")
         print(f"APP_SECRET: {'✅ 已配置' if self.app_secret else '❌ 未配置'}")
         print(f"TARGET_PROJECT_DIR: {'✅ 已配置' if self.target_directory else '⚠️ 未配置'}")
-        print(f"CLAUDE_API_KEY: {'✅ 已配置' if self.claude_api_key else '⚠️ 未配置'}")
-        print(f"GEMINI_API_KEY: {'✅ 已配置' if self.gemini_api_key else '⚠️ 未配置'}")
-        print(f"OPENAI_API_KEY: {'✅ 已配置' if self.openai_api_key else '⚠️ 未配置'}")
-        print(f"DEFAULT_PROVIDER: {self.default_provider}")
-        print(f"DEFAULT_LAYER: {self.default_layer}")
+        print(f"DEFAULT_CLI_PROVIDER: {self.default_cli_provider if self.default_cli_provider else '⚠️ 未设置（自动检测）'}")
         print(f"USE_AI_INTENT_CLASSIFICATION: {'✅ 启用' if self.use_ai_intent_classification else '❌ 禁用'}")
         print(f"RESPONSE_LANGUAGE: {self.response_language if self.response_language else '⚠️ 未设置（由AI自动判断）'}")
         print(f"LOG_LEVEL: {self.log_level}")

@@ -17,10 +17,9 @@ from feishu_bot.web_admin.api_routes import register_api_routes
 from feishu_bot.web_admin.provider_api_routes import register_provider_api_routes
 from feishu_bot.web_admin.logging_config import configure_logging
 from feishu_bot.web_admin.rate_limiter import create_limiter, configure_rate_limits, handle_rate_limit_exceeded
-from feishu_bot.web_admin.compression import configure_compression
+from feishu_bot.web_admin.response_compression import configure_compression
 
 logger = logging.getLogger(__name__)
-
 
 class WebAdminServer:
     """Web Admin Interface Server
@@ -248,7 +247,6 @@ class WebAdminServer:
         # ConfigManager handles auto-save, no additional action needed
         logger.info("Web Admin Server stopped")
 
-
 def main():
     """Command-line entry point for Web Admin Server"""
     import argparse
@@ -288,8 +286,6 @@ def main():
         print(f"✅ Global configuration loaded")
         print(f"   - TARGET_PROJECT_DIR: {global_config.target_directory or '(not set)'}")
         print(f"   - RESPONSE_LANGUAGE: {global_config.response_language or '(not set)'}")
-        print(f"   - DEFAULT_PROVIDER: {global_config.default_provider}")
-        print(f"   - DEFAULT_LAYER: {global_config.default_layer}")
         print(f"   - DEFAULT_CLI_PROVIDER: {global_config.default_cli_provider or '(not set)'}")
     except Exception as e:
         print(f"WARNING: Failed to load global configuration: {e}")
@@ -312,7 +308,6 @@ def main():
     )
     
     server.start(debug=args.debug)
-
 
 if __name__ == "__main__":
     main()

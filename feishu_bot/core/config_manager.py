@@ -40,8 +40,6 @@ class ConfigManager:
     CONFIG_COMMANDS = {
         "/setdir": "target_project_dir",
         "/lang": "response_language",
-        "/provider": "default_provider",
-        "/layer": "default_layer",
         "/cliprovider": "default_cli_provider",
     }
     
@@ -50,8 +48,8 @@ class ConfigManager:
     RESET_CONFIG_COMMANDS = ["/reset", "重置配置"]
     
     # 有效的配置值
-    VALID_PROVIDERS = ["claude", "gemini", "openai"]
-    VALID_LAYERS = ["api", "cli"]
+    VALID_CLI_PROVIDERS = ["claude", "gemini", "qwen"]
+    VALID_PROVIDERS = VALID_CLI_PROVIDERS  # 别名,保持向后兼容
     
     def __init__(
         self,
@@ -117,8 +115,6 @@ class ConfigManager:
         effective = {
             "target_project_dir": "",
             "response_language": None,
-            "default_provider": "claude",
-            "default_layer": "api",
             "default_cli_provider": None,
         }
         
@@ -126,8 +122,6 @@ class ConfigManager:
         if self.global_config:
             effective["target_project_dir"] = self.global_config.target_directory or ""
             effective["response_language"] = self.global_config.response_language
-            effective["default_provider"] = self.global_config.default_provider
-            effective["default_layer"] = self.global_config.default_layer
             effective["default_cli_provider"] = self.global_config.default_cli_provider
         
         # 3. 应用会话配置
@@ -137,10 +131,6 @@ class ConfigManager:
                 effective["target_project_dir"] = session_config.target_project_dir
             if session_config.response_language is not None:
                 effective["response_language"] = session_config.response_language
-            if session_config.default_provider is not None:
-                effective["default_provider"] = session_config.default_provider
-            if session_config.default_layer is not None:
-                effective["default_layer"] = session_config.default_layer
             if session_config.default_cli_provider is not None:
                 effective["default_cli_provider"] = session_config.default_cli_provider
         
@@ -156,10 +146,6 @@ class ConfigManager:
                 effective["target_project_dir"] = temp_params["dir"]
             if "lang" in temp_params:
                 effective["response_language"] = temp_params["lang"]
-            if "provider" in temp_params:
-                effective["default_provider"] = temp_params["provider"]
-            if "layer" in temp_params:
-                effective["default_layer"] = temp_params["layer"]
             if "cliprovider" in temp_params:
                 effective["default_cli_provider"] = temp_params["cliprovider"]
         
@@ -187,17 +173,9 @@ class ConfigManager:
             (成功标志, 消息)
         """
         # 验证配置值
-        if config_key == "default_provider":
-            if config_value not in self.VALID_PROVIDERS:
-                return False, f"❌ 无效的提供商 / Invalid provider: {config_value}\n有效值 / Valid values: {', '.join(self.VALID_PROVIDERS)}"
-        
-        elif config_key == "default_layer":
-            if config_value not in self.VALID_LAYERS:
-                return False, f"❌ 无效的执行层 / Invalid layer: {config_value}\n有效值 / Valid values: {', '.join(self.VALID_LAYERS)}"
-        
-        elif config_key == "default_cli_provider":
-            if config_value not in self.VALID_PROVIDERS:
-                return False, f"❌ 无效的CLI提供商 / Invalid CLI provider: {config_value}\n有效值 / Valid values: {', '.join(self.VALID_PROVIDERS)}"
+        if config_key == "default_cli_provider":
+            if config_value not in self.VALID_CLI_PROVIDERS:
+                return False, f"❌ 无效的CLI提供商 / Invalid CLI provider: {config_value}\n有效值 / Valid values: {', '.join(self.VALID_CLI_PROVIDERS)}"
         
         elif config_key == "target_project_dir":
             # 验证目录是否存在
@@ -211,8 +189,6 @@ class ConfigManager:
                 session_type=session_type,
                 target_project_dir=None,
                 response_language=None,
-                default_provider=None,
-                default_layer=None,
                 default_cli_provider=None,
                 created_by=user_id,
                 created_at=self._get_timestamp(),
@@ -228,10 +204,6 @@ class ConfigManager:
             config.target_project_dir = config_value
         elif config_key == "response_language":
             config.response_language = config_value
-        elif config_key == "default_provider":
-            config.default_provider = config_value
-        elif config_key == "default_layer":
-            config.default_layer = config_value
         elif config_key == "default_cli_provider":
             config.default_cli_provider = config_value
         
@@ -289,8 +261,6 @@ class ConfigManager:
         lines = ["⚙️ 当前配置 / Current Config:"]
         lines.append(f"- 项目目录 / Project Dir: {effective['target_project_dir'] or '(未设置 / Not set)'}")
         lines.append(f"- 回复语言 / Language: {effective['response_language'] or '(自动 / Auto)'}")
-        lines.append(f"- 默认提供商 / Provider: {effective['default_provider']}")
-        lines.append(f"- 默认执行层 / Layer: {effective['default_layer']}")
         lines.append(f"- CLI提供商 / CLI Provider: {effective['default_cli_provider'] or '(使用默认 / Use default)'}")
         
         # 如果有会话配置，显示元数据
@@ -485,8 +455,6 @@ class ConfigManager:
             "session_type": config.session_type,
             "target_project_dir": config.target_project_dir,
             "response_language": config.response_language,
-            "default_provider": config.default_provider,
-            "default_layer": config.default_layer,
             "default_cli_provider": config.default_cli_provider,
             "created_by": config.created_by,
             "created_at": config.created_at,
@@ -509,8 +477,6 @@ class ConfigManager:
             session_type=data["session_type"],
             target_project_dir=data.get("target_project_dir"),
             response_language=data.get("response_language"),
-            default_provider=data.get("default_provider"),
-            default_layer=data.get("default_layer"),
             default_cli_provider=data.get("default_cli_provider"),
             created_by=data.get("created_by"),
             created_at=data["created_at"],

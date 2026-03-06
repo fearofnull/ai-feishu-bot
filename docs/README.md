@@ -147,6 +147,3 @@
 - [OpenAI API文档](https://platform.openai.com/docs/)
 
 ---
-
-**最后更新**: 2024
-**维护者**: 项目团队

@@ -63,6 +63,14 @@ class UnifiedAPIInterface(AIExecutor):
         """
         return "unified-api"
     
+    def get_current_provider_config(self) -> Optional[ProviderConfig]:
+        """获取当前使用的提供商配置
+        
+        Returns:
+            当前默认提供商配置，如果未配置则返回 None
+        """
+        return self.config_manager.get_default()
+    
     def execute(
         self,
         user_prompt: str,

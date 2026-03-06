@@ -23,9 +23,7 @@ cp .env.example .env
 用户可以在消息前加上命令前缀来指定使用哪个 AI 和执行层：
 
 #### API 层（快速对话）
-- `@claude` 或 `@claude-api` → Claude API
-- `@gemini` 或 `@gemini-api` → Gemini API  
-- `@openai` 或 `@gpt` → OpenAI API
+- `@gpt` → 统一 API（使用 Web 管理界面配置的默认提供商）
 
 #### CLI 层（代码操作）
 - `@claude-cli` 或 `@code` → Claude Code CLI
@@ -35,8 +33,8 @@ cp .env.example .env
 ### 使用示例
 
 ```
-# 使用 Claude API 快速对话
-@claude 帮我解释一下什么是依赖注入
+# 使用统一 API（通过 Web 管理界面配置的默认提供商）
+@gpt 帮我解释一下什么是依赖注入
 
 # 使用 Claude Code CLI 分析代码
 @code 分析一下这个项目的架构
@@ -44,7 +42,7 @@ cp .env.example .env
 # 使用 Gemini CLI 查看代码
 @gemini-cli 查看 src/main.py 文件的内容
 
-# 使用 OpenAI API
+# 使用统一 API 写代码
 @gpt 写一个快速排序算法
 ```
 
@@ -52,7 +50,7 @@ cp .env.example .env
 
 如果用户不指定前缀，机器人会根据消息内容智能选择：
 - 包含代码操作关键词（如"查看代码"、"修改文件"）→ 自动使用 CLI 层
-- 普通对话 → 使用 DEFAULT_PROVIDER 和 DEFAULT_LAYER 配置
+- 普通对话 → 使用 Web 管理界面配置的默认提供商
 
 ### CLI 目录配置
 
@@ -174,66 +172,59 @@ CLAUDE_CLI_TARGET_DIR=E:\IdeaProjects\special-project
 
 ---
 
-### 3. AI API 配置
+### 3. AI 提供商配置（推荐使用 Web 管理界面）
 
-至少需要配置一个 AI 提供商的 API 密钥。
+#### Web 管理界面配置（推荐）
 
-#### CLAUDE_API_KEY
-- **类型**: 字符串
-- **必需**: 否（但推荐配置）
-- **说明**: Anthropic Claude API 密钥
-- **获取方式**: 
-  1. 访问 [Anthropic Console](https://console.anthropic.com/)
-  2. 创建 API Key
-- **使用场景**: 
-  - 用户使用 `@claude` 或 `@api` 命令
-  - DEFAULT_PROVIDER 设置为 `claude` 时
-- **支持的模型**: Claude 3.5 Sonnet, Claude 3 Opus 等
+通过 Web 管理界面可视化配置 AI 提供商，这是配置 AI 提供商的**唯一推荐方式**。
 
-#### GEMINI_API_KEY
-- **类型**: 字符串
-- **必需**: 否
-- **说明**: Google Gemini API 密钥
-- **获取方式**: 
-  1. 访问 [Google AI Studio](https://aistudio.google.com/app/apikey)
-  2. 创建 API Key
-- **使用场景**: 用户使用 `@gemini` 命令
-- **支持的模型**: Gemini 1.5 Pro, Gemini 1.5 Flash 等
+**优势**：
+- ✅ **多提供商管理**: 支持添加多个 AI 提供商配置（OpenAI、Claude、Gemini 等）
+- ✅ **多模型支持**: 每个提供商可配置多个模型，并指定默认模型
+- ✅ **动态切换**: 无需重启服务即可切换默认提供商和模型
+- ✅ **可视化操作**: 简单直观的界面，无需编辑配置文件
+- ✅ **安全管理**: API Key 安全存储和脱敏显示
+- ✅ **配置持久化**: 配置保存在 `data/provider_configs.json`
 
-#### OPENAI_API_KEY
-- **类型**: 字符串
-- **必需**: 否
-- **说明**: OpenAI API 密钥或兼容服务的密钥
-- **获取方式**: 
-  1. OpenAI: 访问 [OpenAI Platform](https://platform.openai.com/api-keys)
-  2. ModelScope: 访问 [ModelScope](https://www.modelscope.cn/)
-- **使用场景**: 
-  - 用户使用 `@openai` 或 `@gpt` 命令
-  - DEFAULT_PROVIDER 设置为 `openai` 时
+**使用方法**：
+1. 启动服务后访问 `http://localhost:8080`
+2. 使用管理员密码登录
+3. 在"提供商配置"页面添加 AI 提供商
+4. 填写配置信息：
+   - **名称**: 如 "OpenAI"、"Claude"
+   - **类型**: 选择 "openai_compatible"（支持 OpenAI、Claude、Gemini 等）
+   - **Base URL**: API 端点地址
+     - OpenAI: `https://api.openai.com/v1`
+     - ModelScope: `https://api-inference.modelscope.cn/v1`
+     - 其他兼容服务的 URL
+   - **API Key**: 输入你的 API 密钥
+   - **模型列表**: 如 `["gpt-4", "gpt-3.5-turbo"]`
+   - **默认模型**: 如 "gpt-4"
+5. 勾选"设为默认"（可选）
+6. 点击"保存"
+7. 使用 `@gpt` 命令调用配置的提供商
 
-#### OPENAI_BASE_URL
-- **类型**: 字符串（URL）
-- **必需**: 否
-- **默认值**: `https://api.openai.com/v1`
-- **说明**: OpenAI API 的基础 URL，用于兼容第三方服务
-- **常用值**: 
-  - OpenAI 官方: `https://api.openai.com/v1`（默认）
-  - ModelScope: `https://api-inference.modelscope.cn/v1`
-  - Azure OpenAI: `https://your-resource.openai.azure.com/`
-- **使用场景**: 
-  - 使用 ModelScope 等国内服务
-  - 使用 Azure OpenAI
-  - 使用其他兼容 OpenAI API 的服务
+**配置示例**：
 
-#### OPENAI_MODEL
-- **类型**: 字符串
-- **必需**: 否
-- **默认值**: `gpt-4o`
-- **说明**: 指定使用的 OpenAI 模型
-- **常用值**: 
-  - OpenAI: `gpt-4o`, `gpt-4-turbo`, `gpt-3.5-turbo`
-  - ModelScope: `qwen-plus`, `qwen-turbo`, `qwen-max`
-- **注意**: 模型名称必须与 API 服务支持的模型匹配
+OpenAI 配置：
+```
+名称: OpenAI
+类型: openai_compatible
+Base URL: https://api.openai.com/v1
+API Key: sk-...
+模型列表: ["gpt-4", "gpt-3.5-turbo"]
+默认模型: gpt-4
+```
+
+ModelScope 配置（国内）：
+```
+名称: ModelScope
+类型: openai_compatible
+Base URL: https://api-inference.modelscope.cn/v1
+API Key: your_modelscope_key
+模型列表: ["qwen-plus", "qwen-turbo"]
+默认模型: qwen-plus
+```
 
 ---
 
@@ -245,26 +236,8 @@ CLAUDE_CLI_TARGET_DIR=E:\IdeaProjects\special-project
 - **默认值**: `claude`
 - **可选值**: `claude`, `gemini`, `openai`
 - **说明**: 当用户未指定提供商时使用的默认 AI 服务
-- **使用场景**: 
-  - 用户直接发送消息（不带 @ 前缀）
-  - 智能路由选择提供商时的首选
-- **建议**: 选择你配置了 API 密钥的提供商
-
-#### DEFAULT_LAYER
-- **类型**: 字符串（枚举）
-- **必需**: 否
-- **默认值**: `api`
-- **可选值**: 
-  - `api`: API 层（快速响应，适合对话）
-  - `cli`: CLI 层（深度代码能力，适合代码操作）
-- **说明**: 当用户未指定执行层时使用的默认执行方式
-- **选择建议**: 
-  - 主要用于对话: 选择 `api`
-  - 主要用于代码操作: 选择 `cli`
-
----
-
-### 5. 会话管理配置
+- **注意**: 此配置已废弃，请使用 Web 管理界面配置默认提供商
+- **迁移指南**: 访问 Web 管理界面（http://localhost:8080），在提供商配置页面勾选"设为默认"
 
 #### SESSION_STORAGE_PATH
 - **类型**: 字符串（文件路径）
@@ -400,7 +373,6 @@ CLAUDE_API_KEY: ✅ 已配置
 GEMINI_API_KEY: ⚠️ 未配置
 OPENAI_API_KEY: ✅ 已配置
 DEFAULT_PROVIDER: claude
-DEFAULT_LAYER: api
 LOG_LEVEL: INFO
 ============================================================
 
@@ -409,82 +381,66 @@ LOG_LEVEL: INFO
 
 ## 常见配置场景
 
-### 场景 1: 仅使用 Claude API
-```bash
-FEISHU_APP_ID=your_app_id
-FEISHU_APP_SECRET=your_app_secret
-CLAUDE_API_KEY=your_claude_key
-DEFAULT_PROVIDER=claude
-DEFAULT_LAYER=api
-```
+### 场景 1: 使用 Web 管理界面配置 OpenAI（推荐）
+1. 访问 http://localhost:8080
+2. 登录后进入"提供商配置"页面
+3. 添加 OpenAI 配置：
+   - 名称: OpenAI
+   - 类型: openai_compatible
+   - Base URL: https://api.openai.com/v1
+   - API Key: 你的 OpenAI API Key
+   - 模型列表: ["gpt-4", "gpt-3.5-turbo"]
+   - 默认模型: gpt-4
+4. 勾选"设为默认"
+5. 使用 `@gpt` 命令调用
 
 ### 场景 2: 使用 ModelScope（国内）
-```bash
-FEISHU_APP_ID=your_app_id
-FEISHU_APP_SECRET=your_app_secret
-OPENAI_API_KEY=your_modelscope_key
-OPENAI_BASE_URL=https://api-inference.modelscope.cn/v1
-OPENAI_MODEL=qwen-plus
-DEFAULT_PROVIDER=openai
-DEFAULT_LAYER=api
-```
+1. 访问 http://localhost:8080
+2. 登录后进入"提供商配置"页面
+3. 添加 ModelScope 配置：
+   - 名称: ModelScope
+   - 类型: openai_compatible
+   - Base URL: https://api-inference.modelscope.cn/v1
+   - API Key: 你的 ModelScope API Key
+   - 模型列表: ["qwen-plus", "qwen-turbo"]
+   - 默认模型: qwen-plus
+4. 勾选"设为默认"
+5. 使用 `@gpt` 命令调用
 
-### 场景 3: 多 AI 混合使用
-```bash
-FEISHU_APP_ID=your_app_id
-FEISHU_APP_SECRET=your_app_secret
-CLAUDE_API_KEY=your_claude_key
-GEMINI_API_KEY=your_gemini_key
-OPENAI_API_KEY=your_openai_key
-DEFAULT_PROVIDER=claude
-DEFAULT_LAYER=api
-```
+### 场景 3: 配置多个 AI 提供商
+1. 访问 http://localhost:8080
+2. 分别添加多个提供商配置（OpenAI、Claude、Gemini 等）
+3. 选择其中一个设为默认
+4. 使用 `@gpt` 命令调用默认提供商
+5. 在 Web 界面随时切换默认提供商，无需重启服务
 
 ### 场景 4: 不同 CLI 使用不同项目
 ```bash
 FEISHU_APP_ID=your_app_id
 FEISHU_APP_SECRET=your_app_secret
-CLAUDE_API_KEY=your_claude_key
-GEMINI_API_KEY=your_gemini_key
 CLAUDE_CLI_TARGET_DIR=E:\IdeaProjects\backend-project
 GEMINI_CLI_TARGET_DIR=E:\IdeaProjects\frontend-project
-DEFAULT_PROVIDER=claude
-DEFAULT_LAYER=api
 ```
 
 用户可以通过 `@code` 操作后端项目，通过 `@gemini-cli` 操作前端项目。
-```bash
-FEISHU_APP_ID=your_app_id
-FEISHU_APP_SECRET=your_app_secret
-CLAUDE_API_KEY=your_claude_key
-TARGET_PROJECT_DIR=E:\IdeaProjects\my-project
-DEFAULT_PROVIDER=claude
-DEFAULT_LAYER=cli
-AI_TIMEOUT=1200
-```
 
 ### 场景 5: 代码操作为主
 ```bash
 FEISHU_APP_ID=your_app_id
 FEISHU_APP_SECRET=your_app_secret
-CLAUDE_API_KEY=your_claude_key
 TARGET_PROJECT_DIR=E:\IdeaProjects\my-project
-DEFAULT_PROVIDER=claude
-DEFAULT_LAYER=cli
+
 AI_TIMEOUT=1200
 ```
+
+配置 Web 管理界面的默认提供商后，使用 `@gpt` 命令进行代码操作。
 
 ## 命令前缀完整列表
 
 ### API 层命令
 | 命令前缀 | AI 提供商 | 说明 |
 |---------|----------|------|
-| `@claude` | Claude API | Anthropic Claude（推荐） |
-| `@claude-api` | Claude API | 同上（显式指定 API） |
-| `@gemini` | Gemini API | Google Gemini |
-| `@gemini-api` | Gemini API | 同上（显式指定 API） |
-| `@openai` | OpenAI API | OpenAI GPT |
-| `@gpt` | OpenAI API | 同上（简写） |
+| `@gpt` | 统一 API | 使用 Web 管理界面配置的默认提供商 |
 
 ### CLI 层命令
 | 命令前缀 | AI CLI | 说明 | 目标目录配置 |
@@ -496,16 +452,16 @@ AI_TIMEOUT=1200
 
 ### 使用技巧
 
-1. **快速切换 AI**：在同一会话中可以随时切换不同的 AI
+1. **使用统一 API**：
    ```
-   @claude 用 Python 写一个快速排序
-   @gemini 用 Java 写一个快速排序
-   @gpt 用 JavaScript 写一个快速排序
+   @gpt 用 Python 写一个快速排序
+   @gpt 解释一下这段代码的作用
+   @gpt 帮我重构这个函数
    ```
 
 2. **混合使用 API 和 CLI**：
    ```
-   @claude 这个项目应该怎么重构？
+   @gpt 这个项目应该怎么重构？
    @code 帮我查看一下 src/main.py 的代码
    ```
 
@@ -514,6 +470,11 @@ AI_TIMEOUT=1200
    @code 分析后端项目的数据库设计
    @gemini-cli 查看前端项目的组件结构
    ```
+
+4. **切换提供商**：
+   - 访问 Web 管理界面（http://localhost:8080）
+   - 在提供商配置页面切换默认提供商
+   - 无需重启服务，立即生效
 
 ---
 
@@ -544,9 +505,10 @@ AI_TIMEOUT=1200
 ### 问题 2: AI 无响应
 **症状**: 机器人收到消息但不回复
 **解决**: 
-1. 检查对应 AI 的 API 密钥是否正确
-2. 检查 DEFAULT_PROVIDER 是否配置了有效的提供商
-3. 查看日志确认错误信息
+1. 检查是否在 Web 管理界面配置了 AI 提供商
+2. 访问 http://localhost:8080 查看提供商配置
+3. 确认默认提供商的 API 密钥是否正确
+4. 查看日志确认错误信息
 
 ### 问题 3: CLI 层无法使用
 **症状**: 使用 `@code` 命令报错
@@ -555,8 +517,50 @@ AI_TIMEOUT=1200
 2. 检查目录路径是否存在
 3. 检查是否安装了 Claude Code CLI
 
+## Web 管理界面配置（推荐）
+
+除了通过环境变量配置基础设置，系统提供了 Web 管理界面用于可视化管理 AI 提供商配置。
+
+### 使用 Web 管理界面配置提供商
+
+Web 管理界面是配置 AI 提供商的**唯一推荐方式**，提供了更灵活和强大的配置能力：
+
+- 🔧 **多提供商管理**: 支持添加多个 AI 提供商配置（OpenAI、Claude、Gemini 等）
+- 🎯 **多模型支持**: 每个提供商可配置多个模型，并指定默认模型
+- 🔄 **动态切换**: 无需重启服务即可切换默认提供商和模型
+- 🔐 **安全管理**: API Key 安全存储和脱敏显示
+- 📊 **可视化操作**: 简单直观的界面，无需编辑配置文件
+
+**访问方式**：
+1. 启动 Web 管理界面：`python -m feishu_bot.web_admin.server --port 8080`
+2. 浏览器访问：http://localhost:8080
+3. 使用管理员密码登录（在 `.env` 中配置的 `WEB_ADMIN_PASSWORD`）
+4. 点击左侧菜单的 "AI 提供商配置"
+
+**配置步骤**：
+1. 点击"添加提供商"按钮
+2. 填写配置信息：
+   - **名称**: 如 "OpenAI"、"ModelScope"
+   - **类型**: 选择 "openai_compatible"
+   - **Base URL**: API 端点地址
+   - **API Key**: 输入你的 API 密钥
+   - **模型列表**: 如 `["gpt-4", "gpt-3.5-turbo"]`
+   - **默认模型**: 如 "gpt-4"
+3. 勾选"设为默认"（可选）
+4. 点击"保存"
+5. 使用 `@gpt` 命令调用配置的提供商
+
+**支持的提供商**：
+- OpenAI (https://api.openai.com/v1)
+- ModelScope (https://api-inference.modelscope.cn/v1)
+- Azure OpenAI
+- 其他兼容 OpenAI API 的服务
+
+详细使用说明见 [Web 管理界面文档](WEB_ADMIN_README.md#ai-提供商配置推荐)。
+
 ## 更多帮助
 
 - 查看 [README.md](../README.md) 了解快速开始
-- 查看 [INTEGRATION_TESTING_GUIDE.md](INTEGRATION_TESTING_GUIDE.md) 了解测试配置
+- 查看 [Web 管理界面文档](WEB_ADMIN_README.md) 了解可视化配置管理
+- 查看 [动态配置文档](DYNAMIC_CONFIG.md) 了解会话级配置
 - 查看 `.kiro/specs/feishu-ai-bot/design.md` 了解架构设计

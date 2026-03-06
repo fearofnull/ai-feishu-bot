@@ -23,11 +23,11 @@ upstream feishu_bot_backend {
     # server unix:/opt/feishu-bot/gunicorn.sock fail_timeout=0;
     
     # Or use TCP socket
-    server 127.0.0.1:5000 fail_timeout=0;
+    server 127.0.0.1:8080 fail_timeout=0;
     
     # For multiple workers, you can add more servers for load balancing
-    # server 127.0.0.1:5001 fail_timeout=0;
-    # server 127.0.0.1:5002 fail_timeout=0;
+    # server 127.0.0.1:8081 fail_timeout=0;
+    # server 127.0.0.1:8082 fail_timeout=0;
     
     # Keep-alive connections to backend
     keepalive 32;

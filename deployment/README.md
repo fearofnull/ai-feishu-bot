@@ -13,7 +13,7 @@ deployment/
 ├── nginx/               # Nginx 配置
 │   └── nginx.conf.example
 ├── systemd/             # Systemd 服务配置
-│   └── feishu-bot-web-admin.service
+│   └── feishu-bot.service
 └── README.md            # 本文件
 ```
 
@@ -50,7 +50,7 @@ sudo nano /etc/nginx/sites-available/feishu-bot-web-admin
 - `root`: 前端构建产物的路径（默认：/opt/feishu-bot/frontend/dist）
 - `ssl_certificate`: SSL 证书文件路径
 - `ssl_certificate_key`: SSL 私钥文件路径
-- `upstream feishu_bot_backend`: 后端服务器地址（默认：127.0.0.1:5000）
+- `upstream feishu_bot_backend`: 后端服务器地址（默认：127.0.0.1:8080）
 
 3. 创建符号链接启用站点：
 ```bash
@@ -87,64 +87,61 @@ sudo certbot renew --dry-run
 - **速率限制**：取消注释 `limit_req_zone` 部分以启用 API 速率限制
 - **Unix Socket**：修改 upstream 配置使用 Unix socket 以获得更好的性能
 
-### systemd/feishu-bot-web-admin.service
+### systemd/feishu-bot.service
 
-Systemd 服务单元文件，用于在 Linux 系统上管理 Web 管理界面服务。
+Systemd 服务单元文件，用于在 Linux 系统上管理飞书机器人服务（包括机器人和 Web 管理界面）。
 
 **安装步骤**：
 
 1. 复制服务文件到 systemd 目录：
 ```bash
-sudo cp deployment/systemd/feishu-bot-web-admin.service /etc/systemd/system/
+sudo cp deployment/systemd/feishu-bot.service /etc/systemd/system/
 ```
 
 2. 根据实际部署路径修改服务文件中的路径：
 ```bash
-sudo nano /etc/systemd/system/feishu-bot-web-admin.service
+sudo nano /etc/systemd/system/feishu-bot.service
 ```
 
 需要修改的路径：
 - `WorkingDirectory`: 项目根目录
 - `Environment="PATH=..."`: Python 虚拟环境路径
 - `EnvironmentFile`: .env 文件路径
-- `ExecStart`: Gunicorn 可执行文件路径和配置文件路径
+- `ExecStart`: Python 可执行文件路径和启动脚本路径
 - `ReadWritePaths`: 日志和数据目录路径
 
 3. 重新加载 systemd 并启动服务：
 ```bash
 sudo systemctl daemon-reload
-sudo systemctl start feishu-bot-web-admin
-sudo systemctl enable feishu-bot-web-admin
+sudo systemctl start feishu-bot
+sudo systemctl enable feishu-bot
 ```
 
 4. 查看服务状态：
 ```bash
-sudo systemctl status feishu-bot-web-admin
+sudo systemctl status feishu-bot
 ```
 
 **服务管理命令**：
 
 ```bash
 # 启动服务
-sudo systemctl start feishu-bot-web-admin
+sudo systemctl start feishu-bot
 
 # 停止服务
-sudo systemctl stop feishu-bot-web-admin
+sudo systemctl stop feishu-bot
 
 # 重启服务
-sudo systemctl restart feishu-bot-web-admin
-
-# 重新加载配置（优雅重启）
-sudo systemctl reload feishu-bot-web-admin
+sudo systemctl restart feishu-bot
 
 # 查看服务状态
-sudo systemctl status feishu-bot-web-admin
+sudo systemctl status feishu-bot
 
 # 查看服务日志
-sudo journalctl -u feishu-bot-web-admin -f
+sudo journalctl -u feishu-bot -f
 
 # 查看最近的错误日志
-sudo journalctl -u feishu-bot-web-admin -p err --since today
+sudo journalctl -u feishu-bot -p err --since today
 ```
 
 ## 相关文档
@@ -233,7 +230,7 @@ ls -l logs/*.log*
 1. 环境变量是否正确配置（`.env` 文件）
 2. Python 虚拟环境是否正确安装
 3. 所有依赖是否已安装（`pip install -r requirements.txt`）
-4. 端口是否被占用（`netstat -tuln | grep 5000`）
+4. 端口是否被占用（`netstat -tuln | grep 8080`）
 5. 文件和目录权限是否正确
 6. 查看详细错误日志（`sudo journalctl -u feishu-bot-web-admin -n 50`）
 

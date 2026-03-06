@@ -179,9 +179,6 @@ User wants to try different AI providers.
 用户: /provider gemini
 机器人: ✅ 配置已更新 / Config updated: default_provider = gemini
 
-用户: /layer api
-机器人: ✅ 配置已更新 / Config updated: default_layer = api
-
 用户: 解释量子计算
 机器人: [使用 Gemini API]
 量子计算是一种利用量子力学原理...

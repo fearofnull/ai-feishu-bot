@@ -23,8 +23,6 @@ from .core.event_handler import EventHandler
 from .core.websocket_client import WebSocketClient
 
 # API Executors
-from .executors.claude_api_executor import ClaudeAPIExecutor
-from .executors.gemini_api_executor import GeminiAPIExecutor
 from .executors.openai_api_executor import OpenAIAPIExecutor
 
 # CLI Executors
@@ -91,10 +89,6 @@ class FeishuBot:
         # 初始化智能路由器
         self.smart_router = SmartRouter(
             executor_registry=self.executor_registry,
-            default_provider=config.default_provider,
-            default_layer=config.default_layer,
-            default_cli_provider=config.default_cli_provider,
-            use_ai_intent_classification=config.use_ai_intent_classification,
             unified_api_interface=self.unified_api_interface
         )
         
@@ -114,83 +108,6 @@ class FeishuBot:
     
     def _register_executors(self) -> None:
         """注册所有 AI 执行器"""
-        # 注册 Claude API 执行器
-        if self.config.claude_api_key:
-            try:
-                claude_api = ClaudeAPIExecutor(
-                    api_key=self.config.claude_api_key,
-                    timeout=self.config.ai_timeout
-                )
-                claude_api_metadata = ExecutorMetadata(
-                    name="Claude API",
-                    provider="claude",
-                    layer="api",
-                    version="1.0.0",
-                    description="Anthropic Claude API for general Q&A",
-                    capabilities=["general_qa", "text_generation", "analysis"],
-                    command_prefixes=["@claude-api"],
-                    priority=1,
-                    config_required=["api_key"]
-                )
-                self.executor_registry.register_api_executor(
-                    "claude", claude_api, claude_api_metadata
-                )
-                logger.info("Registered Claude API executor")
-            except Exception as e:
-                logger.warning(f"Failed to register Claude API executor: {e}")
-        
-        # 注册 Gemini API 执行器
-        if self.config.gemini_api_key:
-            try:
-                gemini_api = GeminiAPIExecutor(
-                    api_key=self.config.gemini_api_key,
-                    timeout=self.config.ai_timeout
-                )
-                gemini_api_metadata = ExecutorMetadata(
-                    name="Gemini API",
-                    provider="gemini",
-                    layer="api",
-                    version="1.0.0",
-                    description="Google Gemini API for general Q&A",
-                    capabilities=["general_qa", "text_generation", "analysis"],
-                    command_prefixes=["@gemini-api"],
-                    priority=2,
-                    config_required=["api_key"]
-                )
-                self.executor_registry.register_api_executor(
-                    "gemini", gemini_api, gemini_api_metadata
-                )
-                logger.info("Registered Gemini API executor")
-            except Exception as e:
-                logger.warning(f"Failed to register Gemini API executor: {e}")
-        
-        # 注册 OpenAI API 执行器
-        if self.config.openai_api_key:
-            try:
-                openai_api = OpenAIAPIExecutor(
-                    api_key=self.config.openai_api_key,
-                    base_url=self.config.openai_base_url,
-                    model=self.config.openai_model,
-                    timeout=self.config.ai_timeout
-                )
-                openai_api_metadata = ExecutorMetadata(
-                    name="OpenAI API",
-                    provider="openai",
-                    layer="api",
-                    version="1.0.0",
-                    description="OpenAI API for general Q&A",
-                    capabilities=["general_qa", "text_generation", "analysis"],
-                    command_prefixes=["@openai", "@gpt"],
-                    priority=3,
-                    config_required=["api_key"]
-                )
-                self.executor_registry.register_api_executor(
-                    "openai", openai_api, openai_api_metadata
-                )
-                logger.info("Registered OpenAI API executor")
-            except Exception as e:
-                logger.warning(f"Failed to register OpenAI API executor: {e}")
-        
         # 注册 Claude Code CLI 执行器
         claude_cli_dir = self.config.claude_cli_target_dir or self.config.target_directory
         if claude_cli_dir:
@@ -386,25 +303,9 @@ class FeishuBot:
                 session_id, session_type, temp_params
             )
             
-            # 9. 智能路由（使用有效配置）
-            # 9. 智能路由（使用有效配置）
+            # 9. 智能路由
             try:
-                # 临时覆盖全局配置（用于路由决策）
-                original_provider = self.config.default_provider
-                original_layer = self.config.default_layer
-                original_cli_provider = self.config.default_cli_provider
-                
-                self.config.default_provider = effective_config["default_provider"]
-                self.config.default_layer = effective_config["default_layer"]
-                self.config.default_cli_provider = effective_config["default_cli_provider"]
-                
                 executor = self.smart_router.route(parsed_command)
-                
-                # 恢复原始配置
-                self.config.default_provider = original_provider
-                self.config.default_layer = original_layer
-                self.config.default_cli_provider = original_cli_provider
-                
             except Exception as e:
                 error_msg = f"路由失败：{str(e)}"
                 logger.error(error_msg)
@@ -417,7 +318,6 @@ class FeishuBot:
                 return
             
             # 10. AI 执行
-            # 10. AI 执行
             try:
                 # 获取对话历史
                 conversation_history = self.session_manager.get_conversation_history(
@@ -427,10 +327,19 @@ class FeishuBot:
                 # 获取执行器元数据
                 provider_name = executor.get_provider_name()  # e.g., "openai-api", "claude-cli", "unified-api"
                 
-                # 特殊处理 unified-api：不在 registry 中注册，直接使用名称
+                # 特殊处理 unified-api：获取实际的提供商配置信息
                 if provider_name == "unified-api":
                     executor_metadata = None
-                    executor_name_override = "Unified API (@gpt)"
+                    # 获取当前提供商配置
+                    if hasattr(executor, 'get_current_provider_config'):
+                        current_config = executor.get_current_provider_config()
+                        if current_config:
+                            # 格式：提供商名称 (模型名称)
+                            executor_name_override = f"{current_config.name} ({current_config.default_model})"
+                        else:
+                            executor_name_override = "Unified API (@gpt)"
+                    else:
+                        executor_name_override = "Unified API (@gpt)"
                 else:
                     # 解析 provider 和 layer
                     if "-" in provider_name:

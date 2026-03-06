@@ -274,8 +274,7 @@ describe('Responsive Layout Tests', () => {
             target_project_dir: '/test/path',
             response_language: '中文',
             default_provider: 'claude',
-            default_layer: 'api',
-            default_cli_provider: null
+                        default_cli_provider: null
           },
           sessionId: 'test-session'
         },
@@ -305,8 +304,7 @@ describe('Responsive Layout Tests', () => {
             target_project_dir: '/test/path',
             response_language: '中文',
             default_provider: 'claude',
-            default_layer: 'api',
-            default_cli_provider: null
+                        default_cli_provider: null
           },
           sessionId: 'test-session'
         },
@@ -336,8 +334,7 @@ describe('Responsive Layout Tests', () => {
             target_project_dir: '/test/path',
             response_language: '中文',
             default_provider: 'claude',
-            default_layer: 'api',
-            default_cli_provider: null
+                        default_cli_provider: null
           },
           sessionId: 'test-session'
         },

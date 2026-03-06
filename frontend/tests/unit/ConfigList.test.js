@@ -62,8 +62,7 @@ describe('ConfigList.vue', () => {
       session_type: 'user',
       config: {
         default_provider: 'claude',
-        default_layer: 'api',
-        response_language: '中文'
+                response_language: '中文'
       },
       metadata: {
         created_at: '2024-01-01T10:00:00Z',
@@ -76,8 +75,7 @@ describe('ConfigList.vue', () => {
       session_type: 'group',
       config: {
         default_provider: 'gemini',
-        default_layer: 'cli',
-        response_language: 'English'
+                response_language: 'English'
       },
       metadata: {
         created_at: '2024-01-02T10:00:00Z',
@@ -90,8 +88,7 @@ describe('ConfigList.vue', () => {
       session_type: 'user',
       config: {
         default_provider: 'openai',
-        default_layer: 'api'
-      },
+              },
       metadata: {
         created_at: '2024-01-01T08:00:00Z',
         updated_at: '2024-01-01T08:00:00Z',

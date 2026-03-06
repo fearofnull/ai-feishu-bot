@@ -1,0 +1,18 @@
+chore: remove frontend build artifacts from git
+
+- Add feishu_bot/web_admin/static/ to .gitignore
+- Remove static files from git tracking (keep local files)
+- Update README.md with frontend build instructions
+- Update docs/INTRODUCTION.md with frontend build steps
+- Add frontend/README.md with development guide
+
+Rationale:
+- Follow open source best practices
+- Reduce repository size
+- Avoid polluting git history with build artifacts
+- Docker deployment already handles frontend build automatically
+- Developers can easily build frontend locally with npm
+
+Breaking Change:
+Users running from source now need to build frontend first:
+  cd frontend && npm install && npm run build

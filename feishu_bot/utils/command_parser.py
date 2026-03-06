@@ -21,8 +21,6 @@ class CommandParser:
     PREFIX_MAPPING = {
         # Unified API (routes through UnifiedAPIInterface) - 统一API入口
         "@gpt": ("unified", "api"),
-        # OpenAI API (直接调用，保留向后兼容)
-        "@openai": ("openai", "api"),
         # Claude CLI
         "@claude-cli": ("claude", "cli"),
         "@code": ("claude", "cli"),
@@ -74,11 +72,11 @@ class CommandParser:
                 explicit=True
             ), temp_params
         
-        # 没有显式指定，返回默认值
-        logger.debug(f"No explicit prefix found, using defaults, temp_params={temp_params}")
+        # 没有显式指定，返回默认值（使用统一API接口）
+        logger.debug(f"No explicit prefix found, using unified API, temp_params={temp_params}")
         return ParsedCommand(
-            provider="claude",  # 默认提供商
-            execution_layer="api",  # 默认执行层
+            provider="unified",  # 默认使用统一API接口
+            execution_layer="api",  # 统一API接口总是API层
             message=clean_message,
             explicit=False
         ), temp_params

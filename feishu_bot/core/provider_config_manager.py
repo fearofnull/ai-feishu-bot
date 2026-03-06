@@ -34,6 +34,7 @@ class ProviderConfigManager:
         self.storage_path = storage_path
         self.configs: Dict[str, ProviderConfig] = {}
         self.version = "1.0"
+        self._last_mtime = 0.0  # 记录文件最后修改时间
         
         # 确保存储目录存在
         os.makedirs(os.path.dirname(storage_path), exist_ok=True)
@@ -205,13 +206,38 @@ class ProviderConfigManager:
     def get_default(self) -> Optional[ProviderConfig]:
         """获取默认提供商配置
         
+        自动检查配置文件是否被修改，如果修改了则重新加载。
+        
         Returns:
             默认提供商配置，如果没有设置默认则返回 None
         """
+        # 检查文件是否被修改
+        self.reload_if_changed()
+        
         for config in self.configs.values():
             if config.is_default:
                 return config
         return None
+    
+    def reload_if_changed(self) -> bool:
+        """检查配置文件是否被修改，如果修改了则重新加载
+        
+        Returns:
+            True 如果重新加载了配置
+        """
+        if not os.path.exists(self.storage_path):
+            return False
+        
+        try:
+            current_mtime = os.path.getmtime(self.storage_path)
+            if current_mtime > self._last_mtime:
+                logger.info(f"检测到配置文件已更新，重新加载配置")
+                self.load()
+                return True
+        except Exception as e:
+            logger.warning(f"检查配置文件修改时间失败: {e}")
+        
+        return False
     
     def save(self) -> bool:
         """保存配置到文件
@@ -256,9 +282,13 @@ class ProviderConfigManager:
         if not os.path.exists(self.storage_path):
             logger.info(f"配置文件不存在，将创建新文件: {self.storage_path}")
             self.configs = {}
+            self._last_mtime = 0.0
             return self.save()
         
         try:
+            # 记录文件修改时间
+            self._last_mtime = os.path.getmtime(self.storage_path)
+            
             # 读取文件
             with open(self.storage_path, 'r', encoding='utf-8') as f:
                 data = json.load(f)
@@ -280,12 +310,14 @@ class ProviderConfigManager:
             logger.error(f"配置文件格式错误: {e}")
             logger.warning("使用空配置列表继续运行")
             self.configs = {}
+            self._last_mtime = 0.0
             return False
             
         except Exception as e:
             logger.error(f"加载配置文件失败: {e}")
             logger.warning("使用空配置列表继续运行")
             self.configs = {}
+            self._last_mtime = 0.0
             return False
     
     def export_config(self, path: str) -> bool:

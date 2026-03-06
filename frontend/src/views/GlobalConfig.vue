@@ -111,22 +111,6 @@
             </div>
           </el-descriptions-item>
 
-          <!-- Default Layer -->
-          <el-descriptions-item>
-            <template #label>
-              <div class="label-content">
-                <el-icon><Operation /></el-icon>
-                <span>默认层级</span>
-              </div>
-            </template>
-            <div class="value-content">
-              <el-tag :type="globalConfig.default_layer === 'api' ? 'primary' : 'warning'" effect="plain" size="large">
-                {{ globalConfig.default_layer || '未设置' }}
-              </el-tag>
-              <span class="field-description">默认使用的层级 (api/cli)</span>
-            </div>
-          </el-descriptions-item>
-
           <!-- Default CLI Provider -->
           <el-descriptions-item>
             <template #label>
@@ -186,20 +170,6 @@
             <div class="form-item-tip">Bot 回复消息使用的默认语言</div>
           </el-form-item>
 
-          <!-- Default Layer -->
-          <el-form-item label="默认层级">
-            <el-select 
-              v-model="editForm.default_layer" 
-              placeholder="选择层级"
-              clearable
-              style="width: 100%"
-            >
-              <el-option label="API" value="api" />
-              <el-option label="CLI" value="cli" />
-            </el-select>
-            <div class="form-item-tip">默认使用的层级</div>
-          </el-form-item>
-
           <!-- Default CLI Provider -->
           <el-form-item label="默认 CLI 提供商">
             <el-select 
@@ -210,7 +180,7 @@
             >
               <el-option label="Claude" value="claude" />
               <el-option label="Gemini" value="gemini" />
-              <el-option label="OpenAI" value="openai" />
+              <el-option label="Qwen" value="qwen" />
             </el-select>
             <div class="form-item-tip">CLI 层级使用的默认提供商（可选）</div>
           </el-form-item>
@@ -261,9 +231,18 @@ const saving = ref(false)
 const editForm = ref({
   target_project_dir: '',
   response_language: '',
-  default_layer: '',
-  default_cli_provider: ''
+    default_cli_provider: ''
 })
+
+// Get provider tag type
+const getProviderTagType = (provider) => {
+  const typeMap = {
+    'claude': 'primary',
+    'gemini': 'success',
+    'qwen': 'warning'
+  }
+  return typeMap[provider] || 'info'
+}
 
 // Load global configuration
 const loadGlobalConfig = async () => {
@@ -287,8 +266,7 @@ const startEdit = () => {
   editForm.value = {
     target_project_dir: globalConfig.value.target_project_dir || '',
     response_language: globalConfig.value.response_language || '',
-    default_layer: globalConfig.value.default_layer || '',
-    default_cli_provider: globalConfig.value.default_cli_provider || ''
+        default_cli_provider: globalConfig.value.default_cli_provider || ''
   }
   isEditing.value = true
 }
@@ -299,8 +277,7 @@ const cancelEdit = () => {
   editForm.value = {
     target_project_dir: '',
     response_language: '',
-    default_layer: '',
-    default_cli_provider: ''
+        default_cli_provider: ''
   }
 }
 
@@ -313,8 +290,7 @@ const saveConfig = async () => {
     const data = {
       target_project_dir: editForm.value.target_project_dir || null,
       response_language: editForm.value.response_language || null,
-      default_layer: editForm.value.default_layer || null,
-      default_cli_provider: editForm.value.default_cli_provider || null
+            default_cli_provider: editForm.value.default_cli_provider || null
     }
     
     const response = await configAPI.updateGlobalConfig(data)

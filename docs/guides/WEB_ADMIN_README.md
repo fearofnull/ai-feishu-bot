@@ -42,11 +42,10 @@ Web 管理界面可以管理以下配置项：
 - **target_project_dir**: CLI 工具的目标项目目录路径
 - **response_language**: AI 回复语言（如 zh-CN、en-US、ja-JP 等）
 - **default_provider**: 默认 AI 提供商（claude、gemini、openai）
-- **default_layer**: 默认执行层（api 或 cli）
+
 - **default_cli_provider**: CLI 层专用提供商（claude、gemini 或空）
 
 这些配置项与飞书消息命令（如 `/setdir`、`/lang`、`/provider` 等）完全对应。
-
 
 ## 安装和启动说明
 
@@ -162,7 +161,6 @@ python -m feishu_bot.web_admin.server --debug
 ```
 
 打开浏览器访问显示的 URL，如果看到登录页面，说明安装成功。
-
 
 ## 环境变量配置说明
 
@@ -465,20 +463,6 @@ DEFAULT_PROVIDER=claude
 - 主要用于 API 层
 - 可以在 Web 界面中为每个会话单独设置
 
-#### DEFAULT_LAYER
-
-默认执行层。
-
-```bash
-DEFAULT_LAYER=api
-```
-
-**说明**：
-- 可选值：`api`（快速响应）、`cli`（深度代码能力）
-- 默认值：`api`
-- 当用户未指定执行层时使用
-- 可以在 Web 界面中为每个会话单独设置
-
 #### DEFAULT_CLI_PROVIDER
 
 CLI 层专用默认提供商。
@@ -539,7 +523,7 @@ FLASK_ENV=development  # 开发环境：允许所有来源
 TARGET_PROJECT_DIR=/home/user/my-project
 RESPONSE_LANGUAGE=zh-CN
 DEFAULT_PROVIDER=claude
-DEFAULT_LAYER=api
+
 DEFAULT_CLI_PROVIDER=gemini
 
 # ============================================================
@@ -604,7 +588,6 @@ OPENAI_API_KEY=your_openai_api_key
    - 关注安全公告
    - 及时修复漏洞
 
-
 ## 使用指南
 
 ### 登录
@@ -643,7 +626,7 @@ OPENAI_API_KEY=your_openai_api_key
 - `target_project_dir`: CLI 工具的目标项目目录
 - `response_language`: AI 回复语言（如 zh-CN、en-US）
 - `default_provider`: 默认 AI 提供商（claude、gemini、openai）
-- `default_layer`: 默认执行层（api、cli）
+
 - `default_cli_provider`: CLI 层专用提供商
 
 **编辑配置**：

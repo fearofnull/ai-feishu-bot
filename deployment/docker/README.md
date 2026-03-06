@@ -1,6 +1,6 @@
 # Docker 部署指南
 
-本文档介绍如何使用 Docker 部署飞书 AI Bot Web 管理界面。
+本文档介绍如何使用 Docker 部署飞书 AI Bot（包括机器人服务和 Web 管理界面）。
 
 ## 镜像架构
 
@@ -25,6 +25,14 @@ Dockerfile 采用多阶段构建，优化镜像大小和构建效率：
 - 创建非 root 用户运行应用
 - 最小化镜像大小
 
+## 服务说明
+
+容器运行 `python lark_bot.py`，会同时启动：
+1. **飞书机器人服务** - 监听和处理飞书消息
+2. **Web 管理界面** - 提供配置管理和提供商管理功能（默认端口 8080）
+
+两个服务运行在同一个进程中，无需单独部署。
+
 ## 镜像大小优化
 
 通过以下措施优化镜像大小：
@@ -39,22 +47,23 @@ Dockerfile 采用多阶段构建，优化镜像大小和构建效率：
 
 ## 构建镜像
 
-### 基本构建
+### 从项目根目录构建
 
 ```bash
-docker build -t feishu-bot-web-admin:latest .
+cd /path/to/lark-bot
+docker build -f deployment/docker/Dockerfile -t feishu-bot:latest .
 ```
 
 ### 指定版本标签
 
 ```bash
-docker build -t feishu-bot-web-admin:1.0.0 .
+docker build -f deployment/docker/Dockerfile -t feishu-bot:1.0.0 .
 ```
 
 ### 查看构建过程
 
 ```bash
-docker build --progress=plain -t feishu-bot-web-admin:latest .
+docker build --progress=plain -f deployment/docker/Dockerfile -t feishu-bot:latest .
 ```
 
 ## 运行容器
@@ -63,46 +72,61 @@ docker build --progress=plain -t feishu-bot-web-admin:latest .
 
 ```bash
 docker run -d \
-  --name feishu-bot-web-admin \
-  -p 5000:5000 \
+  --name feishu-bot \
+  -p 8080:8080 \
+  -e FEISHU_APP_ID="your_app_id" \
+  -e FEISHU_APP_SECRET="your_app_secret" \
   -e WEB_ADMIN_PASSWORD="your_secure_password" \
   -e JWT_SECRET_KEY="your_random_secret_key" \
+  -e ENABLE_WEB_ADMIN=true \
   -v $(pwd)/data:/app/data \
   -v $(pwd)/logs:/app/logs \
-  feishu-bot-web-admin:latest
+  feishu-bot:latest
 ```
 
 ### 使用环境变量文件
 
-创建 `.env.docker` 文件：
+创建 `.env` 文件（或使用项目根目录的 .env）：
 
 ```env
+# 飞书应用配置（必需）
+FEISHU_APP_ID=your_app_id
+FEISHU_APP_SECRET=your_app_secret
+
+# Web 管理界面配置
+ENABLE_WEB_ADMIN=true
+WEB_ADMIN_PORT=8080
+WEB_ADMIN_HOST=0.0.0.0
 WEB_ADMIN_PASSWORD=your_secure_password
 JWT_SECRET_KEY=your_random_secret_key
-ENABLE_WEB_ADMIN=true
-WEB_ADMIN_PORT=5000
-WEB_ADMIN_HOST=0.0.0.0
+
+# 其他配置
+TARGET_PROJECT_DIR=/workspace
+DEFAULT_CLI_PROVIDER=gemini
+RESPONSE_LANGUAGE=zh-CN
 ```
 
 运行容器：
 
 ```bash
 docker run -d \
-  --name feishu-bot-web-admin \
-  -p 5000:5000 \
-  --env-file .env.docker \
+  --name feishu-bot \
+  -p 8080:8080 \
+  --env-file .env \
   -v $(pwd)/data:/app/data \
   -v $(pwd)/logs:/app/logs \
-  feishu-bot-web-admin:latest
+  feishu-bot:latest
 ```
 
 ## 环境变量
 
 | 变量名 | 必需 | 默认值 | 说明 |
 |--------|------|--------|------|
+| `FEISHU_APP_ID` | 是 | - | 飞书应用 ID |
+| `FEISHU_APP_SECRET` | 是 | - | 飞书应用密钥 |
 | `WEB_ADMIN_PASSWORD` | 是 | - | 管理员登录密码 |
 | `JWT_SECRET_KEY` | 是 | - | JWT 令牌签名密钥 |
-| `WEB_ADMIN_PORT` | 否 | 5000 | Web 服务器监听端口 |
+| `WEB_ADMIN_PORT` | 否 | 8080 | Web 服务器监听端口 |
 | `WEB_ADMIN_HOST` | 否 | 0.0.0.0 | Web 服务器监听地址 |
 | `ENABLE_WEB_ADMIN` | 否 | true | 是否启用 Web 管理界面 |
 
@@ -124,13 +148,15 @@ docker volume create feishu-bot-logs
 
 ```bash
 docker run -d \
-  --name feishu-bot-web-admin \
-  -p 5000:5000 \
+  --name feishu-bot \
+  -p 8080:8080 \
+  -e FEISHU_APP_ID="your_app_id" \
+  -e FEISHU_APP_SECRET="your_app_secret" \
   -e WEB_ADMIN_PASSWORD="your_secure_password" \
   -e JWT_SECRET_KEY="your_random_secret_key" \
   -v feishu-bot-data:/app/data \
   -v feishu-bot-logs:/app/logs \
-  feishu-bot-web-admin:latest
+  feishu-bot:latest
 ```
 
 ## 健康检查
@@ -142,10 +168,10 @@ docker run -d \
 docker ps
 
 # 查看健康检查日志
-docker inspect --format='{{json .State.Health}}' feishu-bot-web-admin | jq
+docker inspect --format='{{json .State.Health}}' feishu-bot | jq
 ```
 
-健康检查端点：`http://localhost:5000/api/health`
+健康检查端点：`http://localhost:8080/api/health`
 
 ## 容器管理
 
@@ -153,50 +179,54 @@ docker inspect --format='{{json .State.Health}}' feishu-bot-web-admin | jq
 
 ```bash
 # 查看实时日志
-docker logs -f feishu-bot-web-admin
+docker logs -f feishu-bot
 
 # 查看最近 100 行日志
-docker logs --tail 100 feishu-bot-web-admin
+docker logs --tail 100 feishu-bot
 ```
 
 ### 停止容器
 
 ```bash
-docker stop feishu-bot-web-admin
+docker stop feishu-bot
 ```
 
 ### 重启容器
 
 ```bash
-docker restart feishu-bot-web-admin
+docker restart feishu-bot
 ```
 
 ### 删除容器
 
 ```bash
-docker rm -f feishu-bot-web-admin
+docker rm -f feishu-bot
 ```
 
 ### 进入容器
 
 ```bash
-docker exec -it feishu-bot-web-admin /bin/bash
+docker exec -it feishu-bot /bin/bash
 ```
 
 ## 使用 Docker Compose
 
-创建 `docker-compose.yml` 文件（参考项目根目录的示例）：
+创建 `docker-compose.yml` 文件（参考 `deployment/docker/docker-compose.yml` 示例）：
 
 ```yaml
 version: '3.8'
 
 services:
-  web-admin:
-    build: .
-    container_name: feishu-bot-web-admin
+  feishu-bot:
+    build:
+      context: ../..
+      dockerfile: deployment/docker/Dockerfile
+    container_name: feishu-bot
     ports:
-      - "5000:5000"
+      - "8080:8080"
     environment:
+      - FEISHU_APP_ID=${FEISHU_APP_ID}
+      - FEISHU_APP_SECRET=${FEISHU_APP_SECRET}
       - WEB_ADMIN_PASSWORD=${WEB_ADMIN_PASSWORD}
       - JWT_SECRET_KEY=${JWT_SECRET_KEY}
     volumes:
@@ -204,17 +234,22 @@ services:
       - ./logs:/app/logs
     restart: unless-stopped
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:5000/api/health"]
+      test: ["CMD", "curl", "-f", "http://localhost:8080/api/health"]
       interval: 30s
       timeout: 10s
       retries: 3
-      start_period: 5s
+      start_period: 10s
 ```
 
 ### 启动服务
 
 ```bash
+# 从 deployment/docker 目录运行
+cd deployment/docker
 docker-compose up -d
+
+# 或从项目根目录运行
+docker-compose -f deployment/docker/docker-compose.yml up -d
 ```
 
 ### 查看服务状态
@@ -226,7 +261,7 @@ docker-compose ps
 ### 查看日志
 
 ```bash
-docker-compose logs -f
+docker-compose logs -f feishu-bot
 ```
 
 ### 停止服务
@@ -247,7 +282,7 @@ server {
     server_name your-domain.com;
 
     location / {
-        proxy_pass http://localhost:5000;
+        proxy_pass http://localhost:8080;
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
@@ -270,45 +305,47 @@ certbot --nginx -d your-domain.com
 
 ```bash
 docker run -d \
-  --name feishu-bot-web-admin \
-  --memory="512m" \
-  --cpus="1.0" \
-  -p 5000:5000 \
+  --name feishu-bot \
+  --memory="1g" \
+  --cpus="2.0" \
+  -p 8080:8080 \
+  -e FEISHU_APP_ID="your_app_id" \
+  -e FEISHU_APP_SECRET="your_app_secret" \
   -e WEB_ADMIN_PASSWORD="your_secure_password" \
   -e JWT_SECRET_KEY="your_random_secret_key" \
   -v $(pwd)/data:/app/data \
   -v $(pwd)/logs:/app/logs \
-  feishu-bot-web-admin:latest
+  feishu-bot:latest
 ```
 
 或在 docker-compose.yml 中：
 
 ```yaml
 services:
-  web-admin:
+  feishu-bot:
     # ... 其他配置 ...
     deploy:
       resources:
         limits:
-          cpus: '1.0'
-          memory: 512M
+          cpus: '2.0'
+          memory: 1G
         reservations:
           cpus: '0.5'
-          memory: 256M
+          memory: 512M
 ```
 
 ## 故障排查
 
 ### 容器无法启动
 
-1. 检查环境变量是否正确设置
-2. 查看容器日志：`docker logs feishu-bot-web-admin`
-3. 检查端口是否被占用：`netstat -tuln | grep 5000`
+1. 检查环境变量是否正确设置（特别是 FEISHU_APP_ID 和 FEISHU_APP_SECRET）
+2. 查看容器日志：`docker logs feishu-bot`
+3. 检查端口是否被占用：`netstat -tuln | grep 8080`
 
 ### 健康检查失败
 
 1. 检查应用是否正常启动
-2. 手动测试健康端点：`curl http://localhost:5000/api/health`
+2. 手动测试健康端点：`curl http://localhost:8080/api/health`
 3. 查看应用日志
 
 ### 数据丢失
@@ -320,7 +357,7 @@ services:
 ### 前端无法访问
 
 1. 检查前端构建是否成功
-2. 验证静态文件是否存在：`docker exec feishu-bot-web-admin ls -la /app/feishu_bot/web_admin/static`
+2. 验证静态文件是否存在：`docker exec feishu-bot ls -la /app/feishu_bot/web_admin/static`
 3. 检查 Flask 静态文件配置
 
 ## 镜像优化建议
@@ -340,7 +377,7 @@ services:
 ### 安全加固
 
 1. 定期更新基础镜像
-2. 扫描镜像漏洞：`docker scan feishu-bot-web-admin:latest`
+2. 扫描镜像漏洞：`docker scan feishu-bot:latest`
 3. 使用非 root 用户运行（已实现）
 4. 限制容器权限：`--read-only --tmpfs /tmp`
 

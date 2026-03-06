@@ -100,8 +100,6 @@ class SessionConfig:
     session_type: str  # "user" 或 "group"
     target_project_dir: Optional[str]
     response_language: Optional[str]
-    default_provider: Optional[str]
-    default_layer: Optional[str]
     default_cli_provider: Optional[str]
     created_by: Optional[str]  # 创建者 user_id
     created_at: str  # ISO 格式时间戳

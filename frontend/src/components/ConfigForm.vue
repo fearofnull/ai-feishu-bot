@@ -49,39 +49,6 @@
       </template>
     </el-form-item>
 
-    <!-- Default Provider -->
-    <el-form-item label="默认提供商" prop="default_provider">
-      <el-select
-        v-model="formData.default_provider"
-        placeholder="请选择提供商"
-        clearable
-        style="width: 100%"
-      >
-        <el-option label="Claude" value="claude" />
-        <el-option label="Gemini" value="gemini" />
-        <el-option label="OpenAI" value="openai" />
-      </el-select>
-      <template #extra>
-        <span class="form-hint">留空则使用全局默认值</span>
-      </template>
-    </el-form-item>
-
-    <!-- Default Layer -->
-    <el-form-item label="默认层级" prop="default_layer">
-      <el-select
-        v-model="formData.default_layer"
-        placeholder="请选择层级"
-        clearable
-        style="width: 100%"
-      >
-        <el-option label="API" value="api" />
-        <el-option label="CLI" value="cli" />
-      </el-select>
-      <template #extra>
-        <span class="form-hint">留空则使用全局默认值</span>
-      </template>
-    </el-form-item>
-
     <!-- Default CLI Provider -->
     <el-form-item label="默认 CLI 提供商" prop="default_cli_provider">
       <el-select
@@ -92,7 +59,7 @@
       >
         <el-option label="Claude" value="claude" />
         <el-option label="Gemini" value="gemini" />
-        <el-option label="OpenAI" value="openai" />
+        <el-option label="Qwen" value="qwen" />
       </el-select>
       <template #extra>
         <span class="form-hint">留空则使用全局默认值</span>
@@ -157,9 +124,7 @@ const directoryWarning = ref(null)
 const formData = reactive({
   target_project_dir: '',
   response_language: '',
-  default_provider: '',
-  default_layer: '',
-  default_cli_provider: ''
+    default_cli_provider: ''
 })
 
 // Validation rules
@@ -170,35 +135,11 @@ const rules = {
   response_language: [
     { max: 50, message: '语言名称长度不能超过 50 个字符', trigger: 'blur' }
   ],
-  default_provider: [
+    default_cli_provider: [
     {
       validator: (rule, value, callback) => {
-        if (value && !['claude', 'gemini', 'openai'].includes(value)) {
-          callback(new Error('提供商必须是 claude、gemini 或 openai'))
-        } else {
-          callback()
-        }
-      },
-      trigger: 'change'
-    }
-  ],
-  default_layer: [
-    {
-      validator: (rule, value, callback) => {
-        if (value && !['api', 'cli'].includes(value)) {
-          callback(new Error('层级必须是 api 或 cli'))
-        } else {
-          callback()
-        }
-      },
-      trigger: 'change'
-    }
-  ],
-  default_cli_provider: [
-    {
-      validator: (rule, value, callback) => {
-        if (value && !['claude', 'gemini', 'openai'].includes(value)) {
-          callback(new Error('CLI 提供商必须是 claude、gemini 或 openai'))
+        if (value && !['claude', 'gemini', 'qwen'].includes(value)) {
+          callback(new Error('CLI 提供商必须是 claude、gemini 或 qwen'))
         } else {
           callback()
         }
@@ -212,7 +153,6 @@ const rules = {
 function initFormData() {
   formData.target_project_dir = props.config.target_project_dir || ''
   formData.response_language = props.config.response_language || ''
-  formData.default_provider = props.config.default_provider || ''
   formData.default_layer = props.config.default_layer || ''
   formData.default_cli_provider = props.config.default_cli_provider || ''
 }
@@ -257,12 +197,6 @@ async function handleSubmit() {
     }
     if (formData.response_language) {
       updateData.response_language = formData.response_language
-    }
-    if (formData.default_provider) {
-      updateData.default_provider = formData.default_provider
-    }
-    if (formData.default_layer) {
-      updateData.default_layer = formData.default_layer
     }
     if (formData.default_cli_provider) {
       updateData.default_cli_provider = formData.default_cli_provider

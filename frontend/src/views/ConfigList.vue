@@ -139,19 +139,12 @@
           <template #default="{ row }">
             <div class="config-preview">
               <el-tag 
-                v-if="row.config?.default_provider" 
+                v-if="row.config?.default_cli_provider" 
                 size="small" 
+                type="success"
                 class="config-tag"
               >
-                {{ row.config.default_provider }}
-              </el-tag>
-              <el-tag 
-                v-if="row.config?.default_layer" 
-                size="small" 
-                type="info"
-                class="config-tag"
-              >
-                {{ row.config.default_layer }}
+                CLI: {{ row.config.default_cli_provider }}
               </el-tag>
               <el-tag 
                 v-if="row.config?.response_language" 

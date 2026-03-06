@@ -11,6 +11,7 @@ from pathlib import Path
 from filelock import FileLock
 
 from feishu_bot.models import Session, Message
+from feishu_bot.help_config.help_loader import get_help_message
 
 
 logger = logging.getLogger(__name__)
@@ -461,39 +462,5 @@ class SessionManager:
         Returns:
             包含所有可用命令的帮助文本
         """
-        help_text = """📖 飞书AI机器人使用帮助 / Help
-
-🤖 **AI提供商命令 / AI Provider Commands**
-
-统一API层（推荐）/ Unified API Layer (Recommended):
-  @gpt - 统一AI命令，使用管理员配置的默认提供商
-
-直接API调用 / Direct API Call:
-  @openai - 直接使用 OpenAI API
-
-CLI层（代码能力）/ CLI Layer (Code Capabilities):
-  @code 或 @claude-cli - 使用 Claude Code CLI
-  @gemini-cli - 使用 Gemini CLI
-  @qwen-cli - 使用 Qwen Code CLI
-
-💡 **智能路由 / Smart Routing**
-  不使用前缀时，系统会自动选择最合适的AI服务
-  When no prefix is used, the system automatically selects the best AI service
-
-📝 **会话管理命令 / Session Management Commands**
-  /new 或 新会话 - 创建新会话，清除历史记录
-  /session 或 会话信息 - 查看当前会话信息
-  /history 或 历史记录 - 查看对话历史
-  /help 或 帮助 - 显示此帮助信息
-
-💬 **使用示例 / Examples**
-  @gpt 什么是人工智能？
-  @code 查看项目结构
-  什么是Python？（自动路由）
-  /new（开启新会话）
-
-📚 **更多信息 / More Info**
-  详细文档请访问项目README
-  For detailed documentation, visit the project README
-"""
-        return help_text
+        # 使用配置化的帮助信息
+        return get_help_message()
