@@ -108,6 +108,37 @@ sequenceDiagram
     F->>U: 显示 AI 回复
 ```
 
+### CLI 工具交互时序图
+
+```mermaid
+sequenceDiagram
+    participant U as 用户
+    participant F as 飞书平台
+    participant B as 机器人
+    participant P as 命令解析器
+    participant R as 智能路由器
+    participant CLI as CLI 工具
+    participant FS as 文件系统
+    participant S as 会话管理器
+    
+    U->>F: 机器人 @claude-cli 分析项目架构
+    F->>B: WebSocket 推送消息
+    B->>S: 获取会话历史和配置
+    S-->>B: 返回对话上下文和项目目录
+    B->>P: 解析命令和内容
+    P-->>B: 识别为 CLI 工具调用
+    B->>R: 路由请求
+    R->>CLI: 调用 Claude CLI
+    CLI->>FS: 访问项目目录
+    FS-->>CLI: 返回文件内容
+    CLI->>CLI: 分析代码结构
+    CLI-->>R: 返回分析结果
+    R-->>B: 返回结果
+    B->>S: 保存消息到会话
+    B->>F: 发送回复消息
+    F->>U: 显示分析结果
+```
+
 ### 智能路由决策流程
 
 ```mermaid
