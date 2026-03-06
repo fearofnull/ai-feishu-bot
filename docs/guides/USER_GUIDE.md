@@ -574,7 +574,6 @@ AI: [分析优缺点]
 
 ## 更多帮助
 
-- **项目介绍**: 查看 [INTRODUCTION.md](../INTRODUCTION.md)
 - **配置指南**: 查看 [CONFIGURATION.md](CONFIGURATION.md)
 - **Web 管理界面**: 查看 [WEB_ADMIN_USER_GUIDE.md](WEB_ADMIN_USER_GUIDE.md)
 - **会话管理**: 查看 [SESSION_MANAGEMENT.md](SESSION_MANAGEMENT.md)

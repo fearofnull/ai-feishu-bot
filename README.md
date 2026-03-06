@@ -21,7 +21,7 @@
 - **智能路由**: 根据命令前缀和消息内容自动选择执行方式
 - **Web 管理界面**: 可视化配置提供商、会话、全局设置
 
-详细架构图和交互流程见 [项目介绍文档](docs/INTRODUCTION.md)。
+详细架构图和交互流程见本文档的[系统架构](#-系统架构)部分。
 
 ## 🚀 快速开始
 
@@ -127,7 +127,6 @@ JWT_SECRET_KEY=your_random_secret_key
 ## 📚 文档
 
 ### 核心文档
-- [项目介绍](docs/INTRODUCTION.md) - 功能特性、架构设计、使用场景
 - [用户指南](docs/guides/USER_GUIDE.md) - 如何使用机器人
 - [配置指南](docs/guides/CONFIGURATION.md) - 详细配置说明
 
@@ -153,7 +152,7 @@ JWT_SECRET_KEY=your_random_secret_key
 - ✅ 会话数据仅存储在本地
 - ✅ 支持手动清理会话历史
 
-详细安全说明见 [项目介绍文档](docs/INTRODUCTION.md#-安全与隐私)。
+详细安全说明见本文档的[安全与隐私](#-安全与隐私)部分。
 
 ## 🛠️ 技术栈
 
@@ -183,7 +182,5 @@ MIT License
 ---
 
 **开始使用**: 查看 [快速开始](#-快速开始) 部署你的飞书 AI 机器人
-
-**详细介绍**: 阅读 [项目介绍文档](docs/INTRODUCTION.md) 了解更多功能和架构
 
 **获取帮助**: 查看 [用户指南](docs/guides/USER_GUIDE.md) 了解详细使用方法
