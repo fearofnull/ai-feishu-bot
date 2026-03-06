@@ -1,0 +1,111 @@
+{
+  "version": "1.0.0",
+  "last_updated": "2024-01-01",
+  "help_message": {
+    "title": "📖 飞书AI机器人使用帮助 / Help",
+    "sections": [
+      {
+        "title": "🤖 **AI提供商命令 / AI Provider Commands**",
+        "subsections": [
+          {
+            "title": "统一API层（推荐）/ Unified API Layer (Recommended):",
+            "commands": [
+              {
+                "command": "@gpt",
+                "description": "统一AI命令，使用Web管理界面配置的默认提供商"
+              },
+              {
+                "command": "无前缀",
+                "description": "默认使用统一API（Web配置的提供商）"
+              }
+            ]
+          },
+          {
+            "title": "CLI层（代码能力）/ CLI Layer (Code Capabilities):",
+            "commands": [
+              {
+                "command": "@claude-cli",
+                "description": "使用 Claude Code CLI"
+              },
+              {
+                "command": "@gemini-cli",
+                "description": "使用 Gemini CLI"
+              },
+              {
+                "command": "@qwen-cli",
+                "description": "使用 Qwen Code CLI"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "⚙️ **会话配置命令 / Session Configuration Commands**",
+        "commands": [
+          {
+            "command": "/setdir <路径>",
+            "description": "设置CLI工作目录"
+          },
+          {
+            "command": "/lang <语言代码>",
+            "description": "设置响应语言（如 zh-CN, en-US）"
+          },
+          {
+            "command": "/cliprovider <claude|gemini|qwen>",
+            "description": "设置默认CLI提供商"
+          },
+          {
+            "command": "/config",
+            "description": "查看当前会话配置"
+          },
+          {
+            "command": "/reset",
+            "description": "重置会话配置为默认值"
+          }
+        ]
+      },
+      {
+        "title": "📝 **会话管理命令 / Session Management Commands**",
+        "commands": [
+          {
+            "command": "/new 或 新会话",
+            "description": "创建新会话，清除历史记录"
+          },
+          {
+            "command": "/session 或 会话信息",
+            "description": "查看当前会话信息"
+          },
+          {
+            "command": "/history 或 历史记录",
+            "description": "查看对话历史"
+          },
+          {
+            "command": "/help 或 帮助",
+            "description": "显示此帮助信息"
+          }
+        ]
+      },
+      {
+        "title": "💬 **使用示例 / Examples**",
+        "examples": [
+          "@gpt 什么是人工智能？",
+          "@claude-cli 查看项目结构",
+          "什么是Python？（使用Web配置的提供商）",
+          "/setdir /path/to/project（设置工作目录）",
+          "/lang en-US（切换到英文）",
+          "/cliprovider claude（设置默认CLI提供商）",
+          "/new（开启新会话）"
+        ]
+      },
+      {
+        "title": "📚 **更多信息 / More Info**",
+        "info": [
+          "AI提供商配置请访问Web管理界面: http://localhost:8080",
+          "详细文档请访问项目README",
+          "For AI provider configuration, visit the Web admin interface",
+          "For detailed documentation, visit the project README"
+        ]
+      }
+    ]
+  }
+}
