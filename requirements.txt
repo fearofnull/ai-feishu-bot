@@ -9,6 +9,10 @@ certifi>=2023.0.0
 # 环境变量管理
 python-dotenv>=1.0.0
 
+# Pydantic 配置管理
+pydantic>=2.0.0
+pydantic-settings>=2.0.0
+
 # 文件锁（用于会话管理并发控制）
 filelock>=3.12.0
 
@@ -37,3 +41,11 @@ gunicorn>=21.2.0  # Production WSGI server
 
 # Performance optimizations (optional but recommended)
 orjson>=3.9.0  # Fast JSON serialization (2-3x faster than standard json)
+
+# AgentScope framework (for XAgent)
+agentscope>=0.1.0
+
+# Additional dependencies for XAgent
+requests>=2.31.0  # HTTP requests
+beautifulsoup4>=4.12.0  # HTML parsing
+playwright>=1.40.0  # Browser automation (optional)
