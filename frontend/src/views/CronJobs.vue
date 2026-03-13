@@ -132,10 +132,30 @@
         </el-form-item>
 
         <el-form-item label="时区" prop="timezone">
-          <el-select v-model="formData.timezone" placeholder="请选择时区">
+          <el-select v-model="formData.timezone" placeholder="请选择时区" filterable>
+            <el-option label="Asia/Shanghai (北京时间)" value="Asia/Shanghai" />
+            <el-option label="Asia/Hong_Kong (香港)" value="Asia/Hong_Kong" />
+            <el-option label="Asia/Tokyo (东京)" value="Asia/Tokyo" />
+            <el-option label="Asia/Singapore (新加坡)" value="Asia/Singapore" />
+            <el-option label="America/New_York (纽约)" value="America/New_York" />
+            <el-option label="America/Los_Angeles (洛杉矶)" value="America/Los_Angeles" />
+            <el-option label="Europe/London (伦敦)" value="Europe/London" />
+            <el-option label="Europe/Paris (巴黎)" value="Europe/Paris" />
             <el-option label="UTC" value="UTC" />
-            <el-option label="Asia/Shanghai" value="Asia/Shanghai" />
           </el-select>
+        </el-form-item>
+
+        <el-form-item label="超时时间(秒)" prop="timeout">
+          <el-input-number 
+            v-model="formData.timeout" 
+            :min="60" 
+            :max="7200" 
+            :step="60"
+            placeholder="任务执行超时时间"
+          />
+          <div class="form-help">
+            Agent 任务建议设置较长时间（如 600-3600 秒）
+          </div>
         </el-form-item>
       </el-form>
 
@@ -197,7 +217,8 @@ const formData = ref({
   channel: 'feishu',
   target_chat: '',
   target_user: '',
-  timezone: 'UTC'
+  timezone: 'Asia/Shanghai',
+  timeout: 600
 })
 
 const formRules = {
@@ -232,23 +253,26 @@ const handleCreate = () => {
     channel: 'feishu',
     target_chat: '',
     target_user: '',
-    timezone: 'UTC'
+    timezone: 'Asia/Shanghai',
+    timeout: 600
   }
   dialogVisible.value = true
 }
 
 // 编辑任务
 const handleEdit = (job) => {
+  const requestText = job.request?.input?.[0]?.content?.[0]?.text || ''
   editingJob.value = job
   formData.value = {
     name: job.name,
     task_type: job.task_type,
-    text: job.text || '',
+    text: job.text || requestText || '',
     cron: job.schedule?.cron || '0 9 * * *',
     channel: job.dispatch?.channel || 'feishu',
     target_chat: job.dispatch?.target?.chat_id || '',
     target_user: job.dispatch?.target?.user_id || '',
-    timezone: job.schedule?.timezone || 'UTC'
+    timezone: job.schedule?.timezone || 'Asia/Shanghai',
+    timeout: job.runtime?.timeout_seconds || 600
   }
   dialogVisible.value = true
 }
@@ -262,6 +286,18 @@ const handleSubmit = async () => {
     
     submitting.value = true
     try {
+      const agentRequest = formData.value.task_type === 'agent' ? {
+        input: [
+          {
+            role: 'user',
+            type: 'text',
+            content: [{ type: 'text', text: formData.value.text }]
+          }
+        ],
+        session_id: null,
+        user_id: 'cron'
+      } : null
+
       const jobData = {
         id: editingJob.value?.id || `${formData.value.task_type}-${Date.now()}-${Math.random().toString(36).substr(2, 6)}`,
         name: formData.value.name,
@@ -273,6 +309,7 @@ const handleSubmit = async () => {
         },
         task_type: formData.value.task_type,
         text: formData.value.text,
+        request: agentRequest,
         dispatch: {
           type: 'channel',
           channel: formData.value.channel,
@@ -285,7 +322,7 @@ const handleSubmit = async () => {
         },
         runtime: {
           max_concurrency: 1,
-          timeout_seconds: 120,
+          timeout_seconds: formData.value.timeout,
           misfire_grace_seconds: 60
         },
         meta: {}

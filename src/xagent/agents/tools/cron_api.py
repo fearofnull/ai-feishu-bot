@@ -89,63 +89,67 @@ async def call_cron_api(
             
             # Transform simplified format to full CronJobSpec format
             if action == "create" and spec_data:
-                # Extract simplified parameters
-                job_type = spec_data.get("type", "text")
-                job_name = spec_data.get("name", "Unnamed Job")
-                job_id = spec_data.get("id")
-                cron_expr = spec_data.get("cron", "0 0 * * *")
-                channel = spec_data.get("channel", "feishu")
-                target_user = spec_data.get("target_user")
-                target_chat = spec_data.get("target_chat")
-                target_session = spec_data.get("target_session")  # Legacy support
-                text = spec_data.get("text", "")
-                enabled = spec_data.get("enabled", True)
-                timezone = spec_data.get("timezone", "UTC")
-                
-                # Use target_chat if provided, otherwise use target_session (legacy), otherwise use target_user
-                chat_id = target_chat or target_session
-                user_id = target_user
-                
-                # Build full CronJobSpec format
-                spec_data = {
-                    "id": job_id,
-                    "name": job_name,
-                    "enabled": enabled,
-                    "schedule": {
-                        "type": "cron",
-                        "cron": cron_expr,
-                        "timezone": timezone
-                    },
-                    "task_type": job_type,
-                    "text": text if job_type == "text" else None,
-                    "request": {
-                        "input": [
-                            {
-                                "role": "user",
-                                "type": "text",
-                                "content": [{"text": text}]
-                            }
-                        ],
-                        "session_id": None,
-                        "user_id": "cron"
-                    } if job_type == "agent" else None,
-                    "dispatch": {
-                        "type": "channel",
-                        "channel": channel,
-                        "target": {
-                            "chat_id": chat_id,
-                            "user_id": user_id
+                # If it already looks like a full CronJobSpec, keep as-is
+                if "task_type" in spec_data or "schedule" in spec_data:
+                    pass
+                else:
+                    # Extract simplified parameters
+                    job_type = spec_data.get("type", "text")
+                    job_name = spec_data.get("name", "Unnamed Job")
+                    job_id = spec_data.get("id")
+                    cron_expr = spec_data.get("cron", "0 0 * * *")
+                    channel = spec_data.get("channel", "feishu")
+                    target_user = spec_data.get("target_user")
+                    target_chat = spec_data.get("target_chat")
+                    target_session = spec_data.get("target_session")  # Legacy support
+                    text = spec_data.get("text", "")
+                    enabled = spec_data.get("enabled", True)
+                    timezone = spec_data.get("timezone", "UTC")
+                    
+                    # Use target_chat if provided, otherwise use target_session (legacy), otherwise use target_user
+                    chat_id = target_chat or target_session
+                    user_id = target_user
+                    
+                    # Build full CronJobSpec format
+                    spec_data = {
+                        "id": job_id,
+                        "name": job_name,
+                        "enabled": enabled,
+                        "schedule": {
+                            "type": "cron",
+                            "cron": cron_expr,
+                            "timezone": timezone
                         },
-                        "mode": "final",
+                        "task_type": job_type,
+                        "text": text if job_type == "text" else None,
+                        "request": {
+                            "input": [
+                                {
+                                    "role": "user",
+                                    "type": "text",
+                                    "content": [{"type": "text", "text": text}]
+                                }
+                            ],
+                            "session_id": None,
+                            "user_id": "cron"
+                        } if job_type == "agent" else None,
+                        "dispatch": {
+                            "type": "channel",
+                            "channel": channel,
+                            "target": {
+                                "chat_id": chat_id,
+                                "user_id": user_id
+                            },
+                            "mode": "final",
+                            "meta": {}
+                        },
+                        "runtime": {
+                            "max_concurrency": 1,
+                            "timeout_seconds": 120,
+                            "misfire_grace_seconds": 60
+                        },
                         "meta": {}
-                    },
-                    "runtime": {
-                        "max_concurrency": 1,
-                        "timeout_seconds": 120,
-                        "misfire_grace_seconds": 60
-                    },
-                    "meta": {}
-                }
+                    }
         except json.JSONDecodeError as e:
             return ToolResponse(
                 content=[

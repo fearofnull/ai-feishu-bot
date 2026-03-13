@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+﻿# -*- coding: utf-8 -*-
 """核心调度管理器"""
 import asyncio
 import logging
@@ -33,7 +33,7 @@ class CronManager:
         repo: Optional[JsonJobRepository] = None,
         runner: Optional[Any] = None,
         channel_manager: Optional[Any] = None,
-        timezone: str = "UTC",
+        timezone: str = "Asia/Shanghai",
     ):
         """初始化管理器
 
@@ -55,14 +55,12 @@ class CronManager:
         
         # 初始化默认运行器
         if runner is None:
-            # 创建一个使用 ProviderConfigManager 的 runner 适配器
+            # 创建一个使用 AgentExecutor 的 runner 适配器
             class RunnerAdapter:
                 async def run(self, input, session_id, user_id):
-                    """异步执行 AI 任务"""
-                    from src.xagent.core.executor_registry import ExecutorRegistry
+                    """异步执行 AI Agent 任务（带工具能力）"""
                     from src.xagent.core.provider_config_manager import ProviderConfigManager
-                    from src.xagent.executors.openai_api_executor import OpenAIAPIExecutor
-                    from src.xagent.models import ExecutorMetadata
+                    from src.xagent.executors.agent_executor import AgentExecutor
                     
                     # 初始化配置管理器
                     provider_config_manager = ProviderConfigManager(storage_path="./data/provider_configs.json")
@@ -72,42 +70,42 @@ class CronManager:
                     if not default_config:
                         return "错误: 未配置默认的 AI provider"
                     
-                    # 初始化执行器注册表
-                    executor_registry = ExecutorRegistry()
+                    # Build message text from structured input
+                    def _extract_text(value):
+                        parts = []
+                        if value is None:
+                            return ""
+                        if isinstance(value, str):
+                            return value
+                        if isinstance(value, list):
+                            for item in value:
+                                parts.append(_extract_text(item))
+                            return "\n".join([p for p in parts if p])
+                        if isinstance(value, dict):
+                            if "text" in value and value["text"]:
+                                return str(value["text"])
+                            if "content" in value:
+                                return _extract_text(value.get("content"))
+                        if hasattr(value, "content"):
+                            return _extract_text(getattr(value, "content"))
+                        return ""
+
+                    message = _extract_text(input).strip()
+                    if not message:
+                        return "Error: empty task input"
                     
-                    # 使用默认配置创建执行器
+                    # 使用 AgentExecutor（带工具能力）
                     try:
-                        openai_executor = OpenAIAPIExecutor(
-                            api_key=default_config.api_key,
-                            base_url=default_config.base_url,
-                            model=default_config.default_model,
-                            timeout=120
+                        executor = AgentExecutor(
+                            timeout=3600,  # 60分钟超时
+                            provider_config_manager=provider_config_manager
                         )
-                        openai_metadata = ExecutorMetadata(
-                            name=default_config.name,
-                            provider="openai_compatible",
-                            layer="api",
-                            version="1.0.0",
-                            description=f"{default_config.name} API for text generation",
-                            capabilities=["text_generation"],
-                            command_prefixes=[f"@{default_config.name.lower()}"],
-                            priority=1,
-                            config_required=["api_key"]
-                        )
-                        executor_registry.register_api_executor("openai", openai_executor, openai_metadata)
-                    except Exception as e:
-                        return f"初始化执行器失败: {str(e)}"
-                    
-                    # 构建消息
-                    message = "\n".join([item.content[0].get("text", "") for item in input if item.content])
-                    
-                    # 执行 AI 任务 (在线程池中执行同步调用)
-                    try:
-                        executor = executor_registry.get_executor("openai", "api")
+                        
                         # 使用 asyncio.to_thread 在线程池中执行同步方法
                         result = await asyncio.to_thread(executor.execute, message)
                         return result.stdout if hasattr(result, "stdout") else str(result)
                     except Exception as e:
+                        logger.error(f"Agent 执行失败: {str(e)}", exc_info=True)
                         return f"执行失败: {str(e)}"
             
             runner = RunnerAdapter()

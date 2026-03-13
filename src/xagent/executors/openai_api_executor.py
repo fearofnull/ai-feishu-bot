@@ -130,8 +130,18 @@ class OpenAIAPIExecutor(AIAPIExecutor):
             response = self.client.chat.completions.create(**request_params)
             execution_time = time.time() - start_time
             
-            # 提取响应内容
-            content = response.choices[0].message.content
+            # 提取响应内容，添加空值检查
+            if not response or not response.choices:
+                logger.error(f"OpenAI API returned empty response: {response}")
+                return ExecutionResult(
+                    success=False,
+                    stdout="",
+                    stderr="API returned empty response",
+                    error_message="OpenAI API returned empty or invalid response",
+                    execution_time=execution_time
+                )
+            
+            content = response.choices[0].message.content or ""
             
             logger.info(
                 f"OpenAI API call successful: execution_time={execution_time:.2f}s, "

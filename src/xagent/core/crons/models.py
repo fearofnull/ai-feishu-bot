@@ -39,13 +39,13 @@ class CronJobSchedule(BaseModel):
     """任务调度"""
     type: str = "cron"
     cron: str = "0 0 * * *"
-    timezone: str = "UTC"
+    timezone: str = "Asia/Shanghai"
 
 
 class CronJobRuntime(BaseModel):
     """任务运行时配置"""
     max_concurrency: int = 1
-    timeout_seconds: int = 120
+    timeout_seconds: int = 600  # 默认 10 分钟，Agent 任务可能需要较长时间
     misfire_grace_seconds: int = 60
 
 

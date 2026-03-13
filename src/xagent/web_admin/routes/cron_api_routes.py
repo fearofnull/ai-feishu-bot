@@ -35,6 +35,31 @@ def register_cron_api_routes(
         if rate_limits and limit_type in rate_limits:
             return rate_limits[limit_type](route_func)
         return route_func
+
+    def _ensure_agent_request(data: Dict[str, Any]) -> Dict[str, Any]:
+        """Ensure agent tasks have a request payload built from text."""
+        if not data:
+            return data
+        task_type = data.get("task_type") or data.get("type")
+        if task_type != "agent":
+            return data
+        if data.get("request"):
+            return data
+        text = data.get("text") or ""
+        if not text:
+            return data
+        data["request"] = {
+            "input": [
+                {
+                    "role": "user",
+                    "type": "text",
+                    "content": [{"type": "text", "text": text}],
+                }
+            ],
+            "session_id": None,
+            "user_id": "cron",
+        }
+        return data
     
     # ==================== Cron Job Routes ====================
     
@@ -139,6 +164,7 @@ def register_cron_api_routes(
                     }
                 }), 400
             
+            data = _ensure_agent_request(data)
             spec = CronJobSpec(**data)
             cron_manager.create_or_replace_job_sync(spec)
             return jsonify({
@@ -294,6 +320,7 @@ def register_cron_api_routes(
                     }
                 }), 400
             
+            data = _ensure_agent_request(data)
             spec = CronJobSpec(**data)
             cron_manager.create_or_replace_job_sync(spec)
             return jsonify({

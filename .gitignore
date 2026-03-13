@@ -93,5 +93,8 @@ research/
 # Trae IDE files
 .trae/
 
+# Qoder IDE files
+.qoder/
+
 # Reference project (not needed in final repo)
 CoPaw/

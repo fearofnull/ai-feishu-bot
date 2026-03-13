@@ -112,7 +112,7 @@ class ClaudeAPIExecutor(AIAPIExecutor):
             request_params = {
                 "model": self.model,
                 "messages": messages,
-                "max_tokens": 100000,  # 设置默认值，根据 Claude API 要求
+                "max_tokens": 4096,
             }
             
             # 添加可选参数
@@ -126,11 +126,22 @@ class ClaudeAPIExecutor(AIAPIExecutor):
             
             # 调用 API
             start_time = time.time()
-            response = self.client.messages.create(**request_params)
-            execution_time = time.time() - start_time
+            content = ""
             
-            # 提取响应内容
-            content = response.content[0].text
+            # Use streaming to avoid long-request errors
+            request_params["stream"] = True
+            response = self.client.messages.create(**request_params)
+            content_parts = []
+            for event in response:
+                if hasattr(event, "type") and event.type == "content_block_delta":
+                    if hasattr(event.delta, "text"):
+                        content_parts.append(event.delta.text)
+            content = "".join(content_parts)
+
+            if not content:
+                raise RuntimeError("Claude stream returned empty content")
+            
+            execution_time = time.time() - start_time
             
             logger.info(
                 f"Claude API call successful: execution_time={execution_time:.2f}s, "
