@@ -581,7 +581,9 @@ def register_provider_api_routes(
                         max_tokens=5
                     )
                     
-                    response_text = response.choices[0].message.content
+                    if not response or not response.choices:
+                        raise RuntimeError("API returned empty response")
+                    response_text = response.choices[0].message.content or ""
                     
                 elif config.type == "claude_compatible":
                     # Test Claude-compatible API
@@ -599,7 +601,9 @@ def register_provider_api_routes(
                         messages=[{"role": "user", "content": "Hi"}]
                     )
                     
-                    response_text = response.content[0].text
+                    if not response or not response.content:
+                        raise RuntimeError("API returned empty response")
+                    response_text = response.content[0].text or ""
                     
                 elif config.type == "gemini_compatible":
                     # Test Gemini-compatible API
