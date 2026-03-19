@@ -164,9 +164,48 @@ class MessageHandler:
                 logger.error(error_msg)
                 raise ValueError(error_msg)
         
+        # 处理富文本消息
+        elif message_type == "post":
+            try:
+                # 记录原始消息内容
+                logger.debug(f"接收到富文本消息，原始内容: {content_str[:500]}...")
+                
+                # 解析 content 字段为 JSON 对象
+                content = json.loads(content_str)
+                
+                # 记录解析后的消息结构
+                logger.debug(f"解析后的富文本消息结构: {json.dumps(content, ensure_ascii=False)[:500]}...")
+                
+                # 提取富文本消息的文本内容
+                extracted_content = self.extract_post_content(content)
+                
+                # 验证提取的内容非空
+                if not extracted_content:
+                    error_msg = "富文本消息内容为空"
+                    logger.warning(error_msg)
+                    raise ValueError(error_msg)
+                
+                # 添加调试日志记录提取的内容（前50个字符）
+                logger.debug(f"成功解析富文本消息: {extracted_content[:50]}...")
+                
+                # 返回提取的文本内容
+                return extracted_content
+                
+            except json.JSONDecodeError as e:
+                error_msg = f"富文本消息内容 JSON 解析失败: {e}"
+                logger.error(error_msg)
+                raise ValueError(error_msg)
+            except ValueError:
+                # 重新抛出 ValueError（如空内容错误）
+                raise
+            except Exception as e:
+                error_msg = f"消息解析失败: {e}"
+                logger.error(error_msg)
+                raise ValueError(error_msg)
+        
         # 不支持的消息类型
         else:
-            error_msg = f"不支持的消息类型: {message_type}。请发送文本消息或卡片消息。"
+            error_msg = f"不支持的消息类型: {message_type}。请发送文本消息、卡片消息或富文本消息。"
             logger.warning(error_msg)
             raise ValueError(error_msg)
     
@@ -255,6 +294,81 @@ class MessageHandler:
         except Exception as e:
             logger.warning(f"提取卡片内容时发生异常: {e}")
             return "[卡片消息]"
+    
+    def extract_post_content(self, post: dict) -> str:
+        """提取富文本消息的文本内容
+        
+        Args:
+            post: 富文本消息JSON对象（dict）
+            
+        Returns:
+            提取的文本内容，格式为"[富文本消息] {内容}"
+        """
+        content_parts = []
+        
+        try:
+            # 飞书富文本消息的结构可能有多种形式
+            # 形式1: 直接包含 content 字段
+            if "content" in post:
+                content = post["content"]
+                if isinstance(content, str) and content:
+                    # 清理换行符和多余空白，转换为单行
+                    content = re.sub(r'\s+', ' ', content).strip()
+                    if content:  # 再次检查清理后是否为空
+                        content_parts.append(content)
+            
+            # 形式2: 包含 blocks -> elements 结构
+            elif "blocks" in post:
+                blocks = post["blocks"]
+                if isinstance(blocks, list):
+                    for block in blocks:
+                        if "elements" in block:
+                            elements = block["elements"]
+                            if isinstance(elements, list):
+                                for element in elements:
+                                    if "text" in element:
+                                        text = element["text"]
+                                        if text:
+                                            # 清理换行符和多余空白，转换为单行
+                                            text = re.sub(r'\s+', ' ', text).strip()
+                                            if text:  # 再次检查清理后是否为空
+                                                content_parts.append(text)
+                                    # 处理嵌套的元素
+                                    elif "elements" in element:
+                                        nested_elements = element["elements"]
+                                        if isinstance(nested_elements, list):
+                                            for nested_element in nested_elements:
+                                                if "text" in nested_element:
+                                                    text = nested_element["text"]
+                                                    if text:
+                                                        # 清理换行符和多余空白，转换为单行
+                                                        text = re.sub(r'\s+', ' ', text).strip()
+                                                        if text:  # 再次检查清理后是否为空
+                                                            content_parts.append(text)
+            
+            # 形式3: 直接包含文本内容
+            elif isinstance(post, str):
+                # 清理换行符和多余空白，转换为单行
+                post = re.sub(r'\s+', ' ', post).strip()
+                if post:  # 再次检查清理后是否为空
+                    content_parts.append(post)
+            
+            # 格式化输出
+            if content_parts:
+                # 使用单行格式，避免 CLI headless 模式的多行问题
+                # 使用 | 分隔不同部分，保持单行
+                content = " | ".join(content_parts)
+                # 限制总长度（最大2000字符）
+                if len(content) > 2000:
+                    content = content[:2000] + "..."
+                return f"[富文本消息] {content}"
+            else:
+                # 如果未提取到内容，返回降级处理
+                return "[富文本消息]"
+                
+        except Exception as e:
+            logger.warning(f"提取富文本消息内容时发生异常: {e}")
+            return "[富文本消息]"
     
     def _extract_element_content(self, element: dict, content_parts: list) -> None:
         """递归提取单个元素的文本内容
