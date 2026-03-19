@@ -98,15 +98,8 @@ class CommandParser:
         Returns:
             Optional[Tuple[str, str, str]]: (provider, layer, 清理后的消息) 或 None
         """
-        # 移除消息开头的 [富文本消息] 或 [卡片消息] 前缀
-        clean_message = message
-        if clean_message.startswith("[富文本消息] "):
-            clean_message = clean_message[len("[富文本消息] "):]
-        elif clean_message.startswith("[卡片消息] "):
-            clean_message = clean_message[len("[卡片消息] "):]
-        
         # 大小写不敏感匹配
-        message_lower = clean_message.lower()
+        message_lower = message.lower()
         
         # 按前缀长度降序排序，优先匹配更长的前缀
         # 这样 @claude-cli 会在 @claude 之前匹配
@@ -120,7 +113,7 @@ class CommandParser:
             # 检查消息是否以前缀开头
             if message_lower.startswith(prefix.lower()):
                 # 去除前缀，保留原始消息的大小写
-                final_message = clean_message[len(prefix):].strip()
+                final_message = message[len(prefix):].strip()
                 return provider, layer, final_message
         
         return None

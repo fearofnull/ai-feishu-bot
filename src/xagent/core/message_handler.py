@@ -238,13 +238,13 @@ class MessageHandler:
                 # 限制总长度（最大2000字符）
                 if len(content) > 2000:
                     content = content[:2000] + "..."
-                return f"[卡片消息] {content}"
+                return content
             else:
-                # 如果未提取到内容，返回降级处理
-                return "[卡片消息]"
+                # 如果未提取到内容，返回空字符串
+                return ""
         except Exception as e:
             logger.warning(f"提取卡片内容时发生异常: {e}")
-            return "[卡片消息]"
+            return ""
     def extract_post_content(self, post: dict) -> str:
         """Extract plain text from Feishu/Lark post (rich text) message content."""
         content_parts = []
@@ -362,11 +362,11 @@ class MessageHandler:
                 content = " | ".join(content_parts)
                 if len(content) > 2000:
                     content = content[:2000] + "..."
-                return f"[富文本消息] {content}"
-            return "[富文本消息]"
+                return content
+            return ""
         except Exception as e:
             logger.warning(f"Failed to extract post content: {e}")
-            return "[富文本消息]"
+            return ""
     def _extract_element_content(self, element: dict, content_parts: list) -> None:
         """递归提取单个元素的文本内容
         Args:
