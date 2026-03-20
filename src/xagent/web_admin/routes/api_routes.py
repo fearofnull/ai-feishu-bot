@@ -19,7 +19,8 @@ def register_api_routes(
     app: Flask, 
     config_manager: ConfigManager, 
     auth_manager: AuthManager,
-    rate_limits: dict = None
+    rate_limits: dict = None,
+    tool_state_manager = None
 ):
     """Register all API routes with the Flask app
     
@@ -1228,6 +1229,202 @@ def register_api_routes(
                 'error': {
                     'code': 'INTERNAL_ERROR',
                     'message': 'Failed to delete session'
+                }
+            }), 500
+    
+    # ==================== Tool Management Routes ====================
+    
+    @app.route('/api/tools', methods=['GET'])
+    @auth_manager.require_auth
+    def get_tools():
+        """Get all tools with their enabled status
+        
+        Response:
+            {
+                "success": true,
+                "data": [
+                    {
+                        "name": "execute_shell_command",
+                        "description": "Execute shell commands",
+                        "enabled": true
+                    }
+                ]
+            }
+        """
+        try:
+            # Define all available tools with their descriptions
+            tools = [
+                {
+                    "name": "execute_shell_command",
+                    "description": "Execute shell commands",
+                    "enabled": tool_state_manager.get_tool_state("execute_shell_command") if tool_state_manager else True
+                },
+                {
+                    "name": "read_file",
+                    "description": "Read file contents",
+                    "enabled": tool_state_manager.get_tool_state("read_file") if tool_state_manager else True
+                },
+                {
+                    "name": "write_file",
+                    "description": "Write content to file",
+                    "enabled": tool_state_manager.get_tool_state("write_file") if tool_state_manager else True
+                },
+                {
+                    "name": "edit_file",
+                    "description": "Edit file with find-and-replace",
+                    "enabled": tool_state_manager.get_tool_state("edit_file") if tool_state_manager else True
+                },
+                {
+                    "name": "get_current_time",
+                    "description": "Get current date and time",
+                    "enabled": tool_state_manager.get_tool_state("get_current_time") if tool_state_manager else True
+                },
+                {
+                    "name": "desktop_screenshot",
+                    "description": "Capture desktop screenshot",
+                    "enabled": tool_state_manager.get_tool_state("desktop_screenshot") if tool_state_manager else True
+                },
+                {
+                    "name": "send_file_to_user",
+                    "description": "Send file to user",
+                    "enabled": tool_state_manager.get_tool_state("send_file_to_user") if tool_state_manager else True
+                },
+                {
+                    "name": "call_cron_api",
+                    "description": "Call cron API",
+                    "enabled": tool_state_manager.get_tool_state("call_cron_api") if tool_state_manager else True
+                }
+            ]
+            
+            return jsonify({
+                'success': True,
+                'data': tools
+            }), 200
+            
+        except Exception as e:
+            logger.error(f"Error getting tools: {e}", exc_info=True)
+            return jsonify({
+                'success': False,
+                'error': {
+                    'code': 'INTERNAL_ERROR',
+                    'message': 'Failed to retrieve tools'
+                }
+            }), 500
+    
+    @app.route('/api/tools/<name>/toggle', methods=['POST'])
+    @auth_manager.require_auth
+    def toggle_tool(name):
+        """Toggle tool enabled status
+        
+        Response:
+            {
+                "success": true,
+                "data": {
+                    "name": "execute_shell_command",
+                    "enabled": false
+                }
+            }
+        """
+        try:
+            if tool_state_manager:
+                new_state = tool_state_manager.toggle_tool_state(name)
+                return jsonify({
+                    'success': True,
+                    'data': {
+                        'name': name,
+                        'enabled': new_state
+                    }
+                }), 200
+            else:
+                return jsonify({
+                    'success': False,
+                    'error': {
+                        'code': 'INTERNAL_ERROR',
+                        'message': 'Tool state manager not available'
+                    }
+                }), 500
+            
+        except Exception as e:
+            logger.error(f"Error toggling tool: {e}", exc_info=True)
+            return jsonify({
+                'success': False,
+                'error': {
+                    'code': 'INTERNAL_ERROR',
+                    'message': 'Failed to toggle tool'
+                }
+            }), 500
+    
+    @app.route('/api/tools/enable-all', methods=['POST'])
+    @auth_manager.require_auth
+    def enable_all_tools():
+        """Enable all tools
+        
+        Response:
+            {
+                "success": true,
+                "message": "All tools enabled"
+            }
+        """
+        try:
+            if tool_state_manager:
+                tool_state_manager.enable_all_tools()
+                return jsonify({
+                    'success': True,
+                    'message': 'All tools enabled'
+                }), 200
+            else:
+                return jsonify({
+                    'success': False,
+                    'error': {
+                        'code': 'INTERNAL_ERROR',
+                        'message': 'Tool state manager not available'
+                    }
+                }), 500
+            
+        except Exception as e:
+            logger.error(f"Error enabling all tools: {e}", exc_info=True)
+            return jsonify({
+                'success': False,
+                'error': {
+                    'code': 'INTERNAL_ERROR',
+                    'message': 'Failed to enable all tools'
+                }
+            }), 500
+    
+    @app.route('/api/tools/disable-all', methods=['POST'])
+    @auth_manager.require_auth
+    def disable_all_tools():
+        """Disable all tools
+        
+        Response:
+            {
+                "success": true,
+                "message": "All tools disabled"
+            }
+        """
+        try:
+            if tool_state_manager:
+                tool_state_manager.disable_all_tools()
+                return jsonify({
+                    'success': True,
+                    'message': 'All tools disabled'
+                }), 200
+            else:
+                return jsonify({
+                    'success': False,
+                    'error': {
+                        'code': 'INTERNAL_ERROR',
+                        'message': 'Tool state manager not available'
+                    }
+                }), 500
+            
+        except Exception as e:
+            logger.error(f"Error disabling all tools: {e}", exc_info=True)
+            return jsonify({
+                'success': False,
+                'error': {
+                    'code': 'INTERNAL_ERROR',
+                    'message': 'Failed to disable all tools'
                 }
             }), 500
     

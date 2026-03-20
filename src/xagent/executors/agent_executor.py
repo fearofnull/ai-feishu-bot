@@ -182,10 +182,16 @@ class AgentExecutor(AIAPIExecutor):
                     # 如果没有运行中的事件循环，使用 asyncio.run
                     result = asyncio.run(self.agent.reply(messages))
             except Exception as e:
-                # 如果出现任何错误，尝试在新线程中运行
-                import concurrent.futures
-                with concurrent.futures.ThreadPoolExecutor() as executor:
-                    result = executor.submit(asyncio.run, self.agent.reply(messages)).result()
+                # 如果出现任何错误，不再重复调用agent.reply，避免重复回答
+                logger.error(f"Error executing agent.reply: {e}")
+                # 直接返回错误结果
+                return ExecutionResult(
+                    success=False,
+                    stdout="",
+                    stderr=str(e),
+                    error_message=f"Agent执行失败: {str(e)}",
+                    execution_time=0
+                )
             
             logger.info(f"[execute] agent.reply 返回，result 类型: {type(result)}, result.content: {result.content}")
             
@@ -253,48 +259,8 @@ class AgentExecutor(AIAPIExecutor):
                 else:
                     text_parts.append(str(result.content))
             
-            # 检查 system 字段（处理工具结果）
-            if hasattr(result, "system"):
-                system_content = result.system
-                logger.info(f"检测到 system 字段: {system_content}")
-                
-                if isinstance(system_content, dict):
-                    # 处理 system 中的 tool_result
-                    if system_content.get("type") == "tool_result" and "output" in system_content:
-                        logger.info(f"检测到 system 中的 tool_result: {system_content}")
-                        tool_output = system_content.get("output")
-                        if isinstance(tool_output, list):
-                            for tool_item in tool_output:
-                                if isinstance(tool_item, dict):
-                                    if tool_item.get("type") == "text" and "text" in tool_item:
-                                        text_parts.append(tool_item["text"])
-                                    elif tool_item.get("type") in ["image", "audio", "video", "file"] and "source" in tool_item:
-                                        media_blocks.append(tool_item)
-                        # 检查 tool_output 是否直接是一个对象（而不是列表）
-                        elif isinstance(tool_output, dict):
-                            if tool_output.get("type") == "text" and "text" in tool_output:
-                                text_parts.append(tool_output["text"])
-                            elif tool_output.get("type") in ["image", "audio", "video", "file"] and "source" in tool_output:
-                                media_blocks.append(tool_output)
-                elif isinstance(system_content, list):
-                    # 处理 system 是列表的情况
-                    for item in system_content:
-                        if isinstance(item, dict):
-                            if item.get("type") == "tool_result" and "output" in item:
-                                logger.info(f"检测到 system 列表中的 tool_result: {item}")
-                                tool_output = item.get("output")
-                                if isinstance(tool_output, list):
-                                    for tool_item in tool_output:
-                                        if isinstance(tool_item, dict):
-                                            if tool_item.get("type") == "text" and "text" in tool_item:
-                                                text_parts.append(tool_item["text"])
-                                            elif tool_item.get("type") in ["image", "audio", "video", "file"] and "source" in tool_item:
-                                                media_blocks.append(tool_item)
-                                elif isinstance(tool_output, dict):
-                                    if tool_output.get("type") == "text" and "text" in tool_output:
-                                        text_parts.append(tool_output["text"])
-                                    elif tool_output.get("type") in ["image", "audio", "video", "file"] and "source" in tool_output:
-                                        media_blocks.append(tool_output)
+            # 不再从 system 字段提取文本内容，避免重复回答
+            # 因为工具结果已经通过 _merge_tool_results_to_reply 合并到了 content 中
             
             # 生成输出文本
             # 如果有文本部分，拼接它们；如果没有文本但有媒体块，使用空字符串；否则尝试从 result 获取内容

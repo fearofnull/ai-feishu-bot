@@ -58,7 +58,7 @@ class ToolRegistry:
         return self._tools.get(name)
     
     def get_all_tools(self) -> List[BaseTool]:
-        """获取所有工具
+        """获取所有工具（包括禁用的）
         
         Returns:
             List[BaseTool]: 所有工具实例列表
@@ -72,6 +72,43 @@ class ToolRegistry:
             List[BaseTool]: 可用工具实例列表
         """
         return [tool for tool in self._tools.values() if tool.is_available()]
+    
+    def toggle_tool_enabled(self, name: str) -> Optional[BaseTool]:
+        """切换工具的启用状态
+        
+        Args:
+            name: 工具名称
+            
+        Returns:
+            Optional[BaseTool]: 切换状态后的工具实例，如果工具不存在则返回 None
+        """
+        tool = self._tools.get(name)
+        if tool:
+            tool.toggle_enabled()
+            logger.info(f"工具 {name} 启用状态已切换为: {tool.enabled}")
+        return tool
+    
+    def enable_all_tools(self) -> List[BaseTool]:
+        """启用所有工具
+        
+        Returns:
+            List[BaseTool]: 所有工具实例列表
+        """
+        for tool in self._tools.values():
+            tool.set_enabled(True)
+        logger.info("所有工具已启用")
+        return list(self._tools.values())
+    
+    def disable_all_tools(self) -> List[BaseTool]:
+        """禁用所有工具
+        
+        Returns:
+            List[BaseTool]: 所有工具实例列表
+        """
+        for tool in self._tools.values():
+            tool.set_enabled(False)
+        logger.info("所有工具已禁用")
+        return list(self._tools.values())
     
     def get_tool_schemas(self) -> List[Dict]:
         """获取所有工具的 JSON Schema

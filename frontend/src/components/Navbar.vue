@@ -1,74 +1,82 @@
 <template>
-  <nav class="navbar">
-    <div class="navbar-container">
-      <!-- Logo and Title -->
-      <div class="navbar-brand">
-        <div class="logo-icon">
-          <el-icon :size="28"><Setting /></el-icon>
-        </div>
-        <h1 class="app-title">飞书 AI Bot 管理</h1>
+  <nav class="sidebar">
+    <!-- Logo and Title -->
+    <div class="sidebar-brand">
+      <div class="logo-icon">
+        <el-icon :size="28"><Setting /></el-icon>
       </div>
+      <h1 class="app-title">飞书 AI Bot 管理</h1>
+    </div>
 
-      <!-- Navigation Links -->
-      <div class="navbar-nav">
-        <router-link 
-          to="/providers" 
-          class="nav-link"
-          active-class="nav-link-active"
-        >
-          <el-icon><Connection /></el-icon>
-          <span>提供商配置</span>
-        </router-link>
-        
-        <router-link 
-          to="/global-config" 
-          class="nav-link"
-          active-class="nav-link-active"
-        >
-          <el-icon><Tools /></el-icon>
-          <span>全局配置</span>
-        </router-link>
-        
-        <router-link 
-          to="/sessions" 
-          class="nav-link"
-          active-class="nav-link-active"
-        >
-          <el-icon><ChatDotRound /></el-icon>
-          <span>会话记录</span>
-        </router-link>
-        
-        <router-link 
-          to="/configs" 
-          class="nav-link"
-          active-class="nav-link-active"
-        >
-          <el-icon><List /></el-icon>
-          <span>会话配置列表</span>
-        </router-link>
-        
-        <router-link 
-          to="/cron-jobs" 
-          class="nav-link"
-          active-class="nav-link-active"
-        >
-          <el-icon><Clock /></el-icon>
-          <span>定时任务</span>
-        </router-link>
-      </div>
+    <!-- Navigation Links -->
+    <div class="sidebar-nav">
+      <router-link 
+        to="/providers" 
+        class="nav-link"
+        active-class="nav-link-active"
+      >
+        <el-icon><Connection /></el-icon>
+        <span>提供商配置</span>
+      </router-link>
+      
+      <router-link 
+        to="/global-config" 
+        class="nav-link"
+        active-class="nav-link-active"
+      >
+        <el-icon><Tools /></el-icon>
+        <span>全局配置</span>
+      </router-link>
+      
+      <router-link 
+        to="/sessions" 
+        class="nav-link"
+        active-class="nav-link-active"
+      >
+        <el-icon><ChatDotRound /></el-icon>
+        <span>会话记录</span>
+      </router-link>
+      
+      <router-link 
+        to="/configs" 
+        class="nav-link"
+        active-class="nav-link-active"
+      >
+        <el-icon><List /></el-icon>
+        <span>会话配置列表</span>
+      </router-link>
+      
+      <router-link 
+        to="/cron-jobs" 
+        class="nav-link"
+        active-class="nav-link-active"
+      >
+        <el-icon><Clock /></el-icon>
+        <span>定时任务</span>
+      </router-link>
+      
+      <router-link 
+        to="/tools" 
+        class="nav-link"
+        active-class="nav-link-active"
+      >
+        <el-icon><Setting /></el-icon>
+        <span>工具管理</span>
+      </router-link>
+    </div>
 
-      <!-- Logout Button -->
-      <div class="navbar-actions">
-        <el-button 
-          type="danger" 
-          :icon="SwitchButton"
-          @click="handleLogout"
-          :loading="isLoggingOut"
-          class="logout-btn"
-        >
-          登出
-        </el-button>
-      </div>
+    <!-- Logout Button -->
+    <div class="sidebar-actions">
+      <el-button 
+        type="danger" 
+        :icon="SwitchButton"
+        @click="handleLogout"
+        :loading="isLoggingOut"
+        class="logout-btn"
+        full-width
+      >
+        登出
+      </el-button>
     </div>
   </nav>
 </template>
@@ -110,32 +118,29 @@ const handleLogout = async () => {
 </script>
 
 <style scoped>
-.navbar {
+.sidebar {
+  width: 240px;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  box-shadow: 4px 0 12px rgba(0, 0, 0, 0.15);
+  height: 100vh;
   position: sticky;
   top: 0;
   z-index: 1000;
-  backdrop-filter: blur(10px);
-}
-
-.navbar-container {
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 0 24px;
-  height: 64px;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 32px;
+  flex-direction: column;
+  padding: 24px 16px;
+  backdrop-filter: blur(10px);
+  overflow-y: auto;
 }
 
 /* Brand Section */
-.navbar-brand {
+.sidebar-brand {
   display: flex;
   align-items: center;
   gap: 12px;
-  flex-shrink: 0;
+  margin-bottom: 32px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .logo-icon {
@@ -156,7 +161,7 @@ const handleLogout = async () => {
 }
 
 .app-title {
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 600;
   color: white;
   margin: 0;
@@ -165,18 +170,18 @@ const handleLogout = async () => {
 }
 
 /* Navigation Links */
-.navbar-nav {
-  display: flex;
-  align-items: center;
-  gap: 8px;
+.sidebar-nav {
   flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
 .nav-link {
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 10px 20px;
+  gap: 12px;
+  padding: 12px 16px;
   color: rgba(255, 255, 255, 0.9);
   text-decoration: none;
   border-radius: 8px;
@@ -219,19 +224,20 @@ const handleLogout = async () => {
 .nav-link-active::after {
   content: '';
   position: absolute;
-  bottom: 0;
-  left: 20px;
-  right: 20px;
-  height: 3px;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 4px;
+  height: 60%;
   background: white;
-  border-radius: 2px 2px 0 0;
+  border-radius: 0 2px 2px 0;
 }
 
 /* Actions Section */
-.navbar-actions {
-  display: flex;
-  align-items: center;
-  flex-shrink: 0;
+.sidebar-actions {
+  margin-top: auto;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .logout-btn {
@@ -239,6 +245,7 @@ const handleLogout = async () => {
   border: none;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
   transition: all 0.3s ease;
+  margin-top: 16px;
 }
 
 .logout-btn:hover {
@@ -248,27 +255,46 @@ const handleLogout = async () => {
 
 /* Responsive Design */
 @media (max-width: 768px) {
-  .navbar-container {
-    padding: 0 16px;
-    height: 56px;
+  .sidebar {
+    width: 100%;
+    height: auto;
+    flex-direction: row;
+    padding: 16px;
     gap: 16px;
+    overflow-x: auto;
+  }
+
+  .sidebar-brand {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
   }
 
   .app-title {
     font-size: 16px;
   }
 
-  .logo-icon {
-    width: 36px;
-    height: 36px;
+  .sidebar-nav {
+    flex-direction: row;
+    flex: none;
+  }
+
+  .nav-link {
+    padding: 10px 12px;
   }
 
   .nav-link span {
     display: none;
   }
 
-  .nav-link {
-    padding: 10px 12px;
+  .sidebar-actions {
+    margin-top: 0;
+    padding-top: 0;
+    border-top: none;
+  }
+
+  .logout-btn {
+    margin-top: 0;
   }
 
   .logout-btn span {
@@ -277,11 +303,12 @@ const handleLogout = async () => {
 }
 
 @media (max-width: 480px) {
-  .navbar-container {
+  .sidebar {
+    padding: 12px;
     gap: 8px;
   }
 
-  .navbar-brand {
+  .sidebar-brand {
     gap: 8px;
   }
 
@@ -289,7 +316,7 @@ const handleLogout = async () => {
     font-size: 14px;
   }
 
-  .navbar-nav {
+  .sidebar-nav {
     gap: 4px;
   }
 }

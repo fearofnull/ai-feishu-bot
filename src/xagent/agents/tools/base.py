@@ -22,17 +22,19 @@ class BaseTool(ABC):
     所有工具的抽象基类，定义了工具的通用接口
     """
     
-    def __init__(self, name: str, description: str, parameters: Dict[str, Any]):
+    def __init__(self, name: str, description: str, parameters: Dict[str, Any], enabled: bool = True):
         """初始化工具
         
         Args:
             name: 工具名称
             description: 工具描述
             parameters: 工具参数定义（JSON Schema 格式）
+            enabled: 工具是否启用，默认为 True
         """
         self.name = name
         self.description = description
         self.parameters = parameters
+        self.enabled = enabled
     
     @abstractmethod
     async def execute(self, **kwargs) -> ToolResult:
@@ -67,4 +69,21 @@ class BaseTool(ABC):
         Returns:
             bool: 工具是否可用
         """
-        return True
+        return self.enabled
+    
+    def toggle_enabled(self) -> bool:
+        """切换工具的启用状态
+        
+        Returns:
+            bool: 切换后的启用状态
+        """
+        self.enabled = not self.enabled
+        return self.enabled
+    
+    def set_enabled(self, enabled: bool) -> None:
+        """设置工具的启用状态
+        
+        Args:
+            enabled: 工具是否启用
+        """
+        self.enabled = enabled

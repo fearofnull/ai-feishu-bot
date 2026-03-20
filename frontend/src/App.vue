@@ -23,11 +23,23 @@ const showNavbar = computed(() => route.path !== '/login')
 #app {
   min-height: 100vh;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
 }
 
 .main-content {
   flex: 1;
   background: #f5f7fa;
+  overflow-y: auto;
+  padding: 24px;
+}
+
+@media (max-width: 768px) {
+  #app {
+    flex-direction: column;
+  }
+  
+  .main-content {
+    padding: 16px;
+  }
 }
 </style>

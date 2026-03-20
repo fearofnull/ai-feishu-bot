@@ -41,6 +41,7 @@ class UnifiedAPIInterface(AIExecutor):
         self.config_manager = config_manager
         self.executor_registry = executor_registry
         self.enable_fallback = enable_fallback
+        self._executor_cache = {}  # 缓存执行器实例，避免重复创建
         
         logger.info(
             f"UnifiedAPIInterface initialized (fallback={'enabled' if enable_fallback else 'disabled'})"
@@ -174,12 +175,22 @@ class UnifiedAPIInterface(AIExecutor):
         Raises:
             ExecutorNotAvailableError: 如果配置类型不支持或执行器不可用
         """
+        # 生成缓存键
+        cache_key = f"{config.name}_{config.type}_{config.default_model}"
+        
+        # 检查缓存中是否已有执行器实例
+        if cache_key in self._executor_cache:
+            logger.info(f"使用缓存的执行器: {cache_key}")
+            return self._executor_cache[cache_key]
+        
         # 规范化配置类型
         config_type = (config.type or "").lower().strip()
         
+        executor = None
+        
         if config_type in ("openai", "openai_compatible"):
             # 使用执行器注册表创建OpenAI兼容执行器
-            return self.executor_registry.get_openai_executor(
+            executor = self.executor_registry.get_openai_executor(
                 base_url=config.base_url,
                 api_key=config.api_key,
                 model=config.default_model
@@ -188,7 +199,7 @@ class UnifiedAPIInterface(AIExecutor):
         elif config_type in ("claude", "claude_compatible", "anthropic", "anthropic_compatible"):
             # 使用Claude执行器
             from ..executors.claude_api_executor import ClaudeAPIExecutor
-            return ClaudeAPIExecutor(
+            executor = ClaudeAPIExecutor(
                 api_key=config.api_key,
                 model=config.default_model,
                 base_url=config.base_url
@@ -197,7 +208,7 @@ class UnifiedAPIInterface(AIExecutor):
         elif config_type in ("gemini", "gemini_compatible", "google", "google_compatible"):
             # 使用Gemini执行器
             from ..executors.gemini_api_executor import GeminiAPIExecutor
-            return GeminiAPIExecutor(
+            executor = GeminiAPIExecutor(
                 api_key=config.api_key,
                 model=config.default_model,
                 base_url=config.base_url
@@ -210,6 +221,12 @@ class UnifiedAPIInterface(AIExecutor):
                 layer="api",
                 reason=f"不支持的配置类型: {config.type}"
             )
+        
+        # 缓存执行器实例
+        self._executor_cache[cache_key] = executor
+        logger.info(f"创建并缓存执行器: {cache_key}")
+        
+        return executor
     
     def _fallback_to_alternative(
         self,

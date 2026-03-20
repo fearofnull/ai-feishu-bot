@@ -105,12 +105,17 @@ class WebAdminServer:
             storage_path="./data/provider_configs.json"
         )
         
+        # Initialize tool state manager
+        from ..core.tool_state_manager import ToolStateManager
+        self.tool_state_manager = ToolStateManager()
+        
         # Register API routes (pass rate_limits if available)
         register_api_routes(
             self.app, 
             self.config_manager, 
             self.auth_manager,
-            rate_limits=self.rate_limits
+            rate_limits=self.rate_limits,
+            tool_state_manager=self.tool_state_manager
         )
         
         # Register provider API routes

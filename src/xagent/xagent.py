@@ -528,7 +528,6 @@ class XAgent:
                         )
                 
                 # 11. 响应格式化
-                # 11. 响应格式化
                 if result.success:
                     response = self.response_formatter.format_response(
                         message_content, result.stdout, executor_name=executor_name
@@ -562,6 +561,8 @@ class XAgent:
                 self.message_sender.send_message(
                     chat_type, chat_id, message_id, response
                 )
+                # 避免继续执行导致重复处理
+                return
         
         except Exception as e:
             logger.error(f"Error handling message: {e}", exc_info=True)

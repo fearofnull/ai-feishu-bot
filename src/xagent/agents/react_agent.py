@@ -114,15 +114,30 @@ class XAgent(ReActAgent):
         """
         toolkit = Toolkit()
 
-        # Register built-in tools
-        toolkit.register_tool_function(execute_shell_command)
-        toolkit.register_tool_function(read_file)
-        toolkit.register_tool_function(write_file)
-        toolkit.register_tool_function(edit_file)
-        toolkit.register_tool_function(get_current_time)
-        toolkit.register_tool_function(desktop_screenshot)
-        toolkit.register_tool_function(send_file_to_user)
-        toolkit.register_tool_function(call_cron_api)
+        # Load tool states
+        try:
+            from ..core.tool_state_manager import ToolStateManager
+            tool_state_manager = ToolStateManager()
+        except:
+            tool_state_manager = None
+
+        # Register built-in tools if they are enabled
+        if not tool_state_manager or tool_state_manager.get_tool_state("execute_shell_command"):
+            toolkit.register_tool_function(execute_shell_command)
+        if not tool_state_manager or tool_state_manager.get_tool_state("read_file"):
+            toolkit.register_tool_function(read_file)
+        if not tool_state_manager or tool_state_manager.get_tool_state("write_file"):
+            toolkit.register_tool_function(write_file)
+        if not tool_state_manager or tool_state_manager.get_tool_state("edit_file"):
+            toolkit.register_tool_function(edit_file)
+        if not tool_state_manager or tool_state_manager.get_tool_state("get_current_time"):
+            toolkit.register_tool_function(get_current_time)
+        if not tool_state_manager or tool_state_manager.get_tool_state("desktop_screenshot"):
+            toolkit.register_tool_function(desktop_screenshot)
+        if not tool_state_manager or tool_state_manager.get_tool_state("send_file_to_user"):
+            toolkit.register_tool_function(send_file_to_user)
+        if not tool_state_manager or tool_state_manager.get_tool_state("call_cron_api"):
+            toolkit.register_tool_function(call_cron_api)
 
         # Register skills from active_skills directory
         self._register_skills(toolkit)
@@ -226,6 +241,9 @@ IMPORTANT RULES:
         Returns:
             Response message
         """
+        # 重新创建工具包以反映最新的工具状态
+        self.toolkit = self._create_toolkit()
+        
         # 将旧的工具调用转换为摘要，保持对话记忆的同时避免重复执行
         await self._summarize_old_tool_calls()
         

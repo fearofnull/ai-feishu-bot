@@ -59,6 +59,12 @@ const routes = [
     name: 'CronJobs',
     component: CronJobs,
     meta: { requiresAuth: true }
+  },
+  {
+    path: '/tools',
+    name: 'Tools',
+    component: () => import('../views/Tools.vue'),
+    meta: { requiresAuth: true }
   }
 ]
 
