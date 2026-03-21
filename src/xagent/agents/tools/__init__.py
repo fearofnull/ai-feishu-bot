@@ -23,6 +23,20 @@ from .memory_search import create_memory_search_tool
 from .get_current_time import get_current_time
 from .cron_api import call_cron_api
 from .lark_messages import get_lark_messages
+from .feishu_docs import (
+    feishu_doc_read_markdown,
+    feishu_doc_read_blocks,
+    feishu_doc_read_raw,
+    feishu_doc_get_info,
+    feishu_doc_create,
+    feishu_doc_convert_markdown_to_blocks,
+    feishu_doc_create_block,
+    feishu_doc_update_block,
+    feishu_doc_delete_block,
+    feishu_doc_batch_update_blocks,
+    feishu_doc_batch_delete_blocks,
+    feishu_doc_list,
+)
 
 __all__ = [
     "execute_python_code",
@@ -42,4 +56,16 @@ __all__ = [
     "get_current_time",
     "call_cron_api",
     "get_lark_messages",
+    "feishu_doc_read_markdown",
+    "feishu_doc_read_blocks",
+    "feishu_doc_read_raw",
+    "feishu_doc_get_info",
+    "feishu_doc_create",
+    "feishu_doc_convert_markdown_to_blocks",
+    "feishu_doc_create_block",
+    "feishu_doc_update_block",
+    "feishu_doc_delete_block",
+    "feishu_doc_batch_update_blocks",
+    "feishu_doc_batch_delete_blocks",
+    "feishu_doc_list",
 ]

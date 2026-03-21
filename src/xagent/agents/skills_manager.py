@@ -332,17 +332,19 @@ def ensure_skills_initialized() -> None:
     Check if skills are initialized in active_skills directory.
 
     Logs a warning if no skills are found, or info about loaded skills.
-    Skills should be configured via `copaw init` or
-    `copaw skills config`.
+    Skills are automatically synced from builtin and customized directories.
     """
     active_skills = get_active_skills_dir()
+    
+    # Auto-sync skills from builtin and customized directories
+    sync_skills_to_working_dir()
+    
     available = list_available_skills()
 
     if not active_skills.exists() or not available:
-        logger.warning(
+        logger.debug(
             "No skills found in active_skills directory. "
-            "Run 'copaw init' or 'copaw skills config' "
-            "to configure skills.",
+            "Skills will be loaded when available.",
         )
     else:
         logger.debug(
