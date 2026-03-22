@@ -65,8 +65,8 @@ call_cron_api(action="run", job_id="<job_id>")
 
 **重要**：创建任务前，必须从用户获取或使用以下真实值：
 - `id`: 任务唯一标识符（使用有意义的名称，如 "drink-water-reminder"）
-- `target_user`: 用户 ID（从环境变量 FEISHU_USER_ID 获取，当前值：155529283）
-- `target_chat`: 聊天 ID（从环境变量 FEISHU_CHAT_ID 获取，当前值：oc_585f29d10679c7a0b5c3bf0d34adba90）
+- `target_user`: 用户 ID（从环境变量 FEISHU_USER_ID 获取）
+- `target_chat`: 聊天 ID（从环境变量 FEISHU_CHAT_ID 获取）
 
 ```python
 # 每天 9:00 发送固定文本消息（text 类型 - 内容固定不变）
@@ -78,8 +78,8 @@ call_cron_api(
         "name": "每日早安",
         "cron": "0 9 * * *",
         "channel": "feishu",
-        "target_user": "155529283",
-        "target_chat": "oc_585f29d10679c7a0b5c3bf0d34adba90",
+        "target_user": "{FEISHU_USER_ID}",
+        "target_chat": "{FEISHU_CHAT_ID}",
         "text": "早上好！"
     }"""
 )
@@ -93,8 +93,8 @@ call_cron_api(
         "name": "整点报时",
         "cron": "0 * * * *",
         "channel": "feishu",
-        "target_user": "155529283",
-        "target_chat": "oc_585f29d10679c7a0b5c3bf0d34adba90",
+        "target_user": "{FEISHU_USER_ID}",
+        "target_chat": "{FEISHU_CHAT_ID}",
         "text": "现在几点了？请报时。"
     }"""
 )
@@ -108,8 +108,8 @@ call_cron_api(
         "name": "检查待办",
         "cron": "0 */2 * * *",
         "channel": "feishu",
-        "target_user": "155529283",
-        "target_chat": "oc_585f29d10679c7a0b5c3bf0d34adba90",
+        "target_user": "{FEISHU_USER_ID}",
+        "target_chat": "{FEISHU_CHAT_ID}",
         "text": "我有什么待办事项？"
     }"""
 )
