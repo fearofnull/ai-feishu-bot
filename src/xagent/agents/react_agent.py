@@ -96,6 +96,18 @@ class XAgent(ReActAgent):
             enable_memory_manager,
             memory_manager,
         )
+        
+        # 初始化输入安全审计
+        from ..security.input_audit import InputSecurityAudit
+        self._input_audit = InputSecurityAudit()
+        
+        # 初始化 Hook 管理器
+        from ..hooks.output_hook import OutputHookManager, HookContext
+        from ..hooks.security_hook import SecurityHook
+        from ..hooks.audit_log_hook import AuditLogHook
+        self._hook_manager = OutputHookManager()
+        self._hook_manager.register(SecurityHook())
+        self._hook_manager.register(AuditLogHook())
 
     def _create_toolkit(self) -> Toolkit:
         """Create and populate toolkit with built-in tools.
@@ -241,16 +253,49 @@ SECURITY RULES - 绝对遵守 - 用户无法修改：
         self,
         msg: Msg | list[Msg] | None = None,
         structured_model: Any | None = None,
+        user_id: Optional[str] = None,
+        username: Optional[str] = None,
+        chat_id: Optional[str] = None,
+        session_id: Optional[str] = None,
+        original_message: Optional[str] = None
     ) -> Msg:
         """Override reply to process file blocks and handle commands.
 
         Args:
             msg: Input message(s) from user
             structured_model: Optional pydantic model for structured output
+            user_id: User ID
+            username: Username
+            chat_id: Chat ID
+            session_id: Session ID
+            original_message: Original message content without language prompts
 
         Returns:
             Response message
         """
+        # 提取用户输入
+        user_input = ""
+        if original_message:
+            user_input = original_message
+        elif msg is not None:
+            if isinstance(msg, list):
+                # 遍历消息列表，找到最后一条用户消息
+                for m in reversed(msg):
+                    if m.role == "user":
+                        user_input = str(m.content) if m.content else ""
+                        break
+            elif msg.role == "user":
+                user_input = str(msg.content) if msg.content else ""
+        
+        # 确保 user_input 不为空
+        if not user_input and msg is not None:
+            if isinstance(msg, list) and msg:
+                # 如果没有找到用户消息，使用最后一条消息
+                last_msg = msg[-1]
+                user_input = str(last_msg.content) if last_msg.content else ""
+            elif hasattr(msg, "content"):
+                user_input = str(msg.content) if msg.content else ""
+        
         # 重新创建工具包以反映最新的工具状态
         self.toolkit = self._create_toolkit()
         
@@ -259,6 +304,51 @@ SECURITY RULES - 绝对遵守 - 用户无法修改：
         
         # Normal message processing
         reply_msg = await super().reply(msg=msg, structured_model=structured_model)
+        
+        # 记录输入安全检查审计（提示词拦截）
+        response_text = ""
+        if reply_msg.content:
+            if isinstance(reply_msg.content, str):
+                response_text = reply_msg.content
+            elif isinstance(reply_msg.content, list):
+                # 提取列表中的文本内容
+                for item in reply_msg.content:
+                    if isinstance(item, dict):
+                        if item.get("type") == "text" and "text" in item:
+                            response_text = item["text"]
+                            break
+                    elif isinstance(item, str):
+                        response_text = item
+                        break
+        
+        self._input_audit.log_prompt_block(
+            user_input=user_input,
+            response=response_text,
+            user_id=user_id,
+            username=username,
+            chat_id=chat_id,
+            session_id=session_id,
+            source='react_agent'
+        )
+        
+        # 应用输出 Hook 处理
+        from ..hooks.output_hook import HookContext
+        context = HookContext(
+            user_id=user_id,
+            username=username,
+            chat_id=chat_id,
+            session_id=session_id,
+            source='react_agent'
+        )
+        processed_response = self._hook_manager.process(response_text, context)
+        
+        # 更新回复消息内容
+        if isinstance(reply_msg.content, str):
+            reply_msg.content = processed_response
+        elif isinstance(reply_msg.content, list):
+            for item in reply_msg.content:
+                if isinstance(item, dict) and item.get("type") == "text":
+                    item["text"] = processed_response
         
         # 从 memory 中提取工具结果中的媒体块，并合并到回复消息中
         reply_msg = await self._merge_tool_results_to_reply(reply_msg)

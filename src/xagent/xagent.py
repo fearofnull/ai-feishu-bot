@@ -262,7 +262,9 @@ class XAgent:
                 message_content=processed.message_content,
                 parsed_command=parsed_command,
                 temp_params=processed.temp_params,
-                final_message=processed.final_message
+                final_message=processed.final_message,
+                username=processed.username,
+                original_message=processed.message_content
             )
             
             self.execution_coordinator.execute(context)

@@ -42,6 +42,7 @@ def create_model_and_formatter(provider_type: str = "openai") -> Tuple[ChatModel
     Args:
         provider_type: Provider type. Supported values:
             - "openai": OpenAI API (GPT-4, etc.)
+            - "openai_compatible": OpenAI-compatible APIs (e.g., Azure, AI Hub)
             - "claude": Anthropic Claude API
             - "gemini": Google Gemini API
 
@@ -56,7 +57,8 @@ def create_model_and_formatter(provider_type: str = "openai") -> Tuple[ChatModel
     """
     logger.info(f"[create_model_and_formatter] provider_type: {provider_type}")
     
-    if provider_type == "openai":
+    # Normalize provider type
+    if provider_type in ["openai", "openai_compatible"]:
         return _create_openai_model_and_formatter()
     elif provider_type == "claude":
         return _create_claude_model_and_formatter()

@@ -48,6 +48,8 @@ class ExecutionContext:
     parsed_command: ParsedCommand
     temp_params: dict
     final_message: str
+    username: Optional[str] = None
+    original_message: Optional[str] = None
 
 
 class ExecutionCoordinator:
@@ -151,8 +153,11 @@ class ExecutionCoordinator:
         
         additional_params = {
             "user_id": context.sender_id,
+            "username": context.username,
             "chat_id": context.chat_id,
-            "chat_type": context.chat_type
+            "chat_type": context.chat_type,
+            "session_id": context.session_id,
+            "original_message": context.original_message or context.message_content
         }
         
         if provider_name == "agent":
@@ -199,6 +204,8 @@ class ExecutionCoordinator:
         logger.info(f"[CLI] Executing with message: {message[:200]}...")
         
         target_dir = effective_config.get("target_project_dir")
+        original_message = additional_params.get('original_message')
+        
         if hasattr(executor, 'target_dir') and target_dir:
             original_target_dir = executor.target_dir
             executor.target_dir = target_dir

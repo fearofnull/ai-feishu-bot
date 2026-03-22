@@ -144,10 +144,21 @@ class AgentExecutor:
         from agentscope.message import Msg
         
         # 从 additional_params 中提取上下文信息并设置环境变量
+        user_id = None
+        username = None
+        chat_id = None
+        chat_type = None
+        session_id = None
+        original_message = None
+        
         if additional_params:
             chat_id = additional_params.get('chat_id')
             chat_type = additional_params.get('chat_type')
             user_id = additional_params.get('user_id')
+            username = additional_params.get('username')
+            session_id = additional_params.get('session_id')
+            original_message = additional_params.get('original_message')
+            
             if chat_id:
                 import os as _os
                 _os.environ['CURRENT_CHAT_ID'] = chat_id
@@ -194,13 +205,34 @@ class AgentExecutor:
                         import concurrent.futures
                         with concurrent.futures.ThreadPoolExecutor() as executor:
                             # 在新线程中运行 asyncio.run
-                            result = executor.submit(asyncio.run, self.agent.reply(messages)).result()
+                            result = executor.submit(asyncio.run, self.agent.reply(
+                                messages,
+                                user_id=user_id,
+                                username=username,
+                                chat_id=chat_id,
+                                session_id=session_id,
+                                original_message=original_message
+                            )).result()
                     else:
                         # 如果没有运行中的事件循环，使用 asyncio.run
-                        result = asyncio.run(self.agent.reply(messages))
+                        result = asyncio.run(self.agent.reply(
+                            messages,
+                            user_id=user_id,
+                            username=username,
+                            chat_id=chat_id,
+                            session_id=session_id,
+                            original_message=original_message
+                        ))
                 except RuntimeError:
                     # 如果没有当前事件循环，创建一个新的并运行
-                    result = asyncio.run(self.agent.reply(messages))
+                    result = asyncio.run(self.agent.reply(
+                        messages,
+                        user_id=user_id,
+                        username=username,
+                        chat_id=chat_id,
+                        session_id=session_id,
+                        original_message=original_message
+                    ))
             except Exception as e:
                 # 如果出现任何错误，不再重复调用agent.reply，避免重复回答
                 logger.error(f"Error executing agent.reply: {e}")
@@ -235,7 +267,14 @@ class AgentExecutor:
                                     for tool_item in tool_output:
                                         if isinstance(tool_item, dict):
                                             if tool_item.get("type") == "text" and "text" in tool_item:
-                                                text_parts.append(tool_item["text"])
+                                                # 处理嵌套的文本内容
+                                                text_content = tool_item["text"]
+                                                if isinstance(text_content, str):
+                                                    text_parts.append(text_content)
+                                                elif isinstance(text_content, list):
+                                                    for nested_item in text_content:
+                                                        if isinstance(nested_item, dict) and nested_item.get("type") == "text" and "text" in nested_item:
+                                                            text_parts.append(nested_item["text"])
                                             elif tool_item.get("type") in ["image", "audio", "video", "file"] and "source" in tool_item:
                                                 media_blocks.append(tool_item)
                                 # 检查 tool_output 是否直接是一个对象（而不是列表）
@@ -245,7 +284,14 @@ class AgentExecutor:
                                     elif tool_output.get("type") in ["image", "audio", "video", "file"] and "source" in tool_output:
                                         media_blocks.append(tool_output)
                             elif item.get("type") == "text" and "text" in item:
-                                text_parts.append(item["text"])
+                                # 处理嵌套的文本内容
+                                text_content = item["text"]
+                                if isinstance(text_content, str):
+                                    text_parts.append(text_content)
+                                elif isinstance(text_content, list):
+                                    for nested_item in text_content:
+                                        if isinstance(nested_item, dict) and nested_item.get("type") == "text" and "text" in nested_item:
+                                            text_parts.append(nested_item["text"])
                             elif item.get("type") in ["image", "audio", "video", "file"]:
                                 # 媒体块可能是 dict 或对象
                                 media_blocks.append(item)

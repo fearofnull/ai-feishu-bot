@@ -175,13 +175,15 @@ class QwenCLIExecutor(AICLIExecutor):
                     logger.warning("Failed to parse Qwen CLI JSON output, using raw output")
                     response_text = result.stdout
 
-            return ExecutionResult(
+            execution_result = ExecutionResult(
                 success=result.returncode == 0,
                 stdout=response_text,
                 stderr=result.stderr,
                 error_message=None if result.returncode == 0 else f"命令执行失败，返回码: {result.returncode}",
                 execution_time=execution_time
             )
+            original_user_prompt = additional_params.get('original_message') if additional_params else None
+            return self._apply_hooks(execution_result, additional_params, original_user_prompt)
 
         except subprocess.TimeoutExpired:
             error_msg = f"命令执行超时（{self.timeout} 秒）"

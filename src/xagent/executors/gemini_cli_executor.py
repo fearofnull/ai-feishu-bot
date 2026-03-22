@@ -144,7 +144,7 @@ class GeminiCLIExecutor(AICLIExecutor):
         if additional_params:
             for key, value in additional_params.items():
                 # 跳过内部参数
-                if key == "user_id":
+                if key in ["user_id", "username", "chat_id", "session_id", "original_message", "chat_type", "message_id", "session_type"]:
                     continue
                 
                 # 布尔参数
@@ -241,13 +241,15 @@ class GeminiCLIExecutor(AICLIExecutor):
                     logger.warning("Failed to parse Gemini CLI JSON output, using raw output")
                     response_text = result.stdout
             
-            return ExecutionResult(
+            execution_result = ExecutionResult(
                 success=result.returncode == 0,
                 stdout=response_text,
                 stderr=result.stderr,
                 error_message=None if result.returncode == 0 else f"命令执行失败，返回码: {result.returncode}",
                 execution_time=execution_time
             )
+            original_user_prompt = additional_params.get('original_message') if additional_params else None
+            return self._apply_hooks(execution_result, additional_params, original_user_prompt)
             
         except subprocess.TimeoutExpired:
             error_msg = f"命令执行超时（{self.timeout} 秒）"
@@ -279,7 +281,6 @@ class GeminiCLIExecutor(AICLIExecutor):
                 error_message=error_msg,
                 execution_time=0
             )
-
     
     def update_session_id(self, user_id: str, session_id: str) -> None:
         """更新用户的 Gemini CLI 会话 ID

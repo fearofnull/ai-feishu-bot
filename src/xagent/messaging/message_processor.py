@@ -25,6 +25,7 @@ class ProcessedMessage:
     chat_id: str
     chat_type: str
     sender_id: Optional[str]
+    username: Optional[str]
     message_content: str
     parsed_command: ParsedCommand
     temp_params: dict
@@ -83,7 +84,8 @@ class MessageProcessor:
             chat_type = data.event.message.chat_type
             
             sender_id = self._extract_sender_id(data)
-            logger.info(f"Received message {message_id} from user {sender_id}")
+            username = self._extract_username(data)
+            logger.info(f"Received message {message_id} from user {sender_id}, username: {username}")
             
             if not self._check_duplicate(message_id):
                 return None
@@ -107,6 +109,7 @@ class MessageProcessor:
                 chat_id=chat_id,
                 chat_type=chat_type,
                 sender_id=sender_id,
+                username=username,
                 message_content=message_content,
                 parsed_command=parsed_command,
                 temp_params=temp_params,
@@ -126,6 +129,22 @@ class MessageProcessor:
                 return data.event.sender.sender_id.user_id
         except Exception as e:
             logger.warning(f"Failed to get sender_id: {e}")
+        return None
+    
+    def _extract_username(self, data: P2ImMessageReceiveV1) -> Optional[str]:
+        """提取发送者用户名"""
+        try:
+            if hasattr(data.event, 'sender'):
+                # 尝试从 sender 中获取用户名
+                if hasattr(data.event.sender, 'sender_type') and data.event.sender.sender_type == "user":
+                    # 尝试从 sender.sender_id 中获取
+                    if hasattr(data.event.sender, 'sender_id'):
+                        # 飞书消息结构中，sender_id 可能包含 user_id
+                        # 实际的用户名可能需要通过 API 获取
+                        # 这里暂时返回 user_id 作为用户名
+                        return data.event.sender.sender_id.user_id
+        except Exception as e:
+            logger.warning(f"Failed to get username: {e}")
         return None
     
     def _check_duplicate(self, message_id: str) -> bool:

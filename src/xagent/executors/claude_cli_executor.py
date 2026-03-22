@@ -55,6 +55,12 @@ class ClaudeCodeCLIExecutor(AICLIExecutor):
         
         # 加载会话映射
         self.load_session_mappings()
+        
+        # 注册额外的 Hook
+        from ..hooks.security_hook import SecurityHook
+        from ..hooks.audit_log_hook import AuditLogHook
+        self._hook_manager.register(SecurityHook())
+        self._hook_manager.register(AuditLogHook())
     
     def get_command_name(self) -> str:
         """返回 Claude CLI 命令名称
@@ -144,7 +150,7 @@ class ClaudeCodeCLIExecutor(AICLIExecutor):
         if additional_params:
             for key, value in additional_params.items():
                 # 跳过内部参数
-                if key == "user_id":
+                if key in ["user_id", "username", "chat_id", "session_id", "original_message", "chat_type", "message_id", "session_type"]:
                     continue
                 
                 # 布尔参数
@@ -214,6 +220,10 @@ class ClaudeCodeCLIExecutor(AICLIExecutor):
                 f"stdout_length={len(result.stdout)}, stderr_length={len(result.stderr)}"
             )
             
+            # 记录完整的错误信息
+            if result.returncode != 0:
+                logger.error(f"Claude CLI execution failed: stderr={result.stderr}")
+            
             # 检查是否需要更新会话 ID
             # Claude Code CLI 会在输出中包含会话 ID（如果使用了 --session）
             if self.use_native_session and additional_params:
@@ -224,14 +234,17 @@ class ClaudeCodeCLIExecutor(AICLIExecutor):
                     # 实际实现可能需要根据 Claude Code 的输出格式调整
                     self._try_extract_session_id(user_id, result.stdout)
             
-            return ExecutionResult(
+            # 应用 Hook 处理
+            execution_result = ExecutionResult(
                 success=result.returncode == 0,
                 stdout=result.stdout,
                 stderr=result.stderr,
                 error_message=None if result.returncode == 0 else f"命令执行失败，返回码: {result.returncode}",
                 execution_time=execution_time
             )
-            
+            original_user_prompt = additional_params.get('original_message') if additional_params else None
+            return self._apply_hooks(execution_result, additional_params, original_user_prompt)
+        
         except subprocess.TimeoutExpired:
             error_msg = f"命令执行超时（{self.timeout} 秒）"
             logger.error(error_msg)
