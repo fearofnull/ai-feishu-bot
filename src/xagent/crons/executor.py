@@ -19,8 +19,34 @@ class CronExecutor:
         self._runner = runner
         self._channel_manager = channel_manager
 
+    def validate_job(self, job: CronJobSpec) -> None:
+        """Validate a cron job before execution or creation.
+
+        Args:
+            job: Cron job specification to validate.
+
+        Raises:
+            ValueError: If job is invalid.
+        """
+        if job.task_type == "text":
+            if not job.text:
+                raise ValueError("Text task requires non-empty text")
+        elif job.task_type == "agent":
+            if not job.request and not job.text:
+                raise ValueError("Agent task requires request or text")
+        else:
+            raise ValueError(f"Unsupported task type: {job.task_type}")
+
+        target_chat_id = job.dispatch.target.chat_id
+        target_user_id = job.dispatch.target.user_id
+        if not target_chat_id and not target_user_id:
+            raise ValueError("chat_id or user_id is required")
+
     async def execute(self, job: CronJobSpec) -> None:
         """Execute a cron job."""
+        # Validate job before execution
+        self.validate_job(job)
+        
         if job.task_type == "text":
             await self._execute_text_task(job)
         elif job.task_type == "agent":
@@ -30,14 +56,9 @@ class CronExecutor:
 
     async def _execute_text_task(self, job: CronJobSpec) -> None:
         """Execute a text task."""
-        if not job.text:
-            raise ValueError("Text task requires non-empty text")
-
+        # Validation already done in execute method
         target_chat_id = job.dispatch.target.chat_id
         target_user_id = job.dispatch.target.user_id
-
-        if not target_chat_id and not target_user_id:
-            raise ValueError("chat_id or user_id is required")
 
         await self._send_message(
             channel=job.dispatch.channel,
@@ -49,12 +70,10 @@ class CronExecutor:
 
     async def _execute_agent_task(self, job: CronJobSpec) -> None:
         """Execute an agent task."""
+        # Validation already done in execute method
         request = job.request
-        if not request:
-            if job.text:
-                request = self._build_request_from_text(job.text)
-            else:
-                raise ValueError("Agent task requires request")
+        if not request and job.text:
+            request = self._build_request_from_text(job.text)
 
         try:
             response = await asyncio.wait_for(

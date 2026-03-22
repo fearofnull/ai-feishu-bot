@@ -87,24 +87,103 @@ async def call_cron_api(
         try:
             spec_data = json.loads(job_spec)
             
+            # Get current chat_id and user_id from environment variables (set by agent executor)
+            import os
+            current_chat_id = os.environ.get('CURRENT_CHAT_ID')
+            current_user_id = os.environ.get('CURRENT_USER_ID')
+            
             # Transform simplified format to full CronJobSpec format
             if action == "create" and spec_data:
-                # If it already looks like a full CronJobSpec, keep as-is
+                # If it already looks like a full CronJobSpec, enhance it
                 if "task_type" in spec_data or "schedule" in spec_data:
-                    pass
+                    # Ensure schedule is an object
+                    if "schedule" in spec_data and isinstance(spec_data["schedule"], str):
+                        # Convert string schedule to object
+                        spec_data["schedule"] = {
+                            "type": "cron",
+                            "cron": spec_data["schedule"],
+                            "timezone": "Asia/Shanghai"
+                        }
+                    # Ensure id is present
+                    if "id" not in spec_data:
+                        # Generate a unique ID based on name and timestamp
+                        import time
+                        import hashlib
+                        name = spec_data.get("name", "unnamed")
+                        timestamp = str(int(time.time()))
+                        job_id = hashlib.md5(f"{name}-{timestamp}".encode()).hexdigest()[:12]
+                        spec_data["id"] = job_id
+                    # Ensure task_type is present
+                    if "task_type" not in spec_data:
+                        # Auto-detect task type based on parameters
+                        if "command" in spec_data:
+                            spec_data["task_type"] = "agent"
+                        else:
+                            spec_data["task_type"] = "text"
+                    # Ensure text is present for both text and agent tasks
+                    if "text" not in spec_data:
+                        spec_data["text"] = spec_data.get("name", "")
+                    # Ensure request is present for agent tasks
+                    if spec_data.get("task_type") == "agent" and "request" not in spec_data:
+                        spec_data["request"] = {
+                            "input": [
+                                {
+                                    "role": "user",
+                                    "type": "text",
+                                    "content": [{"type": "text", "text": spec_data.get("text", spec_data.get("name", ""))}]
+                                }
+                            ],
+                            "session_id": None,
+                            "user_id": "cron"
+                        }
+                    # Ensure dispatch is present
+                    if "dispatch" not in spec_data:
+                        # Get chat_id and user_id from spec_data or environment variables
+                        chat_id = spec_data.get("chat_id", current_chat_id)
+                        user_id = spec_data.get("user_id", current_user_id)
+                        
+                        spec_data["dispatch"] = {
+                            "type": "channel",
+                            "channel": "feishu",
+                            "target": {
+                                "chat_id": chat_id,
+                                "user_id": user_id
+                            },
+                            "mode": "final",
+                            "meta": {}
+                        }
+                    # Ensure runtime is present
+                    if "runtime" not in spec_data:
+                        spec_data["runtime"] = {
+                            "max_concurrency": 1,
+                            "timeout_seconds": 120,
+                            "misfire_grace_seconds": 60
+                        }
+                    # Ensure meta is present
+                    if "meta" not in spec_data:
+                        spec_data["meta"] = {}
                 else:
                     # Extract simplified parameters
                     job_type = spec_data.get("type", "text")
+                    # Auto-detect task type based on parameters
+                    if "command" in spec_data or job_type == "agent":
+                        job_type = "agent"
                     job_name = spec_data.get("name", "Unnamed Job")
                     job_id = spec_data.get("id")
+                    # Generate ID if not provided
+                    if not job_id:
+                        import time
+                        import hashlib
+                        timestamp = str(int(time.time()))
+                        job_id = hashlib.md5(f"{job_name}-{timestamp}".encode()).hexdigest()[:12]
                     cron_expr = spec_data.get("cron", "0 0 * * *")
                     channel = spec_data.get("channel", "feishu")
-                    target_user = spec_data.get("target_user")
-                    target_chat = spec_data.get("target_chat")
+                    target_user = spec_data.get("target_user", current_user_id)
+                    target_chat = spec_data.get("target_chat", current_chat_id)
                     target_session = spec_data.get("target_session")  # Legacy support
-                    text = spec_data.get("text", "")
+                    text = spec_data.get("text", job_name)  # Use name as default text
                     enabled = spec_data.get("enabled", True)
-                    timezone = spec_data.get("timezone", "UTC")
+                    timezone = spec_data.get("timezone", "Asia/Shanghai")
                     
                     # Use target_chat if provided, otherwise use target_session (legacy), otherwise use target_user
                     chat_id = target_chat or target_session
@@ -121,7 +200,7 @@ async def call_cron_api(
                             "timezone": timezone
                         },
                         "task_type": job_type,
-                        "text": text if job_type == "text" else None,
+                        "text": text,
                         "request": {
                             "input": [
                                 {
@@ -161,7 +240,8 @@ async def call_cron_api(
             )
 
     # Build the API endpoint and HTTP method
-    endpoint = f"{base_url}/api/cron/jobs"
+    # Use internal endpoint for cron tasks (no authentication required)
+    endpoint = f"{base_url}/api/internal/cron/jobs"
     method = "GET"
     json_data = None
 
@@ -194,8 +274,7 @@ async def call_cron_api(
     headers = {
         "Content-Type": "application/json",
     }
-    if token:
-        headers["Authorization"] = f"Bearer {token}"
+    # No need for Authorization header with local endpoints
 
     # Make the HTTP request
     try:

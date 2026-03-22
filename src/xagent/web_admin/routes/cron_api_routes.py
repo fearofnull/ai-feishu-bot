@@ -5,6 +5,7 @@ This module defines RESTful API endpoints for managing cron jobs.
 """
 
 import logging
+from functools import wraps
 from flask import Flask, request, jsonify
 from typing import Dict, Any
 
@@ -62,6 +63,289 @@ def register_cron_api_routes(
         return data
     
     # ==================== Cron Job Routes ====================
+    
+    # Local-only endpoints for cron tasks (no authentication required)
+    def _is_local_request():
+        """Check if request is from localhost"""
+        remote_addr = request.remote_addr
+        return remote_addr in ['127.0.0.1', 'localhost', '::1']
+    
+    def _local_only(f):
+        """Decorator to restrict access to localhost only"""
+        @wraps(f)
+        def decorated_function(*args, **kwargs):
+            if not _is_local_request():
+                return jsonify({
+                    'success': False,
+                    'error': {
+                        'code': 'FORBIDDEN',
+                        'message': 'Access denied: Local access only'
+                    }
+                }), 403
+            return f(*args, **kwargs)
+        return decorated_function
+    
+    @app.route('/api/internal/cron/jobs', methods=['GET'])
+    @_local_only
+    def local_list_jobs():
+        """List all cron jobs (local only)"""
+        try:
+            jobs = cron_manager.list_jobs_sync()
+            return jsonify({
+                'success': True,
+                'data': [job.model_dump() for job in jobs]
+            }), 200
+        except Exception as e:
+            logger.error(f"Error listing jobs: {e}", exc_info=True)
+            return jsonify({
+                'success': False,
+                'error': {
+                    'code': 'INTERNAL_ERROR',
+                    'message': 'Failed to list cron jobs'
+                }
+            }), 500
+    
+    @app.route('/api/internal/cron/jobs', methods=['POST'])
+    @_local_only
+    def local_create_job():
+        """Create a new cron job (local only)"""
+        try:
+            data = request.get_json()
+            if not data:
+                return jsonify({
+                    'success': False,
+                    'error': {
+                        'code': 'BAD_REQUEST',
+                        'message': 'Request body is required'
+                    }
+                }), 400
+            
+            data = _ensure_agent_request(data)
+            spec = CronJobSpec(**data)
+            cron_manager.create_or_replace_job_sync(spec)
+            return jsonify({
+                'success': True,
+                'data': spec.model_dump()
+            }), 200
+        except ValueError as e:
+            # Cron表达式验证错误
+            return jsonify({
+                'success': False,
+                'error': {
+                    'code': 'INVALID_CRON',
+                    'message': str(e)
+                }
+            }), 400
+        except Exception as e:
+            # Pydantic验证错误或其他错误
+            error_msg = str(e)
+            if 'validation error' in error_msg.lower():
+                return jsonify({
+                    'success': False,
+                    'error': {
+                        'code': 'VALIDATION_ERROR',
+                        'message': error_msg
+                    }
+                }), 400
+            
+            logger.error(f"Error creating job: {e}", exc_info=True)
+            return jsonify({
+                'success': False,
+                'error': {
+                    'code': 'INTERNAL_ERROR',
+                    'message': 'Failed to create cron job'
+                }
+            }), 500
+    
+    @app.route('/api/internal/cron/jobs/<job_id>', methods=['GET'])
+    @_local_only
+    def local_get_job(job_id: str):
+        """Get a specific cron job (local only)"""
+        try:
+            job = cron_manager.get_job_sync(job_id)
+            if not job:
+                return jsonify({
+                    'success': False,
+                    'error': {
+                        'code': 'NOT_FOUND',
+                        'message': 'Job not found'
+                    }
+                }), 404
+            state = cron_manager.get_state_sync(job_id)
+            job_view = {
+                'spec': job.model_dump(),
+                'state': state.model_dump() if state else None
+            }
+            return jsonify({
+                'success': True,
+                'data': job_view
+            }), 200
+        except Exception as e:
+            logger.error(f"Error getting job: {e}", exc_info=True)
+            return jsonify({
+                'success': False,
+                'error': {
+                    'code': 'INTERNAL_ERROR',
+                    'message': 'Failed to get cron job'
+                }
+            }), 500
+    
+    @app.route('/api/internal/cron/jobs/<job_id>', methods=['PUT'])
+    @_local_only
+    def local_update_job(job_id: str):
+        """Update a cron job (local only)"""
+        try:
+            data = request.get_json()
+            if not data:
+                return jsonify({
+                    'success': False,
+                    'error': {
+                        'code': 'BAD_REQUEST',
+                        'message': 'Request body is required'
+                    }
+                }), 400
+            
+            if data.get('id') != job_id:
+                return jsonify({
+                    'success': False,
+                    'error': {
+                        'code': 'BAD_REQUEST',
+                        'message': 'Job id in path and body must match'
+                    }
+                }), 400
+            
+            data = _ensure_agent_request(data)
+            spec = CronJobSpec(**data)
+            cron_manager.create_or_replace_job_sync(spec)
+            return jsonify({
+                'success': True,
+                'data': spec.model_dump()
+            }), 200
+        except ValueError as e:
+            # Cron表达式验证错误
+            return jsonify({
+                'success': False,
+                'error': {
+                    'code': 'INVALID_CRON',
+                    'message': str(e)
+                }
+            }), 400
+        except Exception as e:
+            # Pydantic验证错误或其他错误
+            error_msg = str(e)
+            if 'validation error' in error_msg.lower():
+                return jsonify({
+                    'success': False,
+                    'error': {
+                        'code': 'VALIDATION_ERROR',
+                        'message': error_msg
+                    }
+                }), 400
+            
+            logger.error(f"Error updating job: {e}", exc_info=True)
+            return jsonify({
+                'success': False,
+                'error': {
+                    'code': 'INTERNAL_ERROR',
+                    'message': 'Failed to update cron job'
+                }
+            }), 500
+    
+    @app.route('/api/internal/cron/jobs/<job_id>', methods=['DELETE'])
+    @_local_only
+    def local_delete_job(job_id: str):
+        """Delete a cron job (local only)"""
+        try:
+            deleted = cron_manager.delete_job_sync(job_id)
+            if not deleted:
+                return jsonify({
+                    'success': False,
+                    'error': {
+                        'code': 'NOT_FOUND',
+                        'message': 'Job not found'
+                    }
+                }), 404
+            return jsonify({
+                'success': True,
+                'message': 'Job deleted successfully'
+            }), 200
+        except Exception as e:
+            logger.error(f"Error deleting job: {e}", exc_info=True)
+            return jsonify({
+                'success': False,
+                'error': {
+                    'code': 'INTERNAL_ERROR',
+                    'message': 'Failed to delete cron job'
+                }
+            }), 500
+    
+    @app.route('/api/internal/cron/jobs/<job_id>/pause', methods=['POST'])
+    @_local_only
+    def local_pause_job(job_id: str):
+        """Pause a cron job (local only)"""
+        try:
+            cron_manager.pause_job_sync(job_id)
+            return jsonify({
+                'success': True,
+                'message': 'Job paused successfully'
+            }), 200
+        except Exception as e:
+            logger.error(f"Error pausing job: {e}", exc_info=True)
+            return jsonify({
+                'success': False,
+                'error': {
+                    'code': 'NOT_FOUND',
+                    'message': 'Job not found'
+                }
+            }), 404
+    
+    @app.route('/api/internal/cron/jobs/<job_id>/resume', methods=['POST'])
+    @_local_only
+    def local_resume_job(job_id: str):
+        """Resume a cron job (local only)"""
+        try:
+            cron_manager.resume_job_sync(job_id)
+            return jsonify({
+                'success': True,
+                'message': 'Job resumed successfully'
+            }), 200
+        except Exception as e:
+            logger.error(f"Error resuming job: {e}", exc_info=True)
+            return jsonify({
+                'success': False,
+                'error': {
+                    'code': 'NOT_FOUND',
+                    'message': 'Job not found'
+                }
+            }), 404
+    
+    @app.route('/api/internal/cron/jobs/<job_id>/run', methods=['POST'])
+    @_local_only
+    def local_run_job(job_id: str):
+        """Run a cron job immediately (local only)"""
+        try:
+            cron_manager.run_job_sync(job_id)
+            return jsonify({
+                'success': True,
+                'message': 'Job started successfully'
+            }), 200
+        except KeyError as e:
+            return jsonify({
+                'success': False,
+                'error': {
+                    'code': 'NOT_FOUND',
+                    'message': 'Job not found'
+                }
+            }), 404
+        except Exception as e:
+            logger.error(f"Error running job: {e}", exc_info=True)
+            return jsonify({
+                'success': False,
+                'error': {
+                    'code': 'INTERNAL_ERROR',
+                    'message': 'Failed to run cron job'
+                }
+            }), 500
     
     @app.route('/api/cron/jobs', methods=['GET'])
     @auth_manager.require_auth

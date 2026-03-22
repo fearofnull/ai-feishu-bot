@@ -157,20 +157,28 @@ class ProviderConfigManager:
     def get_config(self, name: str) -> Optional[ProviderConfig]:
         """根据名称获取配置
         
+        自动检查配置文件是否被修改，如果修改了则重新加载。
+        
         Args:
             name: 配置名称
             
         Returns:
             配置对象，如果不存在则返回 None
         """
+        # 检查文件是否被修改
+        self.reload_if_changed()
         return self.configs.get(name)
     
     def list_configs(self) -> List[ProviderConfig]:
         """返回所有配置列表
         
+        自动检查配置文件是否被修改，如果修改了则重新加载。
+        
         Returns:
             所有配置的列表
         """
+        # 检查文件是否被修改
+        self.reload_if_changed()
         return list(self.configs.values())
     
     def set_default(self, name: str) -> Tuple[bool, str]:

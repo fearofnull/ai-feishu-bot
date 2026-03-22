@@ -3,7 +3,7 @@
 import asyncio
 import logging
 from dataclasses import dataclass
-from datetime import datetime
+from datetime import datetime, UTC
 from typing import Any, Dict, Optional
 
 from apscheduler.schedulers.background import BackgroundScheduler
@@ -296,6 +296,13 @@ class CronManager:
 
     async def create_or_replace_job(self, spec: CronJobSpec) -> None:
         """创建或更新任务"""
+        # 验证任务有效性
+        try:
+            self._executor.validate_job(spec)
+        except ValueError as e:
+            logger.error(f"Invalid job: {e}")
+            raise
+        
         async with self._lock:
             await self._repo.upsert_job(spec)
             if self._started:
@@ -571,5 +578,5 @@ class CronManager:
                 )
                 raise
             finally:
-                st.last_run_at = datetime.utcnow()
+                st.last_run_at = datetime.now(UTC)
                 self._states[job.id] = st

@@ -145,6 +145,7 @@ SERPER_API_KEY=your_serper_api_key
 ### Web 管理界面
 - [Web 管理界面](docs/guides/WEB_ADMIN_README.md) - 完整的 Web 管理文档
 - [Web 用户指南](docs/guides/WEB_ADMIN_USER_GUIDE.md) - Web 界面使用指南
+- [Cron API 配置](docs/guides/CRON_API_SETUP.md) - 定时任务 API 配置指南
 
 ### 部署文档
 - [Docker 部署指南](deployment/docker/README.md) - Docker 容器化部署

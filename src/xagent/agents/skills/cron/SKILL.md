@@ -37,8 +37,27 @@ call_cron_api(action="run", job_id="<job_id>")
 ## 创建任务
 
 支持两种任务类型：
-- **text**：定时向频道发送固定消息
-- **agent**：定时向 Agent 提问并发送回复到频道
+- **text**：定时向频道发送固定消息（内容固定不变）
+- **agent**：定时向 Agent 提问并发送回复到频道（内容动态生成）
+
+### 任务类型判断指南
+
+根据用户需求判断应该创建哪种类型的任务：
+
+**创建 text 任务的情况：**
+- 发送固定不变的提醒消息（如"该喝水了！"、"该休息了！"）
+- 发送固定的通知内容（如"会议即将开始"）
+- 发送预设的问候语（如"早上好！"）
+
+**创建 agent 任务的情况：**
+- 需要动态生成内容（如"报时"需要生成当前时间）
+- 需要查询信息（如"今天有什么待办事项？"、"查询今日天气"）
+- 需要 AI 处理或分析（如"总结一下今天的消息"）
+- 内容会根据时间、上下文变化（如"距离截止日期还有几天？"）
+
+**判断口诀：**
+- 如果消息内容是**固定不变**的 → 用 **text** 类型
+- 如果消息内容需要**动态生成**或**查询** → 用 **agent** 类型
 
 ### 快速创建
 
@@ -50,7 +69,7 @@ call_cron_api(action="run", job_id="<job_id>")
 - `target_chat`: 聊天 ID（从环境变量 FEISHU_CHAT_ID 获取，当前值：oc_585f29d10679c7a0b5c3bf0d34adba90）
 
 ```python
-# 每天 9:00 发送文本消息
+# 每天 9:00 发送固定文本消息（text 类型 - 内容固定不变）
 call_cron_api(
     action="create",
     job_spec="""{
@@ -65,7 +84,22 @@ call_cron_api(
     }"""
 )
 
-# 每 2 小时向 Agent 提问
+# 每小时报时（agent 类型 - 需要动态生成当前时间）
+call_cron_api(
+    action="create",
+    job_spec="""{
+        "id": "hourly-chime",
+        "type": "agent",
+        "name": "整点报时",
+        "cron": "0 * * * *",
+        "channel": "feishu",
+        "target_user": "155529283",
+        "target_chat": "oc_585f29d10679c7a0b5c3bf0d34adba90",
+        "text": "现在几点了？请报时。"
+    }"""
+)
+
+# 每 2 小时查询待办事项（agent 类型 - 需要查询信息）
 call_cron_api(
     action="create",
     job_spec="""{
@@ -126,6 +160,10 @@ call_cron_api(action="create", job_spec=job_spec)
 
 - **执行操作时**: 使用 `call_cron_api` tool，无需指定工作目录或路径
 - **创建任务前**: 先询问用户所有必填参数（id, type, name, cron, channel, target_chat 或 target_user, text），确认无误后一次性创建
+- **任务类型选择**: 
+  - 仔细分析用户需求，判断是发送固定消息还是需要动态生成内容
+  - 涉及"报时"、"查询"、"总结"等动态内容 → 必须使用 **agent** 类型
+  - 简单的提醒、通知 → 使用 **text** 类型
 - **任务 ID 命名**: 使用有意义的英文名称，用连字符分隔，如 "drink-water-reminder", "daily-report"
 - **避免重复创建**: 创建任务前，先用 `call_cron_api(action="list")` 检查是否已存在同名任务
 - 暂停/删除/恢复前，用 `call_cron_api(action="list")` 查找 job_id

@@ -337,7 +337,8 @@ def ensure_skills_initialized() -> None:
     active_skills = get_active_skills_dir()
     
     # Auto-sync skills from builtin and customized directories
-    sync_skills_to_working_dir()
+    # Force sync to ensure latest changes are applied
+    sync_skills_to_working_dir(force=True)
     
     available = list_available_skills()
 

@@ -239,6 +239,11 @@ class WebAdminServer:
             
             API routes are handled separately and won't reach this function.
             """
+            # Skip API routes
+            if path.startswith('api/'):
+                # Let Flask handle API routes
+                return "", 404
+            
             # If path is empty, serve index.html
             if not path:
                 return send_from_directory(static_folder, 'index.html')
@@ -286,6 +291,9 @@ class WebAdminServer:
                 
                 # 禁用 Werkzeug 的开发服务器警告
                 os.environ['WERKZEUG_RUN_MAIN'] = 'true'
+                # 确保 WERKZEUG_SERVER_FD 环境变量不存在
+                if 'WERKZEUG_SERVER_FD' in os.environ:
+                    del os.environ['WERKZEUG_SERVER_FD']
                 
                 self.app.run(
                     host=self.host, 
@@ -354,9 +362,19 @@ def main():
     # Initialize ConfigManager with global config
     config_manager = ConfigManager(global_config=global_config)
     
+    # Initialize CronManager
+    from ..crons.manager import CronManager
+    try:
+        cron_manager = CronManager()
+        print("✅ CronManager initialized")
+    except Exception as e:
+        print(f"WARNING: Failed to initialize CronManager: {e}")
+        cron_manager = None
+    
     # Create and start server
     server = WebAdminServer(
         config_manager=config_manager,
+        cron_manager=cron_manager,
         host=args.host,
         port=args.port,
         admin_password=admin_password,

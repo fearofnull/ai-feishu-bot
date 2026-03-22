@@ -187,15 +187,19 @@ class AgentExecutor:
             logger.info(f"[execute] 准备调用 agent.reply，agent 类型: {type(self.agent)}")
             try:
                 # 检查是否已经有运行中的事件循环
-                loop = asyncio.get_event_loop()
-                if loop.is_running():
-                    # 如果事件循环已经在运行，使用 create_task 并等待完成
-                    import concurrent.futures
-                    with concurrent.futures.ThreadPoolExecutor() as executor:
-                        # 在新线程中运行 asyncio.run
-                        result = executor.submit(asyncio.run, self.agent.reply(messages)).result()
-                else:
-                    # 如果没有运行中的事件循环，使用 asyncio.run
+                try:
+                    loop = asyncio.get_event_loop()
+                    if loop.is_running():
+                        # 如果事件循环已经在运行，使用 create_task 并等待完成
+                        import concurrent.futures
+                        with concurrent.futures.ThreadPoolExecutor() as executor:
+                            # 在新线程中运行 asyncio.run
+                            result = executor.submit(asyncio.run, self.agent.reply(messages)).result()
+                    else:
+                        # 如果没有运行中的事件循环，使用 asyncio.run
+                        result = asyncio.run(self.agent.reply(messages))
+                except RuntimeError:
+                    # 如果没有当前事件循环，创建一个新的并运行
                     result = asyncio.run(self.agent.reply(messages))
             except Exception as e:
                 # 如果出现任何错误，不再重复调用agent.reply，避免重复回答
