@@ -6,9 +6,9 @@
 import logging
 from typing import Optional, Tuple
 
-from .session_manager import SessionManager
+from ..session.session_manager import SessionManager
 from .message_sender import MessageSender
-from .executor_registry import ExecutorRegistry
+from ..core.executor_registry import ExecutorRegistry
 
 logger = logging.getLogger(__name__)
 

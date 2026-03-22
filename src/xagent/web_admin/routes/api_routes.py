@@ -9,7 +9,7 @@ import logging
 from flask import Flask, request, jsonify, send_file
 from typing import Dict, Any
 
-from ...core.config_manager import ConfigManager
+from ...session.config_manager import ConfigManager
 from ..auth import AuthManager
 from ..logging_config import log_api_error, log_config_change
 

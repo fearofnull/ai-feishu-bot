@@ -1,4 +1,4 @@
-﻿# -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 """核心调度管理器"""
 import asyncio
 import logging
@@ -112,7 +112,7 @@ class CronManager:
         
         # 初始化默认频道管理器
         if channel_manager is None:
-            from src.xagent.core.channels import ChannelManager
+            from src.xagent.channels import ChannelManager
             
             # 创建默认的空 ChannelManager
             # 注意：实际使用时应该在应用初始化阶段（如 main.py）中

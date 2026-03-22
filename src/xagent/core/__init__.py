@@ -1,21 +1,27 @@
 """
 核心功能模块
-包含消息处理、会话管理、路由等核心功能
+
+包含执行协调、路由、执行器注册等核心业务逻辑
 """
-from .event_handler import EventHandler
-from .executor_registry import ExecutorRegistry
-from .message_handler import MessageHandler
-from .message_sender import MessageSender
-from .session_manager import SessionManager
+
 from .smart_router import SmartRouter
+from .executor_registry import ExecutorRegistry
+from .execution_coordinator import ExecutionCoordinator, ExecutionContext
+from .executor_factory import CLIExecutorFactory, AgentExecutorFactory
+from .error_handler import ErrorHandler
 from .websocket_client import WebSocketClient
+from .provider_config_manager import ProviderConfigManager
+from .unified_config_manager import UnifiedConfigManager
 
 __all__ = [
-    'EventHandler',
-    'ExecutorRegistry',
-    'MessageHandler',
-    'MessageSender',
-    'SessionManager',
     'SmartRouter',
+    'ExecutorRegistry',
+    'ExecutionCoordinator',
+    'ExecutionContext',
+    'CLIExecutorFactory',
+    'AgentExecutorFactory',
+    'ErrorHandler',
     'WebSocketClient',
+    'ProviderConfigManager',
+    'UnifiedConfigManager',
 ]

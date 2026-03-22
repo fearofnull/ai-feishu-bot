@@ -3,7 +3,7 @@
 
 import json
 import pytest
-from src.xagent.core.message_parser import (
+from src.xagent.messaging.message_parser import (
     parse_message_body,
     parse_text_content,
     parse_post_content,

@@ -9,8 +9,8 @@ from dataclasses import dataclass
 
 from .smart_router import SmartRouter
 from .executor_registry import ExecutorRegistry
-from .session_manager import SessionManager
-from .message_sender import MessageSender
+from ..session.session_manager import SessionManager
+from ..messaging.message_sender import MessageSender
 from ..utils.response_formatter import ResponseFormatter
 from ..models import ParsedCommand, ExecutionResult
 

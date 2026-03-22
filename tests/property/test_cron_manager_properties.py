@@ -11,8 +11,8 @@ without modification.
 import pytest
 from hypothesis import given, strategies as st, settings
 from unittest.mock import Mock, AsyncMock, patch
-from src.xagent.core.crons.manager import CronManager
-from src.xagent.core.crons.models import (
+from src.xagent.crons.manager import CronManager
+from src.xagent.crons.models import (
     CronJobSpec,
     CronJobDispatch,
     CronJobTarget,
@@ -167,7 +167,7 @@ class TestCronManagerParameterForwarding:
         )
         
         # Create an agent task with the generated parameters
-        from src.xagent.core.crons.models import CronJobRequest, CronJobRequestInput
+        from src.xagent.crons.models import CronJobRequest, CronJobRequestInput
         
         job_spec = CronJobSpec(
             id="test_agent_job",
@@ -438,7 +438,7 @@ class TestCronManagerErrorResilience:
         )
         
         # Create an agent task
-        from src.xagent.core.crons.models import CronJobRequest, CronJobRequestInput
+        from src.xagent.crons.models import CronJobRequest, CronJobRequestInput
         
         job_spec = CronJobSpec(
             id="test_agent_job_failure",

@@ -23,6 +23,7 @@ APScheduler>=3.10.4
 # 测试框架（可选，用于单元测试）
 pytest>=7.4.0
 pytest-cov>=4.1.0
+pytest-asyncio>=0.21.0  # Async test support
 
 # 属性测试框架（可选，用于property-based testing）
 hypothesis>=6.82.0

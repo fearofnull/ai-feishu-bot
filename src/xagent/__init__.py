@@ -9,7 +9,7 @@ __version__ = "1.0.0"
 from .utils.cache import DeduplicationCache
 from .utils.command_parser import CommandParser
 from .config import BotConfig
-from .core.message_handler import MessageHandler
+from .messaging.message_handler import MessageHandler
 from .core.executor_registry import (
     ExecutorRegistry,
     ExecutorNotAvailableError,

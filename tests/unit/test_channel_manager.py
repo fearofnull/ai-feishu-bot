@@ -13,8 +13,8 @@ Requirements: 3.1, 3.2, 3.3, 3.4, 3.5
 import pytest
 from typing import Optional
 from unittest.mock import Mock, AsyncMock
-from src.xagent.core.channels.channel_manager import ChannelManager
-from src.xagent.core.channels.base_channel import Channel
+from src.xagent.channels.channel_manager import ChannelManager
+from src.xagent.channels.base_channel import Channel
 
 
 class MockChannel(Channel):

@@ -3,8 +3,8 @@
 import pytest
 from unittest.mock import Mock
 
-from src.xagent.core.crons.executor import CronExecutor
-from src.xagent.core.crons.models import CronJobSpec, CronJobSchedule, CronJobDispatch, CronJobTarget, CronJobRuntime
+from src.xagent.crons.executor import CronExecutor
+from src.xagent.crons.models import CronJobSpec, CronJobSchedule, CronJobDispatch, CronJobTarget, CronJobRuntime
 
 
 @pytest.fixture
@@ -71,7 +71,7 @@ def test_cron_executor_execute_text_task(cron_executor, mock_runner, mock_channe
 def test_cron_executor_execute_agent_task(cron_executor, mock_runner, mock_channel_manager):
     """测试执行 AI 任务"""
     # 创建 AI 任务规格
-    from src.xagent.core.crons.models import CronJobRequest, CronJobRequestInput
+    from src.xagent.crons.models import CronJobRequest, CronJobRequestInput
     spec = CronJobSpec(
         id="test-job-2",
         name="Test Agent Job",

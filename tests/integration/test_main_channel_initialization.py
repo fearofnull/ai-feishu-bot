@@ -48,7 +48,7 @@ class TestMainChannelInitialization:
         mock_cron_manager.side_effect = track_cron_init
         
         # Import and execute the initialization logic
-        from src.xagent.core.channels import ChannelManager, FeishuChannel
+        from src.xagent.channels import ChannelManager, FeishuChannel
         
         # Simulate the initialization sequence from main.py
         bot = mock_xagent(mock_config)
@@ -72,7 +72,7 @@ class TestMainChannelInitialization:
     
     def test_feishu_channel_registration(self):
         """Test that FeishuChannel is correctly registered with name 'feishu'"""
-        from src.xagent.core.channels import ChannelManager, FeishuChannel
+        from src.xagent.channels import ChannelManager, FeishuChannel
         
         # Create mock message sender
         mock_message_sender = Mock()
@@ -89,8 +89,8 @@ class TestMainChannelInitialization:
     
     def test_channel_manager_passed_to_cron_manager(self):
         """Test that ChannelManager is correctly passed to CronManager"""
-        from src.xagent.core.channels import ChannelManager, FeishuChannel
-        from src.xagent.core.crons.manager import CronManager
+        from src.xagent.channels import ChannelManager, FeishuChannel
+        from src.xagent.crons.manager import CronManager
         
         # Create mock message sender
         mock_message_sender = Mock()

@@ -10,7 +10,7 @@ from typing import Dict, Optional, Any, List
 from dataclasses import dataclass, field
 from enum import Enum
 
-from .config_manager import ConfigManager
+from ..session.config_manager import ConfigManager
 from .provider_config_manager import ProviderConfigManager
 from ..config import BotConfig
 

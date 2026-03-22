@@ -11,7 +11,7 @@ the channel abstraction layer.
 import pytest
 from hypothesis import given, strategies as st, settings
 from unittest.mock import Mock, MagicMock
-from src.xagent.core.message_sender import MessageSender
+from src.xagent.messaging.message_sender import MessageSender
 
 
 class TestBackwardCompatibilityPreservation:

@@ -5,8 +5,8 @@ import tempfile
 import pytest
 from datetime import datetime
 
-from src.xagent.core.crons.manager import CronManager
-from src.xagent.core.crons.models import CronJobSpec, CronJobSchedule, CronJobDispatch, CronJobTarget, CronJobRuntime
+from src.xagent.crons.manager import CronManager
+from src.xagent.crons.models import CronJobSpec, CronJobSchedule, CronJobDispatch, CronJobTarget, CronJobRuntime
 
 
 @pytest.fixture

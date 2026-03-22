@@ -11,22 +11,22 @@ from lark_oapi.api.im.v1 import P2ImMessageReceiveV1
 
 from .config import BotConfig
 from .utils.cache import DeduplicationCache
-from .core.message_handler import MessageHandler
-from .core.session_manager import SessionManager
-from .core.config_manager import ConfigManager
+from .messaging.message_handler import MessageHandler
+from .session.session_manager import SessionManager
+from .session.config_manager import ConfigManager
 from .utils.command_parser import CommandParser
 from .core.executor_registry import ExecutorRegistry
 from .core.smart_router import SmartRouter
 from .utils.response_formatter import ResponseFormatter
-from .core.message_sender import MessageSender
-from .core.event_handler import EventHandler
+from .messaging.message_sender import MessageSender
+from .messaging.event_handler import EventHandler
 from .core.websocket_client import WebSocketClient
 from .core.provider_config_manager import ProviderConfigManager
 from .core.executor_factory import CLIExecutorFactory, AgentExecutorFactory
 from .core.unified_config_manager import UnifiedConfigManager
 
-from .core.message_processor import MessageProcessor, ProcessedMessage
-from .core.command_dispatcher import CommandDispatcher
+from .messaging.message_processor import MessageProcessor, ProcessedMessage
+from .messaging.command_dispatcher import CommandDispatcher
 from .core.execution_coordinator import ExecutionCoordinator, ExecutionContext
 from .core.error_handler import ErrorHandler
 

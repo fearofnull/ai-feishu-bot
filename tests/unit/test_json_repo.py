@@ -4,8 +4,8 @@ import os
 import tempfile
 import pytest
 
-from src.xagent.core.crons.repo.json_repo import JsonJobRepository
-from src.xagent.core.crons.models import CronJobSpec, CronJobSchedule, CronJobDispatch, CronJobTarget, CronJobRuntime
+from src.xagent.crons.repo.json_repo import JsonJobRepository
+from src.xagent.crons.models import CronJobSpec, CronJobSchedule, CronJobDispatch, CronJobTarget, CronJobRuntime
 
 
 @pytest.fixture

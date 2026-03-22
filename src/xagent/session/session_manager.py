@@ -11,7 +11,7 @@ from pathlib import Path
 from filelock import FileLock
 
 from ..models import Session, Message
-from ..help_config.help_loader import get_help_message
+from ..help.help_loader import get_help_message
 
 
 logger = logging.getLogger(__name__)

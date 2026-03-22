@@ -109,7 +109,7 @@ class XAgent(ReActAgent):
 
         # Load tool states
         try:
-            from ..core.tool_state_manager import ToolStateManager
+            from .tool_state_manager import ToolStateManager
             tool_state_manager = ToolStateManager()
         except:
             tool_state_manager = None

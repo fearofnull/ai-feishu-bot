@@ -26,7 +26,7 @@ from src.xagent.config import BotConfig
 from src.xagent.xagent import XAgent
 
 # 导入定时任务相关模块
-from src.xagent.core.crons.manager import CronManager
+from src.xagent.crons.manager import CronManager
 
 # 配置日志
 logging.basicConfig(
@@ -170,7 +170,7 @@ def main():
         
         # 初始化 ChannelManager
         logger.info("Initializing ChannelManager...")
-        from src.xagent.core.channels import ChannelManager, FeishuChannel
+        from src.xagent.channels import ChannelManager, FeishuChannel
         channel_manager = ChannelManager()
         
         # 创建并注册 FeishuChannel

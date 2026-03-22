@@ -11,7 +11,7 @@ from typing import Optional
 from flask import Flask, send_from_directory
 from flask_cors import CORS
 
-from ..core.config_manager import ConfigManager
+from ..session.config_manager import ConfigManager
 from .auth import AuthManager
 from .routes import register_api_routes, register_provider_api_routes
 from .routes.cron_api_routes import register_cron_api_routes
@@ -106,7 +106,7 @@ class WebAdminServer:
         )
         
         # Initialize tool state manager with dynamic tool list provider
-        from ..core.tool_state_manager import ToolStateManager
+        from ..agents.tool_state_manager import ToolStateManager
         from ..agents.tools import __all__ as tool_names
 
         def get_tool_list():

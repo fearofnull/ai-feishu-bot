@@ -11,7 +11,7 @@ from agentscope.message import TextBlock
 from lark_oapi import Client as LarkClient
 from lark_oapi.api.im.v1 import ListMessageRequest
 
-from ...core.message_parser import (
+from ...messaging.message_parser import (
     parse_message_body,
     replace_mentions,
     format_timestamp,

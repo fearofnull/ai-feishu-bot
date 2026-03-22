@@ -11,7 +11,7 @@ the MessageSender interface across all valid inputs.
 import pytest
 from hypothesis import given, strategies as st, settings
 from unittest.mock import Mock, AsyncMock, call
-from src.xagent.core.channels.feishu_channel import FeishuChannel
+from src.xagent.channels.feishu_channel import FeishuChannel
 
 
 class TestParameterMappingCorrectness:
@@ -1127,7 +1127,7 @@ class TestChannelRegistrationRoundTrip:
         **Validates: Requirements 3.3**
         """
         # Import ChannelManager
-        from src.xagent.core.channels.channel_manager import ChannelManager
+        from src.xagent.channels.channel_manager import ChannelManager
         
         # Create a mock MessageSender
         mock_sender = Mock()
@@ -1189,7 +1189,7 @@ class TestChannelRegistrationRoundTrip:
         **Validates: Requirements 3.3**
         """
         # Import ChannelManager
-        from src.xagent.core.channels.channel_manager import ChannelManager
+        from src.xagent.channels.channel_manager import ChannelManager
         
         # Create a mock MessageSender
         mock_sender = Mock()
@@ -1249,7 +1249,7 @@ class TestChannelRegistrationRoundTrip:
         **Validates: Requirements 3.3, 7.3**
         """
         # Import ChannelManager
-        from src.xagent.core.channels.channel_manager import ChannelManager
+        from src.xagent.channels.channel_manager import ChannelManager
         
         # Create a ChannelManager
         manager = ChannelManager()
@@ -1301,7 +1301,7 @@ class TestChannelRegistrationRoundTrip:
         **Validates: Requirements 3.3**
         """
         # Import ChannelManager
-        from src.xagent.core.channels.channel_manager import ChannelManager
+        from src.xagent.channels.channel_manager import ChannelManager
         
         # Create a ChannelManager
         manager = ChannelManager()
@@ -1351,7 +1351,7 @@ class TestChannelRegistrationRoundTrip:
         **Validates: Requirements 3.3**
         """
         # Import ChannelManager
-        from src.xagent.core.channels.channel_manager import ChannelManager
+        from src.xagent.channels.channel_manager import ChannelManager
         
         # Create a mock MessageSender
         mock_sender = Mock()
@@ -1393,7 +1393,7 @@ class TestChannelRegistrationRoundTrip:
         **Validates: Requirements 3.3**
         """
         # Import ChannelManager
-        from src.xagent.core.channels.channel_manager import ChannelManager
+        from src.xagent.channels.channel_manager import ChannelManager
         
         # Create a mock MessageSender
         mock_sender = Mock()
@@ -1440,7 +1440,7 @@ class TestChannelRegistrationRoundTrip:
         **Validates: Requirements 3.5**
         """
         # Import ChannelManager
-        from src.xagent.core.channels.channel_manager import ChannelManager
+        from src.xagent.channels.channel_manager import ChannelManager
         
         # Create a ChannelManager (without registering any channels)
         manager = ChannelManager()
@@ -1506,7 +1506,7 @@ class TestMessageRoutingCorrectness:
         **Validates: Requirements 3.4**
         """
         # Import ChannelManager
-        from src.xagent.core.channels.channel_manager import ChannelManager
+        from src.xagent.channels.channel_manager import ChannelManager
         
         # Create a mock MessageSender
         mock_sender = Mock()
@@ -1577,7 +1577,7 @@ class TestMessageRoutingCorrectness:
         **Validates: Requirements 3.4, 7.3**
         """
         # Import ChannelManager
-        from src.xagent.core.channels.channel_manager import ChannelManager
+        from src.xagent.channels.channel_manager import ChannelManager
         
         # Create multiple mock MessageSenders
         mock_sender_1 = Mock()
@@ -1648,7 +1648,7 @@ class TestMessageRoutingCorrectness:
             pytest.skip("Channel names must be different for this test")
         
         # Import ChannelManager
-        from src.xagent.core.channels.channel_manager import ChannelManager
+        from src.xagent.channels.channel_manager import ChannelManager
         
         # Create a mock MessageSender
         mock_sender = Mock()
@@ -1700,7 +1700,7 @@ class TestMessageRoutingCorrectness:
         **Validates: Requirements 3.4**
         """
         # Import ChannelManager
-        from src.xagent.core.channels.channel_manager import ChannelManager
+        from src.xagent.channels.channel_manager import ChannelManager
         
         # Create a mock MessageSender
         mock_sender = Mock()
@@ -1766,7 +1766,7 @@ class TestMessageRoutingCorrectness:
         **Validates: Requirements 3.4**
         """
         # Import ChannelManager
-        from src.xagent.core.channels.channel_manager import ChannelManager
+        from src.xagent.channels.channel_manager import ChannelManager
         
         # Create a mock MessageSender
         mock_sender = Mock()
@@ -1865,7 +1865,7 @@ class TestMultipleChannelSupport:
         **Validates: Requirements 7.3**
         """
         # Import ChannelManager
-        from src.xagent.core.channels.channel_manager import ChannelManager
+        from src.xagent.channels.channel_manager import ChannelManager
         
         # Create a ChannelManager
         manager = ChannelManager()
@@ -1949,7 +1949,7 @@ class TestMultipleChannelSupport:
         **Validates: Requirements 7.3**
         """
         # Import ChannelManager
-        from src.xagent.core.channels.channel_manager import ChannelManager
+        from src.xagent.channels.channel_manager import ChannelManager
         
         # Create a ChannelManager
         manager = ChannelManager()
@@ -2030,7 +2030,7 @@ class TestMultipleChannelSupport:
         **Validates: Requirements 7.3**
         """
         # Import ChannelManager and asyncio
-        from src.xagent.core.channels.channel_manager import ChannelManager
+        from src.xagent.channels.channel_manager import ChannelManager
         import asyncio
         
         # Create a ChannelManager
@@ -2109,7 +2109,7 @@ class TestMultipleChannelSupport:
         **Validates: Requirements 7.3**
         """
         # Import ChannelManager
-        from src.xagent.core.channels.channel_manager import ChannelManager
+        from src.xagent.channels.channel_manager import ChannelManager
         
         # Create a ChannelManager
         manager = ChannelManager()
@@ -2194,7 +2194,7 @@ class TestMultipleChannelSupport:
         **Validates: Requirements 7.3**
         """
         # Import ChannelManager
-        from src.xagent.core.channels.channel_manager import ChannelManager
+        from src.xagent.channels.channel_manager import ChannelManager
         
         # Create a ChannelManager
         manager = ChannelManager()
@@ -2273,7 +2273,7 @@ class TestMultipleChannelSupport:
         **Validates: Requirements 7.3**
         """
         # Import ChannelManager
-        from src.xagent.core.channels.channel_manager import ChannelManager
+        from src.xagent.channels.channel_manager import ChannelManager
         
         # Create a ChannelManager
         manager = ChannelManager()
@@ -2346,7 +2346,7 @@ class TestMultipleChannelSupport:
         **Validates: Requirements 7.3, 7.5**
         """
         # Import ChannelManager
-        from src.xagent.core.channels.channel_manager import ChannelManager
+        from src.xagent.channels.channel_manager import ChannelManager
         
         # Create a ChannelManager
         manager = ChannelManager()
@@ -2456,7 +2456,7 @@ class TestDynamicChannelRegistration:
         **Validates: Requirements 7.5**
         """
         # Import ChannelManager
-        from src.xagent.core.channels.channel_manager import ChannelManager
+        from src.xagent.channels.channel_manager import ChannelManager
         
         # Create a ChannelManager
         manager = ChannelManager()
@@ -2522,7 +2522,7 @@ class TestDynamicChannelRegistration:
         **Validates: Requirements 7.5**
         """
         # Import ChannelManager
-        from src.xagent.core.channels.channel_manager import ChannelManager
+        from src.xagent.channels.channel_manager import ChannelManager
         
         # Create a ChannelManager
         manager = ChannelManager()
@@ -2621,7 +2621,7 @@ class TestDynamicChannelRegistration:
         **Validates: Requirements 7.5, 7.3**
         """
         # Import ChannelManager
-        from src.xagent.core.channels.channel_manager import ChannelManager
+        from src.xagent.channels.channel_manager import ChannelManager
         
         # Create a ChannelManager
         manager = ChannelManager()
@@ -2703,7 +2703,7 @@ class TestDynamicChannelRegistration:
         **Validates: Requirements 7.5**
         """
         # Import ChannelManager
-        from src.xagent.core.channels.channel_manager import ChannelManager
+        from src.xagent.channels.channel_manager import ChannelManager
         
         # Create a ChannelManager
         manager = ChannelManager()
@@ -2770,7 +2770,7 @@ class TestDynamicChannelRegistration:
         **Validates: Requirements 7.5**
         """
         # Import ChannelManager
-        from src.xagent.core.channels.channel_manager import ChannelManager
+        from src.xagent.channels.channel_manager import ChannelManager
         
         # Create a ChannelManager
         manager = ChannelManager()
@@ -2820,7 +2820,7 @@ class TestDynamicChannelRegistration:
         **Validates: Requirements 7.5**
         """
         # Import ChannelManager
-        from src.xagent.core.channels.channel_manager import ChannelManager
+        from src.xagent.channels.channel_manager import ChannelManager
         
         # Create a ChannelManager
         manager = ChannelManager()
@@ -2870,7 +2870,7 @@ class TestDynamicChannelRegistration:
         **Validates: Requirements 7.5, 8.2**
         """
         # Import ChannelManager
-        from src.xagent.core.channels.channel_manager import ChannelManager
+        from src.xagent.channels.channel_manager import ChannelManager
         
         # Create a ChannelManager
         manager = ChannelManager()
@@ -2919,7 +2919,7 @@ class TestDynamicChannelRegistration:
         **Validates: Requirements 7.5, 8.3**
         """
         # Import ChannelManager
-        from src.xagent.core.channels.channel_manager import ChannelManager
+        from src.xagent.channels.channel_manager import ChannelManager
         
         # Create a ChannelManager
         manager = ChannelManager()

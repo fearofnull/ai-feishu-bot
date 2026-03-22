@@ -5,8 +5,8 @@ import tempfile
 import pytest
 from unittest.mock import AsyncMock, MagicMock
 
-from src.xagent.core.crons.manager import CronManager
-from src.xagent.core.crons.models import (
+from src.xagent.crons.manager import CronManager
+from src.xagent.crons.models import (
     CronJobSpec,
     CronJobSchedule,
     CronJobDispatch,
@@ -15,7 +15,7 @@ from src.xagent.core.crons.models import (
     CronJobRequest,
     CronJobRequestInput
 )
-from src.xagent.core.channels import ChannelManager, FeishuChannel
+from src.xagent.channels import ChannelManager, FeishuChannel
 
 
 @pytest.fixture

@@ -8,8 +8,8 @@ import logging
 from flask import Flask, request, jsonify
 from typing import Dict, Any
 
-from ...core.crons.manager import CronManager
-from ...core.crons.models import CronJobSpec, CronJobView
+from ...crons.manager import CronManager
+from ...crons.models import CronJobSpec, CronJobView
 from ..auth import AuthManager
 
 logger = logging.getLogger(__name__)

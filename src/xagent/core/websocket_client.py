@@ -4,7 +4,7 @@ WebSocket 客户端模块
 负责维护与飞书服务器的长连接，接收实时消息事件
 """
 import lark_oapi as lark
-from .event_handler import EventHandler
+from ..messaging.event_handler import EventHandler
 from typing import Optional
 import logging
 

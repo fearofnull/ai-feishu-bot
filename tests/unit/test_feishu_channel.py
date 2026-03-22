@@ -12,7 +12,7 @@ Requirements: 2.1, 2.2, 2.3, 8.3
 """
 import pytest
 from unittest.mock import Mock, AsyncMock
-from src.xagent.core.channels.feishu_channel import FeishuChannel
+from src.xagent.channels.feishu_channel import FeishuChannel
 
 
 class TestFeishuChannelP2PMessages:

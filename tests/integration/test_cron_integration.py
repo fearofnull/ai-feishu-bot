@@ -7,8 +7,8 @@ import pytest_asyncio
 import asyncio
 from datetime import datetime, timedelta
 
-from src.xagent.core.crons.manager import CronManager
-from src.xagent.core.crons.models import (
+from src.xagent.crons.manager import CronManager
+from src.xagent.crons.models import (
     CronJobSpec, CronJobSchedule, CronJobDispatch, 
     CronJobTarget, CronJobRuntime
 )
