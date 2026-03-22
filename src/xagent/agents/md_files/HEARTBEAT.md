@@ -1,7 +1,7 @@
 ---
 summary: "HEARTBEAT.md 工作区模板"
 read_when:
-  - 手动引导工作区
+  - 工作目录下不存在 HEARTBEAT.md 文件且启动时
 ---
 
 # HEARTBEAT.md
