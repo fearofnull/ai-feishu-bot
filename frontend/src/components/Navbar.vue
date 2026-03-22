@@ -63,6 +63,15 @@
         <el-icon><Setting /></el-icon>
         <span>工具管理</span>
       </router-link>
+      
+      <router-link 
+        to="/audit-logs" 
+        class="nav-link"
+        active-class="nav-link-active"
+      >
+        <el-icon><DocumentCopy /></el-icon>
+        <span>审计日志</span>
+      </router-link>
     </div>
 
     <!-- Logout Button -->
@@ -86,7 +95,7 @@ import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useAuthStore } from '@/stores/auth'
 import { ElMessage } from 'element-plus'
-import { Setting, List, Tools, SwitchButton, ChatDotRound, Connection, Clock } from '@element-plus/icons-vue'
+import { Setting, List, Tools, SwitchButton, ChatDotRound, Connection, Clock, DocumentCopy } from '@element-plus/icons-vue'
 
 const router = useRouter()
 const authStore = useAuthStore()

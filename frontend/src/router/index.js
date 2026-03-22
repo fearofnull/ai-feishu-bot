@@ -7,6 +7,7 @@ import Sessions from '../views/Sessions.vue'
 import SessionDetail from '../views/SessionDetail.vue'
 import Providers from '../views/Providers.vue'
 import CronJobs from '../views/CronJobs.vue'
+import AuditLogs from '../views/AuditLogs.vue'
 
 const routes = [
   {
@@ -64,6 +65,12 @@ const routes = [
     path: '/tools',
     name: 'Tools',
     component: () => import('../views/Tools.vue'),
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/audit-logs',
+    name: 'AuditLogs',
+    component: AuditLogs,
     meta: { requiresAuth: true }
   }
 ]

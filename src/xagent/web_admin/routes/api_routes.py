@@ -1418,4 +1418,150 @@ def register_api_routes(
                 }
             }), 500
     
+    # ==================== Audit Logs Routes ====================
+    
+    @app.route('/api/audit-logs', methods=['GET'])
+    @auth_manager.require_auth
+    def get_audit_logs():
+        """Get audit logs with filtering and pagination
+        
+        Query parameters:
+            - page: Page number (default: 1)
+            - page_size: Items per page (default: 20)
+            - start_date: Start date (YYYY-MM-DD)
+            - end_date: End date (YYYY-MM-DD)
+            - source: Filter by source (react_agent, qwen-cli, claude-cli, gemini-cli)
+            - keyword: Search keyword in user_input_preview
+        
+        Response:
+            {
+                "success": true,
+                "data": {
+                    "items": [...],
+                    "total": 100,
+                    "page": 1,
+                    "page_size": 20
+                }
+            }
+        """
+        try:
+            import os
+            import json
+            from pathlib import Path
+            from datetime import datetime
+            
+            # Get query parameters
+            page = int(request.args.get('page', 1))
+            page_size = int(request.args.get('page_size', 20))
+            start_date = request.args.get('start_date')
+            end_date = request.args.get('end_date')
+            source = request.args.get('source')
+            keyword = request.args.get('keyword')
+            
+            # Get audit logs directory
+            import os
+            current_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))))
+            audit_logs_dir = Path(current_dir) / 'data' / 'audit_logs'
+            if not audit_logs_dir.exists():
+                return jsonify({
+                    'success': True,
+                    'data': {
+                        'items': [],
+                        'total': 0,
+                        'page': page,
+                        'page_size': page_size
+                    }
+                }), 200
+            
+            # Read all audit log files
+            all_logs = []
+            for log_file in audit_logs_dir.glob('audit_*.log'):
+                try:
+                    with open(log_file, 'r', encoding='utf-8') as f:
+                        for line in f:
+                            line = line.strip()
+                            if line:
+                                try:
+                                    log_entry = json.loads(line)
+                                    all_logs.append(log_entry)
+                                except json.JSONDecodeError:
+                                    continue
+                except Exception as e:
+                    logger.warning(f"Failed to read audit log file {log_file}: {e}")
+                    continue
+            
+            # Apply filters
+            filtered_logs = all_logs
+            
+            # Filter by date range
+            if start_date or end_date:
+                filtered_logs = []
+                for log in all_logs:
+                    log_date_str = log.get('timestamp', '')
+                    if not log_date_str:
+                        continue
+                    
+                    # Parse log date
+                    try:
+                        log_date = datetime.fromisoformat(log_date_str.replace('Z', '+00:00'))
+                    except Exception:
+                        continue
+                    
+                    # Check if log date is within range
+                    include = True
+                    if start_date:
+                        start = datetime.strptime(start_date, '%Y-%m-%d')
+                        if log_date.date() < start.date():
+                            include = False
+                    if end_date:
+                        end = datetime.strptime(end_date, '%Y-%m-%d')
+                        if log_date.date() > end.date():
+                            include = False
+                    if include:
+                        filtered_logs.append(log)
+            
+            # Filter by source
+            if source:
+                filtered_logs = [log for log in filtered_logs if log.get('source') == source]
+            
+            # Filter by keyword
+            if keyword:
+                keyword_lower = keyword.lower()
+                filtered_logs = [
+                    log for log in filtered_logs 
+                    if keyword_lower in str(log.get('metadata', {}).get('user_input_preview', '')).lower()
+                ]
+            
+            # Sort logs by timestamp (newest first)
+            filtered_logs.sort(
+                key=lambda x: x.get('timestamp', ''),
+                reverse=True
+            )
+            
+            # Apply pagination
+            total = len(filtered_logs)
+            start_idx = (page - 1) * page_size
+            end_idx = start_idx + page_size
+            paginated_logs = filtered_logs[start_idx:end_idx]
+            
+            return jsonify({
+                'success': True,
+                'data': {
+                    'items': paginated_logs,
+                    'total': total,
+                    'page': page,
+                    'page_size': page_size
+                }
+            }), 200
+            
+        except Exception as e:
+            logger.error(f"Error getting audit logs: {e}", exc_info=True)
+            return jsonify({
+                'success': False,
+                'error': {
+                    'code': 'INTERNAL_ERROR',
+                    'message': 'Failed to retrieve audit logs'
+                }
+            }), 500
+    
     logger.info("API routes registered successfully")
