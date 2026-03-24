@@ -37,6 +37,18 @@ class SecurityHook(OutputHook):
         return "SecurityHook"
     
     def execute(self, content: str, context: HookContext) -> HookResult:
+        # 检查是否启用输出安全过滤
+        import os
+        enable_output_security_filter = os.environ.get("ENABLE_OUTPUT_SECURITY_FILTER", "true").lower() == "true"
+        
+        if not enable_output_security_filter:
+            return HookResult(
+                content=content,
+                should_continue=True,
+                is_modified=False,
+                metadata={"action": "pass", "reason": "output_security_filter_disabled"}
+            )
+        
         modified_content = content
         is_modified = False
         

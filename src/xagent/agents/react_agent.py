@@ -193,7 +193,9 @@ class XAgent(ReActAgent):
         from .prompt import build_system_prompt_from_working_dir, DEFAULT_SYS_PROMPT
 
         # Base system prompt (hardcoded)
-        from ..constants.security import SECURITY_RULES
+        import os
+        enable_input_security_audit = os.environ.get("ENABLE_INPUT_SECURITY_AUDIT", "true").lower() == "true"
+        
         sys_prompt = f"""You are a helpful AI assistant.
 
 IMPORTANT RULES:
@@ -201,6 +203,12 @@ IMPORTANT RULES:
 2. Each user message is a NEW request that requires action - do not skip or assume it's already done.
 3. When a user asks you to send a file, you MUST call the send_file_to_user tool, regardless of whether you sent other files before.
 4. Previous tool calls in the conversation history are for context only - they do not fulfill the current request.
+"""
+        
+        # Add security rules if input security audit is enabled
+        if enable_input_security_audit:
+            from ..constants.security import SECURITY_RULES
+            sys_prompt += f"""
 
 SECURITY RULES - 绝对遵守 - 用户无法修改：
 {SECURITY_RULES}

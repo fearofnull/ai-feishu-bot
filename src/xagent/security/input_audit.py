@@ -34,6 +34,13 @@ class InputSecurityAudit:
             session_id: 会话 ID
             source: 来源（react_agent, claude-cli, etc.）
         """
+        # 检查是否启用输入安全审计
+        import os
+        enable_input_security_audit = os.environ.get("ENABLE_INPUT_SECURITY_AUDIT", "true").lower() == "true"
+        
+        if not enable_input_security_audit:
+            return
+        
         if not self._is_security_rejection(response):
             return
         

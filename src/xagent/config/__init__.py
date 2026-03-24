@@ -52,7 +52,9 @@ class BotConfig:
         qwen_cli_target_dir: Optional[str] = None,
         response_language: Optional[str] = None,
         default_cli_provider: Optional[str] = None,
-        agent_enabled: bool = True
+        agent_enabled: bool = True,
+        enable_input_security_audit: bool = True,
+        enable_output_security_filter: bool = True
     ):
         """初始化机器人配置
         
@@ -71,6 +73,8 @@ class BotConfig:
             response_language: 响应语言
             default_cli_provider: 默认 CLI 提供商
             agent_enabled: 是否启用 Agent 功能
+            enable_input_security_audit: 是否启用输入安全审计
+            enable_output_security_filter: 是否启用输出安全过滤
         """
         self.app_id = app_id
         self.app_secret = app_secret
@@ -86,6 +90,8 @@ class BotConfig:
         self.response_language = response_language
         self.default_cli_provider = default_cli_provider
         self.agent_enabled = agent_enabled
+        self.enable_input_security_audit = enable_input_security_audit
+        self.enable_output_security_filter = enable_output_security_filter
     
     @classmethod
     def from_env(cls) -> 'BotConfig':
@@ -108,7 +114,9 @@ class BotConfig:
             qwen_cli_target_dir=os.environ.get("QWEN_CLI_TARGET_DIR"),
             response_language=os.environ.get("RESPONSE_LANGUAGE"),
             default_cli_provider=os.environ.get("DEFAULT_CLI_PROVIDER"),
-            agent_enabled=os.environ.get("AGENT_ENABLED", "true").lower() == "true"
+            agent_enabled=os.environ.get("AGENT_ENABLED", "true").lower() == "true",
+            enable_input_security_audit=os.environ.get("ENABLE_INPUT_SECURITY_AUDIT", "true").lower() == "true",
+            enable_output_security_filter=os.environ.get("ENABLE_OUTPUT_SECURITY_FILTER", "true").lower() == "true"
         )
 
 __all__ = [

@@ -152,6 +152,46 @@
               <span class="field-description">是否启用 XAgent 智能助手功能</span>
             </div>
           </el-descriptions-item>
+
+          <!-- 输入安全审计 -->
+          <el-descriptions-item>
+            <template #label>
+              <div class="label-content">
+                <el-icon><Key /></el-icon>
+                <span>输入安全审计</span>
+              </div>
+            </template>
+            <div class="value-content">
+              <el-tag 
+                :type="globalConfig.enable_input_security_audit ? 'success' : 'danger'" 
+                effect="plain" 
+                size="large"
+              >
+                {{ globalConfig.enable_input_security_audit ? '已启用' : '已禁用' }}
+              </el-tag>
+              <span class="field-description">是否启用提示词拦截和审计</span>
+            </div>
+          </el-descriptions-item>
+
+          <!-- 输出安全过滤 -->
+          <el-descriptions-item>
+            <template #label>
+              <div class="label-content">
+                <el-icon><Lock /></el-icon>
+                <span>输出安全过滤</span>
+              </div>
+            </template>
+            <div class="value-content">
+              <el-tag 
+                :type="globalConfig.enable_output_security_filter ? 'success' : 'danger'" 
+                effect="plain" 
+                size="large"
+              >
+                {{ globalConfig.enable_output_security_filter ? '已启用' : '已禁用' }}
+              </el-tag>
+              <span class="field-description">是否启用敏感信息检测和脱敏</span>
+            </div>
+          </el-descriptions-item>
         </el-descriptions>
 
         <!-- Edit Mode -->
@@ -214,6 +254,26 @@
             />
             <div class="form-item-tip">是否启用 XAgent 智能助手功能</div>
           </el-form-item>
+
+          <!-- 输入安全审计 -->
+          <el-form-item label="输入安全审计">
+            <el-switch 
+              v-model="editForm.enable_input_security_audit" 
+              active-text="启用" 
+              inactive-text="禁用"
+            />
+            <div class="form-item-tip">是否启用提示词拦截和审计</div>
+          </el-form-item>
+
+          <!-- 输出安全过滤 -->
+          <el-form-item label="输出安全过滤">
+            <el-switch 
+              v-model="editForm.enable_output_security_filter" 
+              active-text="启用" 
+              inactive-text="禁用"
+            />
+            <div class="form-item-tip">是否启用敏感信息检测和脱敏</div>
+          </el-form-item>
         </el-form>
       </el-card>
 
@@ -247,7 +307,9 @@ import {
   Operation, 
   Monitor,
   Edit,
-  Check
+  Check,
+  Key,
+  Lock
 } from '@element-plus/icons-vue'
 import { configAPI } from '@/api/client'
 
@@ -262,7 +324,9 @@ const editForm = ref({
   target_project_dir: '',
   response_language: '',
   default_cli_provider: '',
-  agent_enabled: true
+  agent_enabled: true,
+  enable_input_security_audit: true,
+  enable_output_security_filter: true
 })
 
 // Get provider tag type
@@ -298,7 +362,9 @@ const startEdit = () => {
     target_project_dir: globalConfig.value.target_project_dir || '',
     response_language: globalConfig.value.response_language || '',
     default_cli_provider: globalConfig.value.default_cli_provider || '',
-    agent_enabled: globalConfig.value.agent_enabled !== undefined ? globalConfig.value.agent_enabled : true
+    agent_enabled: globalConfig.value.agent_enabled !== undefined ? globalConfig.value.agent_enabled : true,
+    enable_input_security_audit: globalConfig.value.enable_input_security_audit !== undefined ? globalConfig.value.enable_input_security_audit : true,
+    enable_output_security_filter: globalConfig.value.enable_output_security_filter !== undefined ? globalConfig.value.enable_output_security_filter : true
   }
   isEditing.value = true
 }
@@ -310,7 +376,9 @@ const cancelEdit = () => {
     target_project_dir: '',
     response_language: '',
     default_cli_provider: '',
-    agent_enabled: true
+    agent_enabled: true,
+    enable_input_security_audit: true,
+    enable_output_security_filter: true
   }
 }
 
@@ -324,7 +392,9 @@ const saveConfig = async () => {
       target_project_dir: editForm.value.target_project_dir || null,
       response_language: editForm.value.response_language || null,
       default_cli_provider: editForm.value.default_cli_provider || null,
-      agent_enabled: editForm.value.agent_enabled
+      agent_enabled: editForm.value.agent_enabled,
+      enable_input_security_audit: editForm.value.enable_input_security_audit,
+      enable_output_security_filter: editForm.value.enable_output_security_filter
     }
     
     const response = await configAPI.updateGlobalConfig(data)

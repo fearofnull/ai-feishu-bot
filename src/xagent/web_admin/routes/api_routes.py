@@ -409,7 +409,9 @@ def register_api_routes(
                     'target_project_dir': config_manager.global_config.target_directory or "",
                     'response_language': config_manager.global_config.response_language,
                     'default_cli_provider': config_manager.global_config.default_cli_provider,
-                    'agent_enabled': config_manager.global_config.agent_enabled
+                    'agent_enabled': config_manager.global_config.agent_enabled,
+                    'enable_input_security_audit': getattr(config_manager.global_config, 'enable_input_security_audit', True),
+                    'enable_output_security_filter': getattr(config_manager.global_config, 'enable_output_security_filter', True)
                 }
             else:
                 # Return default values if no global config
@@ -417,7 +419,9 @@ def register_api_routes(
                     'target_project_dir': "",
                     'response_language': None,
                     'default_cli_provider': None,
-                    'agent_enabled': True
+                    'agent_enabled': True,
+                    'enable_input_security_audit': True,
+                    'enable_output_security_filter': True
                 }
             
             return jsonify({
@@ -526,6 +530,14 @@ def register_api_routes(
                         value = 'true' if data['agent_enabled'] else 'false'
                         updated_lines.append(f'{key}={value}\n')
                         updated_keys.add('agent_enabled')
+                    elif key == 'ENABLE_INPUT_SECURITY_AUDIT' and 'enable_input_security_audit' in data:
+                        value = 'true' if data['enable_input_security_audit'] else 'false'
+                        updated_lines.append(f'{key}={value}\n')
+                        updated_keys.add('enable_input_security_audit')
+                    elif key == 'ENABLE_OUTPUT_SECURITY_FILTER' and 'enable_output_security_filter' in data:
+                        value = 'true' if data['enable_output_security_filter'] else 'false'
+                        updated_lines.append(f'{key}={value}\n')
+                        updated_keys.add('enable_output_security_filter')
                     else:
                         updated_lines.append(line)
                 else:
@@ -535,6 +547,20 @@ def register_api_routes(
             with open(env_path, 'w', encoding='utf-8') as f:
                 f.writelines(updated_lines)
             
+            # Update environment variables to make changes take effect immediately
+            if 'target_project_dir' in data:
+                os.environ['TARGET_PROJECT_DIR'] = data['target_project_dir'] or ''
+            if 'response_language' in data:
+                os.environ['RESPONSE_LANGUAGE'] = data['response_language'] or ''
+            if 'default_cli_provider' in data:
+                os.environ['DEFAULT_CLI_PROVIDER'] = data['default_cli_provider'] or ''
+            if 'agent_enabled' in data:
+                os.environ['AGENT_ENABLED'] = 'true' if data['agent_enabled'] else 'false'
+            if 'enable_input_security_audit' in data:
+                os.environ['ENABLE_INPUT_SECURITY_AUDIT'] = 'true' if data['enable_input_security_audit'] else 'false'
+            if 'enable_output_security_filter' in data:
+                os.environ['ENABLE_OUTPUT_SECURITY_FILTER'] = 'true' if data['enable_output_security_filter'] else 'false'
+            
             # Update global_config object in memory
             if config_manager.global_config:
                 if 'target_project_dir' in data:
@@ -543,6 +569,10 @@ def register_api_routes(
                     config_manager.global_config.response_language = data['response_language'] or None
                 if 'agent_enabled' in data:
                     config_manager.global_config.agent_enabled = data['agent_enabled']
+                if 'enable_input_security_audit' in data:
+                    config_manager.global_config.enable_input_security_audit = data['enable_input_security_audit']
+                if 'enable_output_security_filter' in data:
+                    config_manager.global_config.enable_output_security_filter = data['enable_output_security_filter']
             
             if 'default_cli_provider' in data:
                 cli_provider = data['default_cli_provider'] if data['default_cli_provider'] else None
@@ -568,13 +598,19 @@ def register_api_routes(
                 changes['default_cli_provider'] = data['default_cli_provider']
             if 'agent_enabled' in data:
                 changes['agent_enabled'] = data['agent_enabled']
+            if 'enable_input_security_audit' in data:
+                changes['enable_input_security_audit'] = data['enable_input_security_audit']
+            if 'enable_output_security_filter' in data:
+                changes['enable_output_security_filter'] = data['enable_output_security_filter']
             
             # Return updated global configuration
             updated_global_config = {
                 'target_project_dir': config_manager.global_config.target_directory or "",
                 'response_language': config_manager.global_config.response_language,
                 'default_cli_provider': config_manager.global_config.default_cli_provider,
-                'agent_enabled': config_manager.global_config.agent_enabled
+                'agent_enabled': config_manager.global_config.agent_enabled,
+                'enable_input_security_audit': getattr(config_manager.global_config, 'enable_input_security_audit', True),
+                'enable_output_security_filter': getattr(config_manager.global_config, 'enable_output_security_filter', True)
             }
             
             logger.info("Global configuration updated successfully")
