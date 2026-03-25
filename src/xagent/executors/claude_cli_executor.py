@@ -18,6 +18,13 @@ from ..utils.git_sync import GitSyncModule
 logger = logging.getLogger(__name__)
 
 
+_INTERNAL_PARAM_KEYS = {
+    "user_id", "username", "chat_id", "session_id", "original_message",
+    "chat_type", "message_id", "session_type"
+}
+_BLOCKED_CLAUDE_PARAM_KEYS = {"print", "p", "prompt"}
+
+
 class ClaudeCodeCLIExecutor(AICLIExecutor):
     """Claude Code CLI 执行器
     
@@ -130,6 +137,9 @@ class ClaudeCodeCLIExecutor(AICLIExecutor):
         args.append("--dangerously-skip-permissions")
         logger.debug(f"Added permission parameter: --dangerously-skip-permissions")
         
+        # Headless 模式固定启用 --print，输入通过 stdin 提供
+        args.append("--print")
+
         # 添加目录上下文
         args.extend(["--add-dir", self.target_dir])
         
@@ -141,16 +151,11 @@ class ClaudeCodeCLIExecutor(AICLIExecutor):
                 if session_id:
                     args.extend(["--session", session_id])
         
-        # 用安全规则包装用户提示
-        wrapped_prompt = self._wrap_prompt_with_security_rules(user_prompt)
-        # 添加用户提示
-        args.extend(["-p", wrapped_prompt])
-        
         # 添加额外参数
         if additional_params:
             for key, value in additional_params.items():
                 # 跳过内部参数
-                if key in ["user_id", "username", "chat_id", "session_id", "original_message", "chat_type", "message_id", "session_type"]:
+                if key in _INTERNAL_PARAM_KEYS or key in _BLOCKED_CLAUDE_PARAM_KEYS:
                     continue
                 
                 # 布尔参数
@@ -199,6 +204,7 @@ class ClaudeCodeCLIExecutor(AICLIExecutor):
         
         # 构建命令
         command_args = self.build_command_args(user_prompt, additional_params)
+        wrapped_prompt = self._wrap_prompt_with_security_rules(user_prompt)
         logger.info(f"Executing Claude CLI command: {' '.join(command_args[:3])}...")
         
         try:
@@ -210,6 +216,7 @@ class ClaudeCodeCLIExecutor(AICLIExecutor):
                 capture_output=True,
                 text=True,
                 encoding='utf-8',
+                input=wrapped_prompt,
                 timeout=self.timeout
             )
             execution_time = time.time() - start_time
