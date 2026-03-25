@@ -34,6 +34,7 @@ class SessionManager:
     SESSION_INFO_COMMANDS = ["/session", "会话信息"]
     HISTORY_COMMANDS = ["/history", "历史记录"]
     HELP_COMMANDS = ["/help", "帮助", "help"]
+    CLEANUP_COMMANDS = ["/cleanup", "清理会话"]
     
     def __init__(
         self,
@@ -407,7 +408,8 @@ class SessionManager:
             message_lower in [cmd.lower() for cmd in self.NEW_SESSION_COMMANDS] or
             message_lower in [cmd.lower() for cmd in self.SESSION_INFO_COMMANDS] or
             message_lower in [cmd.lower() for cmd in self.HISTORY_COMMANDS] or
-            message_lower in [cmd.lower() for cmd in self.HELP_COMMANDS]
+            message_lower in [cmd.lower() for cmd in self.HELP_COMMANDS] or
+            message_lower in [cmd.lower() for cmd in self.CLEANUP_COMMANDS]
         )
     
     def handle_session_command(self, user_id: str, message: str) -> Optional[str]:
@@ -457,6 +459,11 @@ class SessionManager:
                 lines.append(f"{i}. {role_label}: {content_preview}")
             
             return "\n".join(lines)
+        
+        # 清理会话命令
+        if message_lower in [cmd.lower() for cmd in self.CLEANUP_COMMANDS]:
+            cleaned_count = self.cleanup_expired_sessions()
+            return f"✅ 清理完成 / Cleanup completed: 清理了 {cleaned_count} 个过期会话 / cleaned {cleaned_count} expired sessions"
         
         return None
     

@@ -46,6 +46,7 @@ class ConfigManager:
     # 查看配置命令
     VIEW_CONFIG_COMMANDS = ["/config", "配置"]
     RESET_CONFIG_COMMANDS = ["/reset", "重置配置"]
+    CLEAR_CACHE_COMMANDS = ["/clearcache", "清除缓存"]
     
     # 有效的配置值
     VALID_CLI_PROVIDERS = ["claude", "gemini", "qwen"]
@@ -303,6 +304,10 @@ class ConfigManager:
         if message_lower in [cmd.lower() for cmd in self.RESET_CONFIG_COMMANDS]:
             return True
         
+        # 检查清除缓存命令
+        if message_lower in [cmd.lower() for cmd in self.CLEAR_CACHE_COMMANDS]:
+            return True
+        
         return False
     
     def handle_config_command(
@@ -333,6 +338,11 @@ class ConfigManager:
         if message_lower in [cmd.lower() for cmd in self.RESET_CONFIG_COMMANDS]:
             success, msg = self.reset_config(session_id)
             return msg
+        
+        # 清除缓存命令
+        if message_lower in [cmd.lower() for cmd in self.CLEAR_CACHE_COMMANDS]:
+            self.clear_cache()
+            return "✅ 缓存已清除 / Cache cleared"
         
         # 设置配置命令
         for cmd, config_key in self.CONFIG_COMMANDS.items():

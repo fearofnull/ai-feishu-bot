@@ -293,7 +293,7 @@ class XAgent:
                 session_id=processed.session_id,
                 session_type=processed.session_type,
                 user_id=processed.sender_id,
-                message=processed.final_message,
+                message=processed.message_content,
                 chat_type=processed.chat_type,
                 chat_id=processed.chat_id,
                 message_id=processed.message_id
